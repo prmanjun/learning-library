@@ -9,12 +9,13 @@ A pipeline includes a sequence of data processing stages such as, Query, Pattern
 
 ## **Lab Prerequisites**
 
-1. An On-prem or a Marketplace instance of GoldenGate Stream Analytics(GGSA) version 19.1
+1. An On-prem or a Marketplace instance of GoldenGate Stream Analytics (GGSA) version 19.1:
 
     * For more information on installing GGSA on-prem, see [Installing GoldenGate Stream Analytics](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/install/how-install-goldengate-stream-analytics.html#GUID-13BC895D-6AD1-4398-98E2-B5BE5B14D26B).
+
     * For more information on using GGSA on Marketplace, see [GoldenGate Stream Analytics on Oracle Cloud Marketplace](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/osamp/getting-started-goldengate-stream-analytics-oci.html#GUID-B488861E-1C43-4177-A1F8-40F8E44754AD).
 
-2. Mandatory System Settings configured
+2. Mandatory System Settings configured, if you are using an on-prem instance:
 
     * For configuration instructions, see [Mandatory RTE Configurations](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/using/configuring-runtime-environment.html#GUID-EB33DDFD-7444-434D-8944-059564A453FD).
 
