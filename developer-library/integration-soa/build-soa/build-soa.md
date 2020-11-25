@@ -14,21 +14,18 @@ The validate payment solution will look as the following from an architectural p
 
 ![](./images/Paymentvalidation.png " ")
 
-Estimated Lab Time: 90 minutes
+*Estimated Lab Time*: 90 minutes
 
 ### Objectives
 
-**Construct Payment Validation process orchestration**
+**Construct Payment Validation orchestration**
 
-The validation process flow are outlined here:
-+ The payment information is retrieved from the database, using the credit card number quoted in the order message as the key. If there is no data available with this credit card number, payment is denied.
-+ If data for the credit card number is available, the expiry date in the database record is compared to the expiry date listed in the order message. If they are not the same, the payment is also denied.
-+ The last check compares if the total order amount is less than the daily limit on the credit card in the database.
-+ When all tests are successful, the payment is authorized. Otherwise it’s denied.
-+ The implementation of this service uses a BPEL process to retrieve the credit card data from the database and perform the tests outlined above. The service will return either Authorized or Denied as the payment status.
-
-<<<<<<< HEAD
-=======
+The validation process flow outlines:
+- The payment information is retrieved from the database, using the credit card number quoted in the order message as the key. If there is no data available with this credit card number, payment is denied.
+- If data for the credit card number is available, the expiry date in the database record is compared to the expiry date listed in the order message. If they are not the same, the payment is also denied.
+- The last check compares if the total order amount is less than the daily limit on the credit card in the database.
+- When all tests are successful, the payment is authorized. Otherwise it’s denied.
+- The implementation of this service uses a BPEL (Business Process Execution Language), a process orchestrator to retrieve the credit card data from the database and perform the tests outlined above. The service will return either Authorized or Denied as the payment status.
 
 ### Prerequisites
 This lab assumes you have:
@@ -39,10 +36,6 @@ This lab assumes you have:
     - Lab: Prepare Setup
     - Lab: Environment Setup
   
-
->>>>>>> upstream/master
-**Validation Payment, development Steps:**
-
 ## **STEP 1**:  Create a New SOA Composite Application 
 
 Let's name the application e2e-1201-composites and the SOA project in JDeveloper called ValidatePayment.
@@ -350,27 +343,11 @@ The first design iteration is complete and you are now ready to deploy the compo
 
 1. Set breakpoints in the composite by right clicking on an interface and create a Request or Reply Breakpoint or both. For one-directional interfaces, you only get one option.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-   ![](../images/2/breakpoint1.png " ")
-
-   The breakpoints are little red icons with an arrow pointing in the direction of the flow.
-
-   ![](../images/2/breakpoint2.png " ")
-=======
-   ![](./images/breakpoint1.png)
-
-   The breakpoints are little red icons with an arrow pointing in the direction of the flow.
-
-   ![](./images/breakpoint2.png)
->>>>>>> upstream/master
-=======
    ![](./images/breakpoint1.png " ")
 
    The breakpoints are little red icons with an arrow pointing in the direction of the flow.
 
    ![](./images/breakpoint2.png " ")
->>>>>>> upstream/master
 
    Watch on how to use diagnostic tool in JDeveloper
 
