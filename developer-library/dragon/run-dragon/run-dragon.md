@@ -28,9 +28,9 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
 
     For example:
 
-    ![](images/dragon-upgrading.png)
+    ![DRAGON Stack manager being upgraded](images/dragon-upgrading.png)
     
-    ![](images/dragon-upgrade.png)
+    ![DRAGON Stack manager upgraded with success](images/dragon-upgrade.png)
 
     *[Click here to skip to STEP 4](#STEP4:DeploytheDRAGONStackbackend)*
 
@@ -91,11 +91,11 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
 ## **STEP 2:** Gather Data you need
 
 1. From the OCI console, click the user icon (top right of your browser) and click **User Settings**. Click **API Keys** and **Add Public Key**.
-   ![](./images/select-user.png " ")
-   ![](./images/create-api-key.png " ")
+   ![Select user in OCI Console](./images/select-user.png " ")
+   ![Create an API key for the user](./images/create-api-key.png " ")
 
 2. Paste the content of public key you created and click **Add**. A new finger print will be generated.
-   ![](./images/add-public-key.png " ")
+   ![Add a public key for the user](./images/add-public-key.png " ")
 
   Make a note of the fingerprint for later.
 
@@ -103,15 +103,15 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
 
 3. On the User Details page, copy the user OCID and save it for later:
 
-  ![](images/user-ocid.png)
+  ![Retrieve user OCID](images/user-ocid.png)
 
 4. Click on the user icon again and click **Tenancy: <tenancy-name>**, then copy and save the tenancy OCID for later:
 
-  ![](images/tenancy-ocid.png)
+  ![Retrieve tenancy OCID](images/tenancy-ocid.png)
 
 5. From your compartment details page, copy the compartment OCID and save it for later.
 
-  ![](images/compartment-details.png)
+  ![Retrieve compartment OCID](images/compartment-details.png)
 
 6. Look in the upper right of the Oracle Cloud Console to determine your region, then use [this reference](https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm#top) to determine your region code. Save it for later.
 
@@ -131,6 +131,7 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     user=<user ocid>
     fingerprint=<api key fingerprint>
     key_file=~/dragon_ssh_key
+    pass_phrase=banana
     tenancy=<tenancy ocid>
     compartment_id=<compartment ocid>
     region=<region code>
@@ -150,6 +151,7 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     user=<user ocid>
     fingerprint=<api key fingerprint>
     key_file=~/dragon_ssh_key
+    pass_phrase=banana
     tenancy=<tenancy ocid>
     compartment_id=<compartment ocid>
     region=<region code>
@@ -167,7 +169,7 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     ```
     $ <copy>./dragon-linux-x86_64-2.0.7 -help</copy>
     ```
-    ![](./images/dragon-help.png)
+    ![Help for DRAGON Stack manager](./images/dragon-help.png)
 
 2. Create a sample JSON file to load named `employees.json`. Open the following file and paste the content into it, and save the file:
 
@@ -187,25 +189,25 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     $ <copy>./dragon-linux-x86_64-2.0.7 -loadjson</copy>
     ```
    
-    ![](./images/dragon-provisioned-backend.png)
+    ![Autonomous database provisioned with DRAGON](./images/dragon-provisioned-backend.png)
 
 ## **STEP 5:** Using DRAGON
 
 1. Copy and paste the link into a browser and connect to SQL Developer Web:
 
-  ![](images/connect-to-sql-dev-web.png)
+  ![SQL Developer Web connect link](images/connect-to-sql-dev-web.png)
 
 2. Login, using the login name and password you created in the `dragon.config` file:
 
-  ![](images/sql-dev-web-signin.png)
+  ![Signing-in into SQL Developer Web](images/sql-dev-web-signin.png)
 
 3. Click SQL Worksheet:
 
-  ![](images/open-sql-worksheet.png)
+  ![SQL Developer Web - SQL Worksheet](images/open-sql-worksheet.png)
 
 4. Expand the two collections:
 
-  ![](images/expand-collections.png)
+  ![Listing SODA collections in SQL Developer Web](images/expand-collections.png)
 
 5. In the worksheet, enter the following command to look at the contents of the employees collection (JSON), and click **Run Statement**:
 
@@ -213,11 +215,11 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
   <copy>select json_query(json_document, '$' returning CLOB) from employees;</copy>
   ```
 
-  ![](images/view-employees-collection-json.png)
+  ![Query JSON documents from the employees collection](images/view-employees-collection-json.png)
 
 6. Click in the query result to see the contents of the JSON document:
 
-  ![](images/employees-values.png)
+  ![View a JSON document](images/employees-values.png)
 
 ## **STEP 6:** Create the front end React application
 
@@ -226,7 +228,7 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     ```
     $ <copy>./dragon-linux-x86_64-2.0.6 -create-react-app</copy>
     ```
-    ![](images/frontend-creation.png)
+    ![Create the React frontend with the DRAGON Stack manager](images/frontend-creation.png)
 
 2. Configure Cloud Shell `Node.js` version using the command provided (optional if you are in the good version already):
 
@@ -240,7 +242,7 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     $ <copy>cd frontend; npm install</copy>
     ```
 
-    ![](images/deploying-stack-frontend.png)
+    ![Deploys the React frontend with npm](images/deploying-stack-frontend.png)
 
 4. Once the Web Application deployed, install NGROK to access the local website (deployed on Cloud Shell):
 
@@ -254,17 +256,17 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     $ <copy>npm start &</copy>
     ```
 
-    ![](images/frontend-installed.png)
+    ![React frontend started](images/frontend-installed.png)
 
     ```
     $ <copy>./ngrok http 3000</copy>
     ```
 
-    ![](images/ngrok.png)
+    ![NGROK link to connect from OCI Cloud Shell](images/ngrok.png)
 
 6. Click in the interface to learn more about the DRAGON project, Reactjs, ORDS, or sign into the database on your ATP instance.
 
-    ![](images/dragon-react-frontend.png)
+    ![React frontend connected to the backend](images/dragon-react-frontend.png)
 
 
 ## **STEP 7:** Cleanup your environment
@@ -277,12 +279,12 @@ The DRAGON Stack manager is designed to speed up as much as possible the develop
     $ <copy>cd</copy>
     ```
 
-3. Destroy you DRAGON Stack backend
+3. Destroy your DRAGON Stack backend
 
     ```
     $ <copy>./dragon-linux-x86_64-2.0.7 -destroy</copy>
     ```
-   ![](./images/dragon-destroy-backend.png)
+   ![Destroying the backend with the DRAGON Stack manager](./images/dragon-destroy-backend.png)
 
 Congratulations! You have completed the very first DRAGON Stack workshop!
 
@@ -295,7 +297,7 @@ Congratulations! You have completed the very first DRAGON Stack workshop!
 * **Author** - Loic Lefevre, Principal Product Manager
 * **Last Updated By/Date** - Tom McGinn, Database Product Management, November 2020
 
-![](./images/dragon-logo.png)
+![DRAGON Stack logo](./images/dragon-logo.png)
 
 ## Need Help?
 Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.

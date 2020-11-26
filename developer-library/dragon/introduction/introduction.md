@@ -12,7 +12,7 @@ The DRAGON Stack manager is an open-source project which provides the fastest wa
  - integrates SQL Developer Web and Oracle REST Data Services integration with standard application development frameworks such as React or Spring-Boot
  - generates project source code to start coding as soon as possible!  
 
-  ![](./images/dragon-stack-manager-overview.png)
+  ![DRAGON Stack manager speeds up application development](./images/dragon-stack-manager-overview.png)
 
 ### Prerequisites
 

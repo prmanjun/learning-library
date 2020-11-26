@@ -29,12 +29,8 @@
             "filename": "../../setup/setup.md"
         },
         {
-            "title": "Lab 5: Analyze Data",
-            "filename": "../../analyze/analyze.md"
-        },
-        {
-            "title": "Lab 6: Visualize Data",
-            "filename": "../../visualize/visualize.md"
+            "title": "Lab 5: New Set Operators",
+            "filename": "../../set-operators/set-operators.md"
         }
     ]
 }

@@ -122,13 +122,13 @@ Follow the steps below to Start and Stop the different SecureOracle components.
     </copy>
     ```
 
-3. The **Hedwig Mail Server** can be re-started if you experience issues when connecting with the Roundcube email client. E.g run the following commands to re-start the Hedwig Mail Server:
+3. The **Hedwig Mail Server** can be re-started if you experience issues when connecting with the Roundcube email client. E.g run the following commands to re-start the Hedwig Mail Server as user *opc*:
 
     ```
     <copy>
-    cd /home/oracle/demo/hedwig-0.7/bin
-    sudo -E ./run.sh stop
-    sudo -E ./run.sh start
+    export JAVA_HOME=/home/oracle/products/jdk
+    sudo -E /home/oracle/demo/hedwig-0.7/bin/run.sh stop
+    sudo -E /home/oracle/demo/hedwig-0.7/bin/run.sh start
     </copy>
     ```
 

@@ -2,55 +2,53 @@
 
 ## About this Workshop
 
-This introduction covers the complete "parent" workshop. The objectives are written to cover all of the labs included in the workshop.
+This workshop offers hands-on labs that highlight the latest enhancements in the latest release of the Oracle Database, 21c.  For the world’s most demanding enterprise applications and workloads, Oracle Database 21c is a converged database that delivers a high performance, highly available, secure and scalable data management platform for cloud as well as on-premises environments.
 
-Estimated Lab Time: n minutes -- this estimate is for the entire workshop - it is the sum of the estimates provided for each of the labs included in the workshop.
+Estimated Workshop Time: 60 minutes 
 
-### About Product/Technology
-Enter background information here....
+### About Oracle Database 21c
+The latest 21c release furthers the converged capabilities of Oracle Database with additional support for blockchain tables, JSON, machine learning, graph and 
+persistent memory.
 
-*You may add an option video, using this format: [](youtube:YouTube video id)*
+Key updates made in Database 21c are:
+* JSON binary data type
+* Blockchain tables
+* Auto machine learning with Python 
+* Enhancements for sharding, database in-memory and graph analytics.
 
+With 21c, customers can
+* Reduce IT cost and complexity 
+* Unlock innovation
+* Develop powerful, data-driven applications
+
+
+**Add 21c video here, Willie to send**
   [](youtube:zNKxJjkq0Pw)
 
 ### Objectives
 
-*List objectives for the lab - if this is the intro lab, list objectives for the workshop, for example:*
-
-In this lab, you will:
-* Provision
-* Setup
-* Data Load
-* Query
-* Analyze
-* Visualize
+* Lab:  Create SSH Keys
+* Lab:  Create VCN & DB System
+* Lab:  Prepare for 21c
+* Lab:  Using New Set Operators
 
 ### Prerequisites
 
-*Use this section to describe any prerequisites, including Oracle Cloud accounts, set up requirements, etc.*
+* An Oracle Free Tier, Paid or LiveLabs Cloud Account
+* Working knowledge of vi
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* Item no 2 with url - [URL Text](https://www.oracle.com).
 
-*This is the "fold" - below items are collapsed by default*
-
-In general, the Introduction does not have Steps.
-
-*At the conclusion of the lab add this statement: Note how you can link to whatever lab follows by using #next as the target*
 You may now [proceed to the next lab](#next).
 
 ## Learn More
 
-*(optional - include links to docs, white papers, blogs, etc)*
-
-* [URL text 1](http://docs.oracle.com)
+* [21c Blog](http://docs.oracle.com)
 * [URL text 2](http://docs.oracle.com)
 
 ## Acknowledgements
-* **Author** - <Name, Title, Group>
-* **Contributors** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- optional, use this when you are using a Pre-Authorized Request (PAR) URL to an object in Oracle Object Store.
+* **Author** - Dominique Jeunot, Database UA Team
+* **Contributors** - Kay Malcolm, Database Product Management
+* **Last Updated By/Date** - Kay Malcolm, Database Product Management
 
 ## Need Help?
 Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
