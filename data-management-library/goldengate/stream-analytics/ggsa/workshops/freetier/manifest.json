@@ -1,9 +1,9 @@
 {
-    "workshoptitle": "Create your HelloWorld Pipeline",
+  
     "tutorials": [
 
             {
-            "title": "Your HelloWorld Pipeline in 10 minutes!",
+            "title": "Create your HelloWorld Pipeline",
             "filename": "../../1-ggsa-hwp/1-ggsa-hwp.md"
         }
 

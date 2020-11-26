@@ -1,5 +1,5 @@
 
-# Create your HelloWorld Pipeline
+# Your HelloWorld Pipeline in 10 minutes!
 
 This lab helps you create a basic pipeline, add a query stage and a filter to it, and publish the pipeline; all this in less than 10 minutes!
 
