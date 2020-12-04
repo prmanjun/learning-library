@@ -34,7 +34,11 @@ Create a CSV file and copy the following lines into it:
 
 ## **STEP 2:** Log in to GoldenGate Stream Analytics
 
-Log in to the GoldenGate Stream Analytics using the url, with the following credentials:
+To log in to the GGSA instance:
+
+1. In the Chrome browser, enter the host url **``<host>``: 9080/osa**.
+
+2. Use the following credentials:
 
 * **User Name:** **osaadmin**
 
@@ -42,7 +46,11 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 3:** Create a File Stream
 
-1. To create a File stream, on the **Catalog** page, click **Create New Item**, and select **Stream** to display the **Create Stream** screen.
+To create a File stream:
+
+1. On the **Catalog** page, click **Create New Item**, and select **Stream**.
+
+2. Select **File** from the list, to display the **Create Stream** screen.
 
    ![](./images/CreateStream.png "")
 
@@ -56,7 +64,9 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 4:** Upload the CSV file
 
-1. To upload the CSV file, on the **Source Details** screen, click **Upload File** to browse and upload the CSV file that you had created in **STEP 1**.
+To upload the CSV file:
+
+1. On the **Source Details** screen, click **Upload File** to browse and upload the CSV file that you had created in **STEP 1**.
 
    ![](./images/fileupload.png "")
 
@@ -64,7 +74,9 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 5:** Set Record Header
 
-1. To set the first record as header, on the **Data Format** screen, select **First record as header**.
+To set the first record as header:
+
+1. On the **Data Format** screen, select **First record as header**.
 
    ![](./images/filerecasfrmt.png "")
 
@@ -72,7 +84,9 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 6:** Infer Event Shape
 
-1. To infer shape from stream, on the **Shape** screen, ensure **Infer Shape** and **From Stream** options are selected, and verify if the shape of the event is successfully inferred as shown in following screenshot.
+To infer shape from stream:
+
+1. On the **Shape** screen, ensure **Infer Shape** and **From Stream** options are selected, and verify if the shape of the event is successfully inferred as shown in following screenshot.
 
    ![](./images/shape.png "")
 
@@ -80,7 +94,9 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 7:** Create Pipeline
 
-1. To create a pipeline, on the **Create Pipeline** screen, enter a name for the pipeline, and click **Save** to launch the Pipeline Editor.
+To create a pipeline:
+
+1. on the **Create Pipeline** screen, enter a name for the pipeline, and click **Save** to launch the Pipeline Editor.
 
    ![](./images/createpplne.png "")
 
@@ -89,13 +105,15 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 1. In the pipeline editor, you will see the message *Starting Pipeline* followed by *Listening to Events*. This is the first access of the cluster, therefore it will take a while to copy the libraries.
 
-2. You should eventually see the following screen, with a single node representing the source stream in the left pane, and the **Sources** used in the pipeline, in right pane.
+2. You should eventually see the following screen, with a single node representing the source stream in the left pane, and the **Sources** used in the pipeline, in the right pane.
 
    ![](./images/pplneditor.png "")
 
 ## **STEP 9:** Add a Query Stage
 
-1. To add a **Query** stage to the source stream, right-click on the source stream, select **Add a Stage** and then select **Query**.
+To add a **Query** stage to the source stream:
+
+1. Right-click on the source stream, select **Add a Stage** and then select **Query**.
 
 2. Enter a **Name** and **Description** for the Query Stage.
 
@@ -103,19 +121,29 @@ Log in to the GoldenGate Stream Analytics using the url, with the following cred
 
 ## **STEP 10:** Add a Filter to the Query Stage
 
-1. To add a **Filter** to a **Query** stage, click **Filters** in the left pane, and click **Add a Filter**. In this example, the filter is **QuantitySold is greater than 4**, as shown in the following screenshot.
+To add a **Filter** to a **Query** stage:
+
+1. Click **Filters** in the left pane.
+
+2. Click **Add a Filter**. In this example, the filter is **QuantitySold is greater than 4**, as shown in the following screenshot.
 
    ![](./images/addquery.png "")
 
 ## **STEP 11:** Publish the Pipeline
 
-1. To publish a pipeline click **Publish** on the top-right corner. Publish with defaults, for your pipeline to filter data in real-time.
+To publish the pipeline:
+
+1. Click **Publish** on the top-right corner.
+
+   ![](./images/pubpplne.png "")
+
+2. Publish with defaults, for your pipeline to filter data in real-time.
 
 **Note:**
 
-* The pipeline would continue to run even after you log out since the pipeline is now in published state.
+* The pipeline continues to run even after you log out, because the pipeline is now in published state.
 
-* By default the Pipeline is in *Draft* state, and quitting the pipeline editor without publishing will remove the pipeline and release all cluster resources.
+* By default, the Pipeline is in *Draft* state, and quitting the pipeline editor without publishing removes the pipeline and releases all cluster resources.
 
 
 ## Learn More
