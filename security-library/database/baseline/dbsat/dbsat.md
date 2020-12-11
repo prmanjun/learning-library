@@ -38,10 +38,11 @@ This lab assumes you have:
 |10| Advanced Discoverer - Getting into Pattern files, Sensitive Types, and Categories | 10 minutes |
 |11| Advanced Discoverer - Pattern Files | 15 minutes |
 |12| Processing DBSAT report JSON output | 10 minutes |
+|13| (Optional) Uninstalling DBSAT | <5 minutes |
 
 ## **STEP 1**: Installing DBSAT
 
-1. Open a SSH session on your DBSec-Lab VM as Oracle User
+1. Open a SSH session on your **DBSec-Lab VM as *oracle* user**
 
       ````
       <copy>sudo su - oracle</copy>
@@ -50,7 +51,7 @@ This lab assumes you have:
 2. Go to the scripts directory
 
       ````
-      <copy>cd $DBSEC_HOME/workshops/Database_Security_Labs/DBSAT</copy>
+      <copy>cd $DBSEC_LABS/dbsat</copy>
       ````
 
 3. Create a directory to install DBSAT
@@ -76,7 +77,7 @@ This lab assumes you have:
 1. Go to the dbsat directory just created
 
       ````
-      <copy>cd $DBSEC_HOME/workshops/Database_Security_Labs/DBSAT/dbsat221</copy>
+      <copy>cd $DBSEC_LABS/dbsat/dbsat221</copy>
       ````
 
 2. Let's start by examining all DBSAT execution parameters
@@ -144,7 +145,7 @@ This lab assumes you have:
 5. For the purpose of this lab, and as we are not using a desktop environment, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible by your laptop browser
 
       ````
-      <copy>. ../Use_Glassfish_Webserver.sh</copy>
+      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
       ````
 
    ![](./images/dbsat-006.png " ")
@@ -395,7 +396,7 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 1. Go to the scripts directory
 
       ````
-      <copy>cd $DBSEC_HOME/workshops/Database_Security_Labs/DBSAT/dbsat221/Discover/conf</copy>
+      <copy>cd $DBSEC_LABS/dbsat/dbsat221/Discover/conf</copy>
       ````
 
 2. Copy the provided `sample_dbsat.config`, make the copy writable and open it for editing
@@ -459,7 +460,7 @@ In this exercise, you will learn how to execute DBSAT discoverer. DBSAT discover
 9. As we are not using a desktop environment in this lab, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible by your laptop browser
 
       ````
-      <copy>. ../Use_Glassfish_Webserver.sh</copy>
+      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
       ````
 
    ![](./images/dbsat-032.png " ")
@@ -598,7 +599,7 @@ In this exercise, you will learn how `dbsat.config` parameters determine the beh
 13. As we are not using a desktop environment in this lab, copy the html file to the glassfish server directory by executing the script. This will make the html report accessible in the glassfish application server and make it reacheable by your laptop browser
 
       ````
-      <copy>. ../Use_Glassfish_Webserver.sh</copy>
+      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
       ````
 
     **Note**: This script will copy the html report to the glassfish webserver to make it easier for you to see the report
@@ -663,7 +664,7 @@ In this exercise, you will learn how `dbsat.config` parameters determine the beh
 20. Make the file available using Glassfish:
 
       ````
-      <copy>. ../Use_Glassfish_Webserver.sh</copy>
+      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
       ````
 
 21. Open the following link in your browser: `http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v3_discover.html`
@@ -870,7 +871,7 @@ DBSAT uses pattern files and the regexes that are there defined to find sensitiv
 11. Make it available using Glassfish
 
       ````
-      <copy>. ../Use_Glassfish_Webserver.sh</copy>
+      <copy>. ../dbsat_use_glassfish_webserver.sh</copy>
       ````
 
 12. Go to your web browser and open: `http://<DBSec_Lab_Public_IP>:8080/hr_prod_pdb1/dbsat/pdb1_dbsat_v4_discover.html`
@@ -893,7 +894,7 @@ In this exercise, you will be exposed to the DBSAT utilities (`dbsat_diff` & `db
 1. Go to the scripts directory
 
       ````
-      <copy>cd $DBSEC_HOME/workshops/Database_Security_Labs/DBSAT</copy>
+      <copy>cd $DBSEC_LABS/dbsat</copy>
       ````
 
 2. Unzip `dbsat_util.zip`
@@ -1009,6 +1010,22 @@ In this exercise, you will be exposed to the DBSAT utilities (`dbsat_diff` & `db
 
     - Type `exit`
 
+## **STEP 13**: (Optional) Uninstalling DBSAT
+
+1. Go to the scripts directory
+
+      ````
+      <copy>cd $DBSEC_LABS/dbsat</copy>
+      ````
+
+1. Run the following script
+
+      ````
+      <copy>./dbsat_uninstall.sh</copy>
+      ````
+
+   ![](./images/dbsat-054.png " ")
+
 You may proceed to the next lab.
 
 ## **Appendix**: About the Product
@@ -1067,7 +1084,7 @@ Technical Documentation:
 ## Acknowledgements
 - **Author** - Hakim Loumi, Database Security PM
 - **Contributors** - Pedro Lopes, Rene Fontcha
-* **Last Updated By/Date** - Rene Fontcha, Master Principal Solutions Architect, NA Technology, October 2020
+- **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
 ## Need Help?
 Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.

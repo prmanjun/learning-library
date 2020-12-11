@@ -4,7 +4,7 @@
 
 This workshop introduces the Oracle DRAGON stack project, a simple way to deploy applications using an Oracle Autonomous Database, using an Always Free Oracle Autonomous Transaction Processing (ATP), Oracle Autonomous JSON Database, or Oracle Autonomous Data Warehouse. In this short workshop, you'll download the DRAGON Stack manager and deploy a React based stack on Oracle Cloud.
 
-Estimated Workshop Time: 10 minutes
+Estimated Workshop Time: 30 minutes
 
 ### About the DRAGON Stack manager
 The DRAGON Stack manager is an open-source project which provides the fastest way to build and run applications connected to an Autonomous Database shared infrastructure. It can indeed:
@@ -21,8 +21,6 @@ The DRAGON Stack manager is an open-source project which provides the fastest wa
 You may now [proceed to the next lab](#next).
 
 ## Learn More
-
-*Any links you want to include?*
 
 * [DRAGON Stack manager portal](https://bit.ly/DRAGONStackManager)
 * [DRAGON Stack manager on GitHub](https://bit.ly/DragonStack)

@@ -136,6 +136,6 @@ The zone is not associated with any of the VCN's view leave cloud shell connect 
 
 `[opc@primaryvnic ~]$ host server01.spokevcn.com`
 
-`server01.hubzone.com has address 10.0.0.2`
+`server01.spokezone.com has address 10.0.0.2`
 
 Now the hub_vcn resolver has access to the spoke_vcn private view and can resolve names from the zones within it.

@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "Database 21c Fundamentals",
+    "workshoptitle": "Database 21c New Features",
     "tutorials": [
         {
             "title": "Prerequisites",
@@ -17,20 +17,45 @@
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/generate-ssh-key/generate-ssh-keys.md"
         },
         {
-            "title": "Lab 2: Create a Virtual Cloud Network",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/database/oci-vm-database/create-oci-vm-db/create-virtual-cloud-network/create-virtual-cloud-network.md"
+            "title": "Lab 2: Create a DBCS VM Database",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/database/oci-vm-database/create-oci-vm-db/create-oci-vm-db/create-oci-vm-db-vcn.md"
         },
         {
-            "title": "Lab 3: Create an OCI VM Database",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/database/oci-vm-database/create-oci-vm-db/create-oci-vm-db/create-oci-vm-db.md"
-        },
-        {
-            "title": "Lab 4: Prepare for 21c",
+            "title": "Lab 3: 21C Setup",
             "filename": "../../setup/setup.md"
         },
         {
-            "title": "Lab 5: New Set Operators",
+            "title": "Lab 4: New Set Operators",
             "filename": "../../set-operators/set-operators.md"
+        },
+        {
+            "title": "Lab 5: Expressions in Init Parameters",
+            "filename": "../../init-params/init-params.md"
+        },
+        {
+            "title": "Lab 6: SQL Macros",
+            "filename": "../../sql-macro/sql-macro.md"
+        },
+        {
+            "title": "Lab 7: Bitwise Aggregate Functions",
+            "filename": "../../bitwise-agg/bitwise-agg.md"
+        },
+        {
+            "title": "Lab 8: Enhanced Analytic Functions",
+            "filename": "../../enhanced-analytics/enhanced-analytics.md"
+        },
+        {
+            "title": "Lab 9: Detecting Data Tampering",
+            "filename": "../../data-tampering/data-tampering.md"
+        },
+        {
+            "title": "Lab 10: Measuring Asymmetry in Data",
+            "filename": "../../skewness/skewness.md"
+        },
+        {
+            "title": "Lab 11: Measuring Tailedness of Data",
+            "filename": "../../kurtosis/kurtosis.md"
         }
+        
     ]
 }

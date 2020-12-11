@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/tool_main1.js"></script>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style1.css">
+    <link rel="shortcut icon" href="./img/favicon.ico" />
+
+    <title>Image Check</title>
+</head>
+
+<body>
+    <!-- Top menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Image Check <small>v0.1</small></a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a id="btn_home" class="nav-link active" href="#">Home</a></li>       
+        </ul>
+        <p>Last updated: <strong><span id="lastmodified"></span></strong> | Works best on Google Chrome!</p>
+    </nav>
+    <!-- Main content appears in this div -->
+    <div id="main">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Markdown                                                        
+                    </div>                                        
+                    <div type="button" id="import_md" class="btn btn-primary" title="Click here to upload MD file">[Click here to upload MD file]</div>
+                    <input type="file" id="upload_md" accept=".md" hidden />
+                    <div class="card-body">
+                        <b>Images missing in the images folder</b>
+                        <div id = "missing">
+                            None
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div id="rightBox" class="card">
+                    <div class="card-header">
+                        Images                
+                    </div>
+                    <div type="button" id="btn_image_files" class="btn btn-primary" title="Click here to upload images">[Click here to upload images]</div>
+                    <input type="file" id="image_files" name="image_files[]" class="btn-preview btn" accept="image/*" multiple hidden/>
+                    <div class="card-body">
+                        <b>Extra images in the images folder</b>
+                        <div id = "extra">
+                            None
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
