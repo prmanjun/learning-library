@@ -1,5 +1,5 @@
 {
-  "workshoptitle": "Modernize Apps",
+  "workshoptitle": "Modernize Enterprise Apps",
   "tutorials": [
     {
       "title": "Prerequisites",
@@ -8,7 +8,7 @@
     },
     {
       "title": "Introduction",
-      "description": "Introduction to Weblogic and Helidon",
+      "description": "Introduction to Coherence Cache",
       "filename": "../../intro/intro-coherence.md"
     },
     {

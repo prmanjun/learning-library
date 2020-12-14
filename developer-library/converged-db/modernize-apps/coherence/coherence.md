@@ -1,4 +1,4 @@
-# Modernize Apps with Coherence Cache
+# Using Coherence Cache with WebLogic
 
 ## Introduction
 The Coherence Lab is an exercise to visualize the different features of Coherence as a distributed in-memory data-grid.

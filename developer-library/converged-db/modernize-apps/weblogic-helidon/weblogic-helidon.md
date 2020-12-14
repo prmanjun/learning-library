@@ -1,5 +1,5 @@
 
-# Modernize Apps with WebLogic and Helidon Microservices
+# Using WebLogic and Helidon Microservices
 
 ## Introduction
 
