@@ -46,6 +46,9 @@ This lab assumes you have:
 
     ![](./images/home.png " ")
 
+3. Click on (*`X`*) to ignore the error below if shown
+
+    ![](./images/ignore-error-first-login.png " ")
 
 ## **STEP 2**: Check Version
 1. Click on the drop-down menu in the upper right-hand corner of the screen.

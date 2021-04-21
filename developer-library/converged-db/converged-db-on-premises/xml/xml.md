@@ -351,7 +351,7 @@ Oracle XML DB allows an organization to manage XML content in the same way that 
     ![](./images/xml_m10_ba.png " ")
 
 ## Want to learn more
-- [XML](https://docs.oracle.com/en/database/oracle/oracle-database/19/adjsn/index.html)
+- [XML](https://docs.oracle.com/en/database/oracle/oracle-database/19/adxdb/index.html)
 
 ## Acknowledgements
 * **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope

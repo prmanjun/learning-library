@@ -46,7 +46,9 @@ Learn how to
 5. Scroll down and enable the CONSOLE_DEVELOPER role. Click both the `Granted` and `Default` checkboxes for that role.  
    Also grant CONNECT and RESOURCE roles.
 
-   ![](./images/console-developer.png " ")
+   ![](./images/console-developer.png " ")  
+
+   **Note:** The `CONSOLE_DEVELOPER` role is only needed during the *Limited Availability* period.  
 
 6. Click the `Create User` button at the bottom of the panel to create the user with the specified credentials.
    

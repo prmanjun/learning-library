@@ -404,6 +404,9 @@ Once the query is ready and the desired graph is selected, click Run to execute 
 
     ![](./images/IMGG23.PNG " ")
 
+    **The result should look like as below:**
+    ![](./images/IMGG23a.PNG " ")
+
 4. **Here we look at which customers placed orders from store with id 1 (the Online store) displaying the first 100 results**
 
     ```

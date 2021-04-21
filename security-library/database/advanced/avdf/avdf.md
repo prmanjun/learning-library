@@ -79,7 +79,7 @@ This lab assumes you have:
 
     - Close the session
 
-2. Now, open a SSH session on your **DBSec-Lab VM as *oracle* user**
+2. Now, open a SSH session on your **DBSec-Lab VM as *oracle* user** (don't close it until the end of this AVDF workshop!)
 
       ````
       <copy>sudo su - oracle</copy>
@@ -893,6 +893,8 @@ In this lab you will use the Glassfish Application to connect through the Oracle
 
 4. Under `Configuration`, click **System Services**
 
+    **Note**: According to your resources it can take up to several minutes to present the Tabs!
+
 5. Select the `Date and Time` tab
 
 6. Ensure the first NTP service is `ON` and the IP is `169.254.169.254`, and close the pop-up windows
@@ -1099,12 +1101,14 @@ In this lab you will use the Glassfish Application to connect through the Oracle
 
 18. Finally, select the **Default** tab to specify what the DB Firewall policy has to do you if you are not in the context definied previously (here we will block all the "black-listed" queries and we will return a blank result)
 
-    - Action: *`Block`*
-    - Logging Level: *`One-Per-Session`*
-    - Threat Severity: *`Moderate`*
-    - Substitution SQL: *`select 100 from dual where 1=2`*
+    - Click on **Default Rule** under the Rule Name, to edit the Default rule, and enter the following information
+    
+        - Action: *`Block`*
+        - Logging Level: *`One-Per-Session`*
+        - Threat Severity: *`Moderate`*
+        - Substitution SQL: *`select 100 from dual where 1=2`*
 
-       ![](./images/avdf-135b.png " ")
+          ![](./images/avdf-135b.png " ")
 
     - Click [**Save**]
 
