@@ -2,7 +2,7 @@
 
 ## Introduction
 
-For questions related to LiveLabs please review this FAQ. If you don't see an answer listed here, please visit the LiveLabs slack channel, #livelabs-help or email the admins [livelabs-admin_us@oracle.com](livelabs-admin_us@oracle.com).
+For questions related to LiveLabs please review this FAQ. If you don't see an answer listed here, please visit the LiveLabs slack channel - #livelabs-authors-help or email your respective admins, you can view the email in [LWMS](https://apex.oraclecorp.com/pls/apex/f?p=24885:51) under the support link section of your workshop. For example, database - [livelabs-help-db_us@oracle.com](livelabs-help-db_us@oracle.com).
 
 ## **General FAQ**
 
@@ -53,11 +53,10 @@ For questions related to LiveLabs please review this FAQ. If you don't see an an
 2.	What binary files are not allowed in Github?
     -	The OGHO wants to avoid executable files that can contain malicious code (PDFs, PSDs, ZIPs, JARs, WARs, EARs, BINs, EXEs).
 3.	Where do I put my workshop files/objects?
-    -	Zip your files and mail to [livelabs-admin_us@oracle.com](livelabs-admin_us@oracle.com).
+    -	Zip your files and mail to [livelabs-help-db_us@oracle.com](livelabs-help-db_us@oracle.com).
     -	LiveLabs team will upload the file in LiveLabs owned tenancy object storage and share the pre-authenticated link with an expiry date to you in 1-2 days.
-    -	Once you receive the link update the workshop with the expiry date in the Acknowledgments section of the workshop.
 4.	How to submit videos for the workshops to one of the Oracle’s official Youtube channels?
-    -	Workshop videos can only be sourced from one of the official Oracle Youtube channels.  We have a LiveLabs YouTube channel.  Submit the video to [livelabs-admin_us@oracle.com](livelabs-admin_us@oracle.com) and we will review and upload it.
+    -	Workshop videos can only be sourced from one of the official Oracle Youtube channels.  We have a LiveLabs YouTube channel.  Submit the video to [livelabs-help-db_us@oracle.com](livelabs-help-db_us@oracle.com) and we will review and upload it.
 5.	How to create a custom image from the Marketplace?
     -	Refer to [this](https://rpastijn.github.io/stuff/?lab=custom-image-mp-image) documentation on Github.
 6. What to do if my github local and staging environment are corrupted and need to delete it and then rebuilt it?
@@ -69,7 +68,7 @@ For questions related to LiveLabs please review this FAQ. If you don't see an an
     - Delete the same repo you just deleted on Github on your local machine as well.
     - After the successful deletion of repo on Github and local machine, follow the instructions from step 7 in lab 1 - Get Started with Git and Set up the GitHub Environment to rebuilt the repo.
 7.	Any questions related to Github?
-    -	Join the Slack channel: #livelabs-help and ask the question in the channel.
+    -	Join the Slack channel: #livelabs-authors-help and ask the question in the channel.
 
 ## **Workshops FAQ**
 
