@@ -1,13 +1,37 @@
-# Install and Configure Oracle GoldenGate Veridata                                   
+# Install and Configure Oracle GoldenGate Veridata
+
+##Introduction                                  
 
 This lab describes how to install and configure the Oracle GoldenGate Veridata.
 For proof-of-concept, you can install the following on one host: Oracle WebLogic Server, Fusion Middleware Infrastructure, and Oracle GoldenGate Veridata.
 
-## What do you Need?
-+ **Linux**
-+ **Oracle Database 19c (19.3.0.0) (for the repository)**
-+ **Java 1.8 or higher**
-+ **[Oracle GoldenGate Software](https://www.oracle.com/middleware/technologies/goldengate-downloads.html)**
+*Estimated Lab Time*: 1 hour and 15 minutes
+
+### Objectives
+In this lab, you will:
+* Install and configure the Back End Servers and Infrastructure
+* Install the Fusion Middleware Infrastructure
+* Install Oracle GoldenGate Veridata
+* Apply the Oracle GoldenGate Veridata Patch
+* Configure RCU
+* Create a Domain
+* Deploy Agents
+
+### Prerequisites
+This lab assumes you have:
+
+* A Free Tier, Paid or LiveLabs Oracle Cloud account
+* SSH Private Key to access the host via SSH
+* You have completed:
+    * Lab: Generate SSH Keys (Free-tier and Paid Tenants only)
+    * Lab: Prepare Setup (Free-tier and Paid Tenants only)
+    * Lab: Environment Setup
+    * Lab: Initialize Environment
+* The following are required to complete this lab:
+    * Linux
+    * Oracle Database 19c (19.3.0.0) (for the repository)
+    * Java 1.8 or higher
+    * [Oracle GoldenGate Veridata Software](https://www.oracle.com/middleware/technologies/goldengate-downloads.html)
 
 ## **STEP 1:** Install and Configuring the Back End Servers and Infrastructure
 In a nutshell, the installation process includes the following four major tasks. After completing these steps, you can configure the Oracle GoldenGate Veridata Agents:
@@ -26,7 +50,7 @@ In a nutshell, the installation process includes the following four major tasks.
 4. Click **Next** to continue.
 5. Select either installation type (Fusion Middleware infrastructure With Examples or Fusion Middleware Infrastructure). Towards the end of this step, the Oracle WebLogic Server gets installed.
     ![](./images/4FMWScreen4_InstallationType.png " ")
-6. Wait for the progress bar to reach 100%. The Java version required is 1.7 or higher. Click **Next** to continue to the **Prerequisites Checks** screen.
+6. Wait for the progress bar to reach 100%. The Java version required is 1.8 or higher. Click **Next** to continue to the **Prerequisites Checks** screen.
     ![](./images/5FMWScreen5_PrerequisitesChecks.png " ")
 7. Click **Next** to continue to the **Installation Summary** screen.
     ![](./images/6FMWScreen6_InstallationSummary.png " ")
@@ -61,8 +85,29 @@ To install and configure Oracle GoldenGate Veridata:
 10. Click **Next** to continue to the **Installation Complete** screen. Note that the **Next Steps** that are required to run the Repository Creation Utility (RCU) and then run the Configuration Wizard, are mentioned in the **Installation Complete** screen.
     ![](./images/17VeridataInstall_InstallComplete_Screen9.png " ")
 
-## **STEP 4**: Configure RCU
-The Repository Creation Utility (RCU) presumes that you have already installed a compatible database to house the repository. This example assumes that it is an Oracle 12c Database.
+## **STEP 4**: Apply a Patch (Optional Step)
+This is an optional step. You can skip this step if you do not want to apply a patch.
+
+You need to apply a patch on the current release of Oracle GoldenGate Veridata only if you want to avail any or all of the following benefits:
+  * new functionalities embedded in the latest patch
+  * corrected problems or bug fixes (known issues or limitations that existed in the previous release or patch have been corrected)
+  * enhancements over existing functionalities
+
+**Assumptions**:
+* The `ORACLE_HOME` environment variable is set to the directory where you have installed Oracle GoldenGate Veridata.
+* The OPatch location `$ORACLE_HOME/OPatch` is added to the environment variable.
+
+**Prerequisites**:
+*  Ensure that all the servers and agents have been stopped.
+
+To apply a patch on an Oracle GoldenGate Veridata release:
+1. Go to [Oracle Support](https://mosemp.us.oracle.com/epmos/faces/index.jspx?_afrLoop=174795690219928&_afrWindowMode=0&_adf.ctrl-state=1bogh2ruei_94) and download the required Patch and extract the zip file to a location. This location will be referred to as `PATCH_TOP` in the subsequent steps.
+2. Set your current directory to the directory where the patch is located. In the command prompt, run the following command: `cd PATCH_TOP/32436110`. In this example, 32436110 is the patch number.
+3. Run `opatch apply` to replace the binaries of the main release with the patch binaries. After the patch is successfully applied, the **OPatch succeeded** message is displayed.
+4. Run `opatch lsinventory` to verify the version/patch ID of the applied patch.
+
+## **STEP 5**: Configure RCU
+The Repository Creation Utility (RCU) presumes that you have already installed a compatible database to house the repository. This example assumes that it is an Oracle 19c Database.
 To configure the RCU:
 1. Open a terminal session. Start the RCU with this command: `/u01/app/oracle/product/wls/oracle_common/bin/rcu`.
 2. Click **Next** in the **Welcome** screen to display the **Create Repository** screen.
@@ -87,7 +132,7 @@ To configure the RCU:
       ![](./images/22RCU_CompleteSummary_Screen8.png " ")
 15. Click **Close** to continue.
 
-## **STEP 5**: Create the Domain
+## **STEP 6**: Create the Domain
 The Configuration Wizard can either create a new domain or extend an existing domain. This example shows how to create a new domain.
 1. Open a terminal session. Invoke the Configuration wizard by entering `/u01/app/oracle/product/wls/oracle_common/common/bin/config.sh`.
 
@@ -127,25 +172,18 @@ The Configuration Wizard can either create a new domain or extend an existing do
       Note the URLs to use from a web browser to reach the WebLogic Administration Console: an http URL which is insecure, and an https URL which uses SSL for increased security.
       ![](./images/33CreatingDomain_Completion_Screen12.png " ")
 
-## **STEP 6**: Deploy Agents
+## **STEP 7**: Deploy Agents
+For each database instance, you need its corresponding Oracle GoldenGate Veridata Agent installed.
+This Agent can be installed and deployed either on the same database host or on a remote host system. The Agent installation requires only the `fmw_12.2.1.4.0_ogg.jar` file. The Agent must be deployed on to a non Oracle Home location.
 **Assumptions**:
-* You have already installed and configured the database.
+* You have already installed and configured the Agent's source and target databases.
 * The software distribution files have been downloaded and unzipped.
+* The Java home is set to Java 1.8.
 
 To deploy agents:
-1. This is the script used to Install the Fusion Middleware software:
-    <pre>########################################################### ###########################################################
-    Install WebLogic Server + Infrastructure files needed for OGG:
-    java -jar fmw_12.2.1.4.0_infrastructure_generic.jar
-    ## OGG Veridata + agent.
-    java -jar fmw_12.2.1.4.0_ogg.jar
-    Repository Creation Utility; can run once for all products.
-    /u01/app/oracle/product/wls/oracle_common/bin/rcu</pre>
-2. This is the script used to configure the Fusion Middleware software:
+1. Follow steps in Step 2 (1 to 5) and select Oracle GoldenGate Veridata Agent. In case you have done a **Complete Install*, then you can ignore this point.
+2. Open the terminal session and run the following script to deploy the Oracle GoldenGate Veridata Agent:
     <pre>###########################################################
-    Configure WLS and Veridata; can run once for all products.
-    /u01/app/oracle/product/wls/oracle_common/common/bin/config.sh
-    ###########
     Veridata agents. Can run from anywhere, give destination as argument.
     /u01/app/oracle/product/wls/veridata/agent/agent_config.sh /u01/ogg/agents/veridata/agent1
     ## Should return, "Successfully deployed the agent. </pre>
@@ -159,33 +197,18 @@ To deploy agents:
     server.port=7850
     database.url=jdbc:oracle:thin:@//localhost:1521:orcl
     server.driversLocation=/u01/app/oracle/product/12.1.0/dbhome_1/jdbc/lib
-    server.jdbcDriver=odbc7.jar</pre>
-4. All scripts are created in the Desktop/ directory purely for convenience:
-    <pre>## Start WLS /u01/app/oracle/product/wls/ogg_domain/startWebLogic.sh
-    ## Start Veridata Server + Agent
-    ## Server only`
-    /u01/app/oracle/product/wls/ogg_domain/veridata/bin/veridataServer.sh start
-    ## Agent only
+    server.jdbcDriver=odbc8.jar</pre>
+4. To start the Veridata agent, enter:
+    <pre
     /u01/ogg/agents/veridata/agent1/agent.sh start</pre>
 
-## Want to Learn More About Oracle GoldenGate Veridata?
+## Learn More
 
 * [Oracle GoldenGate Veridata (12.2.1.4.0) Documentation](https://docs.oracle.com/en/middleware/goldengate/veridata/12.2.1.4/index.html)
 * [Oracle Fusion Middleware Supported System Configurations](https://www.oracle.com/middleware/technologies/fusion-certification.html)
 * [Oracle GoldenGate Veridata Blogs](https://blogs.oracle.com/dataintegration/entry/oracle_goldengate_veridata_repair_is)
 
 ## Acknowledgements
-
-* **Authors:**
-    + Anuradha Chepuri, Principal UA Developer, Oracle GoldenGate Documentation
-* **Reviewed by:**
-      + Sukin Varghese, Senior Member of Technical staff, Database Testing
-      + Nisharahmed Soneji, Senior Principal Product Manager, GoldenGate Development
-      + Apeksha Polnaya, Senior Manager, Software Development, GoldenGate Development
-
-* **Last Updated By/Date:** Anuradha Chepuri, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Author** - Anuradha Chepuri, Principal UA Developer, Oracle GoldenGate User Assistance
+* **Contributors** -  Nisharahmed Soneji (PM), Sukin Varghese (QA), GoldenGate
+* **Last Updated By/Date** - Anuradha Chepuri, Oracle GoldenGate User Assistance, April 2021

@@ -8,7 +8,7 @@ Estimated Workshop Time: 1 hour
 
 ### About Oracle Property Graph?
 
-Oracle Database property graph supports and consists of graph storage, indexing, and search; a powerful in-memory analyst with 50 built-in, parallel analytic functions; a graph query language and developer APIs. Graph algorithms enable you to explore and discover relationships in social networks, IoT, big data, data warehouses and complex transaction data for applications such as fraud detection in banking, customer 360, and smart manufacturing.
+Oracle Database property graph supports and consists of graph storage, indexing, and search; a powerful in-memory analyst with nearly 60 built-in, parallel analytic functions; a graph query language and developer APIs. Graph algorithms enable you to explore and discover relationships in social networks, IoT, big data, data warehouses and complex transaction data for applications such as fraud detection in banking, customer 360, and smart manufacturing.
 
 Watch a short video that explains key features in Oracle Graph:
 
@@ -31,7 +31,3 @@ In this workshop you will:
 * **Author** - Jayant Sharma, Product Manager, Spatial and Graph.
 * **Contributors** - Arabella Yao, Product Manager Intern, Database Management.
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -1,8 +1,9 @@
 {
   "workshoptitle": "Oracle Enterprise Manager - Database Configuration and Compliance Management",
-  "tutorials": [
+  "help": "livelabs-help-mgmt_us@oracle.com",
+	"tutorials": [
     {
-      "title": "Prerequisites",
+      "title": "Getting Started",
       "description": "Login to Oracle Cloud",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
     },
@@ -33,6 +34,11 @@
       "description": "Frequently Asked Questions (FAQ) you may refer to when troubleshooting issues encountered while executing above labs",
       "publisheddate": "8/12/2020",
       "filename": "./../../faq/faq.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
     }
   ]
 }

@@ -22,204 +22,199 @@ In this lab, you will:
 * Database Unique Name
 
 
-## **STEP 1**: Define and test the connections
+## **STEP 1**: Server Setup
 
-1. If you aren't still logged in, login to Oracle Cloud and re-start the Oracle Cloud Shell otherwise skip to Step 4.
+1. If you aren't still logged in, login to Oracle Cloud and re-start the Oracle Cloud Shell otherwise skip to Step 3.
 2. In Cloud Shell or your terminal window, navigate to the folder where you created the SSH keys and enter this command, using your IP address:
 
     ```
-    $ <copy>ssh -i ./myOracleCloudKey opc@</copy>123.123.123.123
+    $ <copy>ssh -i <<sshkeyname>> opc@</copy>123.123.123.123
     Enter passphrase for key './myOracleCloudKey':
     Last login: Tue Feb  4 15:21:57 2020 from 123.123.123.123
     [opc@tmdb1 ~]$
     ```
-3. Once connected, you can switch to the "oracle" OS user and connect using SQL*Plus:
+3. You will need to create the directories for the container database as well as the pluggable databases.
 
     ```
-    [opc@tmdb1 ~]$ sudo su - oracle
-    [oracle@tmdb1 ~]$ . oraenv
-    ORACLE_SID = [cdb1] ?
-    The Oracle base has been set to /u01/app/oracle
-    [oracle@tmdb1 ~]$ sqlplus / as sysdba
+    <copy>
+    sudo mkdir /u02/app/oracle/oradata/CDB21
+    sudo chown oracle:oinstall /u02/app/oracle/oradata/CDB21
+    sudo chmod 755 /u02/app/oracle/oradata/CDB21
+    sudo mkdir /u02/app/oracle/oradata/pdb21
+    sudo chown oracle:oinstall /u02/app/oracle/oradata/pdb21
+    sudo chmod 755 /u02/app/oracle/oradata/pdb21
+    sudo mkdir /u02/app/oracle/oradata/PDB21
+    sudo chown oracle:oinstall /u02/app/oracle/oradata/PDB21
+    sudo chmod 755 /u02/app/oracle/oradata/PDB21
+    sudo mkdir /u02/app/oracle/oradata/toys_root
+    sudo chown oracle:oinstall /u02/app/oracle/oradata/toys_root
+    sudo chmod 755 /u02/app/oracle/oradata/toys_root
+    sudo mkdir /u03/app/oracle/fast_recovery_area
+    sudo chown oracle:oinstall /u03/app/oracle/fast_recovery_area
+    sudo chmod 755 /u03/app/oracle/fast_recovery_area
+    </copy>
+    ```
+4. Once connected, you can switch to the "oracle" OS user.
 
-    SQL*Plus: Release 21.0.0.0.0 - Production on Sat Nov 15 14:01:48 2020
-    Version 21.2.0.0.0
+    ```
+    [opc@tmdb1 ~]$ <copy>sudo su - oracle</copy>
+  	```
+5. The first step is to get all of the scripts needed to do this lab.
 
-    Copyright (c) 1982, 2020, Oracle.  All rights reserved.
+    ````
+    <copy>
+    cd /home/oracle
+    wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/JfyNtfOG2TKVaSL_WhM5cZytuua4EfJh71je5CuxF4CH0DWFSVvEDoEitpmfT6Gg/n/c4u03/b/data-management-library-files/o/Cloud_21c_Labs.zip
+    </copy>
+    ````
 
-    Connected to:
-    Oracle Database 21c EE High Perf Release 21.0.0.0.0 - Production
-    Version 21.0.0.0.0
+6.  Unzip Cloud\_21c\_Labs.zip
 
-    SQL>
-	```
+    ```
+    <copy>
+    unzip Cloud_21c_Labs.zip
+    </copy>
+    ```
 
-4. Verify that your Oracle Database 21c `CDB21` and `PDB21` are created using the commands below.
+7. Make the script readable, writable, and executable by everyone.
 
-	```
-	<copy>
-	ps -ef|grep smon
-	sqlplus / as sysdba
-	</copy>
-	```
-	```
-	<copy>
-	show pdbs
-	</copy>
-	```
+    ```
+    <copy>
+    chmod 777 /home/oracle/labs/update_pass.sh
+    </copy>
+    ```
 
-3. Ensure that the TNS alias have been created for both cdb21 and pdb21 in the tnsnames.ora file. If they are not there then you will need to add them. The file is located in `/u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora`
+8. Execute the /home/oracle/labs/update\_pass.sh shell script. The shell script prompts you to enter the password\_defined\_during\_DBSystem\_creation and sets it in all shell scripts and SQL scripts that will be used in the practices.
 
-	```
-	<copy>
-	cat /u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora
-	</copy>
-	```
+    ```
+    [oracle@da3 ~]$ <copy>/home/oracle/labs/update_pass.sh</copy>
+    Enter the password you set during the DBSystem creation: WElcome123##
+    ```
+## **STEP 2**: Database Create
 
-4. In order to create the TNS Entries for the CDB1 and PDB1 you will need the correct SERVICE\_NAME parameters for them. We will use the lsnrctl program to get the SERVICE\_NAME values for our TNS entries.
+1. Now to create the `CDB21` database. There is an existing database on this server but the `CDB21` was created with everything needed for this workshop.
 
-	```
-	lsnrctl status
-	```
+    ```
+    <copy>
+    cd /home/oracle/labs/M104784GC10
+    /home/oracle/labs/M104784GC10/create_CDB21.sh
+    </copy>
+    ```
 
-5. The output of the lsnrctl command will give you several entries. The two we care about are the following. Your values will be slightly different based on your vcn name, subnet and region.
+2. Set your environment. At the prompt type in `CDB21`
 
-	```
-	Service "cdb1_iad1vs.subnet11241424.vcn11241424.oraclevcn.com"
-	Service "pdb1.subnet11241424.vcn11241424.oraclevcn.com"
-	```
+    ```
+    [oracle@db1 ~]$ <copy>. oraenv</copy>
+    ORACLE_SID = [CDB21] ? CDB21
+    The Oracle base remains unchanged with value /u01/app/oracle
+    [oracle@db1 ~]$
+    ```
+3. Verify that your Oracle Database 21c `CDB21` and `PDB21` are created using the commands below.
 
-6. You are going to create two entries in the tnsnames.ora file. One for CDB1 and one for PDB1. Edit the tnsnames.ora using vi or nano to edit.
+    ```
+    <copy>
+    ps -ef|grep smon
+    sqlplus / as sysdba
+    </copy>
+    ```
+    ```
+    <copy>
+    show pdbs
+    exit;
+    </copy>
+    ```
 
-	````
-	<copy>
-	vi /u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora
-	</copy>
-	````
+4. Ensure that the TNS alias have been created for `CDB21`, `PDB21` and `PDB21_2` in the tnsnames.ora file. If they are not there then you will need to add them. The file is located in `/u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora`.
 
-7. Copy the entry for CDB1 that is already in the tnsnames file. Make the following changes:
-    - Change the name of the entry to be CDB1 instead of the Unique Database Name.
-		- Make sure the SERVICE\_NAME parameter has SERVICE\_NAME from the lsnrctl command above.
-		- Do not change the host and port values.
+    ```
+	  <copy>
+	  cat /u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora
+	  </copy>
+	  ```
 
-	````
-	CDB1 =
-	(DESCRIPTION =
-	(ADDRESS = (PROTOCOL = TCP)(HOST = hostname21.subnet11241424.vcn11241424.oraclevcn.com)(PORT = 1521))
-	(CONNECT_DATA =
-	(SERVER = DEDICATED)
-	(SERVICE_NAME = cdb1_iad1vs.subnet11241424.vcn11241424.oraclevcn.com)
-	)
-	)
-	````
+5. Then entry for `CDB21` should have been created when the database was created. So for `PDB21` just copy the entry for `CDB21` and change the value `CDB21` to `PDB21` in both places. Repeat this for `PDB21_2`.
 
-8. Repeat the same process for PDB1 in the tnsnames file making the following changes:
-    - Change the name of the entry to be PDB1 instead of the Unique Database Name.
-    - Make sure the SERVICE\_NAME parameter has SERVICE\_NAME from the lsnrctl command above.
-    - Do not change the host and port values.
+    ````
+	  <copy>
+	  vi /u01/app/oracle/homes/OraDB21Home1/network/admin/tnsnames.ora
+	  </copy>
+	  ````
 
-		````
-		PDB1 =
-		(DESCRIPTION =
-		(ADDRESS = (PROTOCOL = TCP)(HOST = hostname21.subnet11241424.vcn11241424.oraclevcn.com)(PORT = 1521))
-		(CONNECT_DATA =
-			(SERVER = DEDICATED)
-			(SERVICE_NAME = pdb1.subnet11241424.vcn11241424.oraclevcn.com)
-		)
-		)
-		````
+6. There will be more in your tnsnames.ora but the for the three entries we care about should look like the entries below but with your hostname instead.
+    ````
+    CDB21 =
+    (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = db1.subnet11241424.vcn11241424.oraclevcn.com)(PORT = 1521))
+     (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = CDB21)
+     )
+    )
 
-9. Test the connection to CDB1.  Connect to CDB1 with SQL*Plus.
+    PDB21 =
+    (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = db1.subnet11241424.vcn11241424.oraclevcn.com)(PORT = 1521))
+     (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PDB21)
+     )
+    )
 
-	````
-	<copy>
-	sqlplus sys@cdb1 AS SYSDBA
-	</copy>
-	````
+    PDB21_2 =
+    (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = db1.subnet11241424.vcn11241424.oraclevcn.com)(PORT = 1521))
+     (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = PDB21_2)
+     )
+    )
 
-10. Verify that the container name is CDB$ROOT.
+    ````
 
-	````
-	<copy>
-	SHOW CON_NAME;
-	</copy>
-	````
+7. Test the connection to CDB21.  Connect to CDB21 with SQL*Plus using the password **WElcome123##**.
 
-11. Test the connection to PDB1
+    ````
+	  <copy>
+	  sqlplus sys@cdb21 AS SYSDBA
+	  </copy>
+	  ````
 
-	````
-	<copy>
-	CONNECT sys@PDB1 AS SYSDBA
-	</copy>
-	````
+8. Verify that the container name is **CDB$ROOT**.
 
-8.  Show the container name
+    ````
+    <copy>
+	  SHOW CON_NAME;
+	  </copy>
+	  ````
 
-	````
-	<copy>
-	SHOW CON_NAME;
-	</copy>
-	````
+9. Test the connection to PDB21 using the same password used in the earlier step.
 
-9. Exit SQL*Plus
+    ````
+    <copy>
+    CONNECT sys@PDB21 AS SYSDBA
+    </copy>
+    ````
 
-	````
-	<copy>
-	exit
-	</copy>
-	````
+10.  Show the container name. It should now display **PDB21**.
 
-## **STEP 2**: Download scripts
+    ````
+    <copy>
+    SHOW CON_NAME;
+    </copy>
+    ````
 
-Download the Cloud\_21c\_labs.zip file to the /home/oracle directory from Oracle Cloud object storage and unzip the file.
+11. Exit SQL*Plus.
 
-*Note*: These scripts are designed for DBCS VM single node instances
-
-1.  Change to the oracle user home directory
-
-	````
-	<copy>
-	cd /home/oracle
-	wget https://objectstorage.us-ashburn-1.oraclecloud.com/p/te64gQPSzMrOJZh5jwYPrmS6xwtddOdN90lIWF6mAvM_uIbJlAUEhyGzugZhUTF3/n/oraclepartnersas/b/workshop/o/Cloud_21c_Labs.zip
-  </copy>
-	````
-
-2.  Unzip Cloud\_21c\_labs.zip
-
-	```
-	<copy>
-	unzip Cloud_21c_Labs.zip
-	</copy>
-	```
-
-## **STEP 3**: Update the scripts to the current environment
-
-Execute the /home/oracle/labs/update\_pass.sh shell script. The shell script prompts you to enter the password\_defined\_during\_DBSystem\_creation and sets it in all shell scripts and SQL scripts that will be used in the practices.
-
-1. Make the script readable, writable, and executable by everyone.
-
-	```
-	<copy>
-	chmod 777 /home/oracle/labs/update_pass.sh
-	</copy>
-	```
-
-2. Run the script.
-
-	```
-	<copy>
-	/home/oracle/labs/update_pass.sh
-	</copy>
-	```
+    ````
+    <copy>
+    exit
+    </copy>
+    ````
 
 You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
+* **Author** - Donna Keesling, Database UA Team
 * **Contributors** -  David Start, Kay Malcolm, Database Product Management
 * **Last Updated By/Date** -  David Start, December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

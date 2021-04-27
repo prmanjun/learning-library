@@ -5,7 +5,7 @@
 In this lab, you will learn how to create a GitHub Account and associate it with your Oracle email account, set up the GitHub Development Environment, and install GitHub Desktop.
 
 ### Objectives
-
+* Submit a workshop in LiveLabs.
 * Create a GitHub Account.
 * Associate your GitHub account with your Oracle email account.
 * Set up the GitHub Environment.
@@ -14,9 +14,22 @@ In this lab, you will learn how to create a GitHub Account and associate it with
 ### What Do You Need?
 
 * Familiarity with HTML is helpful.
+* Access to the LiveLabs Workshop Management System
 
-## **STEP 1:** Download and Install the latest version of Git (Optional Step)
-  **Note**: For UA Developers, Oracle recommends the usage of the GitHub Desktop client because of its simple and user friendly user interface, and it is much easier than using the Git command line. Therefore, this is an optional step.
+## **Step 1:** Submit a workshop to the LiveLabs Workshop Management System
+Before getting started, we recommend you submit your workshop to the LWMS. 	Submitting a workshop tells the Oracle ecosystem you are working on a workshop and submits your idea to the Workshop Council.  We urge you not to delay this step.  There are hundreds of workshops already, this step is important to helps us preserve the quality and integrity of the workshop catalog
+
+1.  Login to Corporate VPN
+2.  Go to http://bit.ly/oraclelivelabs.  This is only available to Oracle Employees at this time.
+3.  Click **Submit a New LiveLab**
+4.  Fill in the required fields including the abstract *thoroughly*.  Failure to do so will prevent your workshop from being approved.
+5.  Click **Submit**
+6.  We recommend you don't start working on your workshop until your workshop has been approved by a council member.
+
+Once your workshop is submitted, it will be sent to the workshop council.  The workshop council will approve your workshop or ask for more details.  Once approved, you will be entered into the workflow and given additional steps to progress through to production.
+
+## **Step 2:** Download and Install the latest version of Git (Optional Step)
+  **Note**: For UA Developers, Oracle recommends the usage of the GitHub Desktop client because of its simple and user friendly user interface, and it is much easier than using the Git command line. Therefore, this is an optional Step.
 
 To install Git:
 1. Install Git for your operating system from the [Git download site] (https://git-scm.com/downloads).
@@ -27,12 +40,12 @@ To install Git:
 6. Under **Choose the default behavior of `git pull`**, leave the selected **Default (fast-forward or merge)** option as is and click **Next**.
 7. In the **Configuring experimental options** dialog box, click **Install**.
 
-## **STEP 2:** Create and Set Up Your GitHub Account
+## **Step 3:** Create and Set Up Your GitHub Account
 
-In this step, you will create and set up your GitHub account.
+In this Step, you will create and set up your GitHub account.
 
 1. Create a free GitHub Account here: [GitHub Web UI](https://github.com/) if you don't have one.
-![](./images/git-download-install-create-account.png " ")
+    ![](./images/git-download-install-create-account.png " ")
 2.  If this is a new account, use your Oracle email ID to register.
 
     **Note**: Do not create a secondary new account to join GitHub. Ensure that your GitHub account is associated to your @oracle.com email ID.
@@ -43,38 +56,7 @@ In this step, you will create and set up your GitHub account.
 5. Set up a 2 Factor Authentication here: [GitHub Security](https://github.com/settings/security).
     ![](./images/git-2-factor-authentication.png " ")
 
-## **STEP 3:** Add Your GitHub Account to Oracle Organization
-You must request membership to the Oracle GitHub Organization (OGHO). After your membership is approved, your GitHub account is added to the Oracle organization.
-
-1. Send a membership request from your Oracle email address to `opensource_ww_grp@oracle.com`.
-
-    * **Subject**: **[New Contributor] @your-github-username**
-    * Provide proof (screenshot) that you have added @oracle.com email to your GitHub account:
-    ![](./images/get-started-git-hub-profile-proof.png " ")
-    * Provide proof (screenshot) that you have 2-Factor authentication enabled for your GitHub account
-      ![](./images/get-started-git-hub-2FA-proof.png " ")
-      * Specify which project you will be working on and in what capacity (contributor, maintainer, etc)
-2. Await the invitation from them. Note that you will receive an email only if your account follows the guidelines mentioned in Step 1.
-3. Accept the invitation that you receive or go to the organization page you requested membership for, and accept the invitation at the top of the page.
-
-## **STEP 4:** Publicize your Membership
-
-1. In the top right corner of [GitHub Profile Settings](https://github.com/settings/profile), click your profile photo, then click **Your profile**.
-  ![](./images/git-get-started-profile.png " ")
-
-2. On the left side of your profile page, under **Personal Settings**, click **Organizations** to display the **Organizations** page and then click the icon for your organization.
-    ![](./images/git-get-started-profile-second.png " ")
-
-3. Under your organization name, click **People**.
-4. Locate your username in the list of members. If the list is large, then you can search for your username in the search box.
-5. In the menu to the right of your username, choose **Public** as the new visibility option:
-    ![](./images/git-get-started-public-profile.png " ")
-
-6. Send an email to `github_info_ww_grp@oracle.com` that you have made your membership public. Now you are an official member of the main Oracle Organization on GitHub (OGHO).
-
-  **Note**: If you don't make your membership public, then you will be removed from the organization within 30-days of the initial request to be added.
-
-## **STEP 5:** Install GitHub Desktop
+## **Step 4:** Install GitHub Desktop
 The GitHub Desktop application is a UI client for Windows and Mac that simplifies the complex set of GitHub command line arguments. GitHub Desktop is a fast and easy way to contribute to projects and it simplifies your development workflow. It is much easier than using Git command line.
 
 To setup the GitHub Development Environment and install **GitHub Desktop**:
@@ -94,7 +76,7 @@ To setup the GitHub Development Environment and install **GitHub Desktop**:
     You are now logged in to **GitHub Desktop**.
     ![](./images/get-started-git-hub-desktop.png " ")
 
-## **STEP 6:** Fork the learning-library Repository on Your GitHub Account
+## **Step 5:** Fork the learning-library Repository on Your GitHub Account
   We create workshops and labs in the **learning-library** repository of the **oracle** project. You must fork the learning-library repository to create a duplicate personal copy of the repository on your GitHub account. You own the forked repository and you can edit its contents without affecting the parent repository.
 
   For example, if a user named achepuri forks the learning-library repository in the oracle project, a duplicate repository [achepuri/learning-library](https://github.com/achepuri/learning-library) is created.
@@ -109,9 +91,9 @@ In the following example, user achepuri has forked the **learning-library** repo
 
 ![](./images/get-started-git-hub-webui-forked-library.png " ")
 
-In the next step, you will clone this forked repository.
+In the next Step, you will clone this forked repository.
 
-## **STEP 7:** Clone the Forked Repository
+## **Step 6:** Clone the Forked Repository
 A clone is a copy of your forked repository that lives on your local computer instead of on [GitHub Web UI](http://github.com). When you clone your forked repository, you can edit the files in your preferred editor, such as **Atom** editor, and use the **GitHub Desktop** client to keep track of your changes without having to be online.
 
 To clone the forked repository:
@@ -138,8 +120,11 @@ To clone the forked repository:
 
   The repository you cloned is still connected to the remote version (your fork) so that you can push your local changes to the remote to keep them synced when you're online.
 
+5. You can also use Github Desktop to Synchronize the changes that you have made in your local file system to the forked content on your github repo, more details on using Github Desktop in Lab 4 of this workshop and also on Otube [Working with GitHub Desktop](https://otube.oracle.com/media/t/1_bxj0cfqf).
 
-**This concludes this lab. Please proceed to the next lab in the Contents menu.**
+![](./images/github-desktop-sync.png " ")
+
+You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -160,9 +145,4 @@ To clone the forked repository:
     * Tom McGinn, Database and Database Cloud Service Senior Principal Product Manager, DB Development - Documentation
 
 
-* **Last Updated By/Date:** Anuradha Chepuri, November 2020
-
-## Need Help?  
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date:** Madhusudhan Rao, February 2021

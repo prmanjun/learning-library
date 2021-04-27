@@ -64,5 +64,6 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Dan Kingsley, Enablement Specialist, OSPA
-* **Last Updated By/Date** - Kay Malcolm, Director, Database Product Management, October 2020
+* **Last Updated By/Date** - Kay Malcolm, Database Product Management, October 2020
 * **Workshop (or Lab) Expiry Date** - March 27, 2021
+

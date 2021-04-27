@@ -25,7 +25,7 @@ This lab shows how to load data from Oracle Cloud Infrastructure Object Storage 
 
 ### Objectives
 
--   Learn how to use SQL Developer Web to load data into an autonomous database table
+-   Learn how to use SQL Worksheet to load data into an autonomous database table
 -   Learn how to upload files to the OCI Object Storage
 -   Learn how to define object store credentials for your autonomous database
 -   Learn how to create tables in your database
@@ -37,24 +37,36 @@ In Steps 1 and 2, you will create one ADW table, **CHANNELS_LOCAL**, and load it
 ### Prerequisites
 - The following lab requires an <a href="https://www.oracle.com/cloud/free/" target="\_blank"> Oracle Cloud account</a>. You may use your own cloud account, a cloud account that you obtained through a trial, a LiveLabs account or a training account whose details were given to you by an Oracle instructor.
 
-- This lab assumes you have completed the **Prerequisites** and **Lab 1** seen in the Contents menu on the right.
+- This lab assumes you have completed the **Prerequisites** and **Lab 1** seen in the Contents menu on the left.
 
 
 ## **STEP 1**: Download Sample Data and Create Local Table
 
 1. For this step, you will download a .csv file to your local computer, then use it to populate the CHANNELS_LOCAL table that you will create in your ADW database in the next step.  Click <a href="https://objectstorage.us-ashburn-1.oraclecloud.com/p/A5zXkuuOG2C5AOBHTiVpJd3obiECvsk8omPtnzvTwP0/n/c4u03/b/data-management-library-files/o/channels.csv" target="\_blank">here</a> to download the sample channels.csv file, saving it to a directory on your local computer.
 
-2. In your Autonomous Database Details page, click the **Tools** tab. Click **Open SQL Developer Web**.
+2. If you still have SQL Worksheet open from the previous lab, skip to **sub-step 6** of this **STEP 1**. If you don't have SQL Worksheet open, in your ADW Finance Mart database's details page, click the **Tools** tab. Click **Open Database Actions**.
 
-    ![Click Tools and Open SQL Developer Web.](./images/open_sql_developer_web.jpg " ")
+    ![Click Tools and Open Database Actions.](./images/Picture100-15.png " ")
 
-3. To define the CHANNELS_LOCAL table, click <a href="./files/define_channels_local_table.txt" target="\_blank">here</a> to copy or download the table creation code snippet. Then paste it into the SQL Developer Web worksheet and click the **Run Script** button to run it.
+3.  A sign-in page opens for Database Actions. For this lab, simply use your database instance's default administrator account, **Username - admin**, and click **Next**.
+
+    ![Enter the admin username.](./images/Picture100-16.png " ")
+
+4. Enter the admin **Password** you specified when creating the database. Click **Sign in**.
+
+    ![Enter the admin password.](./images/Picture100-16-password.png " ")
+
+5. The Database Actions page opens. In the **Development** box, click **SQL**.
+
+    ![Click on SQL.](./images/Picture100-16-click-sql.png " ")
+
+6. To define the CHANNELS_LOCAL table, click <a href="./files/define_channels_local_table.txt" target="\_blank">here</a> to copy or download the table creation code snippet. Then paste it into the SQL Worksheet and click the **Run Script** button to run it.
 
     ![Paste the code and click Run Script.](./images/run_script_create_channels_local_table.jpg " ")
 
-## **STEP 2**: Load Local Data Using SQL Developer Web
+## **STEP 2**: Load Local Data Using SQL Worksheet
 
-1. In the Navigator, **right-click** your new CHANNELS_LOCAL table. You might need to refresh the Navigator to see the new table. In the menu, select **Data loading → Upload Data...**:
+1. In the Navigator, **right-click** your new CHANNELS_LOCAL table. You might need to refresh the Navigator to see the new table. In the menu, select **Data Loading → Upload Data...**:
 
     ![Right-click CHANNELS_LOCAL, select Data Loading and click Upload Data.](./images/select_upload_data_from_menu.jpg " ")
 
@@ -75,7 +87,7 @@ In Steps 1 and 2, you will create one ADW table, **CHANNELS_LOCAL**, and load it
     ![After reviewing the data, click Next.](./images/data_preview_in_import_data_wizard.jpg " ")
 <!--When newline is fixed ![](./images/snap0014654.jpg " ")-->
 
-  *Note: If your source .csv file has delimiters other than commas between words, or line delimiters other than new-line characters, you will need to use SQL Developer for now, rather than SQL Developer Web.*
+  *Note: If your source .csv file has delimiters other than commas between words, or line delimiters other than new-line characters, you will need to use SQL Developer for now, rather than SQL Worksheet.*
 
 5. In Step 2 of the Import Wizard, **Data mapping**, you can change the source-to-target column mappings. For this exercise, leave them as default and click **Next**.
 
@@ -96,7 +108,7 @@ In Steps 1 and 2, you created an ADW table and loaded it with sample data from y
 <!-- The data file is located in the c4u03 Object Store. This PAR link is good through June 23, 2025 -->
 1. For this step, you will need a handful of data files.  Click <a href="https://objectstorage.us-ashburn-1.oraclecloud.com/p/gDf44URh0sFPADBZo7fp6wIgXb-0PO5ZadFQTq2nqNo/n/c4u03/b/data-management-library-files/o/adb_sample_data_files.zip" target="\_blank">here</a> to download a zip file of the sample source files for you to upload to the object store. Unzip it to a directory on your local computer.
 
-2. Connected as your ADMIN user in SQL Developer Web, copy and paste <a href="./files/create_tables.txt" target="\_blank">this code snippet</a> to a worksheet. Take a moment to examine the script. You will first drop any tables with the same name before creating tables. Then click the **Run Script** button to run it.
+2. Connected as your ADMIN user in SQL Worksheet, copy and paste <a href="./files/create_tables.txt" target="\_blank">this code snippet</a> to the worksheet. Take a moment to examine the script. You will first drop any tables with the same name before creating tables. Then click the **Run Script** button to run it.
 
       -  It is expected that you may get *ORA-00942 table or view does not exist* errors during the DROP TABLE commands for the first execution of the script, but you should not see any other errors.
 
@@ -198,7 +210,7 @@ To load data from the Oracle Cloud Infrastructure (OCI) Object Storage, you will
 
 In order to access data in the Object Store, you have to enable your database user to authenticate itself with the Object Store using your OCI object store account and Auth Token. You do this by creating a private *CREDENTIAL* object for your user that stores this information encrypted in your Autonomous Data Warehouse. This information is only usable for your user schema.
 
-1. Connected as your ADMIN user in SQL Developer Web, copy and paste <a href="./files/create_credential.txt" target="\_blank">this code snippet</a> to a SQL Developer Web worksheet.
+1. Connected as your ADMIN user in SQL Worksheet, copy and paste <a href="./files/create_credential.txt" target="\_blank">this code snippet</a> into a worksheet.
 
     - **username** - Replace `<Username>` with the **OCI Username** as shown in Step 7.
     - **password** - Replace `<Auth Token>` with the OCI Object Store **Auth Token** you generated in Step 7.
@@ -233,7 +245,7 @@ As an alternative to the wizard-guided data load, you can use the PL/SQL package
     ...
     ```
 
-3.  Copy and paste your edited file to a SQL Developer Web worksheet. This script uses the **copy\_data** procedure of the **DBMS\_CLOUD** package to copy the data from the source files to the target tables you created before.
+3.  Copy and paste your edited file to a SQL Worksheet. This script uses the **copy\_data** procedure of the **DBMS\_CLOUD** package to copy the data from the source files to the target tables you created before.
 
 4.  Run the script.
 
@@ -245,7 +257,7 @@ As an alternative to the wizard-guided data load, you can use the PL/SQL package
 
 ## **STEP 10**: Troubleshooting DBMS_CLOUD data loads
 
-1. Connected as your user in SQL Developer Web, run the following query to look at past and current data loads.
+1. Connected as your user in SQL Worksheet, run the following query to look at past and current data loads.
     ```
     $ <copy>select * from user_load_operations;</copy>
     line 2
@@ -254,7 +266,7 @@ As an alternative to the wizard-guided data load, you can use the PL/SQL package
     ```
     *Notice how this table lists the past and current load operations in your schema.  Any data copy and data validation operation will have backed-up records in your Cloud.*
 
-2. For an example of how to troubleshoot a data load, we will attempt to load a data file with the wrong format (chan\_v3\_error.dat).  Specifically, the default separator is the | character, but the channels_error.csv file uses a semicolon instead.  To attempt to load bad data, copy and paste <a href="./files/load_data_with_errors.txt" target="\_blank">this code snippet</a> to a SQL Developer Web worksheet and run the script as your user in SQL Developer Web. Specify the URL that points to the **chan\_v3\_error.dat** file. Use the the URL that you have copied and saved in Step 6. Expect to see "Reject limit" errors when loading your data this time.
+2. For an example of how to troubleshoot a data load, we will attempt to load a data file with the wrong format (chan\_v3\_error.dat).  Specifically, the default separator is the | character, but the channels_error.csv file uses a semicolon instead.  To attempt to load bad data, copy and paste <a href="./files/load_data_with_errors.txt" target="\_blank">this code snippet</a> to a SQL Worksheet and run the script as your user in SQL Worksheet. Specify the URL that points to the **chan\_v3\_error.dat** file. Use the the URL that you have copied and saved in Step 6. Expect to see "Reject limit" errors when loading your data this time.
 
     ![Paste the code and click Run Script.](images/query_results_after_loading_in_sql_dev_web.jpg " ")
 
@@ -285,9 +297,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Arabella Yao, Product Manager Intern, DB Product Management, July 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/autonomous-database-shared). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, March 2021

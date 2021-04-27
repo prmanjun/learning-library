@@ -104,7 +104,7 @@ Alternatively, you could go to SQL Workshop > RESTful Services and REST enabled 
         p_pattern     => 'hol/:empno',
         p_method      => 'DELETE',
         p_source_type => ords.source_type_plsql,
-        p_source      => 'begin delete emp where empno=:empno;:status_code:=200;htp.p('{"status":"success"}');end;' );
+        p_source      => 'begin delete emp where empno=:empno;:status_code:=200;htp.p(''{"status":"success"}'');end;' );
     end;
     /
 
@@ -154,7 +154,7 @@ Alternatively, you could go to SQL Workshop > RESTful Services and REST enabled 
         p_pattern     => 'hol/:deptno',
         p_method      => 'DELETE',
         p_source_type => ords.source_type_plsql,
-        p_source      => 'begin delete dept where deptno=:deptno;:status_code:=200;htp.p('{"status":"success"}');end;' );
+        p_source      => 'begin delete dept where deptno=:deptno;:status_code:=200;htp.p(''{"status":"success"}'');end;' );
     end;
     /
 
@@ -223,11 +223,7 @@ This completes Lab 2. You now know how to REST enable database objects include a
 
 ## **Acknowledgements**
 
- - **Author/Contributors** -  Salim Hlayel, Principle Product Manager
+ - **Author/Contributors** -  Salim Hlayel, Principal Product Manager
  - **Contributors** - Oracle LiveLabs Team (Arabella Yao, Product Manager Intern | Jaden McElvey, Technical Lead | Jeffrey Malcolm Jr, Intern)
- - **Last Updated By/Date** - Salim Hlayel, Principle Product Manager, November 2020
+ - **Last Updated By/Date** - Salim Hlayel, Principal Product Manager, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-apex-development-workshops). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

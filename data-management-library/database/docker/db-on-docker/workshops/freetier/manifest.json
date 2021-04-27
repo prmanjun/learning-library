@@ -1,13 +1,14 @@
 {
   "workshoptitle": "Containerized Development with Docker on Autonomous Database",
+	"help": "livelabs-help-oci_us@oracle.com",
   "tutorials": [
-      {
-        "title": "Prerequisites",
-        "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-      },
       {
         "title": "Introduction",
         "filename":"../../intro/intro.md"
+      },
+      {
+        "title": "Getting Started",
+        "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
       },
       {
         "title": "Lab 1: Create SSH Keys",
@@ -28,6 +29,16 @@
       {
         "title": "Lab 5: Modify a Containerized Application",
         "filename": "../../deploy-and-change-application/deploy-and-change-application.md"
+      },
+      {
+        "title": "Need Help?",
+        "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+        "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
+      },
+      {
+        "title": "Need Help?",
+        "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+        "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
       }
   ]
 }

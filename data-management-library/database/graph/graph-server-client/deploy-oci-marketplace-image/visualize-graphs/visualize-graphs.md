@@ -6,7 +6,7 @@ The results of the analyses done in the previous labs can easily be visualized u
 
 Estimated time: 5 minutes
 
-The following video provides an overview of the visualization component.
+The following video provides an overview of the Graph Visualization component (= GraphViz).
 
 [](youtube:zfefKdNfAY4)
 
@@ -16,39 +16,35 @@ The following video provides an overview of the visualization component.
 
 ### Prerequisites
 
-- This lab assumes you have successfully completed Lab - Graph Query and Analysis with JShell and published the graph. It also assumes the Graph Visualization component is up and running on the compute instance on `public_ip_for_compute:7007/ui`. We will use the Graph Visualization component to explore the graph and run some PGQL queries.
+- This lab assumes you have successfully completed Lab - Graph Query and Analysis with Python and published the graph. It also assumes the GraphViz is up and running on the compute instance on `public_ip_for_compute:7007/ui`. We will use the GraphViz to explore the graph and run some PGQL queries.
 
 ## **STEP 1:** Setup
 
-1. Open the Graph Viz at `http://<public_ip_for_free_tier_compute>:7007/ui`. Replace `<public_ip_for_free_tier_compute>` with the one for your Graph Server compute instance.
+Open the GraphViz at `https://<public_ip_for_compute>:7007/ui`. Replace `<public_ip_for_compute>` with the one for your Graph Server compute instance.
 
-    You should see a screen similar to the screenshot below.  Enter the username (`customer_360`) and password you entered when createing the user in SQlDeveloperWeb.
+You should see a screen similar to the screenshot below. Enter the username (`customer_360`) and password you entered when createing the user in SQL Developer Web.
 
-    ![GraphViz on startup](images/ADB_GViz_Login.png " ")
-
-### Troubleshooting
-
-If you have a `Page Not Found` error, the graph you published at Lab 7 may expire. You can try to redo Lab 7 (only Step 0, 1, and 7) to publish the graph.
+![](images/ADB_GViz_Login.png)
 
 ## **STEP 2:** Modify query
 
-1. Modify the query to get the first 50 rows, i.e. change LIMIT 10 to LIMIT 50, and click Run.
+Modify the query to get the first 5 rows, i.e. change `LIMIT 100` to `LIMIT 5`, and click Run.
 
-    You should see a graph similar to the screenshot below.
+You should see a graph similar to the screenshot below.
 
-    ![Customer 360 graph](images/ADB_GViz_Show50Elements.png " ")
+![](images/show-5-elements.jpg)
 
 ## **STEP 3:** Add highlights
 
-Now let's add some labels and other visual context. These are known as highlights. Click [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/o49GH8NXlnrwgfbWO9cDCq-zqhsFBHFNGRGM6uHwnEQkHUH5fo5X-u33SW4H_22J/n/c4u03/b/data-management-library-files/o/highlights.json.zip) to download the highlights.json zip file. Unzip the file and note where it is unzipped.
+Now let's add some labels and other visual context. These are known as highlights. Click [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/wQFPfdrO-aGGUwxBXSQDX2DzjFueYlgUZ40YoXLrP6x0bqIZrgpSBpyHEo3Q-i33/n/c4u03/b/data-management-library-files/o/highlights.json.zip) to download a zip file, `highlights.json.zip`. Unzip this file and note where it is unzipped.
 
-1. Click on the Load button under Highlights (on the right side of the screen). Browse to the appropriate folder (i.e. either to `oracle-pg/graphs/customer_360`  or the folder where you just downloaded it) and choose the file named 'highlights.json' and click Open to load that.
+Click on the Load button under Highlights (on the right side of the screen). Browse to the appropriate folder and choose the file and click Open to load that.
 
-    ![Load highlights for graph](images/GraphVizLoadHighlights.png " ")
+![](images/GraphVizLoadHighlights.png)
 
-    The graph should now look like
+The graph should now look like
 
-    ![Customer 360 graph with highlights](images/GraphVizWithHighlights.png " ")
+![](images/GraphVizWithHighlights.png)
 
 ## **STEP 4:** Pattern matching with PGQL
 
@@ -60,12 +56,12 @@ Now let's add some labels and other visual context. These are known as highlight
 
     ```
     SELECT <select list>
-    FROM <graph_name>
+    FROM <graph_name>      (Please omit the graph name here, as it is selected from the GraphViz UI)
     MATCH <graph_pattern>
     WHERE <condition>
     ```
 
-    PGQL provides a specific construct known as the *MATCH* clause for matching graph patterns. A graph pattern matches vertices and edges that satisfy the given conditions and constraints.  
+    PGQL provides a specific construct known as the `MATCH` clause for matching graph patterns. A graph pattern matches vertices and edges that satisfy the given conditions and constraints.  
     - `(v)` indicates a vertex variable `v`   
     - `-` indicates an undirected edge, as in (source)-(dest)  
     - `->` an outgoing edge from source to destination  
@@ -79,28 +75,30 @@ Now let's add some labels and other visual context. These are known as highlight
     ```
     <copy>
     SELECT *
-    MATCH (FromAcct)-[TransferOut:TRANSFER]->(ToAcct1), (ToAcct2)-[TransferIn:TRANSFER]->(FromAcct)
-    WHERE TransferOut.DATE = TransferIn.DATE and TransferOut.AMOUNT > 500 and TransferIn.AMOUNT > 500
+    FROM MATCH (a)-[t1:transfer]->(a1)
+       , MATCH (a2)-[t2:transfer]->(a)
+    WHERE t1.transfer_date = t2.transfer_date
+      AND t1.amount > 500
+      AND t2.amount > 500
     </copy>
     ```
 
-    In the query text above, (FromAcct) indicates the source vertex and (ToAcct1) the destination, while [TransferOut:TRANSFER] is the edge connecting them. The [:TRANSFER] specifies that the TransferOut edge has the label 'TRANSFER'. The comma (',') between the two patterns is an AND condition.
+    In the first `MATCH` clause above, `(a)` indicates the source vertex and `(a1)` the destination, while `[t1:transfer]` is the edge connecting them. The `:transfer` specifies that the `t1` edge has the label `TRANSFER`. The comma (`,`) between the two patterns is an AND condition.
 
-3. Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application.
-Click Run.
+3. Copy and paste the query into the PGQL Graph Query text input box of the GraphViz application. Click Run.
 
     The result should look as shown below.
 
-    ![Same day txns of more than 500](images/ADB_Gviz_SameDayTransfers.png " ")
+    ![](images/same-day-transfers.jpg)
 
-4. The next query finds patterns of transfers to and from the same two accounts, i.e. from A->B and back B->A.
+4. The next query finds patterns of transfers to and from the same two accounts, i.e. from a1->a2 and back a2->a1.
 
     The PGQL query for this is:
     ```
     <copy>
     SELECT *
-    MATCH (FromAcct)-[TransferOut:TRANSFER]->(ToAcct)-[TransferIn:TRANSFER]->(FromAcct)
-    WHERE TransferOut.DATE < TransferIn.DATE
+    FROM MATCH (a1)-[t1:transfer]->(a2)-[t2:transfer]->(a1)
+    WHERE t1.transfer_date < t2.transfer_date
     </copy>
     ```
 
@@ -108,7 +106,7 @@ Click Run.
 
     The result should look as shown below.
 
-    ![Transfer A to B to A](images/ADB-GViz_ABA_Transfer.png " ")
+    ![](images/cycle-2-hops.jpg)
 
 6. Let's add one more account to that query to find a circular transfer pattern between 3 accounts.
 
@@ -116,8 +114,9 @@ Click Run.
     ```
     <copy>
     SELECT *
-    MATCH (FromAcct)-[TxnAB:TRANSFER]->(ToAcctB)-[TxnBC:TRANSFER]->(ToAcctC)-[TxnCA:TRANSFER]->(FromAcct)
-    WHERE TxnAB.DATE < TxnBC.DATE and TxnBC.DATE < TxnCA.DATE
+    FROM MATCH (a1)-[t1:transfer]->(a2)-[t2:transfer]->(a3)-[t3:transfer]->(a1)
+    WHERE t1.transfer_date < t2.transfer_date
+      AND t2.transfer_date < t3.transfer_date
     </copy>
     ```
 
@@ -125,16 +124,12 @@ Click Run.
 
     The result should look as shown below.
 
-    ![Circular transfer A to B to C to A](images/ADB_GViz_ABCA_Transfer.png " ")
+    ![](images/cycle-3-hops.jpg)
 
 ## Acknowledgements
 
 * **Author** - Jayant Sharma, Product Manager, Spatial and Graph.
 * **Contributors** - Arabella Yao, Product Manager Intern, Database Management, and Jenny Tsai.
-* **Last Updated By/Date** - Jayant Sharma, October 2020
+* **Last Updated By/Date** - Ryota Yamanaka, Feburary 2021
 * **Lab Expiry Date** - November 30, 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

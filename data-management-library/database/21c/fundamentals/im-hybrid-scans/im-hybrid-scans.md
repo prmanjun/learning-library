@@ -44,7 +44,7 @@ The `IM_Hybrid_setup.sh` shell script configures the IM column store to 110M, cr
     Redo Buffers                7204864 bytes
     In-Memory Area            117440512 bytes
     Database mounted.
-    SQL> ALTER SYSTEM SET sga_target=812M SCOPE=spfile;
+    SQL> ALTER SYSTEM SET sga_target=5G SCOPE=spfile;
 
     System altered.
 
@@ -61,15 +61,12 @@ The `IM_Hybrid_setup.sh` shell script configures the IM column store to 110M, cr
     ORACLE instance started.
     ...
     SQL> CREATE TABLESPACE imtbs DATAFILE '/u02/app/oracle/oradata/pdb21/imtbs1.dbf' SIZE 500M;
-
     Tablespace created.
 
     SQL> CREATE USER imu IDENTIFIED BY password DEFAULT TABLESPACE imtbs;
-
     User created.
 
     SQL> GRANT create session, create table, unlimited tablespace TO imu;
-
     Grant succeeded.
 
     SQL>
@@ -99,309 +96,203 @@ The `IM_Hybrid_setup.sh` shell script configures the IM column store to 110M, cr
 
     ```
 
-## **Step 2:**  Populate the  in-memory table
+## **STEP 2:**  Populate the  in-memory table
 
 1. Connect to `PDB21` as `SYSTEM` and set formats for the queried columns.
 
-  
+
     ```
-    
+
     $ <copy>sqlplus system@PDB21</copy>
-    
+
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
-    
     Enter password: <b><i>WElcome123##</i></b>
-    
     Last Successful login time: Wed Jan 08 2020 12:03:56 +00:00
-    
+
     Connected to:
-    
+    ```
+    ```
+
     SQL> <copy>COL table_name FORMAT A10</copy>
-    
     SQL> <copy>COL inmemory_compression FORMAT A11</copy>
-    
     SQL> <copy>COL COL_NO_INMEM FORMAT 9999999999999999999999</copy>
-    
     SQL> <copy>COL COL_INMEM FORMAT 9999999999999999999999</copy>
-    
     SQL> <copy>COL segment_name FORMAT A12</copy>
-    
-    SQL> 
-    
+
+    SQL>
+
     ```
 
 2. Display the in-memory attributes of the `IMU.IMTAB` table and of all columns of the table.
 
-  
+
     ```
-    
+
     SQL> <copy>SELECT table_name, inmemory_compression "COMPRESSION", inmemory_priority "PRIORITY"
-    
     FROM   dba_tables WHERE owner='IMU';</copy>
-    
+
     TABLE_NAME COMPRESSION       PRIORITY
-    
     ---------- ----------------- --------
-    
     IMTAB      FOR CAPACITY LOW  HIGH
-    
-    
-    
+
+
+
     SQL> <copy>SELECT obj_num, segment_column_id, inmemory_compression FROM v$im_column_level im, dba_objects o
-    
     WHERE  im.obj_num = o.object_id
-    
     AND    o.object_name='IMTAB';</copy>
-    
+
       OBJ_NUM SEGMENT_COLUMN_ID INMEMORY_CO
-    
     ---------- ----------------- -----------
-    
         74869                 1 NO INMEMORY
-    
         74869                 2 DEFAULT
-    
         74869                 3 DEFAULT
-    
-    SQL> 
-    
+    SQL>
     ```
 
 3. Execute a full scan on the `IMU.IMTAB` table so as to populate the table into the IM Column Store.
 
-  
+
     ```
-    
     SQL> <copy>SELECT /*+ FULL(imu.imtab) NO_PARALLEL(imu.imtab) */ COUNT(*) FROM imu.imtab;</copy>
-    
+
       COUNT(*)
-    
     ----------
-    
         262144
-    
-    SQL> 
-    
+    SQL>
     ```
 
 4. Verify that the `IMU.IMTAB` table is populated into the IM Column Store.
 
-  
+
     ```
-    
     SQL> <copy>COL segment_name FORMAT A12</copy>
-    
     SQL> <copy>SELECT segment_name, bytes, inmemory_size, bytes_not_populated
-    
     FROM   v$im_segments;</copy>
-    
+
     SEGMENT_NAME      BYTES INMEMORY_SIZE BYTES_NOT_POPULATED
-    
     ------------ ---------- ------------- -------------------
-    
     IMTAB          17481728       4456448                   0
-    
-    SQL> 
-    
+    SQL>
     ```
 
 ## **STEP 3:** Complete In-Memory Scans
 
 1. Execute a first query on the `IMU.IMTAB` table. The SELECT list contains the `NO INMEMORY` column and the predicate contains only the `NO INMEMORY` columns. Then examine the execution plan.
 
-  
+
     ```
-    
+
     SQL> <copy>SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab
-    
     WHERE  c1_noinmem BETWEEN 5 AND 1258291;</copy>
-    
+
               COL_NO_INMEM
-    
     -----------------------
-    
               103079608317
-    
+
     SQL> <copy>SELECT * FROM table(dbms_xplan.display_cursor());</copy>
-    
+
     PLAN_TABLE_OUTPUT
-    
     --------------------------------------------------------------------
-    
     SQL_ID  1dpya5ws8gbvx, child number 0
-    
     -------------------------------------
-    
     SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab WHERE  c1_noin
-    
     mem BETWEEN 5 AND 1258291
-    
     Plan hash value: 360700294
-    
     ----------------------------------------------------------------------------
-    
     | Id  | Operation          | Name  | Rows  | Bytes | Cost (%CPU)| Time     |
-    
     ----------------------------------------------------------------------------
-    
     |   0 | SELECT STATEMENT   |       |       |       |   547 (100)|       |
-    
     |   1 |  SORT AGGREGATE    |       |     1 |    13 |            |       |
-    
     |*  2 |   <b>TABLE ACCESS FULL</b>| IMTAB |   292K|  3712K|   547   (1)| 00 :00:01 |
-    
     ----------------------------------------------------------------------------
-    
     Predicate Information (identified by operation id):
-    
     ---------------------------------------------------
-    
       2 - filter(("C1_NOINMEM">=5 AND "C1_NOINMEM"<=1258291))
-    
     Note
-    
     -----
-    
       - dynamic statistics used: dynamic sampling (level=2)
-    
     24 rows selected.
-    
-    SQL> 
-    
+    SQL>
     ```
-    
+
   The optimizer in both sessions choose the `TABLE ACCESS FULL` method because the predicate does not contain only `INMEMORY` columns.
 
 2. Execute a second query on the `IMU.IMTAB` table. The SELECT list contains the `NO INMEMORY` column and the predicate contains both a `NO INMEMORY` column and an `INMEMORY` column. Then examine the execution plan.
 
-  
     ```
-    
+
     SQL> <copy>SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab
-    
     WHERE  c1_noinmem BETWEEN 5 AND 1258291 AND c3_inmem LIKE 'Test20c%';</copy>
-    
+
               COL_NO_INMEM
-    
     -----------------------
-    
               103079608317
-    
+
     SQL> <copy>SELECT * FROM table(dbms_xplan.display_cursor());</copy>
-    
+
     PLAN_TABLE_OUTPUT
-    
     --------------------------------------------------------------------
-    
     SQL_ID  afz9bm3rscr3y, child number 0
-    
     -------------------------------------
-    
     SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab WHERE  c1_noinmem
-    
     BETWEEN 5 AND 1258291 AND c3_inmem LIKE 'Test20c%'
-    
     Plan hash value: 360700294
-    
     ----------------------------------------------------------------------------
-    
     | Id  | Operation          | Name  | Rows  | Bytes | Cost (%CPU)| Time     |
-    
     ----------------------------------------------------------------------------
-    
     |   0 | SELECT STATEMENT   |       |       |       |   582 (100)|       |
-    
     |   1 |  SORT AGGREGATE    |       |     1 |  2015 |            |       |
-    
     |*  2 |   <b>TABLE ACCESS FULL</b>| IMTAB |   230K|   443M|   582   (1)| 00:00:01 |
-    
     ----------------------------------------------------------------------------
-    
     Predicate Information (identified by operation id):
-    
     ---------------------------------------------------
-    
       2 - filter(("C1_NOINMEM">=5 AND "C1_NOINMEM"<=1258291 AND "C3_INMEM" LIKE 'Test20c%'))
-    
     Note
-    
     -----
-    
       - dynamic statistics used: dynamic sampling (level=2)
-    
     25 rows selected.
-    
-    SQL> 
-    
+    SQL>
     ```
-    
+
   The optimizer in both sessions choose the `TABLE ACCESS FULL` access method because the predicate does not contain only `INMEMORY` columns. It contains a `INMEMORY` column and an `NO INMEMORY` columns.
 
 3. Execute a third query on the `IMU.IMTAB` table. The SELECT list contains the `NO INMEMORY` column and the predicate contains only `INMEMORY` columns. Then examine the execution plan.
 
-  
+
     ```
-    
-    SQL> <copy>SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab 
-    
+    SQL> <copy>SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab
     WHERE  c2_inmem BETWEEN 5 AND 1258291 AND c3_inmem LIKE 'Test20c%';</copy>
-    
+
               COL_NO_INMEM
-    
     -----------------------
-    
               103079608317
-    
+
     SQL> <copy>SELECT * FROM table(dbms_xplan.display_cursor());</copy>
-    
     PLAN_TABLE_OUTPUT
-    
     --------------------------------------------------------------------
-    
     SQL_ID  f07n4gc330rhz, child number 0
-    
     -------------------------------------
-    
     SELECT sum(c1_noinmem) AS COL_NO_INMEM FROM imu.imtab WHERE  c2_inmem
-    
     BETWEEN 5 AND 1258291 AND c3_inmem LIKE 'Test20c%'
-    
     Plan hash value: 360700294
-    
     -----------------------------------------------------------------------------------
-    
     | Id  | Operation                            | Name  | Rows  | Bytes | Cost (%CPU)| Time     |
-    
     -----------------------------------------------------------------------------------
-    
     |   0 | SELECT STATEMENT                     |       |       | |   582 (100)|          |
-    
     |   1 |  SORT AGGREGATE                      |       |     1 |  2028 |            |          |
-    
     |*  2 |   <b>TABLE ACCESS INMEMORY FULL (HYBRID)</b>| IMTAB |   230K|   445M|   582   (1)| 00:00:01 |
-    
     -----------------------------------------------------------------------------
-    
     Predicate Information (identified by operation id):
-    
     ---------------------------------------------------
-    
       2 - filter(("C2_INMEM">=5 AND "C2_INMEM"<=1258291 AND "C3_INMEM"
-    
     LIKE 'Test20c%'))
-    
     Note
-    
     -----
-    
       - dynamic statistics used: dynamic sampling (level=2)
-    
     24 rows selected.
-    
-    SQL> 
-    
+    SQL>
     ```
-    
+
   The optimizer in both sessions choose different access methods. In 20c, the `TABLE ACCESS INMEMORY FULL (HYBRID)` access method is chosen because the predicate contains only `INMEMORY` columns and the SELECT list a `NO INMEMORY` column.
 
 ## **STEP 4:** Drop the user
@@ -409,25 +300,18 @@ The `IM_Hybrid_setup.sh` shell script configures the IM column store to 110M, cr
 1. Drop the `imu` user.
 
     ```
-
     SQL> <copy>DROP USER imu CASCADE;</copy>
-
     User dropped.
 
     SQL> <copy>EXIT</copy>
-    $ 
-
+    $
     ```
 
 
 You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
-* **Contributors** -  Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, November 2020
+* **Author** - Donna Keesling, Database UA Team
+* **Contributors** -  David Start, Kay Malcolm, Database Product Management
+* **Last Updated By/Date** -  David Start, December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

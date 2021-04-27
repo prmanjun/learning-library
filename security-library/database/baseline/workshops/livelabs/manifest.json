@@ -1,8 +1,9 @@
 {
-  "workshoptitle": "DB Security Basics",
-  "tutorials": [
+    "workshoptitle": "DB Security Basics",
+    "help": "livelabs-help-db_us@oracle.com",
+    "tutorials": [
     {
-      "title": "Prerequisites",
+      "title": "Getting Started",
       "description": "Login to Oracle Cloud",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
     },
@@ -52,6 +53,11 @@
       "description": "In this lab you can see how to leverage Oracle Unified Auditing",
       "publisheddate": "10/20/2020",
       "filename": "../../unified-auditing/unified-auditing.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
     }
   ]
 }

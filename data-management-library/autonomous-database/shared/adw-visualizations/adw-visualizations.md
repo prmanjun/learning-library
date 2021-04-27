@@ -6,7 +6,7 @@ This lab will walk you through the steps to connect *Oracle Analytics Desktop* (
 
 ### Objectives
 - Learn how to connect a desktop analytics tool to the powerful Autonomous Database
-- Learn how to connect to the database using SQL Developer Web
+- Learn how to connect to the database from Oracle Analytics Desktop
 - Learn how to create a simple data visualization project with Oracle Analytics Desktop
 - Learn how to access and gain insights from data in the Autonomous Database
 
@@ -17,21 +17,19 @@ This lab will walk you through the steps to connect *Oracle Analytics Desktop* (
 - Installation of Oracle Analytics Desktop (free with Autonomous Data Warehouse). If you already have Oracle Analytics Desktop installed, please check the version. The recommended version is 5.5.0 or greater, to connect to your Oracle Autonomous Database.
 - Access to an existing Autonomous Data Warehouse instance.
 
-## **STEP 1**: Installing Oracle Analytics Desktop on a Windows Desktop
+## **STEP 1**: Install Oracle Analytics Desktop on a Windows Desktop
 
 1. Download the latest version of *Oracle Analytics Desktop* (formerly Data Visualization Desktop) from <a href="http://www.oracle.com/technetwork/middleware/oracle-data-visualization/downloads/oracle-data-visualization-desktop-2938957.html" target="\_blank"> here</a>.
 
 2. After saving the installer executable file, click on the installer and follow the guided steps.
 
-
    ![Click Install in the Oracle Analytics Desktop Installer Wizard.](./images/install_oad_4.jpg " ")
 
    ![Click Finish.](./images/install_oad_5.jpg " ")
 
+## **STEP 2**: Create a View by Executing the Provided Script in SQL Worksheet
 
-## **STEP 2**: Create a View by Executing the Provided Script in SQL Developer Web
-
-Although you can connect to your autonomous database using local PC desktop tools like Oracle SQL Developer, you can conveniently access the browser-based SQL Developer Web directly from your ADW or ATP console.
+Although you can connect to your autonomous database using local PC desktop tools like Oracle SQL Developer, you can conveniently access the browser-based SQL Worksheet directly from your ADW or ATP console.
 
 For simplicity's sake, in this exercise, we will use the Oracle Sales History (SH) schema provided to create a simple view.
 
@@ -39,19 +37,23 @@ For simplicity's sake, in this exercise, we will use the Oracle Sales History (S
 
    ![Click Tools.](./images/Picture100-34.png " ")
 
-2. The Tools page provides you access to SQL Developer Web, Oracle Application Express, Oracle ML User Administration, etc. In the SQL Developer Web box, click **Open SQL Developer Web**.
+2. The Tools page provides you access to database administration and developer tools for Autonomous Database: Database Actions, Oracle Application Express, Oracle ML User Administration, and SODA Drivers. In the Database Actions box, click **Open Database Actions**.
 
    ![Click Open SQL Developer Web.](./images/Picture100-15.png " ")
 
-3. A sign-in page opens for SQL Developer Web. For this lab, simply use your database instance's default administrator account, ADMIN, with the ADMIN password you specified when creating the database. Click **Sign in**.
+3. A sign-in page opens for Database Actions. For this lab, simply use your database instance's default administrator account, **Username - ADMIN** and click **Next**.
 
    ![Enter login details and click Sign in.](./images/Picture100-16.png " ")
 
-4. SQL Developer Web opens on a Worksheet tab. The first time you open SQL Developer Web, a series of pop-up informational boxes introduce the main features.
+4. Enter the ADMIN **Password** you specified when creating the database and click **Sign in**.
 
-   ![SQL Developer Web worksheet.](./images/Picture100-16b.png " ")
+    ![Enter the ADMIN password.](./images/Picture100-16-password.png " ")
 
-5. In a SQL Developer Web worksheet, copy and execute the following script.  
+5. The Database Actions page opens. In the **Development** box, click **SQL**.
+
+    ![Click on SQL.](./images/Picture100-16-click-sql.png " ")
+
+6. In a SQL Worksheet, copy and execute the following script.  
 
       ```
       <copy>drop view DV_SH_VIEW;
@@ -126,8 +128,8 @@ As ADW and ATP accept only secure connections to the database, you need to downl
    | Connection Name:      | Type in '**SALES_HISTORY**'                             |
    | Service Name:         | Scroll the drop-down field and select **adwfinance_high**, or the **high** service level of the database name you specified in Lab 1. |
    | Client Credentials:   | Click '**Select...**' and select the wallet zip file that you downloaded in Step 3.3. A file with .sso extension will appear in the field.   |
-   | Username:             | Insert username created in previous labs, likely **ADMIN**.  Same username as SQL Developer Web and SQL Developer credentials. |                                            
-   | Password              | Insert password created in previous labs.  Same password as SQL Developer Web and SQL Developer credentials. |
+   | Username:             | Insert username created in previous labs, likely **ADMIN**.  Same username as SQL Worksheet and SQL Developer credentials. |                                            
+   | Password              | Insert password created in previous labs.  Same password as SQL Worksheet and SQL Developer credentials. |
 
 6. After completing the fields, click **Save**.
 
@@ -222,9 +224,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Arabella Yao, Product Manager Intern, DB Product Management, July 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/autonomous-database-shared). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, March 2021

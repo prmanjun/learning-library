@@ -1,4 +1,4 @@
-# UI Navigation
+# Initialize Environment
 
 ## Introduction
 In this lab you are going to login to GGSA and get familiar with the menu and navigation in the home and catalog pages. You will then create a new user and set credentials for that user. You are also going to import an example use case for IoT in order to get familiar with various resources
@@ -19,16 +19,16 @@ This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
 - SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys
-    - Lab: Prepare Setup
+    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
 
-## **STEP 1**: Log-in
+## **Step 1**: Log-in
 
 1. Launch your browser to the following URL
 
     ```
-    URL: <copy>http://[your instance public-ip address]/osa</copy>
+    URL: <copy>https://[your instance public-ip address]/osa</copy>
     ```
 
 2. Provide login credentials
@@ -42,48 +42,44 @@ This lab assumes you have:
 
     ![](./images/login.png " ")
 
-2. You should see the home page
+3. You should see the home page
 
     ![](./images/home.png " ")
 
-3. Click on (*`X`*) to ignore the error below if shown
-
-    ![](./images/ignore-error-first-login.png " ")
-
-## **STEP 2**: Check Version
+## **Step 2**: Check Version
 1. Click on the drop-down menu in the upper right-hand corner of the screen.
 
     ![](./images/about.png " ")
 
 2. Click on the About menu item and make sure the current version of the product is showing as
 
-    - GoldenGate Stream Analytics Version19.1.0.0.3
-    - Java Version1.8.0_131
+    - GoldenGate Stream Analytics Version19.1.0.0.6
+    - Java Version1.8.0_281
     - Superset Version0.17.0
 
     ![](./images/version.png " ")
 
 3. Click Done.
 
-## **STEP 3**: Review System Settings
+## **Step 3**: Review System Settings
 1. Again, click on the drop-down menu in the upper right-hand corner of the screen but this time click on System Settings
 
     ![](./images/systemsetdropdown.png " ")
 
-2. Verify all the connections to ZooKeeper and Spark are set as below.
+2. Verify all the connections to Kafka and Spark are set as below.
 
     ![](./images/systemsettings.png " ")
 
-## **STEP 4**: Perform User Management
+## **Step 4**: Perform User Management
 1. Click on the User Management in the navigation bar to the left and **Add User**:
 
     `osauser/osauser`
 
-2. Confirm the password and then click on Create, verify that the new user got created and Save.
+2. Confirm the password and then click on Create, verify that the new user got created and Save.  Click on `(X)` to get out of System Settings.
 
-    ![](./images/addUser.png " ")
+    ![](./images/adduser.png " ")
 
-## **STEP 5**: Review Catalog
+## **Step 5**: Review Catalog
 
 1. Click on the Catalog menu on the top right-hand corner of the home page:
 
@@ -95,7 +91,7 @@ This lab assumes you have:
 
 2. Navigate back to the Home page again.
 
-## **STEP 6**: Check out Import
+## **Step 6**: Check out Import
 
 1. Click on Import in Distributed Intelligence for IOT region and see the message that it was imported Successfully.
 
@@ -109,7 +105,7 @@ This lab assumes you have:
 
     ![](./images/resourcesimported.png " ")
 
-## **STEP 7**: View "Show Me (Nav Bar)"
+## **Step 7**: View "Show Me (Nav Bar)"
 
 1. Click on the box next to the Catalog and then click on *View All* on the left Show Me nav bar to hide all the resources. All the resources in the Show Me nav bar should now be unchecked and you should see 0 of 0 Resources in the main page
 
@@ -119,11 +115,11 @@ This lab assumes you have:
 We can now check individual resource types and only see them listed in
 the main page.
 
-## **STEP 8**: View Connections
+## **Step 8**: View Connections
 
 1. Click on the Connections on the left nav bar and verify that only two types of connections are visible.
 
-    ![](./images/twoConnections.png " ")
+    ![](./images/twoconnections.png " ")
 
 2. Click on the LocalMySQLDB connection. This is a connection to the local MySQL database. We are going to use this connection later in the lab. Verify that it is the Connection Type of Generic Database then click Next.
 
@@ -137,7 +133,7 @@ the main page.
 
 4. Then click on Test connection and make sure the connection is successful. Click on the Cancel button. Do not save this connection here.
 
-    ![](./images/testDBConnection.png " ")
+    ![](./images/testdbconnection.png " ")
 
 5. Now click on the LocalKafka connection. This is a different type of a connection to the local Kafka environment. We are going to use this connection and the topics later in the lab. Verify that it is the Connection Type of Kafka then click Next.
 
@@ -145,9 +141,9 @@ the main page.
 
 6. You should see the Edit Connection screen for Type:Kafka. Verify that Zookeepers is running in the local server localhost. Zookeepers are the servers that are going to manage our local Kafka environments; in this case just one node in the local environment. Leave all the other settings as default and click on Test connection and make sure the connection is Successful. Click on Cancel button. Do not save this kafka connection.
 
-    ![](./images/editKafkaConnection.png " ")
+    ![](./images/editkafkaconnection.png " ")
 
-## **STEP 9**: Review Streams
+## **Step 9**: Review Streams
 
 1. In the left nav bar uncheck the Connections resource and check Streams instead and verify that only VendingMachineStream is visible.
 
@@ -159,9 +155,9 @@ the main page.
 
 4. Click on the Edit to the right of Source Type Parameters: File. Verify the file format as CSV and that the Loop flag is turned on. Click Next.
 
-    ![](./images/vmStreamDetails.png " ")
+    ![](./images/vmstreamdetails.png " ")
 
-    ![](./images/vmEditStream1.png " ")
+    ![](./images/vmeditstream1.png " ")
 
 5. Verify the settings in the Data Format screen then click Next
 
@@ -169,9 +165,9 @@ the main page.
 
 6. In the Shape page Infer Shape should be selected which means that the fields and types are inferred from the source csv file. Verify the field name and types then click Cancel then close `(X)` out the following screen.
 
-    ![](./images/vmEditStream3.png " ")
+    ![](./images/vmeditstream3.png " ")
 
-## **STEP 10**: Review References
+## **Step 10**: Review References
 
 References are typically database tables that might be used to enrich a stream of data.
 
@@ -181,31 +177,32 @@ References are typically database tables that might be used to enrich a stream o
 
 2. Click on the MachineDetails. Verify that all the param settings then click on Edit to the right of Source Type Parameters: Database Table. Do NOT edit any sections at this time.
 
-    [](./images/editMachineDetails1.png " ")
+    [](./images/editmachinedetails1.png " ")
 
 3. In the Source Details note that Connection is set to LocalMySQLDB as we saw earlier in the lab. Click Next.
 
-    ![](./images/editMachineDetails2.png " ")
+    ![](./images/editmachinedetails2.png " ")
 
 4. In the Shape page notice that all the table columns and their types,(i.e. shape) are all set correctly. Do not save, click Cancel.
 
     ![](./images/editmachinedetails3.png " ")
 
-5. In the next page click on 'X' and exit.
+5. In the next page click on `(X)` and exit.
 
-## **STEP 11**: Review Targets
+## **Step 11**: Review Targets
 
-A `Target` is a destination environment downstream that is usually used when we are finished with analysis. They are typically of types: JMS, database, REST, Kafka and Coherence.
+A `Target` is a destination environment downstream that is usually used when we are finished with analysis. In this version the following targets are supported: AWS S3, Coherence, Database Table, Elastic Search, HBase, HDFS, Hive, Ignite Cache, JMS, Kafka, MongoDB, NFS, Notification, Object Storage and REST.
+
 
 1. On the left nav bar make sure Targets are checked only. On the main screen only NotifyMaintenance and ReplenishAlert targets should be visible. Click on the NotifyMaintenance. Do NOT edit any sections at this time.
 
-    ![](./images/targetsVisible.png " ")
+    ![](./images/targetsvisible.png " ")
 
 2. In the Type Properties page make sure the target name and type are set correctly as NotifyMaintenance and Kafka and click Next.
 
-    ![](./images/editTarget1.png " ")
+    ![](./images/edittarget1.png " ")
 
-3. In the Target Details page notice the Connection is set to LocalKafka as we saw earlier with the Topic name as HighTempMachines. Make sure the Data Format for this topic is set JSON. Notice there are other data formats like csv and avro.
+3. In the Target Details page notice the Connection is set to LocalKafka as we saw earlier with the Topic name as HighTempMachines. Make sure the Data Format for this topic is set JSON. Notice there are other data formats like csv and avro.  Click Next.
 
     ![](./images/edittarget2.png " ")
 
@@ -215,22 +212,30 @@ A `Target` is a destination environment downstream that is usually used when we 
 
     ![](./images/edittarget3.png " ")
 
-6. In the next page click on 'X' and exit.
 
-7. Click on the ReplenishAlert target and repeat all the steps the same as NotifyMaintenance target. Do not make any changes to these targets. This target should have (about 12 fields).
+6. Click on the ReplenishAlert target and repeat all the steps the same as NotifyMaintenance target. Do not make any changes to these targets. This target should have (about 12 fields).
 
-*You may now proceed to the next lab*.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 * [GoldenGate Stream Analytics](https://www.oracle.com/middleware/technologies)
+
+## Rate this Workshop
+When you are finished don't forget to rate this workshop!  We rely on this feedback to help us improve and refine our LiveLabs catalog.  Follow the steps to submit your rating.
+
+1.  Go back to your **workshop homepage** in LiveLabs by searching for your workshop and clicking the Launch button.
+2.  Click on any of the **Brown Buttons** to re-access the workshop  
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/workshop-homepage-2.png " ")
+
+3.  Click **Rate this workshop**
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/rate-this-workshop.png " ")
+
+If you selected the **Green Button** for this workshop and still have an active reservation, you can also rate by going to My Reservations -> Launch Workshop.
 
 ## Acknowledgements
 
 * **Author** - Hadi Javaherian, Solution Engineer
 * **Contributors** - Shrinidhi Kulkarni, Meghana Banka, Rene Fontcha
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, February 2021

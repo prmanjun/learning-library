@@ -30,8 +30,8 @@ Ready to create your **Custom Component** scaffolding.
 
 1. Open a **terminal** and type:
 
-    ```bash
-    npx @oracle/bots-node-sdk init tasks-cc --component-name tasks
+    ```
+    <copy>npx @oracle/bots-node-sdk init tasks-cc --component-name tasks</copy>
     ```
 
     Where `tasks-cc` is the name of the custom component module. And `tasks` is the name of our first custom component implementation.
@@ -59,16 +59,16 @@ Ready to create your **Custom Component** scaffolding.
 
 3. **Change directory** to `tasks-cc` on the Command Prompt or Terminal:
 
-    ```bash
-    cd tasks-cc
+    ```
+    <copy>cd tasks-cc</copy>
     ```
 
     This custom component is going to make REST API calls to fetch information from APEX. To do so, we need to install an extra library called [node-fetch](https://www.npmjs.com/package/node-fetch).
 
 4. Install the library with the following command:
 
-    ```bash
-    npm install node-fetch
+    ```
+    <copy>npm install node-fetch</copy>
     ```
 
 5. Edit the file `package.json` in `tasks-cc` folder. You can use your favorite text editor. My choice is [Visual Code](https://code.visualstudio.com/) but feel free to use any. Even Notepad for those Windows user that don't want to install anything else.
@@ -85,12 +85,12 @@ Ready to create your **Custom Component** scaffolding.
 
 8. **Open** the file `tasks.js` with your favorite text editor. You can find this file in the **components folder**.
 
-9. **Edit** the file `tasks.js` and **replace** the whole content with the following code or download it from [here](files/tasks.js) to download the customer component source code.
+9. **Edit** the file `tasks.js` and **replace** the whole content with the following code or download it from <a href="./files/tasks.js" target="\_blank">here</a> to download the customer component source code.
 
     **IMPORTANT**: **Remember** to change the `URL_COPIED_FROM_APEX` with the **URL** copied on **APEX** in **Lab 2**.
 
-    ```javascript
-    "use strict";
+    ```
+    <copy>"use strict";
 
     const fetch = require("node-fetch");
 
@@ -134,7 +134,7 @@ Ready to create your **Custom Component** scaffolding.
             done();
             });
         },
-    };
+    };</copy>
     ```
 
     ![Copy URL from APEX](./images/apex_copy_url.png)
@@ -146,7 +146,7 @@ Ready to create your **Custom Component** scaffolding.
         "https://xxx-yyy.adb.region.oraclecloudapps.com/ords/tasks/oda/tasks/";
     ```
 
-   10.   Don't forget the **save** tasks.js file.
+   1.    Don't forget the **save** tasks.js file.
 
 ## **STEP 2**: Deploy the custom component
 
@@ -160,8 +160,8 @@ Ready to create your **Custom Component** scaffolding.
 
     Package your **Custom Component** by running on your Command Prompt or Terminal:
 
-    ```bash
-    npm pack
+    ```
+    <copy>npm pack</copy>
     ```
 
     The **output** looks like this:
@@ -174,7 +174,7 @@ There will be a new file in your `tasks-cc` folder called `tasks-cc-1.0.0.tgz`.
 
 ![tgz new file](./images/node_tgz_file.png)
 
-*Congratulations! You are ready to go to the next workshop!*
+*Congratulations! You are ready to go to the next lab!*
 
 ## **Acknowledgements**
 
@@ -182,7 +182,3 @@ There will be a new file in your `tasks-cc` folder called `tasks-cc-1.0.0.tgz`.
 - **Contributors** - Melanie Ashworth-March
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

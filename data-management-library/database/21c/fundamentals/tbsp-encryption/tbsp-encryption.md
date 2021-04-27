@@ -27,19 +27,17 @@ In this lab, you will:
 	```
 
 	$ <copy>sqlplus / AS SYSDBA</copy>
-
 	Connected to:
 
 	Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
-
 	Version 21.2.0.0.0
+	```
+	```
 
 	SQL> <copy>SHOW PARAMETER TABLESPACE_ENCRYPTION_DEFAULT_ALGORITHM</copy>
 
 	NAME                                       TYPE   VALUE
-
 	------------------------------------------ ------ -----------------------
-
 	tablespace_encryption_default_algorithm    string AES128
 
 	SQL>
@@ -52,7 +50,6 @@ In this lab, you will:
 	```
 
 	SQL> <copy>ALTER SYSTEM SET TABLESPACE_ENCRYPTION_DEFAULT_ALGORITHM=AES192;</copy>
-
 	System altered.
 
 	SQL> <copy>EXIT</copy>
@@ -65,16 +62,14 @@ In this lab, you will:
 
 	```
 
-	$ <copy>sqlplus sys@PDB1 AS SYSDBA</copy>
-
+	$ <copy>sqlplus sys@PDB21 AS SYSDBA</copy>
 	Enter password: <b><i>WElcome123##</i></b>
 
 	Connected.
   ```
   ```
 
-	SQL> <copy>CREATE TABLESPACE tbstest DATAFILE 'test01.dbf' SIZE 2M;</copy>
-
+	SQL> <copy>CREATE TABLESPACE tbstest DATAFILE '/u02/app/oracle/oradata/pdb21/test01.dbf' SIZE 2M;</copy>
 	Tablespace created.
 
 	SQL>
@@ -105,11 +100,7 @@ In this lab, you will:
 You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
-* **Contributors** -  Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, November 2020
+* **Author** - Donna Keesling, Database UA Team
+* **Contributors** -  David Start, Kay Malcolm, Database Product Management
+* **Last Updated By/Date** -  David Start, December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

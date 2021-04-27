@@ -1,4 +1,6 @@
 {
+  "workshoptitle": "Oracle Cloud VMware Solution",
+  "help": "livelabs-help-oci_us@oracle.com",
   "tutorials": [
       {
         "title": "Workshop Overview",
@@ -24,6 +26,11 @@
         "title": "Lab 4: Extend Application to OCI",
         "description": "Extend the solution to use OCI services",
         "filename": "../extend-app-to-oci/extend-app-to-oci.md"
+      },
+      {
+        "title": "Need Help?",
+        "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+        "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
       }
     ]
 }

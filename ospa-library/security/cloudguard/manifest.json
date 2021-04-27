@@ -2,7 +2,7 @@
   "workshoptitle": "Securing OCI with Oracle Cloud Guard",
     "tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "description": "Prerequisites for LiveLabs (Oracle-owned tenancies). The title of the lab and the Contents Menu title (the title above) match for Prerequisite lab. This lab is always first.",
             "filename": "./prerequisites.md"        },
         {

@@ -1,9 +1,10 @@
 {
     "workshoptitle": "Using OCI to Build a Java Application",
-    "tutorials": [
-        {         
-            "title": "Prerequisites",
-            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
+        {
+            "title": "Getting Started",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Introduction",
@@ -39,15 +40,20 @@
         },
         {
             "title": "Lab 8: Switch Expressions",
-             "filename": "./../../switch-expression/switch-expression.md"
+            "filename": "./../../switch-expression/switch-expression.md"
         },
         {
             "title": "Lab 9: Pattern Matching for instanceof",
-             "filename": "./../../instanceof/instanceof.md"
+            "filename": "./../../instanceof/instanceof.md"
         },
         {
             "title": "Lab 10: jlink",
-             "filename": "./../../jlink/jlink.md"
+            "filename": "./../../jlink/jlink.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
-     ]
+    ]
 }

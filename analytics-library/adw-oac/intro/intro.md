@@ -21,9 +21,13 @@ With **Oracle Analytics Cloud**, you also get flexible service management capa
 
 To run the workshop, you will need an Oracle Free Tier Account, with a provisioned ADW instance and a a provisioned OAC instance. This pre-requisite guide will take you step-by-step through how to get the account and set the instance up, to be ready to start the workshop.
 
-Watch our short video that explains **Oracle Autonomous Database (ADB)** and **Oracle Analytics Cloud (OAC)** in detail:
+Watch our short video that explains **Oracle Autonomous Database (ADB)**:
 
-[](youtube:O-obYJ8TBw8)
+[](youtube:GmyBsDn0VGI)
+
+And another short video that explains **Oracle Analytics Cloud (OAC)** in detail:
+
+[](youtube:ptA6CnncfB8)
 
 Estimated Workshop Time: 120 minutes
 
@@ -34,7 +38,3 @@ Estimated Workshop Time: 120 minutes
 - **Contributors** - Victor Martin, Melanie Ashworth-March, Andrea Zengin
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

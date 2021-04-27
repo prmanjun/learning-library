@@ -24,7 +24,6 @@ Try one of our workshops in [LiveLabs](http://bit.ly/golivelabs).
 - Quickstart with Docker
 
 ### Tutorial: Setup a property graph environment in Always Free Tier (AF Autonomous Database and Compute)
-- Quickstart on AF Tier: Manual deployment
 - Quickstart on AF Tier: Deploy OCI Marketplace image
 
 ### Tutorial: Use Property Graph for real-time recommendations (AF Autonomous Database and Compute)
@@ -60,11 +59,3 @@ Click here to request your trial account: [https://www.oracle.com/cloud/free](ht
 - [Property Graphs 101: How to Analyze Billions of Relationships in Data by Dan Vlamis, Vlamis Software](https://youtu.be/qaQO-mW6lFs)
 - [Analyzing Blockchain and Bitcoin Transaction Data as a Graph](https://youtu.be/w8OEVobyhFE)
 - [Oracle Spatial and Graph Videos on YouTube](https://www.youtube.com/channel/UCZqBavfLlCuS0il6zNY696w)
-
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
-
--- Oracle Database Product Management

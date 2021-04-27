@@ -1,16 +1,54 @@
 # Application Containers #
 
-## Lab Introduction
+## Introduction
 This is a series of 12 hands-on labs designed to familiarize you with the Application Container functionality of Oracle Multitenant. In these labs, we follow the journey of a notional company, Walt’s Malts, as their business expands from a single store to a global powerhouse – “from startup to starship”.
 
-Estimated time: 45 - 60 minutes
+*Estimated Workshop Time*: 1 hour
 
 [](youtube:ZPOjjF3kCvo)
 
-## Step 0: Connect to Your Instance and Login
-Before you begin, please connect to your instance, using the commands from **[Lab 3, Step 4](?lab=lab-3-environment-setup#Step4:Connecttoyourinstance)** 
+### Prerequisites
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- SSH Private Key to access the host via SSH
+- You have completed:
+    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
+    - Lab: Environment Setup
+    - Lab: Clone, Plug and Drop
 
-Then, login using the commands from **[Lab 4, Step 1.1 and 1.2](?lab=lab-4-multitenant-basics#Step1:LoginandCreatePDB)**
+## **Step 0:** Connect to Your Instance and Login
+
+This Lab assumes that you have already Initialized your environment as instructed in "*Lab: Clone, Plug and Drop*". If you haven't please return to that lab and execute "*Step 0*" at the minimum.
+
+1. If you've disconnected from the session you established while running the previous lab, please reconnect to your instance as user "*opc*"
+
+    ```
+    ssh -i ~/.ssh/<sshkeyname> opc@<Your Compute Instance Public IP Address>
+    ```
+
+2. Then, login using the following commands:
+    ```
+    <copy>
+    sudo su - oracle
+    cd /home/oracle/labs/multitenant
+    </copy>
+    ```
+
+    ```
+    <copy>. oraenv</copy>
+    CDB1
+    ```
+
+    ```
+    <copy>
+    sqlplus /nolog
+    </copy>
+    ```
+
+    ```
+    <copy>connect sys/oracle@localhost:1523/cdb1 as sysdba</copy>
+    ```
 
 ## **Step 1:** Instant SaaS
 This section shows how Multitenant with Application Containers provides an instant SaaS architecture for an application formerly architected for standalone deployment.
@@ -23,119 +61,119 @@ The tasks you will accomplish in this step are:
 
 1. Connect to **CDB1**.
 
-    ````
+    ```
     <copy>sqlplus /nolog</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect sys/oracle@localhost:1523/cdb1 as sysdba</copy>
-    ````
+    ```
 
     ![](./images/step1.1-connectcdb1.png " ")
 
 2. Create and open the master application root.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/cdb1;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database wmStore_Master as application container
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database wmStore_Master open;</copy>
-    ````
+    ```
 
     ![](./images/step1.2-createmaster.png " ")
 
 3. Define the application master.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore begin install '1.0';</copy>
-    ````
+    ```
 
     ![](./images/step1.3.1-connectwmstore.png " ")
 
-    ````
+    ```
     <copy>create tablespace wmStore_TBS datafile size 100M autoextend on next 10M maxsize 200M;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create user wmStore_Admin identified by oracle container=all;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>grant create session, dba to wmStore_Admin;</copy>
-    ````
+    ```
 
     ![](./images/step1.3.2-createwmstoreadmin.png " ")
 
-    ````
+    ```
     <copy>alter user wmStore_Admin default tablespace wmStore_TBS;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create table wm_Campaigns
     -- sharing = data
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Name             varchar2(30)                                    not null  unique
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create table wm_Products
     -- sharing = extended data
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Name             varchar2(30)                                    not null  unique
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create table wm_Orders
     -- sharing = metadata
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Order_Number     number(16,0)      generated always as identity  not null  unique
-    ,Order_Date       date              default   current_date        not null 
+    ,Order_Date       date              default   current_date        not null
     ,Campaign_ID      raw(16)           
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    alter table wm_Orders add constraint wm_Orders_F1 
+    alter table wm_Orders add constraint wm_Orders_F1
     foreign key (Campaign_ID)
     references wm_Campaigns(Row_GUID)
     disable
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step1.3.3-createtable1.png " ")
 
-    ````
+    ```
     <copy>
     create table wm_Order_Items
     -- sharing = metadata
-    (Row_GUID         raw(16)                    default Sys_GUID()           primary key 
+    (Row_GUID         raw(16)                    default Sys_GUID()           primary key
     ,Order_ID         raw(16)           not null
     ,Item_Num         number(16,0)      not null
     ,Product_ID       raw(16)           not null
@@ -143,29 +181,29 @@ The tasks you will accomplish in this step are:
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    alter table wm_Order_Items add constraint wm_Order_Items_F1 
+    alter table wm_Order_Items add constraint wm_Order_Items_F1
     foreign key (Order_ID)
     references wm_Orders(Row_GUID)
     disable
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    alter table wm_Order_Items add constraint wm_Order_Items_F2 
+    alter table wm_Order_Items add constraint wm_Order_Items_F2
     foreign key (Product_ID)
     references wm_Products(Row_GUID)
     disable
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create or replace view wm_Order_Details
     -- sharing = metadata
@@ -189,11 +227,11 @@ The tasks you will accomplish in this step are:
     on  o.Campaign_ID = c.Row_GUID
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step1.3.4-createtable2.png " ")
 
-    ````
+    ```
     <copy>
     insert into wm_Campaigns (Row_GUID, Name) values ('01', 'Locals vs Yokels');
 
@@ -209,96 +247,96 @@ The tasks you will accomplish in this step are:
 
     insert into wm_Products (Row_GUID, Name) values ('04', 'Yokie Dokie Okie Eggnog');
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore end install '1.0';</copy>
-    ````
+    ```
 
     ![](./images/step1.3.5-insertvalues.png " ")
 
 4. Create the application seed.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database as seed
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
     ![](./images/step1.4-createseed.png " ")
 
 5. Open the application seed.
 
-    ````
+    ```
     <copy>connect sys/oracle@localhost:1523/wmStore_Master as SysDBA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database wmStore_Master$Seed open;</copy>
-    ````
+    ```
 
     ![](./images/step1.5-openseed.png " ")
 
 6. Sync the seed with the application wmStore.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master$Seed;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step1.6-syncseed.png " ")
 
 7.  Provision the application databases for the 4 stores.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database Tulsa
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database California
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database Tahoe
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database NYC
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database all open;</copy>
-    ````
+    ```
 
     ![](./images/step1.7-createapppdb.png " ")
 
 8. Create franchise specific data.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>@Franchise_Data_Lab1</copy>
-    ````
+    ```
 
     ![](./images/step1.8-createfranchise1.png " ")
 
@@ -314,13 +352,13 @@ The tasks you will accomplish in this step are:
 
 1. Connect to **CDB1**.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
-    ````
+    ```
 
 2. Show PDBs created so far.
 
-    ````
+    ```
     <copy>
     set linesize 180
 
@@ -343,11 +381,11 @@ The tasks you will accomplish in this step are:
     from dual
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step2.2-showpdbs1.png " ")
 
-    ````
+    ```
     <copy>
     ttitle "PDBs in CDB &CDB_Name"
 
@@ -374,59 +412,59 @@ The tasks you will accomplish in this step are:
     ,        P.Name
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step2.2-showpdbs2.png " ")
 
 3. You should be able to set your container to Tulsa because weStore_Admin is an Application Common user but it should fail if you try to set it to CDB$Root since that container is outside of the application container.
 
-    ````
+    ```
     <copy>show user</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter session set container=wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter session set container = Tulsa;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter session set container = CDB$Root;</copy>
-    ````
+    ```
 
     ![](./images/step2.3-failsettulsa.png " ")
 
 4. You can connect directly as the various local users. Keep in mind these are local users, it just happens to be that they have the same password. Notice that the local user for Califorina cannot use the Tulsa container because it is local to the Califorina container.
 
-    ````
+    ```
     <copy>connect wm_admin/oracle@localhost:1523/Tulsa;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter session set container = Tulsa;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wm_admin/oracle@localhost:1523/California;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter session set container = Tulsa;</copy>
-    ````
+    ```
 
     ![](./images/step2.4-cannotusetulsa.png " ")
 
 5. When prompted give one of the PDBs that was created (Tulsa, California, NYC, or Tahoe). You can rerun this script giving a different store if you want to view the data.
 
-    ````
+    ```
     <copy>@Lab2_Queries.sql</copy>
-    ````
+    ```
 
     ![](./images/step2.5-nycpdb1.png " ")
 
@@ -445,36 +483,36 @@ The tasks you will accomplish in this step are:
 
 1. Create the upgrade of the pluggable databases.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore begin upgrade '1.0' to '2.0';</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     alter table wm_Products add
     (Local_Product_YN char(1)           default 'Y'                   not null
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     alter table wm_Products add constraint Local_Product_Bool
     check (Local_Product_YN in ('Y','N'))
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create or replace view wm_Order_Details
     -- sharing = metadata
@@ -500,11 +538,11 @@ The tasks you will accomplish in this step are:
     on  o.Campaign_ID = c.Row_GUID
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step3.1-createupgrade1.png " ")
 
-    ````
+    ```
     <copy>
     update wm_Products
     set Local_Product_YN = 'N'
@@ -516,131 +554,131 @@ The tasks you will accomplish in this step are:
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore end upgrade;</copy>
-    ````
+    ```
 
     ![](./images/step3.1-createupgrade2.png " ")
 
 2. Apply the upgrade to Tulsa.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/Tulsa</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step3.2-upgradetulsa.png " ")
 
 3. Apply the upgrade to California.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/California</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step3.3-upgradecal.png " ")
 
 4. Apply the upgrade to Tahoe.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/Tahoe</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step3.4-upgradetahoe.png " ")
 
 5. Take a look at a pluggable the upgrade was applied to.
 
-    ````
+    ```
     <copy>
     column Row_GUID noprint
     column Name             format a30 heading "Product Name"
     column Local_Product_YN format a14 heading "Local Product?"
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>define Franchise = "Tulsa"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>ttitle "Products in Franchise &Franchise"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/Tulsa</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc wm_Products</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select *
     from wm_Products
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step3.5-lookupgradedpdb.png " ")
 
 6. Look at a pluggable that the upgrade was not applied to and look at the table definitions and data compared to one that was upgraded.
 
-    ````
+    ```
     <copy>define Franchise = "NYC"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>ttitle "Products in Franchise &Franchise"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/NYC</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc wm_Products</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select *
     from wm_Products
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step3.6-looknotupgradedpdb.png " ")
 
@@ -652,13 +690,13 @@ The tasks you will accomplish in this step are:
 
 1. Connect to ``CDB1``.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
 2. Products in Tulsa and NYC.
 
-    ````
+    ```
     <copy>
     column c1 format a30       heading "Franchise"
     column c2 format 9999999   heading "Order #"
@@ -668,25 +706,25 @@ The tasks you will accomplish in this step are:
     column c6 format 9,999     heading "Qty"
     column c7 format 9,999,999 heading "Num Orders"
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>break on c1 on c3 on c5</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>column c4 noprint</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>ttitle "Products (in Tulsa and NYC)"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select con$name c1
     ,      Name     c5
@@ -696,25 +734,25 @@ The tasks you will accomplish in this step are:
     ,        2
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step4.2-products.png " ")
 
 3. Order Counts Per Campaign.
 
-    ````
+    ```
     <copy>ttitle "Order Counts Per Campaign (Across All Franchises)"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select con$name      c1
     ,      Campaign_Name c3
@@ -727,25 +765,25 @@ The tasks you will accomplish in this step are:
     ,        2
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step4.3-ordercount.png " ")
 
 4. Order Volume Per Product.
 
-    ````
+    ```
     <copy>ttitle "Order Volume Per Product (Across All Franchises)"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select con$name      c1
     ,      Product_Name  c5
@@ -758,11 +796,11 @@ The tasks you will accomplish in this step are:
     ,        2
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step4.4-ordervolume.png " ")
 
@@ -776,21 +814,21 @@ The tasks you will accomplish in this step are:
 
 1. Connect to ``CDB1``.
 
-    ````
+    ```
     <copy>sqlplus /nolog</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
-    ````
+    ```
 
 2. Review the pluggable databases in the container database.
 
-    ````
+    ```
     <copy>set linesize 180</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     column c0  noprint new_value            CDB_Name
     column c1  heading "Con ID"             format 99
@@ -805,31 +843,31 @@ The tasks you will accomplish in this step are:
     column c10 heading "Proxy?"             format a6
     column c11 heading "App Container Name" format a30
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set termout off</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select Sys_Context('Userenv', 'CDB_Name') c0
     from dual
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step5.2-reviewpdb1.png " ")
 
-    ````
+    ```
     <copy>ttitle "PDBs in CDB &CDB_Name"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set termout on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select P.Con_ID                 c1
     ,      P.Name                   c2
@@ -852,25 +890,25 @@ The tasks you will accomplish in this step are:
     ,        P.Name
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step5.2-reviewpdb2.png " ")
 
 3. Connect to the master database and set the compatibility to 2.0. Notice you will get an error because one of the databases is not currently at that version.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore set compatibility version '2.0';</copy>
-    ````
+    ```
 
     ![](./images/step5.3-compatibilityerror.png " ")
 
 4. Run the query below and notice that there are applications that are not at the current version. If you look at the output from the first query you can see that the NYC and wmStore_Master$Seed are still at 1.0.
 
-    ````
+    ```
     <copy>
     column CON_UID               heading "Con UID"          format 999999999999
     column APP_NAME              heading "Application Name" format a20          truncate
@@ -879,61 +917,61 @@ The tasks you will accomplish in this step are:
     column APP_STATUS            heading "Status"           format a12  
     column APP_ID                noprint
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>select * from DBA_App_PDB_Status;</copy>
-    ````
+    ```
 
     ![](./images/step5.4-noticeversion.png " ")
 
 5. Connect to NYC and bring that up to the current version.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/NYC;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step5.5-connectnyc.png " ")
 
 6. Connect to wmStore_Master$Seed and bring that up to the current version.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master$Seed</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step5.6-connectmasterseed.png " ")
 
 7. Connect back to wmStore_Master and set the compatibility to 2.0. This time it should work.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore set compatibility version '2.0';</copy>
-    ````
+    ```
 
     ![](./images/step5.7-setcompatibility.png " ")
 
 8. Look back at the list of PDBs now that the upgrades are complete.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/cdb1</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set linesize 180</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     column c0  noprint new_value            CDB_Name
     column c1  heading "Con ID"             format 99
@@ -948,31 +986,31 @@ The tasks you will accomplish in this step are:
     column c10 heading "Proxy?"             format a6
     column c11 heading "App Container Name" format a30
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set termout off</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select Sys_Context('Userenv', 'CDB_Name') c0
     from dual
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step5.8-lookpdbs1.png " ")
 
-    ````
+    ```
     <copy>ttitle "PDBs in CDB &CDB_Name"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set termout on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select P.Con_ID                 c1
     ,      P.Name                   c2
@@ -995,7 +1033,7 @@ The tasks you will accomplish in this step are:
     ,        P.Name
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step5.8-lookpdbs2.png " ")
 
@@ -1012,254 +1050,254 @@ The tasks you will accomplish in this step are:
 
 1. Connect to **CDB2**.
 
-    ````
+    ```
     <copy>sqlplus /nolog</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/cdb2</copy>
-    ````
+    ```
 
 2. Create a datbase link to CDB1 to pull the data across.
 
-    ````
+    ```
     <copy>
     create public database link CDB1_DBLink
     connect to system identified by oracle
     using 'localhost:1523/cdb1';
     </copy>
-    ````
+    ```
 
     ![](./images/step6.2-createdblink.png " ")
 
 3. Create and open the Application Root Replicas (ARRs).
 
-    ````
+    ```
     <copy>create pluggable database wmStore_International as application container
     from wmStore_Master@CDB1_DBLink;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database wmStore_West as application container
     from wmStore_Master@CDB1_DBLink;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database all open;</copy>
-    ````
+    ```
 
     ![](./images/step6.3-openarrs.png " ")
 
 4. Create the CDB$Root-level DB Link to CDB2.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    create public database link CDB2_DBLink 
+    create public database link CDB2_DBLink
     connect to System identified by oracle
     using 'localhost:1524/cdb2';
     </copy>
-    ````
+    ```
 
     ![](./images/step6.4-createrootdblink.png " ")
 
 5. Create the Application-Root-level DB Links to CDB2.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    create public database link CDB2_DBLink 
+    create public database link CDB2_DBLink
     connect to system identified by oracle
     using 'localhost:1524/cdb2';
     </copy>
-    ````
+    ```
 
     ![](./images/step6.5-createapprootdblink.png " ")
 
 6. Create and open Proxy PDBs for the Application Root Replicas.
 
-    ````
+    ```
     <copy>create pluggable database wmStore_International_Proxy
     as proxy from wmStore_International@CDB2_DBLink;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database wmStore_West_Proxy
     as proxy from wmStore_West@CDB2_DBLink;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database all open;</copy>
-    ````
+    ```
 
     ![](./images/step6.6-openproxypdb.png " ")
 
 7. Synchronize the ARRs via their proxies. Notice you need to connect as sys to do this.
 
-    ````
+    ```
     <copy>conn sys/oracle@localhost:1523/wmStore_International_Proxy as sysdba</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>conn sys/oracle@localhost:1523/wmStore_West_Proxy as sysdba</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step6.7-syncarrstoproxypdb.png " ")
 
 8. Create and open the Application Seed PDBs for wmStore_International and sync it with Application wmStore.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1524/wmStore_International</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database as seed
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>conn sys/oracle@localhost:1524/wmStore_International as SysDBA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database wmStore_International$Seed open;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/wmStore_International$Seed</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step6.8-intopenappseedpdbs.png " ")
 
 9. Create and open the Application Seed PDBs for wmStore_West and sync it with Application wmStore.
 
-    ````
+    ```
     <copy>conn system/oracle@localhost:1524/wmStore_West</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database as seed
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>conn sys/oracle@localhost:1524/wmStore_West as SysDBA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database wmStore_West$Seed open;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/wmStore_West$Seed</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step6.9-westopenappseedpdbs.png " ")
 
 10. Connect to the wmStore_International Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/wmStore_International</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    create public database link CDB1_DBLink 
+    create public database link CDB1_DBLink
     connect to system identified by oracle
     using 'localhost:1523/cdb1';
     </copy>
-    ````
+    ```
 
     ![](./images/step6.10-connectintarr.png " ")
 
 11. Provision Application PDBs for the UK, Denmark and France franchises.
 
-    ````
+    ```
     <copy>create pluggable database UK
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database Denmark
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database France
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
     ![](./images/step6.11-provisionapppdb.png " ")
 
 12. Connect to the wmStore_West Application Root Replica (ARR) and create a database link from that ARR to the CDB of the Master Root.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/wmStore_West</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
-    create public database link CDB1_DBLink 
+    create public database link CDB1_DBLink
     connect to system identified by oracle
     using 'localhost:1523/cdb1';
     </copy>
-    ````
+    ```
 
     ![](./images/step6.12-connectwestarr.png " ")
 
 13. Provision Application PDBs for the Sant Monica and Japan franchises.
 
-    ````
+    ```
     <copy>create pluggable database Santa_Monica
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create pluggable database Japan
     admin user wm_admin identified by oracle;</copy>
-    ````
+    ```
 
     ![](./images/step6.13-provisionfranchise.png " ")
 
 14. Switch to the container root and open all of the pluggable databases.
 
-    ````
+    ```
     <copy>alter session set container=CDB$Root;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database all open;</copy>
-    ````
+    ```
 
     ![](./images/step6.14-switchtoroot.png " ")
 
 15. Create franchise-specific data.
 
-    ````
+    ```
     <copy>@Franchise_Data_Lab6</copy>
-    ````
+    ```
 
     ![](./images/step6.15-franchisedata1.png " ")
 
@@ -1275,35 +1313,35 @@ The tasks you will accomplish in this step are:
 
 1. Connect and run a report against wmStore_Master.
 
-    ````
+    ```
     <copy>sqlplus /nolog</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set verify off</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>define Campaign = "Locals vs Yokels"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     column c1 format a30       heading "Franchise"
     column c2 format a10       heading "CDB"
     column c3 format 9,999,999 heading "Num Orders"
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>ttitle "Business-Wide Count of Orders for Campaign &Campaign"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select con$name c1
     ,      cdb$name c2
@@ -1318,58 +1356,58 @@ The tasks you will accomplish in this step are:
     ,        1
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step7.1-reportmaster.png " ")
 
 2. Relocate Tahoe to wmStore_West.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/wmStore_West</copy>
-    ````
+    ```
 
-    ````
-    <copy>create pluggable database Tahoe from Tahoe@CDB1_DBLink 
+    ```
+    <copy>create pluggable database Tahoe from Tahoe@CDB1_DBLink
     relocate availability max;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect sys/oracle@localhost:1524/cdb2 as SysDBA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database Tahoe open;</copy>
-    ````
+    ```
 
     ![](./images/step7.2-relocatetahoe.png " ")
 
 3. Rerun the report and take note of the changes in data based on the relocation.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set verify off</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>define Campaign = "Locals vs Yokels"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     column c1 format a30       heading "Franchise"
     column c2 format a10       heading "CDB"
     column c3 format 9,999,999 heading "Num Orders"
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>ttitle "Business-Wide Count of Orders for Campaign &Campaign"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select con$name c1
     ,      cdb$name c2
@@ -1384,7 +1422,7 @@ The tasks you will accomplish in this step are:
     ,        1
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step7.3-rerunreport.png " ")
 
@@ -1398,43 +1436,43 @@ The tasks you will accomplish in this step are:
 
 1. Create the v3.0 upgrade in wmStore_Master.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore begin upgrade '2.0' to '3.0';</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     create table wm_List_Of_Values
     -- sharing = metadata -- the default
     sharing = data
     -- sharing = extended data
-    (Row_GUID    raw(16)        default Sys_GUID() primary key 
+    (Row_GUID    raw(16)        default Sys_GUID() primary key
     ,Type_Code   varchar2(30)   not null
     ,Value_Code  varchar2(30)   not null
     )
     ;
     </copy>
-    ````
-    
-    ````
+    ```
+
+    ```
     <copy>
     alter table wm_List_Of_Values  add constraint wm_List_Of_Values_U1
     unique (Type_Code, Value_Code)
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step8.1-createupgrade1.png " ")
 
-    ````
+    ```
     <copy>
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Type', 'Currency');
 
@@ -1460,31 +1498,31 @@ The tasks you will accomplish in this step are:
 
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Country', 'Japan');
     </copy>
-    ````
+    ```
 
     ![](./images/step8.1-createupgrade2.png " ")
 
-    ````
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter table wm_Orders disable constraint wm_Orders_F1;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter table wm_Order_Items disable constraint wm_Order_Items_F2;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>delete from wm_Campaigns where Row_GUID in ('01','02','03');</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>delete from wm_Products  where Row_GUID in ('01','02','03','04');</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     insert into wm_Campaigns (Row_GUID, Name) values ('01', 'Locals vs Yokels');
 
@@ -1500,169 +1538,169 @@ The tasks you will accomplish in this step are:
 
     insert into wm_Products (Row_GUID, Name) values ('04', 'Yokie Dokie Okie Eggnog');
     </copy>
-    ````
+    ```
 
     ![](./images/step8.1-createupgrade3.png " ")
 
-    ````
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore end upgrade;</copy>
-    ````
+    ```
 
     ![](./images/step8.1-createupgrade4.png " ")
 
 2. Sync some of the pluggable databases.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/WMSTORE_MASTER$SEED</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/CALIFORNIA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/NYC</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/TULSA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/WMSTORE_INTERNATIONAL$SEED</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/DENMARK</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step8.2-syncpdbs1.png " ")
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/FRANCE</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/UK</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/WMSTORE_WEST$SEED</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/JAPAN</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1524/SANTA_MONICA</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
-    
-    ````
+    ```
+
+    ```
     <copy>connect system/oracle@localhost:1524/TAHOE</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step8.2-syncpdbs2.png " ")
 
 3. Queries against container CDB1.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>column c01 format 999999 heading "Con_ID"
     column c02 format a30    heading "Container"</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>ttitle "Containers"</copy>
-    ````
+    ```
 
 
-    ````
+    ```
     <copy>
     select Con_ID c01
     ,      Name   c02
     from v$containers
     order by 1;
     </copy>
-    ````
+    ```
 
     ![](./images/step8.3-querycdb1.png " ")
 
 4. Queries against container wmStore_Master.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>column c03 format a30    heading "Table Name"
     column c04 format a20    heading "Sharing Type"</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>ttitle "Sharing Modes for Campaigns, Products and Orders"</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select Object_Name c03
     ,      Sharing     c04
@@ -1672,36 +1710,36 @@ The tasks you will accomplish in this step are:
     order by Object_Name
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step8.4-querymaster.png " ")
 
 5. Queries against container Tulsa.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/Tulsa</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>column c1 format a20 heading "Origin Con_ID"
     column c2 format a30            heading "Product"</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>ttitle "Products Visible in Franchise Tulsa"</copy>
-    ````
+    ```
 
 
-    ````
+    ```
     <copy>
     select Row_GUID c1
     ,      Name          c2
     from wm_Products
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step8.5-querytulsa.png " ")
 
@@ -1719,28 +1757,28 @@ The tasks you will accomplish in this step are:
 
 1. Create patch 301.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/wmStore_Master</copy>
-    ````
-    
-    ````
-    <copy>alter pluggable database application wmStore begin patch 301;</copy>
-    ````
+    ```
 
-    ````
+    ```
+    <copy>alter pluggable database application wmStore begin patch 301;</copy>
+    ```
+
+    ```
     <copy>
     alter table wm_Orders add
     (Financial_Quarter_Code varchar2(30) default 'Q4,FY2017' not null
     )
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>create index wm_Orders_M1 on wm_Orders(Order_Date);</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Type', 'Financial Quarter');
 
@@ -1760,14 +1798,14 @@ The tasks you will accomplish in this step are:
 
     insert into wm_List_Of_Values (Type_Code, Value_Code) values ('Financial Quarter', 'Q4,FY2017');
     </copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q1,FY2016'
@@ -1775,9 +1813,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-APR-16'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q2,FY2016'
@@ -1785,9 +1823,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-JUL-16'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q3,FY2016'
@@ -1795,9 +1833,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-OCT-16'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q4,FY2016'
@@ -1805,9 +1843,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-JAN-17'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q1,FY2017'
@@ -1815,9 +1853,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-APR-17'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q2,FY2017'
@@ -1825,9 +1863,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-JUL-17'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q3,FY2017'
@@ -1835,9 +1873,9 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-OCT-17'
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     update wm_Orders
     set Financial_Quarter_Code = 'Q4,FY2017'
@@ -1845,45 +1883,45 @@ The tasks you will accomplish in this step are:
     and   Order_Date <  '01-JAN-18'
     ;
     </copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>commit;</copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>alter pluggable database application wmStore end patch;</copy>
-    ````
+    ```
 
     ![](./images/step9.1-createpatch1.png " ")
 
 2. Apply the patch to some but not all of the databases.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/Tulsa</copy>
-    ````
-    
-    ````
-    <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ````
+    ```
 
-    ````
+    ```
+    <copy>alter pluggable database application wmStore sync to patch 301;</copy>
+    ```
+
+    ```
     <copy>connect system/oracle@localhost:1523/California</copy>
-    ````
-    
-    ````
+    ```
+
+    ```
     <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ````
-        
-    ````
+    ```
+
+    ```
     <copy>connect system/oracle@localhost:1523/NYC</copy>
-    ````
-        
-    ````
+    ```
+
+    ```
     <copy>alter pluggable database application wmStore sync to patch 301;</copy>
-    ````
+    ```
 
 ## **Step 10:** DBA Views
 This section we introduce some of the DBA Views which are relevant to Application Containers.
@@ -1893,19 +1931,19 @@ The tasks you will accomplish in this step are:
 
 1. DBA_PDBs
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/cdb1</copy>
-    ````
-    
-    ````
-    <copy>ttitle off</copy>
-    ````
-    
-    ````
-    <copy>set linesize 180</copy>
-    ````
+    ```
 
-    ````
+    ```
+    <copy>ttitle off</copy>
+    ```
+
+    ```
+    <copy>set linesize 180</copy>
+    ```
+
+    ```
     <copy>
     column c1  heading "Con ID"             format 9999
     column c2  heading "PDB Name"           format a30
@@ -1920,26 +1958,26 @@ The tasks you will accomplish in this step are:
     column c10 heading "Proxy?"             format a6
     column c11 heading "App Container Name" format a30
     </copy>
-    ````
+    ```
 
-    
-    ````
+
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_PDBs</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     select P.Con_ID             c1
     ,      P.PDB_Name           c2
@@ -1964,21 +2002,21 @@ The tasks you will accomplish in this step are:
     ,        8
     ;
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.1.png " ")
 
 2. DBA_APPLICATIONS
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/wmStore_Master</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>
     column CON_UID               heading "Con UID"          format 9999999999
     column APP_NAME              heading "Application Name" format a20          truncate
@@ -2001,23 +2039,23 @@ The tasks you will accomplish in this step are:
     column ERRORMSG              heading "Error Message"    format a50          truncate
     column SYNC_TIME             heading "Sync TS"          format a9
     </copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_Applications</copy>
-    ````
-    
-    ````
-    <copy>select * from DBA_Applications;</copy>
-    ````
+    ```
 
-    ````
+    ```
+    <copy>select * from DBA_Applications;</copy>
+    ```
+
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.2.1.png " ")
 
@@ -2025,82 +2063,82 @@ The tasks you will accomplish in this step are:
 
 3. DBA_APP_VERSIONS
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_App_Versions</copy>
-    ````
-    
-    ````
-    <copy>select * from DBA_App_Versions;</copy>
-    ````
+    ```
 
-    ````
+    ```
+    <copy>select * from DBA_App_Versions;</copy>
+    ```
+
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.3.png " ")
 
 4. DBA_APP_PATCHES
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_App_Patches</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>select * from DBA_App_Patches;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.4.png " ")
 
 5. DBA_APP_PDB_STATUS
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_App_PDB_Status</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>select * from DBA_App_PDB_Status;</copy>
-    ````
-    
-    ````
+    ```
+
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.5.png " ")
 
 6. DBA_APP_STATEMENTS
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_App_Statements</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>select * from DBA_App_Statements;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
-    
+    ```
+
     ![](./images/step10.6.1.png " ")
 
     ![](./images/step10.6.2.png " ")
@@ -2111,25 +2149,25 @@ The tasks you will accomplish in this step are:
 
 7. DBA_APP_ERRORS
 
-    ````
+    ```
     <copy>set echo on</copy>
-    ````
-    
-    ````
+    ```
+
+    ```
     <copy>connect system/oracle@localhost:1523/NYC</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>desc DBA_App_Errors</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>select * from DBA_App_Errors;</copy>
-    ````
+    ```
 
-    ````
+    ```
     <copy>set echo off</copy>
-    ````
+    ```
 
     ![](./images/step10.7.png " ")
 
@@ -2144,25 +2182,25 @@ The tasks you will accomplish in this step are:
 
 1. Create an index that will break the sync.
 
-    ````
+    ```
     <copy>connect wmStore_Admin/oracle@localhost:1523/NYC
     create index wm_Orders_M1 on wm_Orders(Order_Date);</copy>
-    ````
+    ```
 
     ![](./images/step11.1.png " ")
 
 2. Try the sync and have it fail.
 
-    ````
+    ```
     <copy>connect system/oracle@localhost:1523/NYC
     alter pluggable database application wmStore sync;</copy>
-    ````
+    ```
 
     ![](./images/step11.2.png " ")
 
 3. Check for errors.
 
-    ````
+    ```
     <copy>
     set linesize 180
 
@@ -2174,13 +2212,13 @@ The tasks you will accomplish in this step are:
 
     select * from DBA_App_Errors;
     </copy>
-    ````
+    ```
 
     ![](./images/step11.3.png " ")
 
 4. Correct the issue and try the sync again.
 
-    ````
+    ```
     <copy>
     connect wmStore_Admin/oracle@localhost:1523/NYC
 
@@ -2190,7 +2228,7 @@ The tasks you will accomplish in this step are:
 
     alter pluggable database application wmStore sync;
     </copy>
-    ````
+    ```
 
     ![](./images/step11.4.png " ")
 
@@ -2206,50 +2244,50 @@ The tasks you will accomplish in this step are:
 
 1. Create the application root.
 
-    ````
+    ```
     <copy>
     connect system/oracle@localhost:1523/cdb1
-    
+
     create pluggable database Terminal_Master as application container
     admin user tc_admin identified by oracle;
-    
+
     alter pluggable database Terminal_Master open;
     </copy>
-    ````
+    ```
 
     ![](./images/step12.1.png " ")
 
 2. Create the Application PDBs.
 
-    ````
+    ```
     <copy>
     connect system/oracle@localhost:1523/Terminal_Master
-    
+
     create pluggable database LHR
     admin user tc_admin identified by oracle;
-    
+
     create pluggable database SFO
     admin user tc_admin identified by oracle;
-    
+
     create pluggable database JFK
     admin user tc_admin identified by oracle;
-    
+
     create pluggable database LAX
     admin user tc_admin identified by oracle;
-    
+
     alter session set container=CDB$Root;
     alter pluggable database all open;
     </copy>
-    ````
-    
+    ```
+
     ![](./images/step12.2.png " ")
 
 3. Create the 1.0 Terminal Install.
 
-    ````
+    ```
     <copy>
     connect system/oracle@localhost:1523/Terminal_Master
-    
+
     alter pluggable database application Terminal begin install '1.0';
 
     connect system/oracle@localhost:1523/Terminal_Master
@@ -2276,43 +2314,43 @@ The tasks you will accomplish in this step are:
 
     create table tc_Products
     sharing = extended data
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Name             varchar2(30)                                    not null  unique
     ,Local_Product_YN char(1)           default 'Y'                   not null
     )
     ;
-    
+
     alter table tc_Products add constraint Local_Product_Bool
     check (Local_Product_YN in ('Y','N'))
     ;
-    
+
     create table tc_Coupons
     sharing = data
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Coupon_Number    number(16,0)      generated always as identity  not null  unique
     ,Campaign_Code    varchar2(30)
     ,Expiration_Date  date              default current_date+14
     )
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step12.3.1.png " ")
 
-    ````
+    ```
     <copy>
     create table tc_Orders
     sharing = metadata
-    (Row_GUID         raw(16)           default Sys_GUID()                      primary key 
+    (Row_GUID         raw(16)           default Sys_GUID()                      primary key
     ,Order_Number     number(16,0)      generated always as identity  not null  unique
-    ,Order_Date       date              default   current_date        not null 
+    ,Order_Date       date              default   current_date        not null
     ,Kiosk_Code       varchar2(30)      not null
     ,Coupon_ID        raw(16)
     ,Campaign_Code    varchar2(30)      null
     )
     ;
-    
-    alter table tc_Orders add constraint tc_Orders_F1 
+
+    alter table tc_Orders add constraint tc_Orders_F1
     foreign key (Coupon_ID)
     references tc_Coupons(Row_GUID)
     disable
@@ -2320,7 +2358,7 @@ The tasks you will accomplish in this step are:
 
     create table tc_Order_Items
     sharing = metadata
-    (Row_GUID         raw(16)                    default Sys_GUID()           primary key 
+    (Row_GUID         raw(16)                    default Sys_GUID()           primary key
     ,Order_ID         raw(16)           not null
     ,Item_Num         number(16,0)      not null
     ,Product_ID       raw(16)           not null
@@ -2328,12 +2366,12 @@ The tasks you will accomplish in this step are:
     )
     ;
 
-    alter table tc_Order_Items add constraint tc_Order_Items_F1 
+    alter table tc_Order_Items add constraint tc_Order_Items_F1
     foreign key (Order_ID)
     references tc_Orders(Row_GUID)
     disable
     ;
-    alter table tc_Order_Items add constraint tc_Order_Items_F2 
+    alter table tc_Order_Items add constraint tc_Order_Items_F2
     foreign key (Product_ID)
     references tc_Products(Row_GUID)
     disable
@@ -2341,17 +2379,17 @@ The tasks you will accomplish in this step are:
 
     create table tc_List_Of_Values
     sharing = data
-    (Row_GUID    raw(16)        default Sys_GUID() primary key 
+    (Row_GUID    raw(16)        default Sys_GUID() primary key
     ,Type_Code   varchar2(30)   not null
     ,Value_Code  varchar2(30)   not null
     )
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step12.3.2.png " ")
 
-    ````
+    ```
     <copy>
     alter table tc_List_Of_Values  add constraint tc_List_Of_Values_U1
     unique (Type_Code, Value_Code)
@@ -2381,11 +2419,11 @@ The tasks you will accomplish in this step are:
     insert into tc_List_Of_Values (Type_Code, Value_Code) values ('Campaign','Road Warrior');
     insert into tc_List_Of_Values (Type_Code, Value_Code) values ('Campaign','World Citizen');
     </copy>
-    ````
+    ```
 
     ![](./images/step12.3.3.png " ")
 
-    ````
+    ```
     <copy>
     insert into tc_List_Of_Values (Type_Code, Value_Code) values ('Type', 'Financial Quarter');
     insert into tc_List_Of_Values (Type_Code, Value_Code) values ('Financial Quarter', 'Q1,FY2016');
@@ -2406,11 +2444,11 @@ The tasks you will accomplish in this step are:
 
     commit;
     </copy>
-    ````
+    ```
 
     ![](./images/step12.3.4.png " ")
 
-    ````
+    ```
     <copy>
     alter table tc_Orders enable containers_default;
 
@@ -2418,7 +2456,7 @@ The tasks you will accomplish in this step are:
 
     alter pluggable database application Terminal end install '1.0';
     </copy>
-    ````
+    ```
 
     ![](./images/step12.3.5.png " ")
 
@@ -2426,7 +2464,7 @@ The tasks you will accomplish in this step are:
 
 4. Sync the Application databases to install 1.0.
 
-    ````
+    ```
     <copy>
     connect system/oracle@localhost:1523/LHR
 
@@ -2444,15 +2482,15 @@ The tasks you will accomplish in this step are:
 
     alter pluggable database application Terminal sync to '1.0';
     </copy>
-    ````
+    ```
 
     ![](./images/step12.4.png " ")
 
 5. Load the Terminal Data.
 
-    ````
+    ```
     <copy>@Terminal_Data_Lab12</copy>
-    ````
+    ```
 
     ![](./images/step12.5.1.png " ")
 
@@ -2462,10 +2500,10 @@ The tasks you will accomplish in this step are:
 
 6. Review the Container Map.
 
-    ````
+    ```
     <copy>
     connect Terminal_Admin/oracle@localhost:1523/Terminal_Master
-    column c1 format a30     heading "Airport" 
+    column c1 format a30     heading "Airport"
     column c2 format a30     heading "Kiosk"
     column c3 format 999,999 heading "Num Orders"
 
@@ -2489,17 +2527,15 @@ The tasks you will accomplish in this step are:
     group by o.Kiosk_Code
     ;
     </copy>
-    ````
+    ```
 
     ![](./images/step12.6.png " ")
+
+**Congratulations! You have completed this workshop!**
 
 ## Acknowledgements
 
 - **Author** - Patrick Wheeler, VP, Multitenant Product Management
 - **Adapted to Cloud by** -  David Start, OSPA
-- **Last Updated By/Date** - Anoosha Pilli, Product Manager, DB Product Management, April 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 
+- **Contributors** -  David Start, Anoosha Pilli, Rene Fontcha
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, April 2021

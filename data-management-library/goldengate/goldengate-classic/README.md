@@ -37,6 +37,5 @@ Lab   –  Active - Active - HA/DR
 
 Lab   –  GoldenGate Column Conversions
 
-Lab  -  GoldenGate PostgreSQL Installation
+Lab   -  GoldenGate for PostgreSQL
 
-Lab  -  GoldenGate PostgreSQL One Way PG Replication

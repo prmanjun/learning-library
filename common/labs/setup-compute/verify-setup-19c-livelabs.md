@@ -1,9 +1,16 @@
 # Setup Compute Instance
 
 ## Introduction
+
 This lab will show you how to verify your compute instance has been setup.
 
 Estimated Lab Time: 10 minutes
+
+Quick walk through on how to verify your compute instance setup.
+
+[](youtube:R0J7CPVYmI4)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
 
 ### About Terraform and Oracle Cloud Resource Manager
 For more information about Terraform and Resource Manager, please see the appendix below.
@@ -193,9 +200,7 @@ When creating your SSH Key, if the key is invalid the compute instance stack cre
 
 
 ## Acknowledgements
-- **Author** - Kay Malcolm, Director, DB Product Management
+- **Author** - Kay Malcolm, DB Product Management
 - **Contributors** - Robert Pastijn, DB Product Management, PTS
 - **Last Updated By/Date** - Kay Malcolm, August 2020
 
-## See an issue?
-Please submit feedback using this [form](https://apexapps.oracle.com/pls/apex/f?p=133:1:::::P1_FEEDBACK:1). Please include the *workshop name*, *lab* and *STEP* in your request.  If you don't see the workshop name listed, please enter it manually. If you would like us to follow up with you, enter your email in the *Feedback Comments* section.    Please include the workshop name and lab in your request.

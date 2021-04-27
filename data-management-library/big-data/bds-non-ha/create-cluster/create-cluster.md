@@ -4,14 +4,22 @@
 
 In this lab, you will learn how to create a simple non-Highly-Available (non-HA) Cloudera Distribution Including Apache Hadoop (CDH) cluster using the Oracle Cloud Infrastructure Console (OCI) and Big Data Service (BDS). This will be a small testing cluster that is not intended to process huge amounts of data. It will be based on small Virtual Machine (VM) shapes that are perfect for developing applications and testing functionality at a minimal cost.
 
+Estimated Lab Time: 75 minutes
+
 ### Objectives
 
 * Create a simple non-HA Hadoop cluster using BDS and OCI.
 * Monitor the cluster creation.
+* Review the locations of the various services in the new cluster.
 
 ### What Do You Need?
+<if type="livelabs">
+This lab assumes that you have reviewed the optional **Lab 1: Review Creating BDS Environment Resources (Optional)** in this workshop. This lab helps you get familiar with the OCI recourses that you will need to create a BDS cluster.
+</if>
 
-This lab assumes that you have successfully completed **Lab 1: Setup the BDS Environment** in the **Contents** menu.
+<if type="freetier">
+This lab assumes that you have successfully completed **Lab 1: Set Up Your BDS Environment Resources** in this workshop. This lab explains the few tasks that are required to get started with BDS.
+</if>
 
 ### Video Preview
 
@@ -31,13 +39,24 @@ Your simple non-HA cluster will have the following profile:
 
   ![](./images/cluster-layout.png " ")
 
+
   **Note:**    
   VM Standard Shapes offer the most flexibility. For example, you can increase the storage capacity for each node. For better performance and scalability, change the preceding specifications appropriately. Consider **DenseIO** shapes and **Bare Metal** shapes. **DenseIO** shapes are designed for large databases, big data workloads, and applications that require high-performance local storage. They include direct locally-attached NVMe-based SSDs. See [Compute Shapes](https://docs.cloud.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm#vm-dense) in the Oracle Cloud Infrastructure documentation.
 
+  <if type="livelabs">
+  _**Important:**_    
+  _Since you are running this workshop using the LiveLabs environment, some of the resources' names that you will use in this lab such as the tenancy, compartment, user, VCN, and so on, use the LiveLabs naming conventions and are already created for you._
+  </if>
 
 Create the cluster as follows:
 
+<if type="livelabs">
+1. Log in to the **Oracle Cloud Console**, if you are not already logged in, using your LiveLabs credentials and instructions. The **Oracle Cloud Console** Home page is displayed.
+</if>
+
+<if type="freetier">
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used to create the resources in **Lab 1**, if you are not already logged in. On the **Sign In** page, select your `tenancy` if needed, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+</if>
 
 2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** page.
 
@@ -45,24 +64,43 @@ Create the cluster as follows:
 
    ![](./images/big-data.png " ")
 
+    <if type="livelabs">
 4. On the **Clusters** page, click **Create Cluster**.
 
-  ![](./images/clusters-page.png " ")
+  ![](./images/ll-clusters-page.png " ")
 
+  **Important:** If your assigned LiveLabs compartment is not selected on this page, click the **Compartment** drop-down list in the **List Scope** section on the left. Enter your assigned compartment name in the **Compartment** text field to search for it. When your compartment is displayed in the list of compartments, select it.
 
-5. At the top of the **Create Cluster** wizard, provide the cluster details as follows:
+    ![](./images/ll-select-compartment.png " ")
+
+    In addition, make sure that your LiveLabs assigned region from the **Launch Workshop** page is selected in Console's banner, **US West (Phoenix)** in our example.
+
+    ![](./images/ll-region.png " ")
+   </if>    
+
+   <if type="freetier">
+
+5. On the **Clusters** page, click **Create Cluster**.
+
+     ![](./images/clusters-page.png " ")
+
+     **Note:** If your compartment is not selected, click the **Compartment** drop-down list in the **List Scope** section on the left. Enter your compartment's name in the **Compartment** text field to search for it. When your compartment is displayed in the list of compartments, select it.
+    </if>
+
+6. At the top of the **Create Cluster** wizard, provide the cluster details as follows:
     * **Cluster Name:** **`training-cluster`**.
     * **Cluster Admin Password:** Enter a `cluster admin password` of your choice such as **`Training123`**.
-      **Important:** You'll need this password to sign into Cloudera Manager and to perform certain actions on the cluster through the Cloud Console.
+    **Important:** You'll need this password to sign into Cloudera Manager and to perform certain actions on the cluster through the Cloud Console.
     * **Confirm Cluster Admin Password:** Confirm your password.
     * **Secure & Highly Available (HA):** Un-check this checkbox since you are creating a simple non-HA cluster and not a secure and HA cluster. A secure cluster has the full Hadoop security stack, including HDFS Transparent Encryption, Kerberos, and Apache Sentry. This setting can't be changed for the life of the cluster.
     * **Cluster Version:** This read-only field displays the latest version of Cloudera 6 that is available to Oracle which is deployed by BDS.
 
     ![](./images/create-cluster-1.png " ")
 
-6. In the **Hadoop Nodes > Master/Utility Nodes** section, provide the following details:
 
-    * **Choose Instance Type:** **`Virtual Machine`**.
+7. In the **Hadoop Nodes > Master/Utility Nodes** section, provide the following details:
+
+    * **Choose Instance Type:** **``Virtual Machine``**.
     * **Choose Master/Utility Node Shape:** **`VM.Standard2.4`**.
     * **Block Storage size per Master/Utility Node (in GB):** **`150 GB`**.
     * **Nunmber of Master & Utility Nodes** _Read-Only_ **:** Since you are creating a non-HA cluster, this field shows **2** nodes: **1** Master node and **1** Utility node.
@@ -72,7 +110,7 @@ Create the cluster as follows:
 
     **Note:** For information on the supported cluster layout, shape, and storage, see [Plan Your Cluster](https://docs.oracle.com/en/cloud/paas/big-data-service/user/plan-your-cluster.html#GUID-0A40FB4C-663E-435A-A1D7-0292DBAC9F1D) in the Using Oracle Big Data Service documentation.
 
-7. In the **Hadoop Nodes > Worker Nodes** section, provide the following details:
+8. In the **Hadoop Nodes > Worker Nodes** section, provide the following details:
 
     * **Choose Instance Type:** **`Virtual Machine`**.
     * **Choose Worker Node Shape:** **`VM.Standard2.1`**.
@@ -81,23 +119,39 @@ Create the cluster as follows:
 
     ![](./images/create-cluster-3.png " ")
 
-8. In the **Network Setting > Cluster Private Network** section, provide the following details:
+9. In the **Network Setting > Cluster Private Network** section, provide the following details:
 
      * **CIDR BLOCK:** **`10.1.0.0/24`**. This CIDR block assigns a range of **`256`** contiguous IP addresses, **`10.1.0.0`** to **`10.1.0.255`**. The IP addresses will be available for the cluster's private network that BDS creates for the cluster. This private network is created in the Oracle tenancy and not in your customer tenancy. It is used exclusively for private communication among the nodes of the cluster. No other traffic travels over this network, it isn't accessible by outside hosts, and you can't modify it once it's created. All ports are open on this private network. This
 
+     <if type="freetier">
      **Note:** Use the above CIDR block instead of the already displayed CIDR block range to avoid any possible overlapping of IP addresses with the CIDR block range for the **`training-vcn`** VCN that you created in **Lab 1**.
+     </if>
 
-9. In the **Network Setting > Customer Network** section, provide the following details:
+10. In the **Network Setting > Customer Network** section, provide the following details:
 
+    <if type="livelabs">
+    * **Choose VCN in _`LiveLabs-assigned-compartment`_:** This is the VCN that you was assigned to you by **`LiveLabs`**. The VCN must contain a regional subnet.   **Note:** If your assigned LiveLabs compartment is not selected, click the _**Change Compartment_** link, and then search for and select your LiveLabs assigned compartment.
+    * **Choose Regional Subnet in _`LiveLabs-assigned-compartment`_:** _**`LiveLabs-assigned-Public-Subnet`**_. This is the public subnet that was assigned to you by LiveLabs. Click this drop-down list to select your assigned LiveLabs public subnet.
+    </if>
+
+    <if type="freetier">
     * **Choose VCN in `training-compartment`:** **`training-vcn`**. This is the VCN that you created in **Lab 1**. The VCN must contain a regional subnet.   **Note:** Make sure that **`training-compartment`** is selected; if it's not, click the _Change Compartment_ link, and then search for and select your **`training-compartment`**.
     * **Choose Regional Subnet in `training-compartment`:** **`Public Subnet-training-vcn`**. This is the public subnet that was created for you when you created your **`training-vcn`** VCN in **Lab 1**.
-    * **Networking Options:** **`Deploy Oracle-managed Service gateway and NAT gateway (Quick Start)`**. This simplifies your network configuration by allowing Oracle to provide and manage these communication gateways for private use by the cluster. These gateways are created in the Oracle tenancy and can't be modified after the cluster is created.
+    </if>
 
+    * **Networking Options:** **`Deploy Oracle-managed Service gateway and NAT gateway (Quick Start)`**. This simplifies your network configuration by allowing Oracle to provide and manage these communication gateways for private use by the cluster. These gateways are created in the Oracle tenancy and can't be modified after the cluster is created.
+    </if>
     **Note:** Select the **`Use the gateways in your selected Customer VCN (Customizable)`** option if you want more control over the networking configuration.
 
+    <if type="freetier">
     ![](./images/create-cluster-4.png " ")
+    </if>
 
-10. In the **Additional Options > SSH public key** section, associate a public Secure Shell (SSH) key with the cluster.
+    <if type="livelabs">
+    ![](./images/ll-create-cluster-4.png " ")
+    </if>
+
+11. In the **Additional Options > SSH public key** section, associate a public Secure Shell (SSH) key with the cluster.
 
     Linux instances use an SSH key pair instead of a password to authenticate a remote user. A key pair file contains a private key and public key. You keep the private key on your computer and provide the public key when you create an instance. When you connect to the instance using SSH, you provide the path to the private key in the SSH command. Later in **Lab 6**, you will connect to your cluster's master node using the private SSH key that is associated with the public SSH key that you specify here for your cluster.
 
@@ -114,7 +168,7 @@ Create the cluster as follows:
      ![](./images/create-cluster-5.png " ")
 
 
-11.  Click **Create Cluster**. The **Clusters** page is re-displayed. The state of the cluster is initially **Creating**.
+12.  Click **Create Cluster**. The **Clusters** page is re-displayed. The state of the cluster is initially **Creating**.
 
     ![](./images/status-creating.png " ")
 
@@ -128,27 +182,41 @@ The process of creating the cluster takes approximately one hour to complete; ho
    ![](./images/cluster-name-link.png " ")
 
    The **Cluster Information** tab displays the cluster's general and network information.
-
+   <if type="livelabs">
+   ![](./images/ll-cluster-details-page-2.png " ")  
+   </if>
+   <if type="freetier">
    ![](./images/cluster-details-page-2.png " ")  
+   </if>
 
    The **List of cluster nodes** section displays the following information for each node in the cluster: Name, status, type, shape, private IP address, and date and time of creation.
-
-   ![](./images/list-nodes.png " ")  
 
    **Note:**
    The name of a node is the concatenation of the **first seven** letters of the cluster's name, **`trainin`**, followed by two letters representing the node type such as **`mn`** for a **Master** node, **`un`** for a **Utility** node, and **`wn`** for a **Worker** node. The numeric value represents the node type order in the list such as Worker nodes **`0`**, **`1`**, and **`2`**.
 
    ![](./images/cluster-nodes.png " ")
 
-2. To view the details of a node, click the node's name link in the **Name** column. For example, click the **`traininmn0`** first Master node in the **Name** column to display the **Node Details** page.
+2. To view the details of a node, click the node's name link in the **Name** column. For  example, click the **`traininmn0`** first Master node in the **Name** column to display the **Node Details** page.
 
-   ![](./images/first-master-node.png " ")  
+    <if type="freetier">
+    ![](./images/first-master-node.png " ")  
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-first-master-node.png " ")   
+    </if>
 
    The **Node Information** tab displays the node's general information and the network information.
 
+   <if type="freetier">   
    ![](./images/node-details-1.png " ")  
+   </if>
 
-   The **Node Metrics** section at the bottom of the **Node Details** page is displayed after the cluster is provisioned. It displays the following charts: **CPU Utilization**, **Memory Utilization**, **Network Bytes In**, **Network Bytes Out**, and **Disk Utilization**. You can hover over any chart to get additional details.
+   <if type="livelabs">
+   ![](./images/ll-node-details-1.png " ")  
+   </if>
+
+   The **Node Metrics** section at the bottom of the **Node Details** page _is displayed after the cluster is provisioned_. It displays the following charts: **CPU Utilization**, **Memory Utilization**, **Network Bytes In**, **Network Bytes Out**, and **Disk Utilization**. You can hover over any chart to get additional details.
 
    ![](./images/node-details-2.png " ")  
 
@@ -159,7 +227,7 @@ The process of creating the cluster takes approximately one hour to complete; ho
 
 4. In the **Resources** section on the left, click **Work Requests**.
 
-   ![](./images/cluster-details-page-3.png " ")  
+     ![](./images/cluster-details-page-3.png " ")  
 
 5. The **Work Requests** section on the page displays the status of the cluster creation and other details such as the **Operation**, **Status**, **% Complete**, **Accepted**, **Started**, and **Finished**. Click the **CREATE_BDS** name link in the **Operation** column.
 
@@ -177,8 +245,8 @@ The process of creating the cluster takes approximately one hour to complete; ho
 
   ![](./images/cluster-active.png " ")  
 
-**Note:**  
-If you are using a Free Trial account to run this workshop, Oracle recommends that you delete the BDS cluster when you complete the workshop to avoid unnecessary charges.    
+_**Note:**_  
+_If you are using a Free Trial account to run this workshop, Oracle recommends that you delete the BDS cluster when you complete the workshop to avoid unnecessary charges._    
 
 ## **STEP 3:** Review Locations of Services in the Cluster
 
@@ -228,7 +296,7 @@ If you are using a Free Trial account to run this workshop, Oracle recommends th
 **Notes:**
 + In **Lab 5, Use Cloudera Manager (CM) and Hue to Access a BDS Cluster**, you will use Cloudera Manager to view the roles, services, and gateways that are running on each node in the cluster.
 
-**This concludes this lab. Please proceed to the next lab in the Contents menu.**
+This concludes this lab. You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -243,13 +311,9 @@ If you are using a Free Trial account to run this workshop, Oracle recommends th
 ## Acknowledgements
 
 * **Author:**  
-    + Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
+    + Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
 * **Contributors:**  
     + Martin Gubar, Director, Oracle Big Data Product Management
     + Ben Gelernter, Principal User Assistance Developer, DB Development - Documentation
-* **Last Updated By/Date:** Lauran Serhal, December 2020
+* **Last Updated By/Date:** Lauran Serhal, March 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

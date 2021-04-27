@@ -15,9 +15,11 @@ Using a bastion Host, VPN Connect, and OCI FastConnect provide more private and 
 **Important:**    
 A Utility node generally contains utilities used for accessing the cluster. Making the utility nodes in the cluster publicly available (which you will do in this lab) isn't enough to make services that run on the utility nodes available from the internet. For example, in a non-HA cluster such as our **`training-cluster`**, both Cloudera Manager (CM) and Hue run on the first utility node, **`traininun0`**.
 
-Before you can access CM and Hue on the utility node using a web browser, you must also open the ports associated with both services. You do this by adding an ingress rule to a security list for each service. You will do this in **Lab 5, Use Cloudera Manager (CM) and Hue to Access a BDS Cluster**. See [Define Security Rules](https://docs.oracle.com/en/cloud/paas/big-data-service/user/configure-security-rules-network.html#GUID-42EDCC75-D170-489E-B42F-334267CE6C92).
+Before you can access CM and Hue on the utility node using a web browser, you must also open the ports associated with both services. You do this by adding an ingress rule to a security list for each service. You will <if type="livelabs">review how to do this</if> <if type="freetier">do this</if> in **Lab 5, Use Cloudera Manager (CM) and Hue to Access a BDS Cluster**. See [Define Security Rules](https://docs.oracle.com/en/cloud/paas/big-data-service/user/configure-security-rules-network.html#GUID-42EDCC75-D170-489E-B42F-334267CE6C92).
 
 In this lab, you will use the **Oracle Cloud Infrastructure Cloud Shell**, which is a web browser-based terminal accessible from the **Oracle Cloud Console**. You'll gather some information about your network and your cluster utility nodes, and then you will pass that information to the **`oci network`** command that you will use to map the private IP addresses of the utility nodes to two new public IP addresses. Finally, you learn how to edit an existing public IP address.
+
+Estimated Lab Time: 45 minutes
 
 ### Objectives
 
@@ -28,25 +30,50 @@ In this lab, you will use the **Oracle Cloud Infrastructure Cloud Shell**, which
 ### What Do You Need?
 
 This lab assumes that you have successfully completed the following labs in the **Contents** menu:
+<if type="freetier">
 + **Lab 1: Setup the BDS Environment**
+</if>
+<if type="livelabs">
++ **Lab 1: Review Creating BDS Environment Resources (Optional)**
+</if>
 + **Lab 2: Create a BDS Hadoop Cluster**
 + **Lab 3: Add Oracle Cloud SQL to the Cluster**
 
 ## **STEP 1:** Gather Information About the Cluster
 
-1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+<if type="livelabs">
+1. Log in to the **Oracle Cloud Console**, if you are not already logged in, using your LiveLabs credentials and instructions. The **Oracle Cloud Console** Home page is displayed.
+</if>
+
+<if type="freetier">
+1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used to create the resources in **Lab 1**, if you are not already logged in. On the **Sign In** page, select your `tenancy` if needed, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+</if>
 
 2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Data and AI**, select **Big Data**.
 
 3. On the **Clusters** page, click the **`training-cluster`** link in the **Name** column to display the **Cluster Details** page.
 
-4. In the **Cluster Information** tab, in the **Network Information** section, click the **Copy** link next to **Subnet OCID**. Next, paste that OCID to an editor or a file, so that you can retrieve it later in **STEP 2** in this lab.
+4. In the **Cluster Information** tab, in the **Customer Network Information** section, click the **Copy** link next to **Subnet OCID**. Next, paste that OCID to an editor or a file, so that you can retrieve it later in **STEP 2** in this lab.
 
+  <if type="freetier">
   ![](./images/subnet-ocid.png " ")
+  </if>
 
+  <if type="livelabs">
+  ![](./images/ll-subnet-ocid.png " ")
+  </if>
+
+<if type="freetier">
 5. On the same page, in the **List of cluster nodes** section, in the **IP Address** column, find the private IP addresses for the first utility node, **`traininun0`**, and the Cloud SQL node, **`traininqs0`**. Save the IP addresses as you will need them in later steps. In our example, the private IP address of our first utility node in the cluster is **`10.0.0.9`**. The private IP address for the Cloud SQL node in the cluster is **`10.0.0.12`**.
 
   ![](./images/private-ips.png " ")
+</if>
+
+<if type="livelabs">
+5. On the same page, in the **List of cluster nodes** section, in the **IP Address** column, find the private IP addresses for the first utility node, **`traininun0`**, and the Cloud SQL node, **`traininqs0`**. Save the IP addresses as you will need them in later steps. In our example, the private IP address of our first utility node in the cluster is **`10.0.0.5`**. The private IP address for the Cloud SQL node in the cluster is **`10.0.0.7`**.
+
+  ![](./images/ll-private-ips.png " ")
+</if>
 
 ## **STEP 2:** Map the Private IP Address of the First Utility Node to a Public IP Address
 
@@ -56,10 +83,14 @@ In this step, you will set three variables using the **`export`** command. The v
 
   ![](./images/cloud-shell-started.png " ")
 
+  **Note:** To change the Cloud Shell background color theme from dark to light, click **Settings** ![](./images/settings-icon.png) on the Cloud Shell banner, and then select **Theme > Light** from the **Settings** menu.
+
+  ![](./images/change-theme.png " ")
+
 2. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. The **_`display-name`_** is an optional descriptive name that will be attached to the reserved public IP address that will be created for you.
 
     ```
-    <b>$</b> <copy>export DISPLAY_NAME="display-name"</copy>
+    $ <copy>export DISPLAY_NAME="display-name"</copy>
     ```
 
     **Note:** In the preceding command, substitute **_`display-name`_** with a descriptive name of your choice. Press the **`[Enter]`** key to run the command.
@@ -72,41 +103,79 @@ In this step, you will set three variables using the **`export`** command. The v
 3. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it in the command line.
 
     ```
-    <b>$</b> <copy>export SUBNET_OCID="subnet-ocid"</copy>
+    $ <copy>export SUBNET_OCID="subnet-ocid"</copy>
     ```
     **Note:** In the preceding command, substitute **_``subnet-ocid``_** with your own **`subnet-ocid`** that you identified in **STEP 1** of this lab. Press the **`[Enter]`** key to run the command.  
 
+    <if type="freetier">
     In our example, we replaced the **_``subnet-ocid``_** with our own **`subnet-ocid`**:
 
     ```
     $ export SUBNET_OCID="ocid1.subnet.oc1.iad.aaaaaaaa3mhu4yuaito4trodn4cywlv2ys3dtwj67cu26bs2gses4yd6gsea"
     ```
+    </if>
+
+    <if type="livelabs">
+    In our example, we replaced the **_``subnet-ocid``_** with our own **`subnet-ocid`**:
+
+    ```
+    $ export SUBNET_OCID="ocid1.subnet.oc1.phx.aaaaaaaav7csf6i5lsevfr3egwsxagknkyjppdgdlqrdknsyw3jz5bm3fdcq"
+    ```
+    </if>
+
 
 4. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. The **`ip-address`** is the private IP address that is assigned to the node that you want to map.
 
     ```
-    <b>$</b> <copy>export PRIVATE_IP="ip-address"</copy>
+    $ <copy>export PRIVATE_IP="ip-address"</copy>
     ```
   **Note:** In the preceding command, substitute **_`ip-address`_** with your first utility node's private IP address. Press the **`[Enter]`** key to run the command.
 
+  <if type="freetier">
   In our example, we replaced the **_``ip-address``_** with the private IP address of our first utility node that we identified in **STEP 1** of this lab.
 
     ```
-    $ export PRIVATE_IP="10.0.0.9"
+    $ export PRIVATE_IP="10.0.0.4"
     ```
+  </if>
+
+  <if type="livelabs">
+  In our example, we replaced the **_``ip-address``_** with the private IP address of our first utility node that we identified in **STEP 1** of this lab.
+
+    ```
+    $ export PRIVATE_IP="10.0.0.5"
+    ```
+  </if>
 
 5.  At the **$** command line prompt, enter the following command exactly as it's shown below **_without any line breaks_**, or click **Copy** to copy the command, and then paste it on the command line. Press the **`[Enter]`** key to run the command.
 
     ```
-    <copy>oci network public-ip create --display-name $DISPLAY_NAME --compartment-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."compartment-id"'` --lifetime "RESERVED" --private-ip-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."id"'`</copy>
+    $ <copy>oci network public-ip create --display-name $DISPLAY_NAME --compartment-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."compartment-id"'` --lifetime "RESERVED" --private-ip-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."id"'`</copy>
     ```
+<if type="freetier">
 6.  In the output returned, find the value for **ip-address** field. In our example, it's **`193.122.194.103`**. This is the new reserved public IP address that is mapped to the private IP address of your **first utility node**.
 
   ![](./images/output-un0-ip-address.png " ")
+</if>
 
-7.  To view the newly created reserved public IP address in the console, click the Navigation menu and navigate to  **Core Infrastructure > Networking > IP Management**. In the **IP Management** section on the left, the **Public IPs** option is selected by default. The new reserved public IP address is displayed in the **Reserved Public IP Addresses** list. If you did specify a descriptive name as explained earlier, that name will appear in the **Name** column; Otherwise, a name such as  **publicip_nnnnnnnnn_** is generated.
+<if type="livelabs">
 
+7.  In the output returned, find the value for **ip-address** field. In our example, it's **`158.101.36.9`**. This is the new reserved public IP address that is mapped to the private IP address of your **first utility node**.
+
+  ![](./images/ll-output-un0-ip-address.png " ")
+
+</if>
+
+
+8.  To view the newly created reserved public IP address in the console, click the Navigation menu and navigate to  **Core Infrastructure > Networking > IP Management**. In the **IP Management** section on the left, the **Public IPs** option is selected by default. The new reserved public IP address is displayed in the **Reserved Public IP Addresses** list. If you did specify a descriptive name as explained earlier, that name will appear in the **Name** column; Otherwise, a name such as  **publicip_nnnnnnnnn_** is generated.
+
+  <if type="freetier">
   ![](./images/reserved-public-ip.png " ")
+  </if>
+
+  <if type="livelabs">
+  ![](./images/ll-reserved-public-ip.png " ")
+  </if>
 
 
 ## **STEP 3:** Map the Private IP Address of the Cloud SQL Node to a Public IP Address
@@ -124,9 +193,17 @@ In this step, you will set two variables using the **`export`** command. Next, y
 
 2. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. Remember, the **`ip-address`** is the private IP address that is assigned to the Cloud SQL node that you want to map to a public IP address.
 
+    <if type="freetier">
     ```
     $ <copy>export PRIVATE_IP="10.0.0.12"</copy>
     ```
+    </if>
+
+    <if type="livelabs">
+    ```
+    $ <copy>export PRIVATE_IP="10.0.0.7"</copy>
+    ```
+    </if>
 
     **Note:** In the preceding command, substitute the **_`ip-address`_** shown with your own Cloud SQL node's private IP address that you identified in **STEP 1** of this lab.
 
@@ -135,14 +212,29 @@ In this step, you will set two variables using the **`export`** command. Next, y
     ```
     $ <copy>oci network public-ip create --display-name $DISPLAY_NAME --compartment-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."compartment-id"'` --lifetime "RESERVED" --private-ip-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."id"'`</copy>
     ```
-
+<if type="freetier">
 4.  In the output returned, find the value for **ip-address** field. In our example, it's **`193.122.162.136`**. This is the new reserved public IP address that is mapped to the private IP address of your **Cloud SQL node**.
 
       ![](./images/output-qs0-ip-address.png " ")
+</if>
+
+<if type="livelabs">
+4.  In the output returned, find the value for **ip-address** field. In our example, it's **`129.146.214.30`**. This is the new reserved public IP address that is mapped to the private IP address of your **Cloud SQL node**.
+
+      ![](./images/ll-output-qs0-ip-address.png " ")
+</if>
+
 
 5.  To view the newly created reserved public IP address in the console, click the Navigation menu and navigate to **Core Infrastructure > Networking > IP Management**. Make sure that the **Public IPs** option in the **IP Management** section on the left is selected. The new reserved public IP address is displayed in the **Reserved Public IP Addresses** page.
 
+      <if type="freetier">
       ![](./images/list-public-ip.png " ")
+      </if>
+
+      <if type="livelabs">
+      ![](./images/ll-list-public-ip.png " ")
+      </if>
+
 
 ## **STEP 4:** Edit a Public IP Address
 
@@ -150,39 +242,45 @@ In this step, you will learn how to edit a public IP address using both the **Cl
 
 1. On the **Oracle Cloud Console** banner at the top of the page, click the Navigation menu and navigate to **Core Infrastructure > Networking > IP Management**. Select the **Public IPs** option in the **IP Management** section on the left, if not already selected. The new reserved public IP addresses that you created in this lab are displayed in the **Reserved Public IP Addresses** page.
 
+  <if type="freetier">
   ![](./images/list-public-ip-addresses.png " ")
+  </if>
+
+  <if type="livelabs">
+  ![](./images/ll-list-public-ip-addresses.png " ")
+  </if>
 
 2. Change the name of the public IP address associated with the Cloud SQL node from `traininqs0` to **`traininqs0-public-ip`**. On the row for `traininqs0`, click the **Actions** button, and then select **Rename** from the context menu.
 
+    <if type="freetier">
     ![](./images/context-menu.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-context-menu.png " ")
+    </if>
 
 3. In the **Rename** dialog box, in the **RESERVED PUBLIC IP NAME** field, enter **`traininqs0-public-ip`**, and then click **Save Changes**.
 
     ![](./images/rename-dialog.png " ")  
 
     The renamed public IP address is displayed.
-
+    <if type="freetier">
     ![](./images/ip-renamed.png " ")  
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-ip-renamed.png " ")  
+    </if>
+
 
 5. You can also edit public IP addresses using the OCI CLI. See [OCI CLI Command Reference - public-ip](https://docs.cloud.oracle.com/en-us/iaas/tools/oci-cli/2.9.0/oci_cli_docs/cmdref/network/public-ip.html#) in the _Oracle Cloud Infrastructure_ documentation.
 
   ![](./images/public-ip-cli.png " ")
 
-6. For example, you can delete a public IP address using the OCI CLI command as follows:
-
-    ```
-    <b>$</b> <copy>oci network public-ip delete --public-ip-id value</copy>
-    ```
-    **Note:** The `value` for **``--public-ip-id``** in the preceding command is displayed in the output returned when you ran the **`oci network`** command in this lab; however, the actual name of the field is **`"id"`**. Substitute `value` with the actual value of the `"id"` field.
-
-    ![](./images/output-un0-ip-address-id.png " ")
-
-    ```
-    $ oci network public-ip delete --public-ip-id "ocid1.publicip.oc1.iad.amaaaaaayrywvyyaqzeylbrtkwidyvrsyivmh55jdwb3fjpm2zyoq5iyajca"
-    ```
     **Note:** Don't delete any of your public IP addresses as you will need them in this workshop.
 
-**This concludes this lab. Please proceed to the next lab in the Contents menu.**
+This concludes this lab. You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -195,13 +293,9 @@ In this step, you will learn how to edit a public IP address using both the **Cl
 ## Acknowledgements
 
 * **Author:**
-    + Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
+    + Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
 * **Contributors:**
     + Martin Gubar, Director, Oracle Big Data Product Management
     + Ben Gelernter, Principal User Assistance Developer, DB Development - Documentation
-* **Last Updated By/Date:** Lauran Serhal, December 2020
+* **Last Updated By/Date:** Lauran Serhal, March 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

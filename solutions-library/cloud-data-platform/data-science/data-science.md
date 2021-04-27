@@ -148,7 +148,4 @@ To learn more about OCI Data Science, feel free to explore the capabilities by c
 - **Author** - NATD Cloud Engineering - Austin (Khader Mohiuddin, Philip Pavlov, Patrick Guha)
 - **Last Updated By/Date** - Jess Rein, Cloud Engineer, September 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

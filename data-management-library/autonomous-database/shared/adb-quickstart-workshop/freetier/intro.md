@@ -23,7 +23,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 
 ## Lab Breakdown
 - **Lab 1:** Provision your first Autonomous Data Warehouse.
-- **Lab 2:** Explore SQL Developer Web with provided sample data sets.
+- **Lab 2:** Explore the provided sample data sets that come with your Autonomous Database.
 - **Lab 3:** Upload files to the Oracle Cloud Infrastructure (OCI) Object Storage, create sample tables, load data into them from files on the OCI Object Storage, and troubleshoot data loads with errors.
 - **Lab 4:** Query files on the Oracle Cloud Infrastructure Object Storage (OCI) directly without loading them to your database.
 - **Lab 5:** Visualize your data using Oracle Analytics Desktop.
@@ -38,7 +38,7 @@ If you have a question during this workshop then use the <a href="https://cloudc
 
 Are you are completely new to the **Cloud Customer Connect**</a> forums? Visit our <a href="https://cloudcustomerconnect.oracle.com/pages/1f00b02b84" target="\_blank">**Getting Started forum page**</a> to learn how to best leverage community resources.
 
-**You are all set. Let's begin! Click Lab 1 in the Contents menu on the right.**
+**You are all set. Let's begin! Click Getting Started in the Contents menu on the left.**
 
 ## Want to Learn More About Autonomous Database?
 
@@ -56,9 +56,4 @@ Use these links to get more information about Oracle Autonomous Database:
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Arabella Yao, Product Manager Intern, DB Product Management, July 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, April 2021

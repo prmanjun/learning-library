@@ -26,26 +26,30 @@ In this lab, you will:
     $ <copy>sqlplus / AS SYSDBA</copy>                   
 
     Connected to:
+    ```
+    ```
 
-    SQL> <copy> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL;</copy>
+    SQL> <copy> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY WElcome123## WITH BACKUP CONTAINER=ALL;</copy>
     ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL
     *
     ERROR at line 1:
     ORA-46663: master keys not created for all PDBs for REKEY
+    ```
+    ```
 
     SQL> <copy>CONNECT sys@PDB21 AS SYSDBA</copy>                   
     Enter password: <b><i>WElcome123##</i></b>
     Connected.
+    ```
+    ```
     SQL> <copy>CREATE TABLESPACE users DATAFILE '/u02/app/oracle/oradata/CDB21/users01.dbf' SIZE 50M;</copy>
-
     Tablespace created.
 
     SQL> <copy>ALTER TABLESPACE users READ ONLY;</copy>
-
     Tablespace altered.
 
     SQL> <copy>EXIT</copy>
-    $ 
+    $
 
     ```
 
@@ -75,7 +79,7 @@ In this lab, you will:
     Datafiles required for transportable tablespace USERS:
       /u02/app/oracle/oradata/CDB21/users01.dbf
     Job "SYS"."SYS_EXPORT_TRANSPORTABLE_01" completed with 2 error(s) at Mon Nov 2 18:00:37 2020 elapsed 0 00:00:21
-    $ 
+    $
 
     ```
 
@@ -86,19 +90,17 @@ In this lab, you will:
     ```
 
     $ <copy>sqlplus sys@PDB21 AS SYSDBA</copy>                   
-
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
-
     Enter password: <b><i>WElcome123##</i></b>
-
     Connected to:
+    ```
+    ```
 
     SQL> <copy>ALTER TABLESPACE users READ WRITE;</copy>
-
     Tablespace altered.
 
     SQL> <copy>EXIT</copy>
-    $ 
+    $
 
     ```
 
@@ -106,11 +108,7 @@ You may now [proceed to the next lab](#next).
 
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
-* **Contributors** -  Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, November 2020
+* **Author** - Donna Keesling, Database UA Team
+* **Contributors** -  David Start, Kay Malcolm, Database Product Management
+* **Last Updated By/Date** -  David Start, December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

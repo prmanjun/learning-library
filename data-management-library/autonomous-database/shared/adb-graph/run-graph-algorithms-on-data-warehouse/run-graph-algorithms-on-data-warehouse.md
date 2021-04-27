@@ -6,8 +6,6 @@
 In this lab you will learn how to run graph algorithms and PGQL queries using notebooks directly in the Graph Studio interface of your 
 Autonomous Data Warehouse - Shared Infrastructure (ADW) or Autonomous Transaction Processing - Shared Infrastructure (ATP) instance.
 
-**Note: While this lab uses ADW, the steps are identical an ATP database.**
-
 Estimated Lab Time: 20 minutes.
 
 ### Objectives
@@ -20,7 +18,7 @@ Estimated Lab Time: 20 minutes.
 
 ### Prerequisites
 
-- The following lab requires an ADW/ATP account.
+- The following lab requires an Autonomous Database account.
 
 - This lab assumes you have completed the previous lab (Lab 2) where we created the **SH** graph.
 
@@ -206,14 +204,10 @@ The example notebook contains two paragraphs illustrating how you can use graph 
 
     ![](./images/notebooks-product-recommendation.png " ")
 
-Congratulations! You successfully finished the lab. 
+Congratulations! You successfully completed the lab. 
 
 ## Acknowledgements
 * **Author** - Korbi Schmid, Product Development
 * **Contributors** -  Jayant Sharma, Product Management
-* **Last Updated By/Date** - Jayant Sharma, Nov 2020
+* **Last Updated By/Date** - Jayant Sharma, April 2021
   
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -1,7 +1,8 @@
 {
   "workshoptitle": "Advanced Low Code - Oracle APEX on Autonomous Database",
-    "tutorials": [{
-            "title": "Prerequisites",
+    "help": "livelabs-help-db_us@oracle.com",
+	"tutorials": [{
+            "title": "Getting Started",
             "filename": "../common/1-sign-up-apex/1-sign-up-apex.md"
         },
         {
@@ -48,6 +49,11 @@
         {
             "title": "Part 2 - Lab 6: Improve Links",
             "filename": "../proof-of-concept/improving-links/improving-links.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
         }
     ]
 }

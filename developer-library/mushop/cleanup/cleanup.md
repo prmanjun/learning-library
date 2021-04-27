@@ -1,10 +1,24 @@
 # Clean Up
 
+## Introduction
+
 The following steps represents cleanup operations, which may vary depending on the actions performed for setup and deployment of MuShop.
+
+Estimated time: 10 minutes
+
+### Objectives
+
+- Log into OCI Tenancy.
+- Undeploy the MuShop App using helm delete
+- Terminate Oracle Cloud Infrastructure (OCI) components.
+
+### Prerequisites
+
+- Your Oracle Cloud Trial Account
 
 ## **STEP 1**: List any helm releases that may have been installed
 
-1. To get a beter look at all the installed Helm Charts by using the **helm list** command.
+1. To get a better look at all the installed Helm Charts by using the **helm list** command.
 
     ````shell
     <copy>
@@ -41,17 +55,25 @@ The following steps represents cleanup operations, which may vary depending on t
     </copy>
     ````
 
+*Note:* When you execute the command `helm delete` for the mushop-utils chart release, the OCI LoadBalancer attached to the ingress kubernetes will also be terminated.
+
 ## **STEP 4**: Terminate the OKE Cluster and Worker Nodes
 
-1. Remove
+1. Delete the OKE Cluster
 
-You may now [proceed to the next lab](#next).
+![Delete Kubernetes Clusters](images/OKE-delete-cluster.png " ")
+
+1. Confirm
+
+![Confirm delete Kubernetes Clusters](images/OKE-delete-cluster-confirm.png " ")
+
+This action will delete the Kubernetes Cluster and the Node Pool, terminating the worker nodes Compute Instances
 
 ## Acknowledgements
 
-* **Author** - Adao Junior
-* **Contributors** -  Adao Junior
-* **Last Updated By/Date** - Adao Junior, October 2020
+- **Author** - Adao Junior
+- **Contributors** -  Adao Junior
+- **Last Updated By/Date** - Adao Junior, April 2021
 
 ## Need Help?
 

@@ -23,7 +23,7 @@ In this lab, you will:
 
 * Complete Workshop: [Lift and Shift On-Premises EBS to OCI Workshop](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?wid=672&clear=180&session=5980193088668)
 * An SSH key pair
-* OCI Tenancy admin priviledges
+* OCI Tenancy admin privileges
 * A Virtual Cloud Network (VCN) which will be associated with the Oracle E-Business Suite Instance (created as a part of the prerequisite workshop)
 
 
@@ -100,7 +100,7 @@ Follow these steps to create a subnet for your source EBS environment. This subn
 
 Follow these steps to create and connect to your Oracle E-Business Suite instance when using an image from the OCI Console Marketplace.
 
-1. Naigate to the **Marketplace** tab in the menu panel under the heading Solutions and Platforms
+1. Navigate to the **Marketplace** tab in the menu panel under the heading Solutions and Platforms
     Filter by:
         
       - **Type:** `Image`
@@ -134,7 +134,7 @@ Follow these steps to create and connect to your Oracle E-Business Suite instanc
 
     d. **Choose Fault Domain:** leave unchecked
 
-    e. **Image:** `Oracle E-Business Suite 12.2.9 Demo Install Image`  (leave unchanged)
+    e. **Image:** `Oracle E-Business Suite 12.2.8 Demo Install Image`  (leave unchanged)
 
     f. **Shape:** click **Change Shape** and select the following if not already selected:
 
@@ -170,7 +170,7 @@ Follow these steps to create and connect to your Oracle E-Business Suite instanc
 
 ## **STEP 3:** Configure and Start the source E-Business Suite Environment
 
-These steps will walk through the initial configuration of the source EBS instance and then start the applicaiton and database servers on the instance. 
+These steps will walk through the initial configuration of the source EBS instance and then start the application and database servers on the instance. 
 
 1. Connect to the instance using SSH on Terminal (macOS) or using a tool such as PuTTY (Windows). 
 
@@ -224,7 +224,7 @@ These steps will walk through the initial configuration of the source EBS instan
 
 5. Start the database.
 
-  a. Swtich to the Oracle user:
+  a. Switch to the Oracle user:
 
     ```
     <copy>
@@ -311,7 +311,7 @@ These steps will walk through the initial configuration of the source EBS instan
 
 8. Configure Web Entry Point.
 
-  a. Use the script provides to change the default webentry point, which is app.example.com
+  a. Use the script provides to change the default web entry point, which is app.example.com
 
     ```
     <copy>
@@ -411,7 +411,7 @@ You may proceed to the next lab.
 * [Creating a Backup of an On-Premises Oracle E-Business Suite Instance on Oracle Cloud Infrastructure](https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/compute-iaas/creating_backup_of_ebs_instance_on_oci/101_backup_oci.html)
 * [Requirements for Oracle E-Business Suite on Oracle Cloud Infrastructure (Doc ID 2438928.1)](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=97656525609392&id=2438928.1&_afrWindowMode=0&_adf.ctrl-state=1bsk4t5eng_4#S2)
 
-## Acknowledgements
+## Acknowledgments
 
 * **Author:** William Masdon, Cloud Engineering
 * **Contributors:** 
@@ -420,7 +420,4 @@ You may proceed to the next lab.
     - Quintin Hill, Cloud Engineering
 * **Last Updated By/Date:** William Masdon, Cloud Engineering, Dec 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

@@ -141,7 +141,7 @@ The Tasks Calendar page shows numerous tasks; however, there is no way to direct
 5. In the Link Builder dialog, enter the following:
     - Target > Page - select **7**
     - Set Items > Name - select **P7_ID**
-    - Set Items > Value - select **ID** (Returns **&ID**)
+    - Set Items > Value - select **ID** (Returns **&ID.**)
     - Clear / Reset > Clear Cache - enter **7**
 
 6. Click **OK**
@@ -197,7 +197,3 @@ This completes Lab 7 and the workshop. You now know how to create a Shared Compo
  - **Contributors** - Arabella Yao, Product Manager Intern, DB Product Management
  - **Last Updated By/Date** - Salim Hlayel, Principle Product Manager, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-apex-development-workshops). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

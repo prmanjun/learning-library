@@ -29,88 +29,64 @@ In this lab, you will:
 	
 	$ <copy>/home/oracle/labs/M104781GC10/setup_audit_policies.sh</copy>
 	
-	...
-	
-	Connected to:
-	
-	Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
-	
+	...	
+	Connected to:	
+	Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production	
 	Version 21.2.0.0.0
 	
-	SQL> drop user u1 cascade;
-	
-	drop user u1 cascade
-	
-				*
-	
-	ERROR at line 1:
-	
+	SQL> drop user u1 cascade;	
+	drop user u1 cascade	
+				*	
+	ERROR at line 1:	
 	ORA-01918: user 'U1' does not exist
 	
-	SQL> drop user u2 cascade;
-	
+	SQL> drop user u2 cascade;	
 	drop user u2 cascade
 	
 				*
 	
-	ERROR at line 1:
-	
+	ERROR at line 1:	
 	ORA-01918: user 'U2' does not exist
 	
-	SQL> create user u1 identified by password;
-	
+	SQL> create user u1 identified by password;	
 	User created.
 	
-	SQL> grant create session, create procedure to u1;
-	
+	SQL> grant create session, create procedure to u1;	
 	Grant succeeded.
 	
-	SQL> create user u2 identified by password;
-	
+	SQL> create user u2 identified by password;	
 	User created.
 	
-	SQL> grant select on hr.employees to u1, u2;
-	
+	SQL> grant select on hr.employees to u1, u2;	
 	Grant succeeded.
 	
-	SQL> grant create session to u2;
-	
+	SQL> grant create session to u2;	
 	Grant succeeded.
 	
-	SQL> grant select on unified_audit_trail to u1,u2;
-	
+	SQL> grant select on unified_audit_trail to u1,u2;	
 	Grant succeeded.
 	
 	SQL>
 	
-	SQL> CREATE OR REPLACE PROCEDURE u1.procemp (employee_id IN NUMBER)
-	
-		2  AS
-	
-		3     v_emp_id  NUMBER:=employee_id;
-	
+	SQL> CREATE OR REPLACE PROCEDURE u1.procemp (employee_id IN NUMBER)	
+		2  AS	
+		3     v_emp_id  NUMBER:=employee_id;	
 		4     v_sal NUMBER;
 	
-		5  BEGIN
-	
-		6     SELECT salary INTO v_sal FROM hr.employees WHERE employee_id=v_emp_id;
-	
-		7     dbms_output.put_line('Salary is : '||v_sal || ' for Employee ID: '||v_emp_id);
-	
+		5  BEGIN	
+		6     SELECT salary INTO v_sal FROM hr.employees WHERE employee_id=v_emp_id;	
+		7     dbms_output.put_line('Salary is : '||v_sal || ' for Employee ID: '||v_emp_id);	
 		8  END procemp;
 	
 		9  /
 	
-	Procedure created.
-	
+	Procedure created.	
 	SQL>
 	
-	SQL> grant execute on u1.procemp to u2;
-	
+	SQL> grant execute on u1.procemp to u2;	
 	Grant succeeded.
 	
-	SQL>
-	
+	SQL>	
 	SQL> exit
 	
 	$
@@ -124,22 +100,17 @@ In this lab, you will:
   
 	```
 	
-	$ <copy>sqlplus system@PDB21</copy>
-	
+	$ <copy>sqlplus system@PDB21</copy>	
 	Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 	
 	Enter password: <i><copy>password</copy></i>
-	
-	Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
-	
+	Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production	
 	Version 21.2.0.0.0
 	
-	SQL> <copy>CREATE AUDIT POLICY pol_emp ACTIONS select on hr.employees;</copy>
-	
+	SQL> <copy>CREATE AUDIT POLICY pol_emp ACTIONS select on hr.employees;</copy>	
 	Audit policy created.
 	
-	SQL> <copy>AUDIT POLICY pol_emp BY u2;</copy>
-	
+	SQL> <copy>AUDIT POLICY pol_emp BY u2;</copy>	
 	Audit succeeded.
 	
 	SQL> 
@@ -153,18 +124,14 @@ In this lab, you will:
   
 	```
 	
-	SQL> <copy>CONNECT u2@PDB21</copy>
-	
-	Enter password: <i><copy>password</copy></i>
-	
-	SQL> <copy>SET SERVEROUTPUT ON</copy>
-	
+	SQL> <copy>CONNECT u2@PDB21</copy>	
+	Enter password: <i><copy>password</copy></i>	
+	SQL> <copy>SET SERVEROUTPUT ON</copy>	
 	SQL> <copy>EXECUTE u1.procemp(206)</copy>
 	
 	Salary is : 8300 for Employee ID: 206
 	
-	PL/SQL procedure successfully completed.
-	
+	PL/SQL procedure successfully completed.	
 	SQL> 
 	
 	```
@@ -174,10 +141,8 @@ In this lab, you will:
   
 	```
 	
-	SQL> <copy>SELECT dbusername, current_user, action_name
-	
-		FROM   unified_audit_trail
-	
+	SQL> <copy>SELECT dbusername, current_user, action_name	
+		FROM   unified_audit_trail	
 		WHERE  unified_audit_policies = 'POL_EMP';</copy>
 	
 	no rows selected
@@ -194,11 +159,7 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 
-* **Author** - Dominique Jeunot, Database UA Team
+* **Author** - Donna Keesling, Database UA Team
 * **Contributors** -  Kay Malcolm, Database Product Management
 * **Last Updated By/Date** -  Kay Malcolm, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

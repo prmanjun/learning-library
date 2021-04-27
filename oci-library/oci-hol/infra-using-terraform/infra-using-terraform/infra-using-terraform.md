@@ -83,7 +83,7 @@ Estimated Time: 30-45 minutes
 1. Next, download the Terraform sample code. Enter the following command into the cloud shell.
 
     ```
-    curl https://objectstorage.us-ashburn-1.oraclecloud.com/p/A_T1LbPB5CdUsSJIRJY7ZfFljxQwhsFlAQ9J-8ls-4FduMEB3OYfRXqTugLXVh94/n/ociobenablement/b/hol-labs/o/terraform-demo.zip -o terraform-demo.zip
+    curl https://objectstorage.us-ashburn-1.oraclecloud.com/p/XXL2U0n_53VH8Rl9s3M0okgSRgxI41o9lcTkuk-cB5hA7L9tOma0YKKC54Btl0g9/n/ociobenablement/b/hol-labs/o/terraform-demo.zip -o terraform-demo.zip
     ```
 
     This will download the sample terraform zip file.
@@ -169,7 +169,3 @@ Make sure to have the values ready which was saved in earlier steps.
 - **Contributors** - Jaden McElvey, Technical Lead - Oracle LiveLabs Intern
 - **Last Updated By/Date** - Kamryn Vinson, August 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/resource-manager-terraform). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

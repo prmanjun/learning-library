@@ -1,16 +1,17 @@
 {
-  "workshoptitle": "DB Security Data Masking and Subsetting",
-  "tutorials": [
-    {
-      "title": "Prerequisites",
-      "description": "Get a Free Trial",
-      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-    },
+    "workshoptitle": "DB Security Data Masking and Subsetting",
+    "help": "livelabs-help-db_us@oracle.com",
+    "tutorials": [
     {
       "title": "Introduction",
       "description": "Understand the architecture of this workshop and what it can do",
       "publisheddate": "09/01/2020",
       "filename": "../../intro/intro-data-masking-subsetting.md"
+    },
+    {
+      "title": "Getting Started",
+      "description": "Get a Free Trial",
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
     },
     {
       "title": "Lab 1: Generate SSH Keys",
@@ -40,6 +41,11 @@
       "description": "In this lab you can see how to leverage Oracle Data Masking and Subsetting (DMS)",
       "publisheddate": "10/20/2020",
       "filename": "../../data-masking-subsetting/data-masking-subsetting.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
     }
   ]
 }

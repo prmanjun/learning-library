@@ -1,43 +1,51 @@
-<!-- Updated March 24, 2020 -->
+<!-- Updated April 16, 2021 -->
 
 
-# Connect to the Database Using SQL Developer Web
+# Connect to the Database Using SQL Worksheet
 
 
 ## Introduction
 
-In this lab, you will connect to the database using SQL Developer Web, a browser-based tool that is easily accessible from the Autonomous Data Warehouse or Autonomous Transaction Processing console.
+In this lab, you will connect to the database using SQL Worksheet, a browser-based tool that is easily accessible from the Autonomous Data Warehouse or Autonomous Transaction Processing console.
 
 Estimated lab time: 5 minutes
 
 ### Objectives
 
--   Learn how to connect to your new autonomous database using SQL Developer Web
+-   Learn how to connect to your new autonomous database using SQL Worksheet
 
 ### Prerequisites
 
 -   This lab requires completion of the prior labs in this workshop: **Prerequisites** and **Provision an Autonomous Database**, in the Contents menu on the left.
 
-## **STEP:** Connect with SQL Developer Web
+## **STEP:** Connect with SQL Worksheet
 
-Although you can connect to your autonomous database from local PC desktop tools like Oracle SQL Developer, you can conveniently access the browser-based SQL Developer Web directly from your Autonomous Data Warehouse or Autonomous Transaction Processing console.
+Although you can connect to your autonomous database from local PC desktop tools like Oracle SQL Developer, you can conveniently access the browser-based SQL Worksheet directly from your Autonomous Data Warehouse or Autonomous Transaction Processing console.
 1. In your database's details page, click the **Tools** tab.
 
     ![](./images/Picture100-34.png " ")
 
-2. The Tools page provides you access to SQL Developer Web, Oracle Application Express, and Oracle ML User Administration. In the SQL Developer Web box, click **Open SQL Developer Web**.
+2. The Tools page provides you access to database administration and developer tools for Autonomous Database: Database Actions, Oracle Application Express, Oracle ML User Administration, and SODA Drivers. In the Database Actions box, click **Open Database Actions**.
 
     ![](./images/Picture100-15.png " ")
 
-3. A sign in page opens for SQL Developer Web. For this lab, simply use your database instance's default administrator account, ADMIN, with the admin password you specified when creating the database. Click **Sign in**.
+3. A sign-in page opens for Database Actions. For this lab, simply use your database instance's default administrator account, **Username - admin**, and click **Next**.
 
     ![](./images/Picture100-16.png " ")
 
-4. SQL Developer Web opens on a worksheet tab. The first time you open SQL Developer Web, a series of pop-up informational boxes introduce the main features.
+4. Enter the Administrator **Password** you specified when creating the database. Click **Sign in**.
 
-    ![](./images/Picture100-16b.png " ")
+    ![Enter the admin password.](./images/Picture100-16-password.png " ")
 
-    Keep this worksheet tab open and please **proceed to the next lab.**
+5. The Database Actions page opens. In the **Development** box, click **SQL**.
+
+    ![Click on SQL.](./images/Picture100-16-click-sql.png " ")
+
+6. The first time you open SQL Worksheet, a series of pop-up informational boxes introduce you to the main features. Click **Next** to take a tour through the informational boxes.
+
+    ![](./images/Picture100-sql-worksheet.png " ")
+
+    After touring through the informational boxes, keep this SQL Worksheet open and please **proceed to the next lab.**
 
 ## Want to Learn More?
 
@@ -46,9 +54,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 ## Acknowledgements
 
 - **Author** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, April 2021

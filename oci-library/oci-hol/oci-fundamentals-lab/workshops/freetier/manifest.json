@@ -1,11 +1,12 @@
 {
     "workshoptitle": "High Availability Applications Using Load Balancers",
-    "tutorials": [
-      {
-          "title": "Prerequisites",
-          "description": "Login to Oracle Cloud",
-          "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-      },
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
+        {
+            "title": "Getting Started",
+            "description": "Login to Oracle Cloud",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
+        },
         {
             "title": "Introduction",
             "filename": "../../intro/intro.md"
@@ -18,6 +19,11 @@
         {
             "title": "Lab 2: Deploy HA Application using Load Balancers",
             "filename": "../../deploy-ha-lb/deploy-ha-lb.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

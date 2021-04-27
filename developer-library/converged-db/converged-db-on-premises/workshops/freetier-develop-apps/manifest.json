@@ -1,15 +1,16 @@
 {
-  "workshoptitle": "Develop Apps using JSON, XML, Spatial and Graph",
-  "tutorials": [
-    {
-      "title": "Prerequisites",
-      "description": "Login to Oracle Cloud",
-      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-    },
+    "workshoptitle": "Develop Apps using JSON, XML, Spatial and Graph",
+    "help": "livelabs-help-license_us@oracle.com",
+    "tutorials": [
     {
       "title": "Introduction",
       "description": "Introduction",
       "filename": "../../intro/intro.md"
+    },
+    {
+      "title": "Getting Started",
+      "description": "Login to Oracle Cloud",
+      "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
     },
     {
       "title": "Lab 1: Generate SSH Key - Cloud Shell",
@@ -62,6 +63,11 @@
       "title": "Lab 10: Cross Data Types",
       "description": "Labs that leverage data types across schemas",
       "filename": "../../crossdatatype/crossdatatype.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
     }
   ]
 }

@@ -1,175 +1,87 @@
-# Configure Database and GoldenGate Users 
+# Configure Database and GoldenGate Users
 
 ## Introduction
-Contents
+In this lab we will setup the required database and GoldenGate replication users.
 
-Introduction
-Disclaimer
-Oracle GoldenGate for Microservices Workshop Architecture 
+*Estimated Lab Time*:  10 minutes
 
-*Estimated Lab Time*:  60 minutes
-#### Lab Architecture
+### Lab Architecture
 ![](./images/ggmicroservicesarchitecture.png " ")
 
 ### Objectives
-
-KEY FEATURES
-
-Non-invasive, real-time transactional data streaming
-
-- Secured, reliable and fault-tolerant data delivery 
-- Easy to install, configure and maintain 
-- Streams real-time changed data 
-- Easily extensible and flexible to stream changed data to other relational targets
-
-KEY BENEFITS
-
-- Improve IT productivity in integrating with data management systems 
-- Use real-time data in big data analytics for more timely and reliable insight 
-- Improve operations and customer experience with enhanced business insight 
-- Minimize overhead on - source systems to maintain high performance
-
-Oracle GoldenGate Classic provides optimized and high performance delivery.
-
-Oracle GoldenGate Classic real-time data streaming platform also allows customers to keep their data reservoirs up to date with their production systems.
+Understanding how to prepare and setup an Oracle Database for replication and define users for replication. Users are created using scripts that populate the multitenant environment with required Oracle Users while applying aliases to be used by GoldenGate. The Databases used in this lab are identified using the SOE schema in source and targets.
 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
 - SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys
-    - Lab: Prepare Setup
+    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
-    - Lab: Configure GoldenGate
 
-In this lab we will setup GoldenGate Microservices
+## **STEP 0**: Running your Lab
+### Login to Host using SSH Key based authentication
 
-## **STEP 1:** Configure Database 
+1. Select the hamburger menu and select **Compute** > **Instances**
+  ![](./images/select-compute.png " ")  
 
-1. Open a terminal session.
+2. Select your compartment. You should see your Compute Instance Public IP address. 
+    ![](./images/ip-address.png " ")
 
-![](./images/terminal3.png " ")
+1. If needed, refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
+    - Authentication OS User - “*opc*”
+    - Authentication method - *SSH RSA Key*
+    - OS User – “*oracle*”.
 
-````
-<copy>sudo su - oracle</copy>
-````
+2. First login as “*opc*” using your SSH Private Key
 
-2. In the open Terminal Window, start SQL*Plus.
+    ````
+    ssh -i ~/.ssh/<sshkeyname> opc@<Your Compute Instance Public IP Address>
+    ````
 
-```
-<copy>lsnrctl start</copy>
-```
+3. Then sudo to “*oracle*”.
 
-```
-<copy>sqlplus /as sysdba</copy>
-```
+    ```
+    <copy>sudo su - oracle</copy>
+    ```
 
-```
-<copy>startup</copy>
-```
+## **STEP 1:** Start the Oracle Database 19c (19.1) and Listener
+1.	Start the container database, all PDB's and the listener
 
-![](./images/z1.png " ")
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab1  
+    sh ./startup.sh
+    </copy>
+    ```
+
+    ![](./images/run-startup-init.png " ")
+
+    In the interest of time and for ease of execution, all prerequisite tasks to prepare the database for GoldenGate replication have already been performed on your VM instance. This includes:
+      - Enabling Archive Log Mode
+      - Enabling Supplemental Logging
+      - Setting DB parameter `enable_goldengate_replication` to  true
+      - Creating GoldenGate users in the database
 
 
-3. Enable the database for GoldenGate replication.
+2. Create some additional tables that we will be using later in our labs for CDR purposes.
 
-```
-<copy>alter system set enable_goldengate_replication=true scope=both;</copy>
-```
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab10
+    ./db_createTable.sh
+    </copy>
+    ```
+    ![](./images/create_tables.png " ")
 
-![](./images/z2.png " ")
-
-4.	Enable Archive Log on the database.This will require you to shut down the database and restart it.
-
-5. Shutdown the database.
-
-```
-<copy>shutdown immediate;</copy>
-```
-![](./images/z3.png " ")
-
-6. Start the database up in mount mode.
-
-```
-<copy>startup mount;</copy>
-```
-
-![](./images/z4.png " ")
-
-7. Change database into Archive Log mode.
-
-```
-<copy>alter database archivelog;</copy>
-```
-![](./images/z5.png " ")
-
-8. Open the database.
-
-```
-<copy>alter database open;</copy>
-```
-
-![](./images/z6.png " ")
-
-9.	Open the Pluggable Database
-```
-<copy>alter pluggable database all open read write;</copy>
-```
-10. Enable Minimal Supplemental Logging for the database.  Additionally, enable Force Logging then switch the log file.
-
-```
-<copy>alter database add supplemental log data;
-alter database force logging;
-alter system switch logfile;</copy>
-```
-
-## **STEP 2:** Create the GoldenGate users needed at the Container Database and Pluggable Database Layers
-
-1. From SQL*Plus run the following SQL statements to create thcreate e Common User within the Container Database (CDB).
-
-```
-<copy> create user c##ggate identified by ggate quota unlimited on USERS account unlock;
-grant connect, dba, resource to c##ggate;</copy>
-```
-```
-<copy>begin
-SYS.DBMS_GOLDENGATE_AUTH.GRANT_ADMIN_PRIVILEGE('C##GGATE', container=>'ALL');
-end;
-/</copy>
-```
-
-2. From SQL*Plus, run the following SQL statements to create the GoldenGate users for the Pluggable database (PDB)
-```
-<copy>alter session set container = oggoow19;
-grant connect, dba to c##ggate;
-create user GGATE identified by ggate quota unlimited on USERS account unlock;
-grant connect, dba to ggate;
-alter session set container = oggoow191;
-grant connect, dba to c##ggate;
-create user GGATE identified by ggate quota unlimited on USERS account unlock;
-grant connect, dba to ggate;
-exit</copy>
-```
-## Summary
-
-Oracle GoldenGate offers high-performance, fault-tolerant, easy-to-use, and flexible real- time data streaming platform for big data environments. It easily extends customers’ real-time data
-integration architectures to big data systems without impacting the performance of the source systems and enables timely business insight for better decision making.
-
-You may now *proceed to the next lab*.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
-* [GoldenGate Microservices](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/getting-started-oracle-goldengate.htm#GGCON-GUID-5DB7A5A1-EF00-4709-A14E-FF0ADC18E842")
-
-* [GoldenGate Microservices](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/getting-started-oracle-goldengate.htm#GGCON-GUID-5DB7A5A1-EF00-4709-A14E-FF0ADC18E842")
+* [GoldenGate Microservices](https://docs.oracle.com/en/middleware/goldengate/core/19.1/understanding/getting-started-oracle-goldengate.html#GUID-F317FD3B-5078-47BA-A4EC-8A138C36BD59)
 
 ## Acknowledgements
 * **Author** - Brian Elliott, Data Integration, November 2020
-* **Contributors** - Zia Khan
-* **Last Updated By/Date** - Brian Elliott, November 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Contributors** - Zia Khan, Rene Fontcha
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021

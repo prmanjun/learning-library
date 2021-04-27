@@ -61,10 +61,11 @@ To ensure a successful backup, avoid activities that could interfere with the ba
     </copy>
     ```
 
-    Navigate to the Remote Clone directory
+    Change to the Oracle user (if not already) and navigate to the Remote Clone directory
 
     ```
     <copy>
+    sudo su - oracle
     cd /u01/install/APPS/stage/31254259/RemoteClone
     </copy>
     ```
@@ -210,7 +211,7 @@ To ensure a successful backup, avoid activities that could interfere with the ba
 
     - The user who performs the backup must be a member of the Oracle E-Business Suite administrators group defined according to Lab 2: Oracle E-Business Suite Cloud Manager Deployment and Configuration.
     In this workshop this is your `Cloud Manager_Admin_Username` (i.e. ebscm.admin@example.com)
-    - You can find the user's OCID and Fingerprint by Navigating to **Identity** > **Users** in Oracle Cloud Infrastucture and selecting the user.
+    - You can find the user's OCID and Fingerprint by Navigating to **Identity** > **Users** in Oracle Cloud Infrastructure and selecting the user.
     - Enter the OCID for your tenancy, the [region identifier](https://docs.cloud.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm) of the region where you plan to provision an environment from this backup, your tenancy name, and the OCID of the compartment where the backup buckets should be created.
     - Your tenancy name and OCID can be found by clicked the profile icon in the top right of Oracle Cloud Infrastructure and selecting **Tenancy:** < tenancy_name >. 
     - The compartment OCID can be found by navigating to **Identity** > **Compartments** and selecting the compartment that contains the Cloud Manager (you may have to navigate through the parent compartments to reach the correct compartment). 
@@ -278,7 +279,7 @@ You may proceed to the next lab.
 * [Creating a Backup of an On-Premises Oracle E-Business Suite Instance on Oracle Cloud Infrastructure](https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/compute-iaas/creating_backup_of_ebs_instance_on_oci/101_backup_oci.html)
 * [Requirements for Oracle E-Business Suite on Oracle Cloud Infrastructure (Doc ID 2438928.1)](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=97656525609392&id=2438928.1&_afrWindowMode=0&_adf.ctrl-state=1bsk4t5eng_4#S2)
 
-## Acknowledgements
+## Acknowledgments
 
 * **Author:** William Masdon, Cloud Engineering
 * **Contributors:** 
@@ -287,7 +288,4 @@ You may proceed to the next lab.
     - Quintin Hill, Cloud Engineering
 * **Last Updated By/Date:** William Masdon, Cloud Engineering, Dec 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

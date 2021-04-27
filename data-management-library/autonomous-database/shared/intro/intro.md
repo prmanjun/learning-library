@@ -5,6 +5,8 @@ Oracle Autonomous Database is a family of self-driving, self-securing, and self-
 
 Watch the video below for an overview of Autonomous Database.  Afterwards, please proceed to the next lab.
 
+
+
 [](youtube:2HsVShulgx8)
 
 
@@ -14,7 +16,3 @@ Watch the video below for an overview of Autonomous Database.  Afterwards, pleas
 - **Last Updated By/Date** - Kay Malcolm, October 2020
 
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/autonomous-database-shared). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -51,7 +51,7 @@ This lab assumes you have:
       <copy>cd $DBSEC_LABS/database-vault</copy>
       ````
 
-3. Start by enabling Database Vault in the container database
+3. Start by enabling Database Vault in the container database **cdb1**
 
       ````
       <copy>./dv_enable_on_cdb.sh</copy>
@@ -59,9 +59,9 @@ This lab assumes you have:
 
    ![](./images/dv-001.png " ")
 
-      **Note**: To enable DB Vault, database will be rebooted!
+    **Note**: To enable DB Vault, database will be rebooted!
 
-4. Next, enable it on the pluggable database. For now, just enable it on pdb1
+4. Next, enable it on the pluggable database. For now, just enable it on **pdb1**
 
       ````
       <copy>./dv_enable_on_pdb.sh pdb1</copy>
@@ -71,17 +71,25 @@ This lab assumes you have:
 
    ![](./images/dv-002.png " ")
 
-5. Now, Database Vault is enabled in the container database as well as `PDB1`!
+5. Now, Database Vault is enabled in the container database as well as pdb1!
 
 ## **STEP 2**: Create a Simple Realm
 
-1. Open a web browser and launch the Glassfish app by navigating to this URL: `http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`
+1. Open a web browser and launch the Glassfish app by navigating to this URL: *`http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`*
 
-2. Login to the application as `hradmin/Oracle123`
+   ![](./images/dv-029.png " ")
 
-3. Click [**Search Employee**]
+2. Login to the application as *`hradmin`* with the password "*`Oracle123`*"
+
+   ![](./images/dv-030.png " ")
+
+3. Click **Search Employee**
+
+   ![](./images/dv-031.png " ")
 
 4. Click [**Search**]
+
+   ![](./images/dv-032.png " ")
 
 5. Go back to your SSH session and run the command to view the details about the Glassfish session
 
@@ -91,7 +99,7 @@ This lab assumes you have:
 
    ![](./images/dv-003.png " ")
 
-6. Now, create the Realm
+6. Now, create the **Realm**
 
       ````
       <copy>./dv_create_realm.sh</copy>
@@ -115,7 +123,7 @@ This lab assumes you have:
 
    ![](./images/dv-006.png " ")
 
-9. Re-execute the SQL query to show that SYS now receives the **insufficient privileges** error message
+9. Re-execute the SQL query to show that `SYS` now receives the **insufficient privileges** error message
 
       ````
       <copy>./dv_query_employee_data.sh</copy>
@@ -133,23 +141,19 @@ This lab assumes you have:
 
 ## **STEP 3**: Create a Trusted Path / Multi-factor Authorization
 
-1. Open a web browser and launch the Glassfish app by navigating to this URL: `http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`
-
-   ![](./images/dv-029.png " ")
-
-2. Login as `hradmin/Oracle123`
+1. Go back to your Glassfish app as *`hradmin`*
 
    ![](./images/dv-030.png " ")
 
-3. Click [**Search Employee**]
+2. Click [**Search Employee**] again
 
    ![](./images/dv-031.png " ")
 
-4. Click [**Search**]
+3. And click [**Search**]
 
    ![](./images/dv-032.png " ")
 
-5. Go back to your SSH session and run this query to view the session information associated with the Glassfish application
+4. Go back to your SSH session and run this query to view the session information associated with the Glassfish application
 
       ````
       <copy>./dv_query_employeesearch_usage.sh</copy>
@@ -157,7 +161,7 @@ This lab assumes you have:
 
    ![](./images/dv-019.png " ")
 
-6. Now, query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table with the owner `EMPLOYEESEARCH_PROD` to demonstrate it is accessible
+5. Now, query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table with the owner `EMPLOYEESEARCH_PROD` to demonstrate it is accessible
 
       ````
       <copy>./dv_query_employee_search.sh</copy>
@@ -165,7 +169,7 @@ This lab assumes you have:
 
    ![](./images/dv-020.png " ")
 
-7. Begin protecting the application credentials by creating a Database Vault Rule
+6. Begin protecting the application credentials by creating a Database Vault Rule
 
       ````
       <copy>./dv_create_rule.sh</copy>
@@ -173,9 +177,13 @@ This lab assumes you have:
 
    ![](./images/dv-021.png " ")
 
-      **Note**: We authorize as a Trusted Path app only the access from Glassfish Web App (JDBC Thin Client) through the schema owner `EMPLOYEESEARCH_PROD`!
+    **Note**: We authorize as a Trusted Path app only the access from Glassfish Web App (JDBC Thin Client) through the schema owner `EMPLOYEESEARCH_PROD`!
 
-8. We use the Database Vault Rule by adding it to a DV Rule Set. You can have one or more rules in the rule set. If you have more than one, you can choose between the rule set evaluating all rules must be true or *any* rule must be true. Think of it like the difference between `IN` and `EXISTS` - `IN` includes all while `EXISTS` stops once it identifies one result matches
+7. We use the Database Vault Rule by adding it to a **DV Rule Set**
+
+    - You can have one or more rules in the rule set
+    - If you have more than one, you can choose between the rule set evaluating all rules must be true or `ANY` rule must be true
+    - Think of it like the difference between `IN` and `EXISTS` - `IN` includes all while `EXISTS` stops once it identifies one result matches
 
     ````
     <copy>./dv_create_rule_set.sh</copy>
@@ -183,7 +191,7 @@ This lab assumes you have:
 
    ![](./images/dv-022.png " ")
 
-9. Create a Command Rule on Connect to protect the `EMPLOYEESEARCH_PROD` user. You can only `CONNECT` AS `EMPLOYEESEARCH_PROD` if you match the Rule Set we created
+8. Create a Command Rule on "**CONNECT**" to protect the `EMPLOYEESEARCH_PROD` user
 
     ````
     <copy>./dv_create_command_rule.sh</copy>
@@ -191,11 +199,13 @@ This lab assumes you have:
 
    ![](./images/dv-023.png " ")
 
-10. Go to your web browser and refresh a few times and run some queries by clicking [**Search**] and explore employee data
+   **Note**: You can only "`CONNECT`" as `EMPLOYEESEARCH_PROD` if you match the Rule Set we created!
 
-      **Note**: Because you're using the Glassfish App as a Trusted Path app you can access the data!
+9. Go back to your Glassfish app and refresh a few times and run some queries by clicking [**Search**] and explore employee data
 
-11. Go back to your terminal session and re-run our query of the application usage to verify that it still works
+    **Note**: Because you're using the Glassfish App as a Trusted Path app you can access the data!
+
+10. Go back to your terminal session and re-run our query of the application usage to verify that it still works
 
     ````
     <copy>./dv_query_employeesearch_usage.sh</copy>
@@ -203,7 +213,7 @@ This lab assumes you have:
 
    ![](./images/dv-024.png " ")
 
-12. Now, try to query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table with the owner `EMPLOYEESEARCH_PROD`... You should be blocked!
+11. Now, try to query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table with the owner `EMPLOYEESEARCH_PROD`... **You should be blocked**!
 
     ````
     <copy>./dv_query_employee_search.sh</copy>
@@ -211,9 +221,9 @@ This lab assumes you have:
 
    ![](./images/dv-025.png " ")
 
-      **Note**: Because you're querying via a non-"Trusted Path" app you can't access the data!
+    **Note**: Because you're querying via a non-"Trusted Path" app you can't access the data!
 
-13. Once you have successfully completed the lab, you can delete the `Command Rule`, `Rule Set`, and `Rule` from Database Vault
+12. Once you have successfully completed the lab, you can delete the **Command Rule**, **Rule Set**, and **Rule** from Database Vault
 
     ````
     <copy>./dv_del_trusted_path.sh</copy>
@@ -265,7 +275,7 @@ This lab assumes you have:
 
    ![](./images/dv-012a.png " ")
 
-6. Although we only used Simulation mode on a `CONNECT` rule, we could have used this on a Realm to show what violations we would had
+6. Although we only used Simulation mode on a **CONNECT** rule, we could have used this on a Realm to show what violations we would had
 
 7. Before moving to the next lab, we will clean out the simulation logs and remove the Command Rule
 
@@ -293,7 +303,7 @@ This lab assumes you have:
 
       **Note**: It is not yet configured!
 
-2. Next, we will run the same queries as both pluggable database `PDB1` and `PDB2`...
+2. Next, we will run the same queries as both pluggable database **pdb1** and **pdb2**...
 
     - ... as `DBA_DEBRA`
       
@@ -313,9 +323,11 @@ This lab assumes you have:
 
     **Note**:
       - The query results are the same
-      - The common user `C##SEC_DBA_SAL` has access to data in the PDB, just as the pdb admin has
+      - The common user `C##SEC_DBA_SAL` has access to data in the pluggable databases, just as the pdb Admin has
 
-3. Enable Database Vault 19c Operations Control and run the queries again. Notice who can and who cannot query the `EMPLOYEESEARCH_PROD` schema data now. SAL should no longer be able to access data.
+3. Enable Database Vault 19c **Operations Control** and run the queries again
+
+    **Note**: Notice who can and who cannot query the `EMPLOYEESEARCH_PROD` schema data now... `SAL` should no longer be able to access data!
 
       ````
       <copy>./dv_enable_ops_control.sh</copy>
@@ -352,17 +364,17 @@ This lab assumes you have:
 
 ## **STEP 6**: Disabling Database Vault
 
-1. Disable the pluggable database `PDB1`
+1. Disable the pluggable database **pdb1**
 
       ````
       <copy>./dv_disable_on_pdb.sh pdb1</copy>
       ````
 
-   You should see a status like this:
+   You should see a status like this
 
    ![](./images/dv-027.png " ")
 
-2. Now, Disable Database Vault in the container database
+2. Now, Disable Database Vault in the container database **cdb1**
 
       ````
       <copy>./dv_disable_on_cdb.sh</copy>
@@ -372,7 +384,7 @@ This lab assumes you have:
 
       **Note**: To disable DB Vault, database will be rebooted!
 
-3. Now, Database Vault is disabled in the container database as well as `PDB1`!
+3. Now, Database Vault is disabled in the container database as well as pdb1!
 
 You may proceed to the next lab.
 
@@ -447,7 +459,4 @@ Video:
 - **Contributors** - Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

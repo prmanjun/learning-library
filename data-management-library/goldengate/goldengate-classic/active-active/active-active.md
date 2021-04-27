@@ -1,7 +1,7 @@
 # Active Active / HA-DR Replication with GoldenGate
 
 ### Introduction
-In this lab we will load data in and configure active-active for High Availability
+In this lab we will load data in and configure active-active for High Availability. This bidirectional technology allows High Availability using GoldeGate technology.
 
 *Estimated Lab Time*:  60 minutes
 
@@ -31,7 +31,7 @@ This lab assumes you have:
 <copy>sudo su - oracle</copy>
 ```
 
-2. Oracle data capture
+2. Oracle data capture - Create a GoldeGate extract to define the objects to extract from the source any any parameters to help refine what is being extracted.
 
 To configure the Oracle Integrated Extract:
 Execute the GGSCI command:
@@ -58,7 +58,7 @@ Add the parameter that will cause Integrated Extract to encrypt its OGG Trail fi
 5. Save and close the file.
 
 6. Data transmission to MySQL
-This is not technically required because the OGG and MySQL installations are on the same machine. However, if data is being transmitted over a LAN/WAN an Extract Data Pump is required.
+This is not technically required because the OGG and MySQL installations are on the same machine. However, if data is being transmitted over a LAN/WAN an **Extract Data Pump** is required.
 To configure the Oracle to MySQL Extract Data Pump:
 
 7. Execute the GGSCI command:
@@ -83,7 +83,7 @@ table pdbeast.tpc.*;</copy>
 
 ## **STEP 2:**  GoldenGate - Oracle Data Apply
 
-1. To configure the Parallel Replicat:
+1. To configure the **Parallel Replicat** which will define on the target parameters relative to how the real time changes will handled by GoldeGate.
 Execute the GGSCI command:
 
 ```
@@ -113,7 +113,7 @@ map pdbeast.tpc.*, target pdbwest.tpc.*;</copy>
 
 ## **STEP 3:** GoldenGate - MySQL Data Apply
 
-1. MySQL data apply
+1. MySQL change **data apply** using GoldeGate
 
 To configure the Coordinated Replicat in the MySQL OGG environment:
 
@@ -379,7 +379,4 @@ You may now *proceed to the next lab*.
 * **Contributors** - Madhu Kumar, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -1,4 +1,4 @@
-# Lab 7: Creating Environment in PeopleSoft
+# Creating Environment in PeopleSoft
 
 ## Introduction
 
@@ -23,9 +23,9 @@ In this lab, you will:
 
   ![](./images/e1.png "")
 
-2. 	Provide a unique Environment Name - **MYPUMENV**. Select the Template that was created in previous section – **MYPUM**. Click **yes** for **Pause after infra creation**.  
+2. 	Provide a unique Environment Name - **WorkshopEnvironment** . Select the Template that was created in previous section – **TestWorkshop**. Click **yes** for **Pause after infra creation**.  
 
-  ![](./images/e2.png "")
+  ![](./images/workshop.png "")
 
 3. Go to **Environment Attributes -> Region and Availability Domains -> Credentials**
 
@@ -55,7 +55,7 @@ In this lab, you will:
 
 6. Refresh the page and click on the arrow button -> Details.
 
-  ![](./images/e6.png "")
+  ![](./images/create1.png "")
 
 7. Monitor the deployment logs under Dashboard -> Environments -> Environment Name -> Action Menu -> Details -> Logs
 
@@ -67,7 +67,7 @@ In this lab, you will:
 
 8. Once environment creation is completed, you can click on arrow button -> Deploy to start provisioning.
 
-  ![](./images/e9.png "")
+  ![](./images/create2.png "")
 
 9. Monitor the deployment logs under Dashboard -> Environments -> Environment Name -> Action Menu -> Details -> Logs
 
@@ -75,9 +75,11 @@ In this lab, you will:
 
   You can also go to **Provision Task Status** to see detailed progress status for every step. Click on **Deployment Tasks**. If any step fails, you can change the attribute as per the error and start the process from where it failed.
 
-    ![](./images/pts.png "")
+    ![](./images/pts2.png "")
 
 10. After the environment up and running, you can perform a variety of actions on the environment by using the Related Actions button corresponding to each environment. 
+
+  Cloning is a popular feature for Cloud Manager. Trial accounts don't have enough resources to accomodate a cloned environment. Please switch to a paid account for that feature.
 
   ![](./images/e11.png "")
 
@@ -100,8 +102,6 @@ In this lab, you will:
 
     • **Backup and Restore**: Select this option to backup or restore an environment.
 
-  NOTE: You can also login to your application by adding it's IP addess and host name in hosts file.
-
   Login credential: 
 
       ```
@@ -114,9 +114,5 @@ You may proceed to the next lab.
 ## Acknowledgements
 * **Authors** - Rich Konopka, Peoplesoft Specialist, Megha Gajbhiye, Cloud Solutions Engineer
 * **Contributor** -  Sara Lipowsky, Cloud Engineer
-* **Last Updated By/Date** - Sara Lipowsky, Cloud Engineer, November 2020
+* **Last Updated By/Date** - Sara Lipowsky, Cloud Engineer, February 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/Migrate%20SaaS%20to%20OCI). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

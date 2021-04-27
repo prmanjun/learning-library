@@ -2,52 +2,64 @@
 
 ## **Introduction**
 
-This workshop aims to help you understanding JSON data and how you can use SQL and PL/SQL with JSON data stored in Oracle Database.  
+In this lab you will explore JSON data and the Orace Database.  You will execute SQL and PL/SQL against JSON data stored in Oracle Database.  
 
-Estimated time: This lab takes approximately 20 minutes.
+Estimated Lab Time: 20 minutes
 
 ### About JSON in the Oracle Database
 
-**JavaScript Object Notation (JSON)** is defined in standards ECMA-404 (JSON Data Interchange Format) and ECMA-262 (ECMAScript Language Specification, third edition). The JavaScript dialect of ECMAScript is a general programming language used widely in web browsers and web servers.  **Oracle Database** supports **JavaScript Object Notation (JSON)** data natively with relational database features, including transactions, indexing, declarative querying, and views.
+*JavaScript Object Notation (JSON)* is defined in standards ECMA-404 (JSON Data Interchange Format) and ECMA-262 (ECMAScript Language Specification, third edition). The JavaScript dialect of ECMAScript is a general programming language used widely in web browsers and web servers.  Oracle Database supports JavaScript Object Notation (JSON) data natively with relational database features, including transactions, indexing, declarative querying, and views.
 
 *Schemaless* development based on persisting application data in the form of JSON documents lets you quickly react to changing application requirements. You can change and redeploy your application without needing to change the storage schemas it uses. SQL and relational databases provide flexible support for complex data analysis and reporting, as well as rock-solid data protection and access control. This is typically not the case for NoSQL databases, which have often been associated with schemaless development with JSON in the past. Oracle Database provides all of the benefits of SQL and relational databases to JSON data, which you store and manipulate in the same ways and with the same confidence as any other type of database data.
 
+### Objectives
+* Register for Geonames
+* Connect to SQL Developer Web
+* Generate JSON Data
+* Store JSON Documents
+* Simple Dot Notation
+* Retrieve Sample Data
+
 ### Prerequisites
+* An Oracle Always Free/Free Tier, Paid or LiveLabs Cloud Account
+* Lab: Provision ADB
+<if type="21c">* Lab: Setup</if>
 
-This lab assumes you have completed the following labs:
-* Prerequisites
-* Lab: Provision and connect to Autonomous Database
+## **STEP 1**:  Register for Geonames
 
-### Lab User Scehma
+We will be using data provided by Geonames for this lab.
 
-For this lab we will use the **ADMIN** user schema that is provided when you provisioned an Autonomous Database.
-
-## **Step 1**:  Register for Geonames
-
-For the purpose of this exercise we will use a web service, that returns information in JSON format, provided by GeoNames - [geonames.org](http://www.geonames.org/). GeoNames is licensed under a [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/). You are free to:
-- Share — copy and redistribute the material in any medium or format.
-- Adapt — remix, transform, and build upon the material for any purpose, even commercially.
-
-1.  Click '**login**' link on the upper right corner of GeoNames website and **create a new account**.
-
-**Note:** When you create your GeoNames account you will receive an **email to activate the account** (check spam folder).
+1.  Open up a web browser and open the [Geonames](http://www.geonames.org/) link in your browser window
+2.  Click '**login**' link on the upper right corner of GeoNames website and click **create a new account**.  *Note: When you create your GeoNames account you will receive an **email to activate the account** (check spam folder).*
 
   ![](./images/geonameslogin.png " ")
 
 2.  **Enable** the account for **web services** on the account page [GeoNames Account Page](http://www.geonames.org/manageaccount).
-3.
+
     ![](./images/geoNames1.png " " )
 
     ![](./images/geoNames2.png " " )
 
-## **Step 2**: Connect to ADB with SQL Developer Web
+## **STEP 2**: Connect to ADB with SQL Developer Web
+ 
+1.  Login to Oracle Cloud if you are not already logged in
+2.  If you aren't still logged in, login to your ADB screen by clicking on the Hamburger Menu and selecting the Autonomous Database flavor you selected (ATP, ADW or AJD). Otherwise skip to the next step.
+      ![](https://github.com/oracle/learning-library/tree/master/data-management-library/database/21c/fundamentals/set-operators/images/21c-home-adb.png " ")
 
-1.  Open up your SQL Developer Web worksheet, which is connected to your Autonomous Database, from your database OCI Console as you did in [Lab 1](?lab=lab-1-provision-connect-autonomous#STEP3:ConnecttoyourADBwithSQLDeveloperWeb). Sign in, if necessary; here, we are using the **ADMIN** user.
+2.  If you can't find your ADB instance, ensure you are in the correct compartment, you have chosen the flavor of ADB you choose in the earlier lab and that you are in the correct region.
+3.  Click on the **Display Name** to go to your ADB main page.
+      ![](../set-operators/images/21c-adb.png " ")
+
+4.  Click on the **Tools** tab, select **Database Actions**, a new browser will open up.
+      ![](../set-operators/images/tools.png " ")
+
+5.  Click on the **SQL** button.
+ 3.  Sign in as the **ADMIN** user.
 
     ![](./images/ClearSDW.png " " )
 
 
-## **Step 3**: Generate JSON Data
+## **STEP 3**: Generate JSON Data
 
 Let us generate some JSON data into the database by retrieving sample documents from a web service. Oracle Database supports *JavaScript Object Notation (JSON)* data natively with relational database features, including transactions, indexing, declarative querying, and views.
 
@@ -105,7 +117,7 @@ This lab covers the use of database languages and features to work with JSON dat
     ![Geonames Sample Output](./images/TestAccess.png " ")
 
 
-## **Step 4**: Store JSON Documents In Oracle Database
+## **STEP 4**: Store JSON Documents In Oracle Database
 
 1.  Create a new table to store all JSON documents inside the pluggable database.
 
@@ -151,21 +163,19 @@ This lab covers the use of database languages and features to work with JSON dat
     ![](./images/TestJSONQuery.png " ")
 
 
- 4.  You can use the JSON_SERIALIZE function to pretty print the JSON output. This makes it easier to read.
-
-*Note:* Notice the difference in output between when you click **Run Statement** versus when you click **Run Script** on this highlighted query. Run Statement gives you a result in sortable, expandable table, whereas Run Script gives you the output in plain text, as in the screenshot below.
+ 4.  You can use the JSON_SERIALIZE function to pretty print the JSON output. This makes it easier to read.  *Note: Notice the difference in output between when you click **Run Statement** versus when you click **Run Script** on this highlighted query. Run Statement gives you a result in sortable, expandable table, whereas Run Script gives you the output in plain text, as in the screenshot below.*
 
      <copy>
      SELECT JSON_Serialize(j.doc pretty) FROM MYJSON j;
      </copy>
 
 
-![](./images/jsonserialize.png " ")
+    ![](./images/jsonserialize.png " ")
 
 
-## **Step 5**:  Simple Dot Notation
+## **STEP 5**:  Simple Dot Notation
 
-Oracle database SQL engine allows you to use a **simple-dot-notation (SDN)** syntax on your JSON data. With other words, you can write SQL queries that contain something like *TABLE\_Alias.JSON\_Column.JSON\_Property.JSON\_Property* which comes quite handy as the region attribute is an attribute of the nested object location within the JSON document. Remember, JSDN syntax is case sensitive.
+Oracle Database SQL engine allows you to use a **simple-dot-notation (SDN)** syntax on your JSON data. With other words, you can write SQL queries that contain something like *TABLE\_Alias.JSON\_Column.JSON\_Property.JSON\_Property* which comes quite handy as the region attribute is an attribute of the nested object location within the JSON document. Remember, JSDN syntax is case sensitive.
 
 The return value for a dot-notation query is always a string (data type VARCHAR2(4000)) representing JSON data. The content of the string depends on the targeted JSON data, as follows:
 - If a single JSON value is targeted, then that value is the string content, whether it is a JSON scalar, object, or array.
@@ -183,16 +193,14 @@ The return value for a dot-notation query is always a string (data type VARCHAR2
 
 2.  Go ahead and test other queries of your choosing and review the output.
 
-## **Step 6**: Retrieve Sample Data
+## **STEP 6**: Retrieve Sample Data
 
 The objective for our lab is to retrieve information about castles in Europe, and use them as JSON documents in different scenarios. Imagine you are starting the development of a new mobile application that provides recommendations for tourists.  For convenience and comfort, we can encapsulate the communication with a web service into a function. This way, we don’t have to write all the code required for a simple request, which in most of the cases is even more complicated than our simple example here, because they require a more complex authentication.
 
 
-1.  Run this script to create a function to get country information from the GeoNames web service
+1.  Run this script to create a function to get country information from the GeoNames web service  *Note: Remember to replace ***&YourGeoNameUsername*** with the username of your account on GeoNames, or fill in your username in the popup dialog.*
 
-Note: Remember to replace ***&YourGeoNameUsername*** with the username of your account on GeoNames, or fill in your username in the popup dialog.
-
-
+    ````
     <copy>
     create or replace function get_country_info (countryCode in VARCHAR2) return clob
       is
@@ -211,7 +219,7 @@ Note: Remember to replace ***&YourGeoNameUsername*** with the username of your a
       end;
     /
     </copy>
-
+    ````
 
    ![](./images/getcountryinfo.png " ")
 
@@ -270,11 +278,7 @@ Note: Remember to replace ***&YourGeoNameUsername*** with the username of your a
 
     ![](./images/p_jsonDoc_5.png " ")
 
-7.  In both cases, we can see that Spain geonameId is 2510769. This value will be used in the following steps.
-
-    A new function is required to retrieve JSON documents with country regions information from GeoNames web service. This function requires the  **geonameId** of the country, and a style value used internally by GeoNames web service to specify the level of details.
-
-    Note: Remember to replace ***&YourGeoNameUsername*** with the username of your account on GeoNames, or fill in your username in the popup dialog.
+7.  In both cases, we can see that Spain geonameId is 2510769. This value will be used in the following steps.  A new function is required to retrieve JSON documents with country regions information from GeoNames web service. This function requires the  **geonameId** of the country, and a style value used internally by GeoNames web service to specify the level of details. *Note: Remember to replace ***&YourGeoNameUsername*** with the username of your account on GeoNames, or fill in your username in the popup dialog.*
 
     ````
     <copy>
@@ -371,6 +375,10 @@ Watch this video to learn more about JSON in the Oracle Database.
 
 [](youtube:OXxA6SFqlJ4)
 
+GeoNames is licensed under a [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/). You are free to:
+- Share — copy and redistribute the material in any medium or format.
+- Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+
 
 ## **Acknowledgements**
 
@@ -378,7 +386,3 @@ Watch this video to learn more about JSON in the Oracle Database.
 - **Contributors** - Beda Hammerschmidt (Architect), Nilay Panchal, Anoosha Pilli & Troy Anthony (Product Management), Dylan McLeod (LiveLabs QA Intern)
 - **Last Updated By/Date** - Nilay Panchal, DB Product Management, August 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

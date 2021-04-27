@@ -31,13 +31,33 @@ In this lab, you will:
 
 Step 1 opening paragraph.
 
-1. Sub step 1
+1. Files that you want the reader to download:
 
-  To create a link to local file you want the reader to download, use this format:
+  When the file type is not recognized by the browser, you can use this format:
 
-  Download the [starter file](files/starter-file.sql) SQL code.
+  Download the [starter SQL code](files/starter-file.sql).
+
+  When the file type is recognized by the browser, it will attempt to render it. So you can use this format to force the download dialog box:
+
+  Download the [sample JSON code](files/sample.json?download=1).
 
   *Note: do not include zip files, CSV, PDF, PSD, JAR, WAR, EAR, bin or exe files - you must have those objects stored somewhere else. We highly recommend using Oracle Cloud Object Store and creating a PAR URL instead. See [Using Pre-Authenticated Requests](https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)*
+
+2. You can also include a file in a copy block, or offer it as a download in a single step. For example, download the [starter SQL code](files/starter-file.sql), or copy it from the block below:
+
+  ```
+  <copy>[](include:starter-file.sql)</copy>
+  ```
+
+  To support this feature, you need to specify the location of the files you are including in the manifest as key-value pairs:
+
+  ```
+  "workshoptitle": "The Title of the Workshop is defined in the manifest",
+  "include": {"starter-file.sql":"../../data-load/files/starter-file.sql",
+              "sample.json":"../../data-load/files/sample.json"},
+  "tutorials": [
+  ```
+
 
 2. Sub step 2 with image and link to the text description below. The `sample1.txt` file must be added to the `files` folder.
 
@@ -95,13 +115,8 @@ You may now [proceed to the next lab](#next).
 * [URL text 1](http://docs.oracle.com)
 * [URL text 2](http://docs.oracle.com)
 
-## Acknowledgements
-* **Author** - <Name, Title, Group>
-* **Contributors** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- optional, use this when you are using a Pre-Authorized Request (PAR) URL to an object in Oracle Object Store.
+This is an example of a segment of the Markdown file injected before rendering:
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
+[](include:acknowledgements.md)
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+

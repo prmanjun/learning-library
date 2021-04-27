@@ -45,7 +45,8 @@ For this lab, you need
     Set the PUBLIC IP of the Tomcat server
 
     ```bash
-    export TOMCAT_IP=<Tomcat Public IP>
+    export BASTION_IP=<Bastion_p[ublic_IP>
+    export TOMCAT_IP=<Tomcat Private IP>
     ```
 
     Then run
@@ -53,7 +54,7 @@ For this lab, you need
     ```bash
     <copy>
     cd /usr/local/tomcat/webapps/
-    scp SimpleDB.war opc@${TOMCAT_IP}:~/
+    scp -o ProxyCommand="ssh -W %h:%p opc@${BASTION_IP}" SimpleDB.war opc@${TOMCAT_IP}:~/
     </copy>
     ```
 
@@ -61,7 +62,7 @@ For this lab, you need
 
     ```bash
     <copy>
-    ssh opc@${TOMCAT_IP}
+    ssh -o ProxyCommand="ssh -W %h:%p opc@${BASTION_IP}" opc@${TOMCAT_IP}
     </copy>
     ```
 
@@ -198,16 +199,25 @@ For this lab, you need
     </copy>
     ```
 
-8. You can check that the application is correctly deployed and served by the individual server at:
+8. You can check that the application is correctly deployed and served by the individual server by tunneling through the bastion with:
 
-    http://`TOMCAT_IP`:8080/SimpleDB
+    ```bash
+    <copy>
+    export PORT=8080
+    ssh -M -S socket -fnNT -L ${PORT}:${TOMCAT_IP}:${PORT} opc@${BASTION_IP} cat -
+    </copy>
+    ```
 
-    Note: The first time the application runs, the query may take up to 30sec as the indices and cache are primed.
+    Then you can check the deployment at 
+
+    http://localhost:8080/SimpleDB
+
+    Note: The first time the application runs, the query may take up to 30sec.
     
 
 ## **STEP 3:** Repeat for each Tomcat server if you had more than 1
 
-1. Repeat steps 2 to 6 for each server on the Tomcat cluster.
+1. Repeat steps 1 and 2 for each server on the Tomcat cluster.
 
 ## **STEP 4:** Check the application served via the load balancer
 
@@ -224,8 +234,3 @@ You may proceed to the next lab.
 ## Acknowledgements
  - **Author** - Subash Singh, Emmanuel Leroy, October 2020
  - **Last Updated By/Date** - Emmanuel Leroy, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

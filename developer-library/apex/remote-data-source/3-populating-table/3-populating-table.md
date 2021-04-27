@@ -12,7 +12,7 @@ The **apex\_data\_parser** is a PL/SQL package which provides an easy interface 
 
 The **apex\_web\_service.make\_rest\_request\_b** is a PL/SQL function which invokes a RESTful style Web service and returns the results in a BLOB. Utilizing this function within apex\_data\_parser will allow you to load data from a REST API directly into your table.
 
-## **STEP 1** \- Create a Script
+## **STEP 1** - Create a Script
 
 Rather than running a one-off SQL statement to load the data, writing a SQL Script enables the SQL statement to be run repeatedly.
 
@@ -30,23 +30,22 @@ The Big Mac Data is refreshed every 6 months. Therefore, this script can be used
 
     ```
     <copy>-- Remove current data
-delete big_mac_index;
+    delete big_mac_index;
 
--- Load data from The Economist (csv) REST API
-insert into big_mac_index
-(country_name, country_iso, currency_code, local_price, dollar_exchange_rate, gdp_dollar, entry_date)
-select col001, col002, col003, col004, col005, col006, to_date(col007,'YYYY-MM-DD')
-from table(apex_data_parser.parse
-  (  p_content => apex_web_service.make_rest_request_b
+    -- Load data from The Economist (csv) REST API
+    insert into big_mac_index
+    (country_name, country_iso, currency_code, local_price, dollar_exchange_rate, gdp_dollar, entry_date)
+    select col001, col002, col003, col004, col005, col006, to_date(col007,'YYYY-MM-DD')
+    from table(apex_data_parser.parse
+    (  p_content => apex_web_service.make_rest_request_b
         ('https://raw.githubusercontent.com/TheEconomist/big-mac-data/master/source-data/big-mac-source-data.csv', 'GET')
-   , p_file_name => 'big-mac-source-data.csv'
-   , p_skip_rows => 1
-  )
-);
+      , p_file_name => 'big-mac-source-data.csv'
+      , p_skip_rows => 1
+    ));
 
--- Delete bad data (rows with no price)
-delete big_mac_index
-where local_price = 0;</copy>
+    -- Delete bad data (rows with no price)
+    delete big_mac_index
+    where local_price = 0;</copy>    
     ```
 
 5. Click **Run**.
@@ -57,7 +56,7 @@ In November 2020, Results should show **1658 row(s) inserted** and **1 row(s) de
 ![](images/script-results.png)
 *Note: If you do not see 3 statements processed successfully then double check your table definition and the script to populate the table.*
 
-## **STEP 2** \- Review the Data
+## **STEP 2** - Review the Data
 
 There are several ways to review the data.
 
@@ -83,8 +82,3 @@ This completes Lab 3. You now know how to utilize **apex\_data\_parser** and **a
 * **Contributors** \- Jaden McElvey\, Technical Lead \- Oracle LiveLabs Intern
 * **Last Updated By/Date** \- Tom McGinn\, Database Innovations Architect\, Product Management\, July 2020
 
-## Need Help?
-
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-apex-development-workshops). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*. Please include your workshop name and lab name. You can also include screenshots and attach files. Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

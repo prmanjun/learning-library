@@ -43,7 +43,7 @@ This lab assumes you have:
       <copy>cd $DBSEC_LABS/nne</copy>
       ````
 
-3. View your SQL*Net.ora file content
+3. View your **SQL*Net.ora** file content
 
       ````
       <copy>./nne_view_sqlnet_ora.sh</copy>
@@ -76,7 +76,7 @@ This lab assumes you have:
     - The output has been saved to tcpdump.pcap
     - There are a lot of tools available to analyze pcap files
 
-2. Next, we will capture traffic across the wire for the Glassfish application. Open a web browser window to `http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`
+2. Next, we will capture traffic across the wire for the Glassfish application. Open a web browser window to *`http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`*
 
 3. On your terminal session, begin the capture script
 
@@ -86,7 +86,7 @@ This lab assumes you have:
 
 4. On your Glassfish App, perform the following steps:
 
-    - Login to the HR Application as `hradmin` with the password `Oracle123`
+    - Login to the HR Application as *`hradmin`* with the password "*`Oracle123`*"
 
    ![](./images/nne-009.png " ")
 
@@ -104,7 +104,7 @@ This lab assumes you have:
 
    ![](./images/nne-004.png " ")
 
-6. When you have seen the un-encrypted data, use `[Ctrl]+C` to stop the `04_capture_empsearch_traffic.sh` script
+6. When you have seen the un-encrypted data, use "`[Ctrl]+C`" to stop the `nne_capt_empsearch_traffic.sh` script
 
 ## **STEP 3**: Enable the network encryption
 You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYPTION_SERVER`
@@ -127,7 +127,7 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
 
    ![](./images/nne-006.png " ")
 
-    **Note**: You should notice an additional line that says `AES256 Encryption service adapter for Linux`
+    **Note**: You should notice an additional line that says "**AES256 Encryption service adapter for Linux**"
 
 3. Now, re-run tcpdump on the traffic
 
@@ -147,21 +147,21 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
         <copy>./nne_capt_empsearch_traffic.sh</copy>
           ````
 
-   ![](./images/nne-008.png " ")
+       ![](./images/nne-008.png " ")
 
-    - In your browser, **logout** the Glassfish application and **login** again as `hradmin` to see what happens when we sniff this traffic
+    - In your browser, **logout** the Glassfish application and **login** again as *`hradmin`* to see what happens when we sniff this traffic
 
-   ![](./images/nne-009.png " ")
+       ![](./images/nne-009.png " ")
 
-   ![](./images/nne-010.png " ")
+       ![](./images/nne-010.png " ")
 
     - Click on **Search Employees**
 
-   ![](./images/nne-011.png " ")
+       ![](./images/nne-011.png " ")
 
     - Click [**Search**]
 
-   ![](./images/nne-012.png " ")
+       ![](./images/nne-012.png " ")
 
 5. Go back to your terminal session to see traffic content
 
@@ -171,7 +171,7 @@ You will enable SQL*Net encryption with the `REQUESTED` value for `SQLNET.ENCRYP
     - The data is encrypted between our Glassfish application (JDBC Thin Client) and the database
     - This works immediately (or after a refresh) because our Glassfish application creates a new connection for each query. A real application would probably need to be stopped and restarted to disconnect the existing application connections from the database!
 
-6. When you have seen the encrypted data, use `[Ctrl]+C` to stop the `08_capture_empsearch_traffic.sh` script
+6. When you have seen the encrypted data, use "`[Ctrl]+C`" to stop the `nne_capt_empsearch_traffic.sh` script
 
 ## **STEP 4**: (Optional) Disable the network encryption
 
@@ -208,7 +208,3 @@ Technical Documentation: [Oracle Native Network Encryption 19c](https://docs.ora
 - **Contributors** - Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

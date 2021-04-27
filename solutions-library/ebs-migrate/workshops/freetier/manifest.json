@@ -1,15 +1,16 @@
 {
-  "workshoptitle": "Migrate EBS to OCI",
+    "workshoptitle": "Migrate EBS to OCI",
+    "help": "livelabs-help-oci_us@oracle.com",
     "tutorials": [
-        {
-            "title": "Prerequisites",
-            "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable).",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-        },
         {
             "title": "Introduction",
             "description": "Introduction to Migrate EBS to OCI",
             "filename": "../../introduction/introduction.md"
+        },
+        {
+            "title": "Getting Started",
+            "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable).",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Lab 1: Create the Source Oracle E-Business Suite Environment",
@@ -35,6 +36,11 @@
             "title": "Lab 5: Deploy an EBS Environment on Cloud Manager from a Backup",
             "description": "Deploy an EBS Environment on Cloud Manager from a Backup",
             "filename": "../../deploy/deploy.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
      ]
 }

@@ -100,13 +100,13 @@ This lab assumes you have already completed the following:
 
        ![](images/image-20201030173528498.png)
 
-    - Turn on the **Display all available versions**, select the Database version: 19.7.0.0, same version as the on premise database
+    - Turn on the **Display all available versions**, select the Database version: 19.10.0.0, same version as the on premise database
 
-       ![](images/image-20201030173619754.png)
+       ![image-20210423232538531](images/image-20210423232538531.png)
 
     - PDB name: orclpdb
 
-    ![](images/image-20201030173822578.png)
+    ![image-20210423232721371](images/image-20210423232721371.png)
 
     - Enter a strong password
     - Workload type: OLTP
@@ -130,9 +130,5 @@ You may proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Minqiao Wang, DB Product Management
-* **Last Updated By/Date** - Minqiao Wang, October 2020
+* **Last Updated By/Date** - Minqiao Wang, Apr. 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

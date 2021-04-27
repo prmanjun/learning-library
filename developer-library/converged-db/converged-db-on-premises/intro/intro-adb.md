@@ -14,27 +14,25 @@ These multi-model capabilities give developers simple API-driven access, model-s
 ### Objectives
 Oracle’s converged database supports JSON, XML, relational, spatial, graph, IoT, text and blockchain data with full joins, transactions, and other critical SQL features enterprises rely on.  In this workshop, you will gain first-hand experience of using data types beyond relational data - JSON, XML, Spatial and Graph all running on Oracle's Autonomous Database.
 
-The workshop uses a hybrid cloud architecture, a web application running in docker on Oracle Compute connected to an ATP instance.  You will setup an ATP instance using terraform, import the data and connect your application server querying multiple datatypes in the same database.
+The workshop uses a hybrid cloud architecture, a web application running in docker on Oracle Compute connected to an ATP instance.  You will setup an ATP instance using terraform, load the data from dmp files, connect your application server and query multiple datatypes in the same database.
 
-- Lab: NODE.JS
 - Lab: JSON
-- Lab: XML
 - Lab: Spatial
-- Lab: Graph
-- Lab: Cross Data Types
+- Lab: SODA
+- Lab: XML
 
 You will also use Oracle SQL Developer Web to help execute the programs associated with the lab. 
 
 ### Prerequisites
 
-- An Oracle Cloud Always Free, Free Trial, LiveLabs or Paid account
+- A Free Trial, LiveLabs or Paid account
 
-Estimated Workshop Time:  2.5 hours
+Estimated Workshop Time:  2 hours
 
 *Please proceed to the first lab.*
 
 ## More Information
-Feel free to share with your colleagues.
+Feel free to share this LiveLabs workshop with your colleagues on social media
 
 1. Blogs
       - [What is a converged database?](https://blogs.oracle.com/database/what-is-a-converged-database)
@@ -44,10 +42,6 @@ Feel free to share with your colleagues.
 ## Acknowledgements
 - **Authors** - Abhinav Srivastava, Yaisah Granillo, Kay Malcolm, Matthew O'Keefe
 - **Workshop Owners** - Balasubramanian Ramamoorthy, Arvind Bhope
-- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K., Robbie Ruppel, David Start, Paul Sonderegger
-- **Last Updated By** - Kay Malcolm, October 2020
+- **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K., Robbie Ruppel, David Start, Paul Sonderegger, Kamryn Vinson
+- **Last Updated By** - Kay Malcolm, January 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/converged-database). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

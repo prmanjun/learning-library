@@ -2,7 +2,7 @@
 
 
 ## Introduction
-This lab shows you how to view and analyze alerts, and audit data on your Autonomous Database with Oracle Data Safe.
+This lab shows you how to analyze alerts and audit data on your Autonomous Database with Oracle Data Safe.
 
 Estimated Lab Time: 20 minutes
 
@@ -14,7 +14,7 @@ In this lab, you'll:
 - View and close alerts
 - Analyze open alerts from the dashboard
 - View all audit records for the past week
-- View a summary of audit events collected and alerts raised
+- View a summary of collected audit events and raised alerts
 - Create a logins report
 
 
@@ -26,18 +26,20 @@ To complete this lab, you need to have the following:
 - Access to an Autonomous Database, sample data for Oracle Data Safe loaded into the database, and the Activity Auditing feature enabled on the database
 - Access to an Oracle Data Safe service
 - Privileges to use the Activity Auditing feature on your database
-- Audit collection started on your target database in Oracle Data Safe.
+- Audit collection started on your target database in Oracle Data Safe
 
 
 ### Assumptions
 
 This lab assumes the following:
 
-- You have a browser tab signed in to the Oracle Cloud Infrastructure Console. If not, please refer to the [Prerequisites](?lab=prerequisites) for this workshop.
+- You are signed in to the Oracle Cloud Infrastructure Console. If not, please refer to the [Getting Started](?lab=getting-started) page.
 
 - You completed the following labs in this workshop:
 
-    - [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous)
+    <if type="paid">- [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous)</if>
+    <if type="freetier">- [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous)</if>
+    <if type="livelabs">- [Register an Autonomous Database](?lab=lab-1-register-autonomous-database)</if>
     - [Provision Audit and Alert Policies](?lab=lab-2-provision-audit-alert-policies)
 
 - Your data values will be different than those shown in the screenshots in this lab.
@@ -56,7 +58,6 @@ This lab assumes the following:
 
     c) Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
 
-5. Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
 
 ## **STEP 2**: View and close alerts
 
@@ -126,12 +127,16 @@ This lab assumes the following:
 
     a) Select the check box in the top left corner of the table to select all of the alerts displayed.
 
-    b) From the **Mark As** menu, select **Closed**. The alerts selected on this page are closed.
+    b) From the **Mark As** menu, select **Closed**. The alerts selected on this page are closed and the next page is displayed.
 
     ![Mark As > Closed](images/closed-alerts.png)
 
+    c) Because there is another page of alerts that meet the filter criteria, repeat the previous step: Select all of the alerts on the page. Then, from the **Mark As** menu, select **Closed**. Now all of the alerts with entitlement changes are marked as closed.
 
-13. To hide closed alerts, move the **Open Alerts only** slider to the right.
+    d) Remove the filter **Alert = User Entitlement Changes**. Both open and closed alerts are displayed.
+
+
+13. To hide closed alerts on the pages, move the **Open Alerts only** slider to the right.
 
   ![Open Alerts only slider](images/show-open-alerts-only.png)  
 
@@ -256,20 +261,14 @@ This lab assumes the following:
 
 
 
-You may now proceed to the next lab.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
-* [Activity Auditing Reports](https://docs.cloud.oracle.com/en-us/iaas/data-safe/doc/activity-auditing-reports.html)
-* [Manage Alerts](https://docs.cloud.oracle.com/en-us/iaas/data-safe/doc/manage-alerts.html)
+* [Activity Auditing Reports](https://docs.oracle.com/en-us/iaas/data-safe/doc/activity-auditing-reports.html)
+* [Manage Alerts](https://docs.oracle.com/en-us/iaas/data-safe/doc/manage-alerts.html)
 
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, November 3, 2020
-
-
-## Need Help?
-Please submit feedback or ask for help using our [Data Safe Community Support Forum]( https://community.oracle.com/tech/developers/categories/data-safe). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date** - Jody Glover, March 29, 2021

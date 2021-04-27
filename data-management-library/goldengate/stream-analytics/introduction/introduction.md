@@ -38,25 +38,27 @@ In this workshop you will:
 
 ### Required Credentials for GoldenGate Stream Analytics
 
-    ```
-    MySQL root password: <copy>OSADemo1111!</copy>
-    ```
+  ```
+  MySQL root password: <copy>OSADemo1111!</copy>
+  ```
 
-    ```
-    OSA_DEMO database password: <copy>Welcome123!</copy>
-    ```
+  ```
+  OSA_DEMO database password: <copy>Welcome123!</copy>
+  ```
 
-    ```
-    osaadmin password: <copy>welcome1</copy>
-    ```
+  ```
+  osaadmin password: <copy>welcome1</copy>
+  ```
 
-    ```
-    Spark Username: <copy>sparkadmin</copy>
-    ```
+  ```
+  Spark Username: <copy>sparkadmin</copy>
+  ```
 
-    ```
-    Spark Password: <copy>Sparkadmin#123</copy>
-    ```
+  ```
+  Spark Password: <copy>Sparkadmin#123</copy>
+  ```
+
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
@@ -68,7 +70,4 @@ In this workshop you will:
 * **Contributors** - Shrinidhi Kulkarni, Meghana Banka, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

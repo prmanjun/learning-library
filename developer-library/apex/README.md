@@ -21,10 +21,3 @@ Each workshop is completely independent and does not rely on any other lab, ther
 | 6 | [Advanced Low Code Development](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?p180_id=554) | 90 min |
 | 7 | [Introduction to JavaScript for APEX Developers](https://apexapps.oracle.com/pls/apex/dbpm/r/livelabs/view-workshop?p180_id=602) | 60 min |
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
-
-### Archived Tutorials
-If you are looking for workshops designed for earlier versions, [please use this link](https://apex.oracle.com/en/learn/tutorials/archived/).

@@ -1,5 +1,3 @@
-metadata:
-  platformVersion: '1.1'
 main: true
 name: mytasks
 
@@ -13,6 +11,7 @@ states:
     properties:
       variable: iResult
     transitions:
+      next: 'greeting'
       actions:
         Greeting: greeting
         ListTasks: listTasks
@@ -30,6 +29,7 @@ states:
   listTasks:
     component: com.example.tasks
     transitions:
+      next: 'greeting'
       actions:
         success: successState
         failure: failureState

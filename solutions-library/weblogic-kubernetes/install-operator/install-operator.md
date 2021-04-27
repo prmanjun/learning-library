@@ -77,7 +77,7 @@ Execute the following `helm install`:
 <copy>helm install sample-weblogic-operator \
   kubernetes/charts/weblogic-operator \
   --namespace sample-weblogic-operator-ns \
-  --set image=oracle/weblogic-kubernetes-operator:3.0.0 \
+  --set image=ghcr.io/oracle/weblogic-kubernetes-operator:3.0.0 \
   --set serviceAccount=sample-weblogic-operator-sa \
   --set "domainNamespaces={}"</copy>
 ```
@@ -114,8 +114,3 @@ The WebLogic Server Kubernetes Operator has been installed. You may now **procee
 ## Acknowledgements
 * **Author** - Maciej Gruszka, Peter Nagy, September 2020
 * **Last Updated By/Date**
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

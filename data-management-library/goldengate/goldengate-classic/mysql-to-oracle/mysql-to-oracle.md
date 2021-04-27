@@ -40,13 +40,13 @@ Approximately 60 minutes
 
 2. **Oracle data capture**
 
-3. To configure the Oracle Integrated Extract:
+To configure the Oracle Integrated Extract:
 Execute the GGSCI command:
 
 ````
 <copy>edit param etpc</copy>
 ````
-4. Enter the following settings:
+3. Enter the following settings:
 
 ````
 	       <copy>extract etpc
@@ -59,23 +59,23 @@ Execute the GGSCI command:
 
 ````
 
-5. Add the parameter that will cause Integrated Extract to capture DDL operations that are of mapped scope.
+4. Add the parameter that will cause Integrated Extract to capture DDL operations that are of mapped scope.
 Add the parameter that will cause Integrated Extract to encrypt its OGG Trail files.
 
-6. Save and close the file.
+5. Save and close the file.
 
 **Data transmission to MySQL**
 
 This is not technically required because the OGG and MySQL installations are on the same machine. However, if data is being transmitted over a LAN/WAN an Extract Data Pump is required.
 To configure the Oracle to MySQL Extract Data Pump:
 
-7. Execute the GGSCI command:
+6. Execute the GGSCI command:
 
 ````
 <copy>edit param pmysql</copy>
 ````
 
-8. Enter the following settings:
+7. Enter the following settings:
 
 ````
 <copy>extract pmysql
@@ -85,21 +85,21 @@ reportcount every 120 seconds, rate
 table pdbeast.tpc.*;</copy>
 ````
 
-9. Add the RMTHOST option that will cause the Extract Data Pump to encrypt data transmissions with the aes256 algorithm.
+8. Add the RMTHOST option that will cause the Extract Data Pump to encrypt data transmissions with the aes256 algorithm.
 
-10. Save and close the file.
+9. Save and close the file.
 
 **Oracle data apply**
 
 To configure the Parallel Replicat:
 
-11. Execute the GGSCI command
+10. Execute the GGSCI command
 
 ````
 <copy>edit param rtpc</copy>
 ````
 
-12. Enter the following settings:
+11. Enter the following settings:
 
 ````
 <copy>replicat rtpc
@@ -114,7 +114,7 @@ map pdbeast.tpc.*, target pdbwest.tpc.*;</copy>
 
 Add the parameters to auto-tune the number of Appliers; with a minimum of 3 and a maximum of 12
 
-13. Save and close the file.
+12. Save and close the file.
 
 ## **STEP 2:** - GoldenGate MySQL Data Apply
 
@@ -173,10 +173,6 @@ map pdbeast.tpc.products_to_categories, target "tpc"."products_to_categories", t
 <copy>dblogin useridalias oggcapture
 add schematrandata pdbeast.tpc</copy>
 ````
-
-8. Create the OGG replication Groups
-
-**Create the OGG Groups by executing the following commands**
 
 
 ## **STEP 3:** - GoldenGate for Oracle Integrated Extract and Apply
@@ -417,7 +413,4 @@ You may now *proceed to the next lab*.
 * **Contributors** - Madhu Kumar, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

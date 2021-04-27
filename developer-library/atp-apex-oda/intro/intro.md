@@ -27,7 +27,7 @@ Estimated Workshop Time: 90 minutes
     As a **Windows user** you need to type on the **Windows Search** Icon:
 
     ```
-    cmd
+    <copy>cmd</copy>
     ```
 
     and select **Command Prompt**.
@@ -71,16 +71,16 @@ We are going to **install** Node.js, if you have done this you can skip this ste
 
     Check if the installation went **well**. Open a Command Prompt, or Terminal in Linux and MacOS and run the following commands:
 
-    ```bash
-    node -v
+    ```
+    <copy>node -v</copy>
     ```
 
-    ```bash
-    npm -v
+    ```
+    <copy>npm -v</copy>
     ```
 
-    ```bash
-    npx @oracle/bots-node-sdk -v
+    ```
+    <copy>npx @oracle/bots-node-sdk -v</copy>
     ```
 
     Like this:
@@ -95,7 +95,3 @@ At this point, you are ready to start learning!
 - **Contributors** - Melanie Ashworth-March
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

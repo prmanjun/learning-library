@@ -1,12 +1,12 @@
 # Column Conversions using GoldenGate
 
 ### Introduction
-In this lab we will load data in and configure active-active for High Availability
+In this lab we will load data in and configure Column Conversions using GoldenGate 
 
 *Estimated Lab Time*:  60 minutes
 
 ### Objectives
-Active - Active Replication using GoldenGate
+Column Conversions using GoldenGate technology 
 
 ### Prerequisites
 This lab assumes you have:
@@ -31,9 +31,10 @@ This lab assumes you have:
 <copy>sudo su - oracle</copy>
 ````
 
-2. Oracle data capture
+2. Oracle data capture using GoldeGate
 
-To configure the Oracle Integrated Extract:
+To configure the Oracle **Integrated Extract** to define what is being extracted and how:
+
 Execute the GGSCI command:
 
 ````
@@ -51,14 +52,16 @@ warnlongtrans 60m, checkinterval 15m
 table pdbeast.tpc.*;</copy>
 ````
 
-4. Add the parameter that will cause Integrated Extract to capture DDL operations that are of mapped scope.
-Add the parameter that will cause Integrated Extract to encrypt its OGG Trail files.
+4. Add the parameter that will cause **Integrated Extract to capture DDL operations** that are of mapped scope.
 
-5. Save and close the file.
+Also, add the parameter that will cause Integrated Extract to encrypt its OGG Trail files.
 
-6. Data transmission to MySQL
+1. Save and close the file.
+
+2. Data transmission to MySQL
 This is not technically required because the OGG and MySQL installations are on the same machine. However, if data is being transmitted over a LAN/WAN an Extract Data Pump is required.
-To configure the Oracle to MySQL Extract Data Pump:
+
+To configure the Oracle to **MySQL Extract Data Pump**:
 
 7. Execute the GGSCI command:
 
@@ -82,7 +85,8 @@ table pdbeast.tpc.*;</copy>
 
 ## **STEP 2:**  GoldenGate - Oracle Data Apply
 
-1. To configure the Parallel Replicat:
+1. GoldenGate will be configured on the target to apply changes using the **Parallel Replicat**:
+   
 Execute the GGSCI command:
 
 ````
@@ -93,7 +97,7 @@ Execute the GGSCI command:
 <copy>edit param rtpc</copy>
 ````
 
-2. Enter the following settings:
+1. Enter the following settings:
 
 ````
 <copy>replicat rtpc
@@ -112,9 +116,9 @@ map pdbeast.tpc.*, target pdbwest.tpc.*;</copy>
 
 ## **STEP 3:** GoldenGate - MySQL Data Apply
 
-1. MySQL data apply
+1. MySQL data apply using GoldenGate 
 
-To configure the Coordinated Replicat in the MySQL OGG environment:
+To configure the **Coordinated Replicat** in the MySQL OGG environment:
 
 ````
 <copy>./ggsci</copy>
@@ -185,14 +189,14 @@ register extract etpc, database, container (*)
 add exttrail ./dirdat/et, extract etpc, megabytes 250</copy>
 ````
 
-9. **Oracle Extract Data Pump**
+9. Oracle Extract Data Pump - is used to pump the changes from the source to the target using GoldenGate
 
 ````
 <copy>add extract pmysql, exttrailsource ./dirdat/et
 add rmttrail ./dirdat/rt, extract pmysql, megabytes 250</copy>
 ````
 
-10. **Oracle Parallel Apply**
+10. Oracle Parallel Apply - is used to apply the changes from the source to the target using GoldenGate
 
 ````
 <copy>dblogin useridalias ggapplywest
@@ -379,7 +383,4 @@ You may now *proceed to the next lab*.
 * **Contributors** - Madhu Kumar, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -1,6 +1,8 @@
 # Introduction                                   
 
-The labs in this workshop walk you through all the steps to get started using the **Oracle Autonomous Database** and perform simple operations on tables. You will provision a new autonomous database instance in the Oracle Cloud, connect to the database using SQL Developer Web, perform queries, and create a schema in which you will create a user, assign privileges, and create tables.
+The labs in this workshop walk you through all the steps to get started using the **Oracle Database** and perform simple operations on tables. While this workshop applies equally to either on-premises databases or cloud-based databases in an Autonomous Database cloud service, the labs will show how to get started using an Autonomous Database.
+
+You will provision a new Autonomous Database instance in the Oracle Cloud, connect to the database using a SQL Worksheet, perform queries, and create a schema in which you will create a user, assign privileges, and create tables.
 
 With Oracle Autonomous Database we make it quick and easy for you to create a secure, fully managed database service in the Oracle Cloud and start analyzing data immediately.
 
@@ -14,9 +16,13 @@ Click [here](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt
 ### **What is an Autonomous Database?**
 An autonomous database is a cloud database that uses machine learning to automate database tuning, security, backups, updates, and other routine management tasks traditionally performed by DBAs. Unlike a conventional database, an autonomous database performs all these tasks and more without human intervention. You don’t need to spend time thinking about how you should store your data, when or how to back it up or how to tune your queries. We take care of everything for you.
 
-Watch our short video that explains key features in Oracle's Autonomous Database:
+Watch our 11-minute video that explains key features in Oracle's Autonomous Database:
 
 [](youtube:c-DUIePFKco)
+
+Watch a more in-depth 43-minute video that looks "under the hood" at the technology driving Oracle's Autonomous Database:
+
+[](youtube:2ZPTNtoXVQ8)
 
 Oracle’s Autonomous Database is the perfect quick-start service for fast data loading and sophisticated data reporting and analysis. Oracle manages everything for you so you can focus on your data.
 
@@ -33,7 +39,7 @@ This workshop requires an Oracle Cloud account. You may use your own cloud accou
 
 ## Lab Breakdown
 - **Lab 1:** Provision your first Autonomous Database.
-- **Lab 2:** Connect to the database with SQL Developer Web.
+- **Lab 2:** Connect to the database using a SQL Worksheet.
 - **Lab 3:** Familiarize with the structures and data in the Sales History (SH) sample schema that comes with the database.
 - **Lab 4:** Query the SH sample schema.
 - **Lab 5:** Create a user (schema), assign privileges to the user, create tables, add and maintain records, and maintain the schema.
@@ -61,9 +67,4 @@ Use these links to get more information about Oracle Autonomous Database:
 - **Author** - Rick Green, Principal Developer, Database User Assistance
 - **Contributor** - Supriya Ananth
 - **Adapted for Cloud by** - Rick Green
-- **Last Updated By/Date** - Rick Green, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Rick Green, April 2021

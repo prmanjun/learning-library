@@ -1,5 +1,5 @@
 
-<!-- Updated March 24, 2020 -->
+<!-- Updated April 12, 2021 -->
 
 # Provision an Autonomous Database
 
@@ -18,17 +18,11 @@ Estimated Lab Time: 10 minutes
 
 ### Prerequisites
 
--   This lab requires completion of the **Prerequisites** lab in the Contents menu on the left.  
-
-### Video Preview
-
-Watch a video demonstration of provisioning a new autonomous data warehouse:
-
-[](youtube:Q6hxMaAPghI)
+-   This lab requires completion of the **Getting Started** section in the Contents menu on the left.  
 
 ## **STEP 1:** Choosing ADW or ATP from the Services Menu
 
-1. Login to the Oracle Cloud, as shown in the previous lab.
+1. Log in to the Oracle Cloud, as shown in the previous lab.
 2. Once you are logged in, you are taken to the cloud services dashboard where you can see all the services available to you. Click the navigation menu in the upper left to show top level navigation choices.
 
     __Note:__ You can also directly access your Autonomous Data Warehouse or Autonomous Transaction Processing service in the __Quick Actions__ section of the dashboard.
@@ -37,7 +31,7 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 
 3. The following steps apply similarly to either Autonomous Data Warehouse or Autonomous Transaction Processing. This lab shows provisioning of an Autonomous Data Warehouse database, so click **Autonomous Data Warehouse**.
 
-    ![](./images/LabGuide1-39fb4a5b.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 4. Make sure your workload type is __Data Warehouse__ or __All__ to see your Autonomous Data Warehouse instances. You can use the __List Scope__ drop-down menu to select a compartment. Select your __root compartment__, or __another compartment of your choice__ where you will create your new ADW instance. If you want to create a new compartment, click <a href="https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#three" target="\_blank">here</a>. To learn more about compartments, click <a href="https://docs.cloud.oracle.com/en-us/iaas/Content/GSG/Concepts/settinguptenancy.htm#Setting_Up_Your_Tenancy" target="\_blank">here</a>.
 
@@ -46,6 +40,10 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 5. This console shows that no databases yet exist. If there were a long list of databases, you could filter the list by the state of the databases (available, stopped, terminated, and so on). You can also sort by __Workload Type__. Here, the __Data Warehouse__ workload type is selected.
 
     ![](./images/Compartment.png " ")
+
+6. If you are using a Free Trial or Always Free account, and you want to use Always Free Resources, you need to be in a region where Always Free Resources are available. You can see your current default **region** in the top, right hand corner of the page.
+
+    ![](./images/Region.png " ")
 
 ## **STEP 2:** Creating the Autonomous Database Instance
 
@@ -80,10 +78,12 @@ Watch a video demonstration of provisioning a new autonomous data warehouse:
 
     - __Always Free__ - For this lab, you can select this option to create an always free autonomous database, or not select this option and create a database using your paid subscription. An always free database comes with 1 CPU and 20 GB of storage.
     - __Choose database version__ - Select a database version from the available versions.
-    - __OCPU count__ - Number of CPUs for your service. For this lab, specify __2 CPUs__. Or, if you choose an always free database, it comes with 1 CPU.
+    - __OCPU count__ - Number of CPUs for your service. For this lab, specify __1 CPU__. If you choose an always free database, it comes with 1 CPU.
     - __Storage (TB)__ - Select your storage capacity in terabytes. For this lab, specify __1 TB__ of storage. Or, if you choose an always free database, it comes with 20 GB of storage.
     - __Auto Scaling__ - For this lab, keep auto scaling enabled, to allow the system to automatically use up to three times more CPU and IO resources to meet workload demand.
     - __New Database Preview__ - If a checkbox is available to preview a new database version, do __not__ select it.
+
+    *Note: You cannot scale up/down an Always Free autonomous database.*
 
     ![](./images/Picture100-26c.png " ")
 
@@ -127,9 +127,4 @@ Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-clo
 ## Acknowledgements
 
 - **Author** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, April 2021

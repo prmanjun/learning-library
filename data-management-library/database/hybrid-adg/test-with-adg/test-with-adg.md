@@ -26,14 +26,14 @@ This lab assumes you have already completed the following labs:
     [oracle@primary ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 06:52:50 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 
     Connected to:
     Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> show pdbs
 
@@ -70,14 +70,14 @@ This lab assumes you have already completed the following labs:
     [oracle@primary ~]$ sqlplus testuser/testuser@primary:1521/orclpdb
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 06:59:56 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 
     Connected to:
     Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> create table test(a number,b varchar2(20));
 
@@ -99,14 +99,14 @@ This lab assumes you have already completed the following labs:
     [oracle@dbstby ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 07:04:39 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> select open_mode,database_role from v$database;
 
@@ -137,7 +137,7 @@ This lab assumes you have already completed the following labs:
 
     SQL> exit
     Disconnected from Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     [oracle@dbstby ~]$ 
     ```
     If the `OPEN_MODE` is **READ ONLY**, you can run the following command in sqlplus as sysdba, then check the `open_mode` again, you can see the `OPEN_MODE` is **READ ONLY WITH APPLY** now.
@@ -163,7 +163,7 @@ This lab assumes you have already completed the following labs:
     [oracle@dbstby ~]$ sqlplus testuser/testuser@dbstby:1521/orclpdb
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 07:09:27 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
@@ -171,7 +171,7 @@ This lab assumes you have already completed the following labs:
 
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> select * from test;
 
@@ -292,7 +292,7 @@ There are several ways to check the lag between the primary and standby.
     [oracle@dbstby ~]$ sqlplus testuser/testuser@dbstby:1521/orclpdb
     
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Sep 5 09:41:29 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     
     Copyright (c) 1982, 2020, Oracle.  All rights reserved.
     
@@ -300,7 +300,7 @@ There are several ways to check the lag between the primary and standby.
     
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     
     SQL> select count(*) from sale_orders;
     
@@ -354,7 +354,7 @@ There are several ways to check the lag between the primary and standby.
     ```
     [oracle@dbstby ~]$ dgmgrl sys/Ora_DB4U@orcl
     DGMGRL for Linux: Release 19.0.0.0.0 - Production on Sat Sep 5 07:25:52 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     
     Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
     
@@ -398,7 +398,7 @@ Automatic redirection of DML operations to the primary can be configured at the 
     [oracle@dbstby ~]$ sqlplus testuser/testuser@dbstby:1521/orclpdb
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Sep 5 10:04:04 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2020, Oracle.  All rights reserved.
 
@@ -406,7 +406,7 @@ Automatic redirection of DML operations to the primary can be configured at the 
 
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> set timing on
     SQL> insert into test values(2,'line2');
@@ -450,7 +450,7 @@ Automatic redirection of DML operations to the primary can be configured at the 
     ```
     [oracle@primary ~]$ dgmgrl sys/Ora_DB4U@orcl
     DGMGRL for Linux: Release 19.0.0.0.0 - Production on Sun Sep 6 05:09:28 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     
     Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
     
@@ -529,7 +529,7 @@ Automatic redirection of DML operations to the primary can be configured at the 
     Elapsed: 00:00:00.03
     SQL> exit
     Disconnected from Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     [oracle@dbstby ~]$ 
     ```
 
@@ -574,7 +574,7 @@ Switchovers are always a planned event that guarantees no data is lost. To execu
     ```
     [oracle@primary ~]$ dgmgrl sys/Ora_DB4U@orcl
     DGMGRL for Linux: Release 19.0.0.0.0 - Production on Sat Feb 1 07:21:55 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
 
@@ -644,14 +644,14 @@ Switchovers are always a planned event that guarantees no data is lost. To execu
     [oracle@primary ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 10:16:54 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 
     Connected to:
     Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> show pdbs
 
@@ -674,14 +674,14 @@ Switchovers are always a planned event that guarantees no data is lost. To execu
     [oracle@dbstby ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Sat Feb 1 10:20:06 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
 
 
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     SQL> show pdbs
 
@@ -706,7 +706,3 @@ You may proceed to the next lab.
 * **Workshop Expiry Date** - Nov 30, 2021
 
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

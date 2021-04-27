@@ -1,4 +1,4 @@
-# Introduction 
+# Introduction
 
 ## Oracle Multitenant
 From the point of view of an application, the pluggable database (PDB) is the database, in which applications run unchanged. PDBs can be very rapidly provisioned and a pluggable database is a portable database, which makes it very easy to move around, perhaps for load balancing or migration to the Cloud.
@@ -7,9 +7,11 @@ Many PDBs can be plugged into a single Multitenant Container Database (CDB). Fro
 
 Enormous gains in technical efficiency are enabled by a shared technical infrastructure. There’s a single set of background processes and a single, global memory area – the SGA – shared by all the PDBs. The result is that with this architecture we can consolidate more applications per server.
 
+*Estimated Workshop Time*: 4 hours
+
 Watch the video below for an overview of Oracle Multitenant.
 
-[](youtube:I7cygRKBbI8)
+[](youtube:4mUwjBfztfU)
 
 ### Containers and Pluggable Databases
 
@@ -26,23 +28,20 @@ Every CDB has the following containers:
 
 The following figure shows a CDB with four containers: the root, seed, and two PDBs. Each PDB has its own dedicated application. A different PDB administrator manages each PDB. A common user exists across a CDB with a single identity. In this example, common user SYS can manage the root and every PDB. At the physical level, this CDB has a database instance and database files, just as a non-CDB does.
 
-![](./images/arch.png " ") 
+![](./images/arch.png " ")
 
-## More Information on Multitenant
+You may now [proceed to the next lab](#next).
 
-Seven Sources of Savings for Companies with Multitenant
+## Learn More
+
+- Seven Sources of Savings for Companies with Multitenant
 <a href="https://www.youtube.com/watch?v=beB8_jS7Vh0&list=PLdtXkK5KBY55xRePeQfgTOK6rYScVsMcN">![](./images/sevensources.png " ") </a>
 
-Oracle Database Product Management Videos on Multitenant
+- Oracle Database Product Management Videos on Multitenant
 <a href="https://www.youtube.com/channel/UCr6mzwq_gcdsefQWBI72wIQ/search?query=multitenant">![](./images/youtube.png " ") </a>
 
 ## Acknowledgements
 
 - **Authors/Contributors** - Patrick Wheeler, David Start, Vijay Balebail, Kay Malcolm
-- **Last Updated By/Date** - Kay Malcolm, March 2020
-- **Workshop Expiration Date** - March 31, 2021
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 
+- **Contributors** -  Anoosha Pilli, Brian McGraw, Quintin Hill, Rene Fontcha
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, April 2021

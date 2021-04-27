@@ -63,26 +63,28 @@ Fortunately, Oracle Cloud Infrastructure provides a wizard that simplifies the c
     * **Select a shape**: *VM Standard2.4* (If you are in a Free Trial account, choose the smaller *VM Standard 2.2* shape, keep in mind that this will increase provisioning time, VMStandard2.2 is the recommended minimum)
     * **Configure the DB system - Node count**: *1* 
     * **Configure the DB system - Software edition**: *Enterprise Edition High Performance*
-    * **Storage Management Software**: *Logical Volume Manager* *Note:  This is **very** important to choose Logical Volume Manager*
+    * **Storage Management Software**: *Logical Volume Manager* **Note:  This is **very** important to choose Logical Volume Manager**
     * **Available Storage**: *256*
     * **Add public SSH keys**: Paste your public key from Lab 1.  If you are in Cloud Shell use the Paste option and ensure you paste a single line (paste in notepad to check it is one line).  If you are using a terminal browse to the location of your SSH keys and select the public key file (with a .pub extension). *Note:  Ensure you paste a one line file if using Cloud Shell*
     * **Specify the Network information - Virtual Cloud Network**: Select the VCN you created using the drop down list
     * **Specify the Network information - Client subnet**:  *Public subnet* using the drop down list.
-    * **Hostname prefix**:  Enter a short hostname prefix *Note: Hostname should start with a letter*
+    * **Hostname prefix**:  Enter a short hostname prefix of 2-3 characters.  *Note: Hostname should start with a letter*
 
     ![](images/create-VM-DB-form1.png " ")
 
 4. On the Database Information form, enter the following information and click **Create DB System**.
 
-    * **Database name**: Choose default database name to "cdb1".
+    * **Database name**: Change default database name to "cdb1".
     * **Database image**: Click the **Change Database Image** button and select *21c*
     * **PDB name** field, enter "pdb1".
     * **Create administrator credentials**: Use the password `WElcome123##` for your sys user in the **Password** field and then repeat the password in the **Confirm password** field.  This password will be used for all exercises in the 21c workshop series.  Please enter it carefully.
+    * Accept all other defaults.
 
-    ![](images/create-VM-DB-form2.png " ")
     ![](images/create-VM-DB-form3.png " ")
+    ![](images/create-VM-DB-form2.png " ")
 
-5. After a few minutes, your Database System will change color from yellow (Provisioning) to green.  *Note:  If you use a smaller VM Shape, the provisioning may take longer*
+
+5. After a few minutes, your Database System will change color from yellow (Provisioning) to green.  *Note:  If you use a smaller VM Shape, the provisioning may take longer*.  If you encounter any errors, please see our Appendix: Troubleshooting tips
 
     ![](images/database-VM-created.png " ")
 
@@ -130,6 +132,17 @@ Fortunately, Oracle Cloud Infrastructure provides a wizard that simplifies the c
 
 You may now [proceed to the next lab](#next).
 
+## **APPENDIX:** Troubleshooting tips
+
+### Potential Error 1:  You receive a service limit error
+Error:  Renderable Exception From Internal-API.You have reached your service limit of 2 Virtual Machine CPU Cores in this Availability Domain. Please try launching the instance in a different Availability Domain or Region, or try using a different shape. If you have reached all Service limits, please contact Oracle support to request a limit increase.
+1. Click on the hamburger menu.  
+2. Go to Governance -> Limits, Quota and Usage
+3. Click on the SCOPE drop down and select the AD (Availability Domain) you are working in
+4. Search for standard2-core-count and note the number of cores. 
+5. This lab requires a minimum of 2 cores.  VMStandard2.2 means a compute with 2 cores.  
+6. Select a different compute size based on your tenancy's availability
+
 ## Want to Learn More?
 
 * [Oracle Cloud Infrastructure: Creating Bare Metal and Virtual Machine DB Systems](https://docs.cloud.oracle.com/en-us/iaas/Content/Database/Tasks/creatingDBsystem.htm)
@@ -138,8 +151,3 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 * **Author** - Tom McGinn, Learning Architect, Database User Assistance
 * **Last Updated By/Date** - Kay Malcolm, December 7, 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

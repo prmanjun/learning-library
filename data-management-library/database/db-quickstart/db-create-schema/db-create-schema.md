@@ -1,11 +1,11 @@
-<!-- Updated March 24, 2020 -->
+<!-- Updated April 16, 2021 -->
 
 
 # Create a Schema
 
 ## Introduction
 
-In this lab, you will create a user (schema), assign privileges to the user, and enable the user to log in to the database using SQL Developer Web. Logged in as the user, you will create tables, add and maintain records, and maintain the schema.
+In this lab, you will create a user (schema), assign privileges to the user, and enable the user to log in to the database using SQL Worksheet. Logged in as the user, you will create tables, add and maintain records, and maintain the schema.
 
 Estimated lab time: 25 minutes
 
@@ -13,7 +13,7 @@ Estimated lab time: 25 minutes
 
 -   As administrator create a database user (schema)
 -   Assign privileges to the user
--   Enable database users to log in to the database using SQL Developer Web
+-   Enable database users to log in to the database using SQL Worksheet
 -   As the user create tables, add and maintain records, and maintain the schema
 
 ### Prerequisites
@@ -36,7 +36,7 @@ Creating a user is a way to create a schema. In this section, you execute the `C
   - The password cannot contain the double quote (") character.
   - The password must not be the same password that is set less than 24 hours ago.
 
-1. In this workshop's previous labs, you have been connecting SQL Developer Web to your autonomous database as the database administrator. Connected as administrator, open a SQL Developer Web worksheet and create a user named `ONLINE_SHOPPE`.
+1. In this workshop's previous labs, you have been connecting SQL Worksheet to your autonomous database as the database administrator. Connected as administrator, open a SQL Worksheet and create a user named `ONLINE_SHOPPE`.
 
     `CREATE USER online_shoppe IDENTIFIED BY Lab_practice1;`
 
@@ -82,14 +82,14 @@ Syntax: `GRANT <grant_privilege> TO <user>;`
 
   ![](./images/assign-privileges.png " ")
 
-## **STEP 3:** Provide SQL Developer Web Access to Database Users
-The ADMIN user can provide access to SQL Developer Web to other database users.
+## **STEP 3:** Provide SQL Worksheet Access to Database Users
+The ADMIN user can provide access to SQL Worksheet to other database users.
 
-Database users, who are not service administrators, do not have access to the Autonomous Database service console. The ADMIN user provides access to SQL Developer Web by enabling access for a user and providing a URL to access SQL Developer Web.
+Database users, who are not service administrators, do not have access to the Autonomous Database service console. The ADMIN user provides access to SQL Worksheet by enabling access for a user and providing a URL to access SQL Worksheet.
 
   ![](./images/steps-enabling-user-access.png " ")
 
-1. To enable your newly created user to have schema access to SQL Developer Web, run the following code as the ADMIN user, substituting in your own **schema-name** and specifying a **schema-alias** as explained below:
+1. To enable your newly created user to have schema access to SQL Worksheet, run the following code as the ADMIN user, substituting in your own **schema-name** and specifying a **schema-alias** as explained below:
 
     ```
     <copy>BEGIN
@@ -107,32 +107,32 @@ Database users, who are not service administrators, do not have access to the Au
 
 2.  where:    
     * `schema-name` is the database schema name in all-uppercase. For this lab, use your new user `ONLINE_SHOPPE` as the schema name.
-    * `schema-alias` is an alias for the schema name to use in the URL to access SQL Developer Web. For this lab, use `coffee` as the schema alias.
+    * `schema-alias` is an alias for the schema name to use in the URL to access SQL Worksheet. For this lab, use `coffee` as the schema alias.
     * `p_auto_rest_auth` specifies the REST /metadata-catalog/ endpoint requires authorization. REST uses the metadata-catalog to get a list of published services on the schema. Set this parameter to `TRUE`.
 
   ![](./images/enable-sqldevweb-access-to-db-users.png " ")
 
-3. Now that you as the **administrator** have enabled user access for the specified schema, provide **users** the URL to access SQL Developer Web, as follows:
+3. Now that you as the **administrator** have enabled user access for the specified schema, provide **users** the URL to access SQL Worksheet, as follows:
     - Select the Autonomous Data Warehouse instance.
     - On the instance details page click **Service Console**.
     - Click **Development**.
     - Right-click **SQL Developer Web** and choose **Copy Link Address** or **Copy Link Location**.
 
-  The copied URL is the same as the URL the **ADMIN** enters to access SQL Developer Web. For example:
+  The copied URL is the same as the URL the **ADMIN** enters to access SQL Worksheet. For example:
 
   `https://dbname.adb.us-ashburn-1.example.com/ords/admin/_sdw/?nav=worksheet`
 
-4. To provide a user with access to SQL Developer Web you need to edit the copied URL to use the alias for the schema that you specified with the parameter `p_url_mapping_pattern` in step 1.
-    - For a user to access SQL Developer Web the part of the copied URL with **"admin"** is replaced with the **"schema-alias"**.
+4. To provide a user with access to SQL Worksheet you need to edit the copied URL to use the alias for the schema that you specified with the parameter `p_url_mapping_pattern` in step 1.
+    - For a user to access SQL Worksheet the part of the copied URL with **"admin"** is replaced with the **"schema-alias"**.
     - For example, if your schema-alias is **coffee**, after editing you would provide something similar to this URL for the user to login:
 
       `https://dbname.adb.us-ashburn-1.example.com/ords/coffee/_sdw/?nav=worksheet`
 
-5. Provide the user with the modified URL. To access SQL Developer Web, the user pastes the URL into their browser and then enters the schema's Username and Password in the Sign-in dialog.
+5. Provide the user with the modified URL. To access SQL Worksheet, the user pastes the URL into their browser and then enters the schema's Username and Password in the Sign-in dialog.
 
-## **STEP 4:** Log in to SQL Developer Web as the Database User and Create Tables
+## **STEP 4:** Log in to SQL Worksheet as the Database User and Create Tables
 
-1. You are still connected to SQL Developer Web as administrator. Log out and log back in to SQL Developer Web as your database user `online_shoppe` by pasting into your browser whatever URL you constructed in the previous step, which will be similar to:
+1. You are still connected to SQL Worksheet as administrator. Log out and log back in to SQL Worksheet as your database user `online_shoppe` by pasting into your browser whatever URL you constructed in the previous step, which will be similar to:
 
       `https://dbname.adb.us-ashburn-1.example.com/ords/coffee/_sdw/?nav=worksheet`
 
@@ -298,16 +298,16 @@ In this section, you execute the `REVOKE` statement to revoke user and role syst
 
 **Syntax**: `REVOKE <revoke_privilege> FROM <user>;`
 
-1. You are signed in to SQL Developer Web as the **online\_shoppe** user. Sign out of SQL Developer Web. Sign back in to SQL Developer Web as the **admin** user and open SQL Developer Web. Revoke the `CONNECT` privilege for the ONLINE\_SHOPPE user.
+1. You are signed in to SQL Worksheet as the **online\_shoppe** user. Sign out of SQL Worksheet. Sign back in to SQL Worksheet as the **admin** user and open a SQL Worksheet. Revoke the `CONNECT` privilege for the ONLINE\_SHOPPE user.
 
-    `REVOKE CONNECT FROM online_shoppe;`
+    `REVOKE CREATE SESSION FROM online_shoppe;`
 
-  ![](./images/revoke-connect.png " ")
+  ![](./images/revoke-create-session.png " ")
 
-2. Attempt to sign back in to SQL Developer Web as the **online_shoppe** user, by pasting into your browser the URL containing the alias that you used back in **Step 4: Log in to SQL Developer Web as the Database User and Create Tables**.
+2. Attempt to sign back in to SQL Worksheet as the **online_shoppe** user, by pasting into your browser the URL containing the alias that you used back in **Step 4: Log in to SQL Worksheet as the Database User and Create Tables**.
 
   ![](./images/revoked-unauthorized.png " ")
-    You cannot sign in because you no longer have the `CONNECT` privilege.
+    You cannot sign in because you no longer have the `CREATE SESSION` privilege.
 
 ## Want to Learn More?
 
@@ -318,9 +318,4 @@ Click [here](https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt
 - **Author** - Rick Green, Principal Developer, Database User Assistance
 - **Contributor** - Supriya Ananth
 - **Adapted for Cloud by** - Rick Green
-- **Last Updated By/Date** - Rick Green, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Rick Green, April 2021

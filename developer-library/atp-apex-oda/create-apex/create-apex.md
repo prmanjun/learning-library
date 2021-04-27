@@ -20,18 +20,32 @@ In this workshop you will create a `tasks` table, REST enabling it, and make the
 
 Estimated Lab Time: 15 minutes
 
+Watch the video below for an overview of the Create Application and REST API lab
+[](youtube:3C-MJ6NvjnE)
+
+### Objectives
+
+In this lab, you will:
+- Create APEX workspace
+- Create a table with Quick SQL
+- Insert rows into the table
+- REST enabling the database object
+
+### Prerequisites
+
+- This lab assumes you have provisioned your ATP
+
 ## **STEP 1**: Create APEX Workspace
 
-In this part of the workshop we are creating an APEX workspace. From the Autonomous Database Home page go to **Tools** section and select **Oracle Application Express** area.
+1. In this part of the workshop we are creating an APEX workspace. From the Autonomous Database Home page go to **Tools** section and select **Oracle Application Express** area.
 
-![ORDS](./images/apex_workspace1.png)
+    ![ORDS](./images/apex_workspace1.png)
 
-This will open a new browser tab for Application Express Administration.
-Login as the Admin user, with the **Admin** password you specified at Autonomous Database creation time.
+2. This will open a new browser tab for Application Express Administration. Login as the Admin user, with the **Admin** password you specified at Autonomous Database creation time.
 
-![ORDS](./images/apex_workspace2.png)
+    ![ORDS](./images/apex_workspace2.png)
 
-1. Create the workshop Workspace on the Welcome to "Oracle Application Express" page, select **Create Workspace**.
+3. Create the workshop Workspace on the Welcome to "Oracle Application Express" page, select **Create Workspace**.
 
     ![ORDS](./images/apex_workspace3.png)
 
@@ -41,17 +55,17 @@ Login as the Admin user, with the **Admin** password you specified at Autonomous
     - **Password**: Any password that meets the Oracle Cloud requirements.
     - **Workspace Name**: ATP&#95;ODA
 
-2. Select **Create Workspace**.
+4. Select **Create Workspace**.
 
     ![ORDS](./images/apex_workspace4.png)
 
     You will be returned to the Oracle APEX administration page, and a message will be displayed "**Workspace Created**".
 
-3. Sign in as the **ATP&#95;ODA** user by selecting the icon on the centre of the screen where you can see the name of the user, **ATP&#95;ODA**.
+5. Sign in as the **ATP&#95;ODA** user by selecting the icon on the centre of the screen where you can see the name of the user, **ATP&#95;ODA**.
 
     ![ORDS](./images/apex_workspace5.png)
 
-4. Add the **name of the workspace**, **user name** and **password**: **ATP&#95;ODA** and click **Sign in**.
+6. Add the **name of the workspace**, **user name** and **password**: **ATP&#95;ODA** and click **Sign in**.
 
     ![ORDS](./images/apex_workspace7.png)
 
@@ -83,18 +97,18 @@ Use Cases:
 
 2. Write on the left panel the following table definition:
 
-    ```bash
-    tasks
-        text
     ```
-    
+    <copy>tasks
+        text</copy>
+    ```
+
 3. Click **Generate SQL**.
 
     ![Generate SQL](./images/apex_generate_sql.png)
 
 4. Click **Save SQL Script**.
 
-    ![Save SQL Script](./images/apex_save_sql_script.png)
+    ![Save SQL Script](./images/save-sql-script.png)
 
 5. Set the name of the script to `tasks` and confirm **Save Script**.
 
@@ -102,19 +116,19 @@ Use Cases:
 
 6. Click **Review and Run**.
 
-    ![Save SQL Script](./images/apex_quick_sql_review.png)
+    ![Save SQL Script](./images/quick_sql_review.png)
 
 7. Click **Run**.
 
-    ![Save SQL Script](./images/apex_quick_sql_run.png)
+    ![Save SQL Script](./images/quick_sql_run.png)
 
 8. Click **Run Now**.
 
-    ![Save SQL Script](./images/apex_quick_sql_run_now.png)
+    ![Save SQL Script](./images/quick_sql_run_now.png)
 
     Make sure all statements are successfully run and there are no errors.
 
-    ![Save SQL Script](./images/apex_quick_sql_run_success.png)
+    ![Save SQL Script](./images/quick_sql_run_success.png)
 
 ## **STEP 3**: Insert rows in the table
 
@@ -122,7 +136,7 @@ We are going to mock some data to use it later with your Custom Component.
 
 1. Go to the Top Menu on **SQL Workshop**, click **Object Browser**.
 
-    ![](./images/apex_object_browser_menu.png)
+    ![](./images/object_browser_menu.png)
 
 2. Select **TASKS** table on the left and click the tab **Data**, then click **Insert Row**:
 
@@ -135,7 +149,7 @@ We are going to mock some data to use it later with your Custom Component.
     To follow the same example we have created:
 
     ```
-    Get concert tickets
+    <copy>Get concert tickets</copy>
     ```
 
     ![Object Browser Data](./images/apex_object_insert_row_1.png)
@@ -145,14 +159,14 @@ We are going to mock some data to use it later with your Custom Component.
     To follow the same example we have created:
 
     ```
-    Buy bread
+    <copy>Buy bread</copy>
     ```
 
     ![Object Browser Data](./images/apex_object_insert_row_2.png)
 
 5. Finally, click **Create** and check the two rows are as expected:
 
-    ![Object Browser Data](./images/apex_object_new_rows.png)
+    ![Object Browser Data](./images/object_new_rows.png)
 
 ## **STEP 4**: REST Enabling the Database Object
 
@@ -193,7 +207,7 @@ In the main menu, select **SQL Workshop**, click **RESTful Services**.
 
     ![](./images/apex_rest_module_create_template.png)
 
-1. Fill **URI Template** with `tasks/` and click **Create Template**:
+1. Fill **URL Template** with `tasks/` and click **Create Template**:
 
     ![](./images/apex_rest_template_create.png)
 
@@ -209,10 +223,10 @@ In the main menu, select **SQL Workshop**, click **RESTful Services**.
 
     ![](./images/apex_rest_handler_create_get.png)
 
-10. On the **Source** area we are going to run the SQL select to fetch the data form the schema:
+10. On the **Source** area (Not comments area) we are going to run the SQL select to fetch the data form the schema:
 
-    ```sql
-    select * from tasks
+    ```
+    <copy>select * from tasks</copy>
     ```
 
     > NOTE: please, don't use "`;`" at the end of the SQL statement.
@@ -226,7 +240,6 @@ In the main menu, select **SQL Workshop**, click **RESTful Services**.
 12. Confirm the Handler has been created and copy the **Full URL**:
 
     ![](./images/apex_rest_handler_create_success.png)
-
 
 ## It works
 
@@ -248,15 +261,11 @@ You should see the items with `id` and `text` and other fields and references in
 
 How many items do you see? You should have as many tasks as you created before in the table.
 
-*Congratulations! You are ready to go to the next workshop!*
+You may now [proceed to the next lab](#next).
 
-## **Acknowledgements**
+## Acknowledgements
 
 - **Author** - Victor Martin - Principal Cloud Engineer | Priscila Iruela - Database Business Development
 - **Contributors** - Melanie Ashworth-March
-- **Last Updated By/Date** - Kamryn Vinson, October 2020
+- **Last Updated By/Date** - Anoosha Pilli, March 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

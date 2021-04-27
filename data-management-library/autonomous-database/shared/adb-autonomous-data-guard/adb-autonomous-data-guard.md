@@ -18,7 +18,8 @@ Estimated time: 15 minutes
 * This lab requires an [Oracle Cloud account](https://www.oracle.com/cloud/free/). You may use your own cloud account, a cloud account that you obtained through a trial, a LiveLabs account or a training account whose details were given to you by an Oracle instructor.
 * Make sure you have completed the previous lab in the Contents menu on the right, **Provision Autonomous Database**, before you proceed with this lab.
 
-**Note:**  Autonomous Data Guard is not available with Oracle's Always Free databases. Please sign up for free trial credits or use your own tenancy to test this feature yourself.
+**Note:**  This lab uses Autonomous Data Guard, which is not available with Oracle's Always Free databases. You can run the lab by reserving a hosted Livelabs environment, or by signing up for free trial credits, or by using your own tenancy.
+
 **Note:**  Autonomous Data Guard is available only in Autonomous Database instances 19c and above.
 
 ## Basic Disaster Recovery Terminology
@@ -106,7 +107,3 @@ For more information about Standby Databases, see the documentation  [About Stan
 * Authors - Vandanadevi Rajamani, Database User Assistance; Nilay Panchal, ADB Product Management
 * Last Updated By/Date -Vandanadevi Rajamani/November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a **New Discussion** or **Ask a Question**. Please include your workshop name and lab name. You can also include screenshots and attach files. Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -18,7 +18,7 @@ This lab assumes you have already completed the following:
 
 Click on the link below to download the Resource Manager zip files you need to build your environment.
 
-- [db19c-primary-num.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/jZm0eTFHotQifVuvYWHtnJA5ydhI6dhh1p-nOR1pKvFLjEEtc_kI-tvNux0Dr-ek/n/c4u03/b/data-management-library-files/o/db19c-primary-num.zip) - Packaged terraform primary database instance creation script.
+- [db19c-primary-num.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/H_AOI7dUSBW4xMRnTULYeF3nOeAd0SfKGyIR6pAam1lYQjSNOGrE52OKOD9EURC8/n/c4u03/b/data-management-library-files/o/Oracle%20Sharding/db19c-primary-num.zip) - Packaged terraform primary database instance creation script.
 
 
 ## **STEP 1:** Prepare the Primary Database
@@ -201,10 +201,6 @@ You may proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Minqiao Wang, DB Product Management
-* **Last Updated By/Date** - Minqiao Wang, Nov. 2020
-* **Workshop Expiry Date** - Nov 30, 2021
+* **Last Updated By/Date** - Minqiao Wang, Apr. 2021
+* **Workshop Expiry Date** - 30 April 2022
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

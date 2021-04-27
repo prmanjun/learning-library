@@ -3,44 +3,33 @@
 ## Introduction
 This lab walks you through the steps of setting up the environment for Spatial lab. You can connect to the Oracle Database instance using any client of your choice. In this lab, you will connect using Oracle SQL Developer.
 
-*Estimated Lab Time:* 30 Minutes
+*Estimated Lab Time*: 30 Minutes
+
+### About Oracle SPATIAL
+
+Oracle Spatial is an integrated set of functions, procedures, data types, and data models that support spatial analytics. The spatial features enable spatial data to be stored, accessed, and analyzed quickly and efficiently in an Oracle database. It is designed to make spatial data management easier and more natural to users of location-enabled applications and geographic information system (GIS) applications. Once spatial data is stored in an Oracle database, it can be easily manipulated, retrieved, and related to all other data stored in the database.
+
+[](youtube:Q2jm93Rm95g)
+
+For More Details About Oracle Spatial [Click here](#Appendix:ProductDetailsandSettingUpSpatialEnvironment)
+
+### Objectives
+In this lab, you will:
+* Setup the environment for Spatial lab.
+* Connect the oracle SQL developer to access the Spatial Data from Oracle Database by using Spatial Function.
+* Learn More about the Spatial functions.
+
 
 ### Prerequisites
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
 - SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys
-    - Lab: Prepare Setup (Free Tier and Paid Tenants Only)
+    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
     - Lab: Initialize Environment
 
-### About Oracle SPATIAL
-
-Oracle Spatial is an integrated set of functions, procedures, data types, and data models that support spatial analytics. The spatial features enable spatial data to be stored, accessed, and analyzed quickly and efficiently in an Oracle database.
-
-Oracle Spatial is designed to make spatial data management easier and more natural to users of location-enabled applications and geographic information system (GIS) applications. Once spatial data is stored in an Oracle database, it can be easily manipulated, retrieved, and related to all other data stored in the database.
-
-A common example of spatial data can be seen in a road map. A road map is a two-dimensional object that contains points, lines, and polygons that can represent cities, roads, and political boundaries such as states or provinces. A road map is a visualization of geographic information.
-
-The data that indicates the Earth location (such as longitude and latitude) of these rendered objects is the spatial data. When the map is rendered, this spatial data is used to project the locations of the objects on a two-dimensional piece of paper.
-
- [](youtube:Q2jm93Rm95g)
-
-Oracle Spatial consists of the following:
-
--	Schema (MDSYS)
--	A spatial indexing mechanism  	
--	Operators, functions, and procedures
--	Native data type for vector data called SDO\_GEOMETRY(An Oracle table can contain one or more SDO\_GEOMETRY columns.)
-
-
-### Scenario
-MyCompany has several major warehouses. It needs to locate its customers who are near a given warehouse, to inform them of new advertising promotions. To locate its customers and perform location-based analysis, MyCompany must store location data for both its customers and warehouses.
-
-We will be using three tables – CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP.
-
-Each table stores location using Oracle's native spatial data type, SDO\_GEOMETRY. A location can be stored as a point in an SDO\_GEOMETRY column of a table. The customer's location is associated with longitude and latitude values on the Earth's surface—for example, -63.13631, 52.485426.
 
 ## **STEP 1**: Connect to the Pluggable Database (PDB)
 1. Open a terminal window and sudo to the user **oracle**
@@ -51,7 +40,15 @@ Each table stores location using Oracle's native spatial data type, SDO\_GEOMETR
     </copy>
     ```
 
-2. Set your environment.
+2. Navigate to the spatial directory.
+
+    ```
+    <copy>
+    cd /u01/workshop/spatial
+    </copy>
+    ```
+
+3. Set your environment.
 
     ```
     <copy>
@@ -59,7 +56,7 @@ Each table stores location using Oracle's native spatial data type, SDO\_GEOMETR
     </copy>
     ```
 
-3. When prompted paste the following:
+4. When prompted paste the following:
 
     ```
     <copy>
@@ -67,7 +64,7 @@ Each table stores location using Oracle's native spatial data type, SDO\_GEOMETR
     </copy>
     ```
 
-4. Open SQLPlus as the user appjson
+5. Open SQLPlus as the user appjson
 
     ```
     <copy>
@@ -90,7 +87,7 @@ Each table stores location using Oracle's native spatial data type, SDO\_GEOMETR
 
 ## **STEP 3**: Example Queries
 
-Note: See [Reference: Setting Up Spatial](#Reference:SettingUpSpatial) to see the SQL executed in advance.
+Note: See [Appendix: Product Details and Setting Up Spatial Environment ](#Appendix:ProductDetailsandSettingUpSpatialEnvironment) to see the SQL executed in advance.
 
 1. Find the five customers closest to the warehouse whose warehouse name  is 'Ferndale Facility'
 
@@ -203,17 +200,39 @@ Note: See [Reference: Setting Up Spatial](#Reference:SettingUpSpatial) to see th
 
     ![](./images/spatial_module6a.png " ")
 
-## Reference: Setting Up Spatial
+You may now [proceed to the next lab](#next).
+
+## **Appendix**: Product Details and Setting Up Spatial Environment
+Oracle Spatial is an integrated set of functions, procedures, data types, and data models that support spatial analytics. The spatial features enable spatial data to be stored, accessed, and analyzed quickly and efficiently in an Oracle database. It is designed to make spatial data management easier and more natural to users of location-enabled applications and geographic information system (GIS) applications. Once spatial data is stored in an Oracle database, it can be easily manipulated, retrieved, and related to all other data stored in the database.
+
+A common example of spatial data can be seen in a road map. A road map is a two-dimensional object that contains points, lines, and polygons that can represent cities, roads, and political boundaries such as states or provinces. A road map is a visualization of geographic information.
+
+The data that indicates the Earth location (such as longitude and latitude) of these rendered objects is the spatial data. When the map is rendered, this spatial data is used to project the locations of the objects on a two-dimensional piece of paper.
+
+Oracle Spatial consists of the following:
+
+-	Schema (MDSYS)
+-	A spatial indexing mechanism  	
+-	Operators, functions, and procedures
+-	Native data type for vector data called SDO\_GEOMETRY(An Oracle table can contain one or more SDO\_GEOMETRY columns.)
+
+
+### Scenario
+MyCompany has several major warehouses. It needs to locate its customers who are near a given warehouse to inform them of new advertising promotions. To locate its customers and perform location-based analysis, MyCompany must store location data for both its customers and warehouses.
+
+We will be using three tables – CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP.
+
+Each table stores location using Oracle's native spatial data type, SDO\_GEOMETRY. A location can be stored as a point in an SDO\_GEOMETRY column of a table. The customer's location is associated with longitude and latitude values on the Earth's surface—for example, -63.13631, 52.485426.
+
 
 The following SQL queries have already been executed and are provided for your reference
 
-**Only For Step 3 the SQL statements have already been run. The SQL has been provided as reference.**
+**The SQL statements have already been run. The SQL has been provided as reference.**
 
 * We created tables and spatial metadata for CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP
 Notice that each has a column of type SDO\_GEOMETRY to store location.
 
     ```
-    <copy>
       CREATE TABLE CUSTOMERS                                             
       (
         CUSTOMER_ID NUMBER(6, 0),
@@ -238,13 +257,11 @@ Notice that each has a column of type SDO\_GEOMETRY to store location.
          "DRIVE_TIME_MIN" NUMBER,
           "GEOMETRY" "SDO_GEOMETRY"
           );
-    </copy>
     ```
 
 * Next we added Spatial metadata for the CUSTOMERS, WAREHOUSES and WAREHOUSES\_DTP tables to the USER\_SDO\_GEOM\_METADATA view. Each SDO\_GEOMETRY column is registered with a row in USER\_SDO\_GEOM\_METADATA.
 
     ```
-    <copy>
      EXECUTE SDO_UTIL.INSERT_SDO_GEOM_METADATA (sys_context('userenv','current_user'), -
      'CUSTOMERS', 'CUST_GEO_LOCATION', -  SDO_DIM_ARRAY(SDO_DIM_ELEMENT('X',-180, 180, 0.05), - SDO_DIM_ELEMENT('Y', -90, 90, 0.05)),-  4326);
 
@@ -253,7 +270,6 @@ Notice that each has a column of type SDO\_GEOMETRY to store location.
 
      Insert into user_sdo_geom_metadata values (
        'WAREHOUSES_DTP','GEOMETRY',MDSYS.SDO_DIM_ARRAY(MDSYS.SDO_DIM_ELEMENT('X', -180, 180, 0.05), MDSYS.SDO_DIM_ELEMENT('Y', -90, 90, 0.05)),4326);
-    </copy>
     ```
 
 **Here is a description of the items that were entered:**
@@ -270,9 +286,7 @@ We use sdo\_cs.transform() to convert to our desired coordinate system SRID of 4
 * The sample insert query:
 
     ```
-    <copy>
     Insert into WAREHOUSES (WAREHOUSE_ID,WAREHOUSE_NAME,LOCATION_ID,WH_GEO_LOCATION) values (1,'Speedway Facility',1400,MDSYS.SDO_GEOMETRY(2001, 4326, MDSYS.SDO_POINT_TYPE(-86.2508, 39.7927, NULL), NULL, NULL));
-    </copy>
     ```
 
 The elements of the constructor are:
@@ -284,7 +298,6 @@ The elements of the constructor are:
 * We created indexes for each table- CUSTOMERS, WAREHOUSES and WAREHOUSES_DTP
 
     ```
-    <copy>
     CREATE INDEX customers_sidx ON customers(CUST_GEO_LOCATION)
     indextype is mdsys.spatial_index;
 
@@ -292,16 +305,25 @@ The elements of the constructor are:
     indextype is mdsys.spatial_index;
 
     CREATE INDEX "WAREHOUSES_DTP_SIDX" ON "WAREHOUSES_DTP" ("GEOMETRY")
-    INDEXTYPE IS "MDSYS"."SPATIAL_INDEX" ;
-    </copy>
+    INDEXTYPE IS "MDSYS"."SPATIAL_INDEX";
     ```
+
+## Rate this Workshop
+When you are finished don't forget to rate this workshop!  We rely on this feedback to help us improve and refine our LiveLabs catalog.  Follow the steps to submit your rating.
+
+1.  Go back to your **workshop homepage** in LiveLabs by searching for your workshop and clicking the Launch button.
+2.  Click on the **Brown Button** to re-access the workshop  
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/workshop-homepage-2.png " ")
+
+3.  Click **Rate this workshop**
+
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/images/rate-this-workshop.png " ")
+
+If you selected the **Green Button** for this workshop and still have an active reservation, you can also rate by going to My Reservations -> Launch Workshop.
+
 
 ## Acknowledgements
 * **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope
 * **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K, Robert Ruppel, David Start, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

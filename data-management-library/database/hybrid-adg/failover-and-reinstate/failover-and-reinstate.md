@@ -28,21 +28,22 @@ In the previous lab, you have done the Data Guard switch over. Now, the current 
     [oracle@dbstby ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Wed Feb 5 05:31:25 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+    ```
 
 
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
-
+    Version 19.10.0.0.0
+    
     SQL> select open_mode,database_role,flashback_on from v$database;
-
+    
     OPEN_MODE	     DATABASE_ROLE    FLASHBACK_ON
     -------------------- ---------------- ------------------
     READ WRITE	     PRIMARY	      NO
-
+    
     SQL> 
     ```
 
@@ -82,7 +83,7 @@ In the previous lab, you have done the Data Guard switch over. Now, the current 
 
     SQL> exit
     Disconnected from Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
     [oracle@dbstby ~]$ 
     ```
 
@@ -93,7 +94,7 @@ In the previous lab, you have done the Data Guard switch over. Now, the current 
     ```
     [oracle@dbstby ~]$ dgmgrl sys/Ora_DB4U@orcl
     DGMGRL for Linux: Release 19.0.0.0.0 - Production on Wed Feb 5 05:41:24 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
 
@@ -175,60 +176,53 @@ In the previous lab, you have done the Data Guard switch over. Now, the current 
 
 ## **STEP 3:** Reinstate the Previous Primary Database
 
-1. In cloud side(the previous primary), connect to sqlplus as sysdba, shutdown the database and startup mount before reinstating. 
+1. Connect to the cloud side(the previous primary), replace `ORCL_nrt1d4` with your previous primary db unique name. Shutdown the database and startup mount before reinstating. 
 
     ```
-    [oracle@dbstby ~]$ sqlplus / as sysdba  
-
-    SQL*Plus: Release 19.0.0.0.0 - Production on Wed Feb 5 05:48:11 2020
-    Version 19.7.0.0.0
-
-    Copyright (c) 1982, 2019, Oracle.  All rights reserved.
-
-
-    Connected to:
-    Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
-
-    SQL> shutdown immediate
+    DGMGRL> <copy>connect sys/Ora_DB4U@orcl_nrt1d4</copy>
+    Connected to "ORCL_nrt1d4"
+    Connected as SYSDBA.
+    
+    DGMGRL> <copy>shutdown immediate</copy>
     Database closed.
     Database dismounted.
     ORACLE instance shut down.
-    SQL> startup mount
+    Connected to an idle instance.
+    
+    DGMGRL> <copy>startup mount</copy>
+    Connected to "ORCL_nrt1d4"
     ORACLE instance started.
-
-    Total System Global Area 1.6106E+10 bytes
-    Fixed Size		    9154008 bytes
-    Variable Size		 2080374784 bytes
-    Database Buffers	 1.3992E+10 bytes
-    Redo Buffers		   24399872 bytes
     Database mounted.
-    SQL> exit
-    Disconnected from Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
-    [oracle@dbstby ~]$  
+    DGMGRL> 
     ```
 
-2. Reinstate the database, replace `ORCL_nrt1d4` with your previous primary db unique name.
+
+
+2. Connect to the new primary side, reinstate the standby database, replace `ORCL_nrt1d4` with your previous primary db unique name.
 
     ```
-    DGMGRL> reinstate database orcl_nrt1d4
+    DGMGRL> <copy>connect sys/Ora_DB4U@orcl</copy>
+    Connected to "ORCL"
+    Connected as SYSDBA.
+    
+    DGMGRL> <copy>reinstate database orcl_nrt1d4</copy>
     Reinstating database "orcl_nrt1d4", please wait...
     Reinstatement of database "orcl_nrt1d4" succeeded
-    DGMGRL> show configuration
-
+    
+    DGMGRL> <copy>show configuration</copy>
+    
     Configuration - adgconfig
-
+    
       Protection Mode: MaxPerformance
       Members:
       orcl        - Primary database
         orcl_nrt1d4 - Physical standby database 
-
+    
     Fast-Start Failover:  Disabled
-
+    
     Configuration Status:
     SUCCESS   (status updated 21 seconds ago)
-
+    
     DGMGRL> 
     ```
 
@@ -238,32 +232,28 @@ In the previous lab, you have done the Data Guard switch over. Now, the current 
     [oracle@dbstby ~]$ sqlplus / as sysdba
 
     SQL*Plus: Release 19.0.0.0.0 - Production on Wed Feb 5 05:53:48 2020
-    Version 19.7.0.0.0
+    Version 19.10.0.0.0
 
     Copyright (c) 1982, 2019, Oracle.  All rights reserved.
-
-
     Connected to:
     Oracle Database 19c EE Extreme Perf Release 19.0.0.0.0 - Production
-    Version 19.7.0.0.0
-
+    Version 19.10.0.0.0
+    
     SQL> select open_mode,database_role from v$database;
-
+    
     OPEN_MODE	     DATABASE_ROLE
     -------------------- ----------------
     READ ONLY WITH APPLY PHYSICAL STANDBY
-
+    
     SQL> 
     ```
+
+
 
 Congratulations, you have successfully completed the workshop!
 
 ## Acknowledgements
 * **Author** - Minqiao Wang, DB Product Management
-* **Last Updated By/Date** - Minqiao Wang, October 2020
+* **Last Updated By/Date** - Minqiao Wang, Mar 2021
 
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

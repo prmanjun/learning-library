@@ -20,28 +20,9 @@ If you are not the administrator, you have to request the admin to give you perm
   - `Allow group <group_name> to manage orm-stacks in compartment <compartment_name>`
   - `Allow group <group_name> to manage orm-jobs in compartment <compartment_name>`
 
-## **Step 1:** Generating SSH Keys using Cloud Shell
-
-We recommend you use the Oracle Cloud Shell to interface with the OCI compute instance you will create. Oracle Cloud Shell is browser-based, does not require installation or configuration of software on your laptop, and works independently of your network setup.
-
-1. To start the Oracle Cloud shell, go to your Cloud console and click the cloud shell icon at the top right of the page.
-
-  ![](./../resource-manager/images/cloudshellopen.png " ")
-
-  ![](./../resource-manager/images/cloudshellsetup.png " ")
-
-  ![](./../resource-manager/images/cloudshell.png " ")
 
 
-2. Once the cloud shell has started, enter the following command to generate a SSH Key. Press Enter twice for no passphrase.
-
-```
-<copy>ssh-keygen -f ssh-keyname<copy> 
-```
-
-Note in the output that there are two files, a private key: <<ssh-keyname>> and a public key: <<ssh-keyname>>.pub. Keep the private key safe and don't share its content with anyone. The public key will be needed in our next step.
-
-## **Step 2:** Create Resource Manager Stack
+## **Step 1:** Create Resource Manager Stack
 
  A Stack represents definitions for a collection of OCI resources within a specific compartment. With this in mind, we're going to configure a new stack in the compartment of your choice and name it "HA Load Balanced Simple Web App". As the stack's name suggests, its configuration files define the load balancing, networking, and compute resources to deploy the target architecture plus an HTTP server.
 
@@ -87,7 +68,7 @@ Note in the output that there are two files, a private key: <<ssh-keyname>> and 
 
     ![](./../resource-manager/images/image002.png " ")
 
-## **Step 3:** Execute Jobs: Plan & Apply
+## **Step 2:** Execute Jobs: Plan & Apply
 
 Jobs perform actions against the Terraform configuration files associated with a stack. You can perform 3 actions and they are plan, apply and destroy. Since Terraform command execution is not atomic, it is crucial to prevent any race conditions or state corruption from occurring due to parallel execution. To prevent this from happening, the Resource Manager ensures only one job can run against a stack at a given time against a single state file.
 
@@ -133,7 +114,7 @@ From the Stack Details page, we can completely manage the stack's configuration 
 
 7. When you see the Load Balancer status change to OK, copy the **IP Address** and paste it into a new web browser tab.  You should see the sample web page load and atop the page it indicates which web server you are connected to.  Press **F5** a couple of times and see the web server change as you refresh the page.  Congratulations - your sample application deployed successfully.
 
-## **Step 4:** (OPTIONAL) Migrate source code to Gitlab
+## **Step 3:** (OPTIONAL) Migrate source code to Gitlab
 
 As you often hear Terraform referred to as Infrastructure is Code, an optimal strategy includes the use of source control for all Terraform configuration.  With resource manager, you can integrate directly to your source control through the use of **Configuration Source Providers**.  In this section you will create a new configuration source provider using Gitlab and store your configuration.  To test it out, you will make a small change to your code and apply (update) the stack.  Watch as ORM pulls directly from Gitlab.
 
@@ -254,7 +235,7 @@ https://gitlab.com/users/sign_up
 - Save the file / Add / Commit / Push to Gitlab
 - Plan and Apply the changes to your stack
 
-## **Step 5:** Execute Jobs: Destroy
+## **Step 4:** Execute Jobs: Destroy
 
 Now that we've successfully applied our Terraform to build out our cloud resources (and optionally completed the source migration to Gitlab), let's return to the Stack Details page and use the Resource Manager to tear it all down.
 
@@ -283,10 +264,5 @@ Now that we've successfully applied our Terraform to build out our cloud resourc
 - **Author** - Flavio Pereira, Larry Beausoleil, Eli Schilling
 - **Adapted by** -  Yaisah Granillo, Cloud Solution Engineer
 - **Contributors** - Arabella Yao, Kamryn Vinson
-- **Last Updated By/Date** - Eli Schilling, October 2020
-- **Valid through** - October 2021
+- **Last Updated By/Date** - Orlando Gentil, April 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/resource-manager-terraform). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

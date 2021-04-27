@@ -1,8 +1,9 @@
 {
   "workshoptitle": "Oracle Integration SOA Fundamentals",
+  "help": "livelabs-help-license_us@oracle.com",
   "tutorials": [
     {
-      "title": "Prerequisites",
+      "title": "Getting Started",
       "description": "Login to Oracle Cloud",
       "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
     },
@@ -40,6 +41,11 @@
       "title": "Lab 6: Enable REST API for Validate Payment App",
       "description": "How to enable REST-API for Validate Payment",
       "filename": "../../rest-api/rest-api.md"
+    },
+    {
+      "title": "Need Help?",
+      "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+      "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
     }
   ]
 }

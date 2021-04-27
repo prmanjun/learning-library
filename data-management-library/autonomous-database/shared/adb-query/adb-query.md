@@ -13,25 +13,37 @@ In this lab, you will query files on the Oracle Cloud Infrastructure (OCI) Objec
 
 - The following lab requires an <a href="https://www.oracle.com/cloud/free/" target="\_blank">Oracle Cloud account</a>. You may use your own cloud account, a cloud account that you obtained through a trial, a LiveLabs account or a training account whose details were given to you by an Oracle instructor.
 - This lab assumes you have completed the **Prerequisites** and **Lab 1** seen in the Contents menu on the left.
-- Make sure you have completed the previous lab in the Contents menu on the right, *Loading Data*, before you proceed with this lab. In Loading Data, you created data files on the OCI Object Storage and you created the credential object, all of which you will use in this lab.
+- Make sure you have completed the previous lab in the Contents menu on the left, *Loading Data*, before you proceed with this lab. In Loading Data, you created data files on the OCI Object Storage and you created the credential object, all of which you will use in this lab.
 
 ## **STEP 1**: Create External Tables with DBMS_CLOUD
 
-1.  If you are not logged in to Oracle Cloud Console, login and select Autonomous Data Warehouse from the hamburger menu and navigate into your ADW Finance Mart instance.
+1.  If you are not already logged in to Oracle Cloud Console, log in and select Autonomous Data Warehouse from the hamburger menu and navigate into your ADW Finance Mart instance.
 
-    ![Select autonomous Data Warehouse on the left navigation menu in the Oracle Cloud homepage.](images/step1.1-LabGuide1-39fb4a5b.png " ")
+    ![Select autonomous Data Warehouse on the left navigation menu in the Oracle Cloud homepage.](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![Select your database instance.](images/step1.1-adb.png " ")
 
-2.  To login to SQL Developer Web, in your ADW Finance Mart Database Details page, click the **Tools** tab and then click on **Open SQL Developer Web**. Enter **Username - ADMIN** and with the ADMIN **Password** you specified when creating the database and click **Sign in**.
+2.  If you are not already logged in to SQL Worksheet, in your ADW Finance Mart Database Details page, click the **Tools** tab and then click **Open Database Actions**.
 
-    ![Select Tools tab and click Open SQL Developer Web.](./images/open_sql_developer_web.jpg " ")
+    ![Select Tools tab and click Open Database Actions.](./images/Picture100-15.png " ")
 
-    ![Enter login details and click Sign in.](./images/step1.2-Picture100-16.png " ")
+3.  A sign-in page opens for Database Actions. For this lab, simply use your database instance's default administrator account, **Username - ADMIN** and click **Next**.
 
-3. Download <a href="./files/create_external_tables_without_base_url.txt" target="\_blank">this code snippet</a> to a text editor.
+    ![Enter the admin username.](./images/Picture100-16.png " ")
 
-4. Replace `<file_uri_base>` in the code with the base URL you copied in Loading Data Lab, Step 6. You should make 9 substitutions.
+4.  Enter the ADMIN **Password** you specified when creating the database and click **Sign in**.
+
+    ![Enter the ADMIN password.](./images/Picture100-16-password.png " ")
+
+5.  The Database Actions page opens. In the **Development** box, click **SQL**.
+
+    ![Click on SQL.](./images/Picture100-16-click-sql.png " ")
+
+6.  The SQL Worksheet appears. Before you proceed with the SQL Worksheet, perform the next two steps.
+
+7.  Download <a href="./files/create_external_tables_without_base_url.txt" target="\_blank">this code snippet</a> to a text editor.
+
+8.  Replace `<file_uri_base>` in the code with the base URL you copied in Loading Data Lab, Step 6. You should make 9 substitutions.
 
     This code uses the **create\_external\_table** procedure of the **DBMS\_CLOUD** package to create external tables on the files staged in your object store. Note that you are still using the same credential and URLs of files on OCI Object Storage you used when loading data in Loading Data Lab.
 
@@ -43,19 +55,19 @@ In this lab, you will query files on the Oracle Cloud Infrastructure (OCI) Objec
 
     ![Replace all the placeholders in the code snippet.](./images/step1.4.png " ")
 
-5.  Run the script. In the Substitutions Variables dialog, paste the base URL you copied in Loading Data Lab, Step 6, and click **OK**.
+9.  Run the script in SQL Worksheet. In the Substitutions Variables dialog, paste the base URL you copied in Loading Data Lab, Step 6, and click **OK**.
 
-  ![Click Run Scipt. A dialog window opens up.](images/step1.5.png " ")
+    ![Click Run Scipt. A dialog window opens up.](images/step1.5.png " ")
 
-  ![Enter the base URL and click Ok.](images/substitution-variables.png " ")
+    ![Enter the base URL and click Ok.](images/substitution-variables.png " ")
 
     Now you have **external tables** for the sample data pointing to files in the object store. Any query against the external tables will return the same result as against the original tables.
 
     ![Click Run Script.](./images/run_script_create_ext_tables_without_base_url.png " ")
 
-## **STEP 2**: Querying External Data
+## **STEP 2**: Query External Data
 
-1.  Copy and paste <a href="./files/query_external_data.txt" target="\_blank">this code snippet</a> to a SQL Developer Web Worksheet. Compared to the query in the previous lab, we only replaced the original table names **table\_name** with **table\_name\_ext** in the sample query.
+1.  Copy and paste <a href="./files/query_external_data.txt" target="\_blank">this code snippet</a> to a SQL Worksheet. Compared to the query in the previous lab, we only replaced the original table names **table\_name** with **table\_name\_ext** in the sample query.
 
 2.  Run the script. You will now see the same query result as in the previous lab, but from data pulled directly from the Object Store.
 
@@ -71,9 +83,4 @@ For more information about querying external data, see the documentation [Queryi
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Apoorva Srinivas, Senior Developer, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/autonomous-database-shared). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, March 2021

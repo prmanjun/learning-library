@@ -6,12 +6,12 @@ This lab describes the prescribed folder structure that we need follow for devel
 * Understand the learning-library folder structure.
 * Get to know the components of the workshop and the lab folders.
 
-## **STEP 1:** Folder Structure of the learning-library Repository
+## **Step 1:** Folder Structure of the learning-library Repository
 
 The following image shows a folder structure of the "Getting Started with Oracle Big Data Service" workshop that is opened in the **Atom** Editor, through the project folder **bds**. You can see this structure at the following URL [https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds](https://github.com/oracle/learning-library/tree/master/data-management-library/big-data/bds), or in the **data-management-library/big-data/bds** folder of the clone on your machine.
     ![](./images/temp-folder-structure-example1.png " ")
 
-## **STEP 2:** Understand the Components of the Workshop and Lab Folders
+## **Step 2:** Understand the Components of the Workshop and Lab Folders
   The following describes the components of the above example:
   * The root folder of this example is the name of the project, **bds**.
 
@@ -27,7 +27,7 @@ The following image shows a folder structure of the "Getting Started with Oracle
     The following screen shows a sample `manifest.json` file that is opened in the **Atom** Editor.
     ![](./images/temp-folder-structure-manifest-json.png " ")
 
-**This concludes this lab. Please proceed to the next lab in the Contents menu.**
+You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -47,7 +47,4 @@ The following image shows a folder structure of the "Getting Started with Oracle
 
 * **Last Updated By/Date:** Anuradha Chepuri, November 2020
 
-## Need Help?  
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

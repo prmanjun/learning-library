@@ -6,23 +6,40 @@ Big Data Service nodes are by default assigned private IP addresses, which aren'
 
 In this lab, you will map the private IP address of the **first master node** to a new public IP address to make this node publicly available on the internet. _**This assumes that making the IP address public is an acceptable security risk.**_ You will also create a Hadoop Administrator (superuser) that will be used for the Big Data Service Cluster. This user will have full access to all the data and metadata on the cluster.
 
-**Note:** This lab assumes that your cluster has been created as secure and highly available. If you did not create a secure and HA-cluster, then there is no need to create the Kerberos user.
+Estimated Lab Time: 45 minutes
 
 ### Objectives
 
 * Map the private IP address of the first master node to a public IP address.
-* Connect to the cluster's first master node using Putty.
-* Create a new Kerberos principal.
+* Connect to the cluster's first master node using PuTTY.
 * Create a new Linux administrator user.
 * Access HDFS using the newly created user.
 * Add the new user to Hue.
 
 ### What Do You Need?
-This lab assumes that you have successfully completed all the labs in the **Contents** menu.
+This lab assumes that you have successfully completed the following labs in the **Contents** menu:
+
+menu:
+<if type="freetier">
++ **Lab 1: Setup the BDS Environment**
+</if>
+<if type="livelabs">
++ **Lab 1: Review Creating BDS Environment Resources (Optional)**
+</if>
++ **Lab 2: Create a BDS Hadoop Cluster**
++ **Lab 3: Add Oracle Cloud SQL to the Cluster**
++ **Lab 4: Access a BDS Node Using a Public IP Address**
++ **Lab 5: Use Cloudera Manager and Hue to Access a BDS Cluster**
 
 ## **STEP 1:** Gather Information About the Cluster
 
-1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+<if type="livelabs">
+1. Log in to the **Oracle Cloud Console**, if you are not already logged in, using your LiveLabs credentials and instructions. The **Oracle Cloud Console** Home page is displayed.
+</if>
+
+<if type="freetier">
+1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used to create the resources in **Lab 1**, if you are not already logged in. On the **Sign In** page, select your `tenancy` if needed, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+</if>
 
 2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Data and AI**, select **Big Data**.
 
@@ -30,11 +47,23 @@ This lab assumes that you have successfully completed all the labs in the **Cont
 
 4. In the **Cluster Information** tab, in the **Customer Network Information** section, click the **Copy** link next to **Subnet OCID**. Next, paste that OCID to an editor or a file, so that you can retrieve it later in **STEP 2** in this lab.
 
+  <if type="freetier">
   ![](./images/subnet-ocid.png " ")
+  </if>
 
-5. On the same page, in the **List of Cluster Nodes** section, in the **IP Address** column, find the private IP address for the first master node, **`traininmn0`**. Save the IP address as you will need it in later steps. In our example, the private IP address of our first master node in the cluster is **`10.0.0.10`**.
+  <if type="livelabs">
+  ![](./images/ll-subnet-ocid.png " ")
+  </if>
 
+5. On the same page, in the **List of Cluster Nodes** section, in the **IP Address** column, find the private IP address for the first master node, **`traininmn0`**. Save the IP address as you will need it in later steps. In our example, the private IP address of our first master node in the cluster is <if type="freetier">**`10.0.0.10`**</if> <if type="livelabs">**`10.0.0.2`**</if>.
+
+  <if type="freetier">
   ![](./images/mn0-private-ip.png " ")
+  </if>
+
+  <if type="livelabs">
+  ![](./images/ll-mn0-private-ip.png " ")
+  </if>
 
 ## **STEP 2:** Map the Private IP Address of the First Master Node to a Public IP Address
 
@@ -42,7 +71,13 @@ In this step, you will set three variables using the **`export`** command. The v
 
 1. On the **Oracle Cloud Console** banner at the top of the page, click the **Cloud Shell** icon. It may take a few moments to connect and authenticate you.
 
+  <if type="freetier">
   ![](./images/cloud-shell-started.png " ")
+  </if>
+
+  <if type="livelabs">
+  ![](./images/ll-cloud-shell-started.png " ")
+  </if>
 
 2. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. The **_`display-name`_** is an optional descriptive name that will be attached to the reserved public IP address that will be created for you. Press the **`[Enter]`** key to run the command.
 
@@ -58,9 +93,18 @@ In this step, you will set three variables using the **`export`** command. The v
     **Note:** In the preceding command, substitute **_``subnet-ocid``_** with your own **`subnet-ocid`** that you identified in **STEP 1** of this lab. Press the **`[Enter]`** key to run the command.
 
     In our example, we replaced the **_``subnet-ocid``_** with our own **`subnet-ocid`**:
+
+    <if type="freetier">
       ```
     $ export SUBNET_OCID="ocid1.subnet.oc1.iad.aaaaaaaa3mhu4yuaito4trodn4cywlv2ys3dtwj67cu26bs2gses4yd6gsea"
       ```
+    </if>
+
+    <if type="livelabs">
+      ```
+    $ export SUBNET_OCID="ocid1.subnet.oc1.phx.aaaaaaaav7csf6i5lsevfr3egwsxagknkyjppdgdlqrdknsyw3jz5bm3fdcq"
+      ```
+    </if>  
 
 4. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. The **`ip-address`** is the private IP address that is assigned to the node that you want to map.
 
@@ -71,23 +115,42 @@ In this step, you will set three variables using the **`export`** command. The v
 
   In our example, we replaced the **_``ip-address``_** with the private IP address of our first master node that we identified in **STEP 1** of this lab.
 
+    <if type="freetier">
       ```
     $ export PRIVATE_IP="10.0.0.10"
       ```
+    </if>
+
+    <if type="livelabs">
+      ```
+    $ export PRIVATE_IP="10.0.0.2"
+      ```
+    </if>  
 
 5.  At the **$** command line prompt, enter the following command exactly as it's shown below **_without any line breaks_**, or click **Copy** to copy the command, and then paste it on the command line. Press the **`[Enter]`** key to run the command.
 
       ```
-    <copy>oci network public-ip create --display-name $DISPLAY_NAME --compartment-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."compartment-id"'` --lifetime "RESERVED" --private-ip-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."id"'`</copy>
+    $ <copy>oci network public-ip create --display-name $DISPLAY_NAME --compartment-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."compartment-id"'` --lifetime "RESERVED" --private-ip-id `oci network private-ip list --subnet-id $SUBNET_OCID --ip-address $PRIVATE_IP | jq -r '.data[] | ."id"'`</copy>
       ```
-6.  In the output returned, find the value for **ip-address** field. In our example, it's **`193.122.164.186`**. This is the new reserved public IP address that is mapped to the private IP address of your **first master node**.
+6.  In the output returned, find the value for **ip-address** field. In our example, it's <if type="freetier">**`193.122.164.186`**</if><if type="livelabs">**`132.226.27.142`**</if>. This is the new reserved public IP address that is mapped to the private IP address of your **first master node**.
 
+  <if type="freetier">  
   ![](./images/output-white-ip-address.png " ")
+  </if>
+
+  <if type="livelabs">
+  ![](./images/ll-output-white-ip-address.png " ")
+  </if>
 
 7.  To view the newly created reserved public IP address in the console, click the Navigation menu and navigate to  **Core Infrastructure > Networking > IP Management**. In the **IP Management** section on the left, the **Public IPs** option is selected by default. The new reserved public IP address is displayed in the **Reserved Public IP Addresses** list.
 
+  <if type="freetier">
   ![](./images/mn0-reserved-public-ip.png " ")
+  </if>
 
+  <if type="livelabs">
+  ![](./images/ll-mn0-reserved-public-ip.png " ")
+  </if>
 
 ## **STEP 3:** Connect to the Cluster's First Master Node Using Secure Shell (SSH)
 
@@ -111,35 +174,60 @@ _If you are already connected to your cluster's first master node using the Open
 
 1. To SSH into your cluster using your Windows PuTTYgen generated SSH key pair, start Putty. The **PuTTY Configuration** window is displayed. In the **Category** pane, select the **Session** parameter, if not already selected. In the **Basic options for your PuTTY session** section, provide the following information:
 
-  + **Host Name (or IP address):** **`opc@master-node-0-ip-address`**.    
-    **Note:** In the above string, substitute `master-node-0-ip-address` with your IP address that you created for your **`traininmn0`** master node.
-  + **Port:** **`22`**.
-  + **Connection type:** **`SSH`**.   
-  + **Saved Sessions:** A description of this ssh connection such as `ssh to traininmn0 on BDS cluster`.
+    + **Host Name (or IP address):** **`opc@master-node-0-ip-address`**.    
+      **Note:** In the above string, substitute `master-node-0-ip-address` with your IP address that you created for your **`traininmn0`** master node.
+    + **Port:** **`22`**.
+    + **Connection type:** **`SSH`**.   
+    + **Saved Sessions:** A description of this ssh connection such as `ssh to traininmn0 on BDS cluster`.
 
-   ![](./images/putty-configuration-session.png " ")
+    <if type="freetier">
+    ![](./images/putty-configuration-session.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-putty-configuration-session.png " ")
+    </if>
 
 2. In the **Category** pane, expand **Connection**, expand **SSH**, and then click **Auth**. In the **Options controlling SSH authentication** section, in the **Private key file for authentication** section, click **Browse**. In the **Select private key file** window, select your **_private key_** that is associated with your cluster's **_public key_** that you used when your created your BDS cluster.    
 
+  <if type="freetier">
   ![](./images/putty-configuration-auth.png " ")
+  </if>
 
+  <if type="livelabs">
+  ![](./images/ll-putty-configuration-auth.png " ")
+  </if>
 
 3. In the **Category** pane, select the **Session** parameter, and then click **Save** to save your session for easier future access. Your saved session is displayed in the **Saved Sessions** list.
 
   **Note:** The next time you need to connect to this node, select the connection name from the **Saved Sessions** list, click **Load**, and then click **Open**.  
-
+  <if type="freetier">
   ![](./images/session-saved.png " ")
+  </if>
 
+  <if type="livelabs">
+  ![](./images/ll-session-saved.png " ")
+  </if>
 
 4. Click **Open** to start the ssh session. If this is your first time connecting to your first master node in the cluster, the following **PuTTY Security Alert** message box is displayed. Click **Yes**.
 
-
+  <if type="freetier">
   ![](./images/security-alert.png " ")
+  </if>
 
-   You are connected to the **`traininmn0`** master node.
+  <if type="livelabs">
+  ![](./images/ll-security-alert.png " ")
+  </if>
 
+   You are now connected to the **`traininmn0`** master node.
+
+  <if type="freetier">    
   ![](./images/traininmn0-connected.png " ")
+  </if>
 
+  <if type="livelabs">    
+  ![](./images/ll-traininmn0-connected.png " ")
+  </if>
 
 ## **STEP 4:** Create the **`training`** Linux OS Administrator User
 
@@ -150,9 +238,13 @@ Create the **`training`** Linux administrator user and the OS group **`supergrou
     ```
     $ <copy>sudo bash</copy>
     ```
-
+    <if type="freetier">
     ![](./images/sudo-bash.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-sudo-bash.png " ")
+    </if>
 
 2. The **`dcli`** utility allows you to run the command that you specify across each node of the cluster. The syntax for the **`dcli`** utility is as follows:
 
@@ -167,28 +259,39 @@ Create the **`training`** Linux administrator user and the OS group **`supergrou
     ```
     # <copy>dcli -C "groupadd supergroup"</copy>
     ```
-
+    <if type="freetier">
     ![](./images/dcli-groupadd.png " ")
+    </if>
 
-2. Enter the following command at the **`#`** prompt to create the **`training`** administrator user and add it to the listed groups on each node in the **`training-cluster`**. The **`useradd`** linux command creates the new **`training`** user and adds it to the specified groups.
+    <if type="livelabs">
+    ![](./images/ll-dcli-gro
+      upadd.png " ")
+    </if>
+
+3. Enter the following command at the **`#`** prompt to create the **`training`** administrator user and add it to the listed groups on each node in the **`training-cluster`**. The **`useradd`** linux command creates the new **`training`** user and adds it to the specified groups.
 
     ```
     # <copy>dcli -C "useradd -g supergroup -G hdfs,hadoop,hive training"</copy>
     ```
-
+    <if type="freetier">
     ![](./images/dcli-useradd.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-dcli-useradd.png " ")
+    </if>
 
     The preceding command creates a new user named **`training`** on each node of the cluster. The **`-g`** option assigns the **`supergroup`** group as the primary group for **`training`**. The **`-G`** option assigns the **`hdfs`**, **`hadoop`**, and **`hive`** groups as the secondary groups for **`training`**.
 
     **Note:** Since the **`training`** user is part of the **hive** group, it is considered an administrator for Sentry.
 
-3. Use the linux **`id`** command to confirm the creation of the new user and to list its groups membership.
+4. Use the linux **`id`** command to confirm the creation of the new user and to list its groups membership.
 
     ```
     # <copy>id training</copy>
     ```
 
-4. You can now access HDFS using the new **`training`** administrator user on any node in the cluster such as the **first master node** in this example. Change to the `training` user as follows:
+5. You can now access HDFS using the new **`training`** administrator user on any node in the cluster such as the **first master node** in this example. Change to the `training` user as follows:
 
     ```
     # <copy>sudo -su training</copy>
@@ -199,18 +302,26 @@ Create the **`training`** Linux administrator user and the OS group **`supergrou
     ```
     $ <copy>id</copy>
     ```
-
+    <if type="freetier">
     ![](./images/training-user.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-training-user.png " ")
+    </if>
 
-6.  Perform a file listing of HDFS as the `training` user using the following command:
+7.  Perform a file listing of HDFS as the `training` user using the following command:
 
     ```
     $ <copy>hadoop fs -ls /</copy>
     ```
-
+    <if type="freetier">
     ![](./images/hdfs-ls.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-hdfs-ls.png " ")
+    </if>
 
 ## **STEP 5:** Add the **`training`** User to Hue (optional)
 
@@ -228,9 +339,17 @@ In this step, you log into Hue as an administrator and add the **`training`** us
 
   In our example, we used the reserved public IP address that is associated with our first utility node as follows:
 
+    <if type="freetier">
     ```
     https://193.122.194.103:8888
     ```
+    </if>
+
+    <if type="livelabs">
+    ```
+    https://158.101.36.9:8888
+    ```
+    </if>
 
 3. If this is the first time you are accessing Hue, the Hue Login screen is displayed. Enter your **`username`** (**`admin`** by default) and the **`password`** that you specified when you created the cluster such as **`Training123`**.
 
@@ -263,7 +382,13 @@ In this step, you log into Hue as an administrator and add the **`training`** us
 
        The **Hue Users** page is re-displayed. The newly added **`training`** user is displayed in the list of Hue users.
 
+       <if type="freetier">
        ![](./images/user-added.png " ")
+       </if>
+
+       <if type="livelabs">
+       ![](./images/ll-user-added.png " ")
+       </if>
 
 8. Exit Hue. From the **admin** drop-down menu, select **Sign out**.
 
@@ -274,9 +399,7 @@ In this step, you log into Hue as an administrator and add the **`training`** us
 
   ![](./images/hue-doc.png " ")
 
-
-
-**This concludes this lab and the workshop.**
+This concludes this lab. You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -294,12 +417,7 @@ In this step, you log into Hue as an administrator and add the **`training`** us
 ## Acknowledgements
 
 * **Author:**
-    * Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
+    * Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
 * **Contributor:**
     * Martin Gubar, Director, Oracle Big Data Product Management
-* **Last Updated By/Date:** Lauran Serhal, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date:** Lauran Serhal, March 2021

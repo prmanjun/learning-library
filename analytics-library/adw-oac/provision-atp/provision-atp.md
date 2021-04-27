@@ -23,9 +23,9 @@ Automates failure detection, failover, and repair.
 
 - Detect and protect from system failures and user errors automatically and provide failover to standby databases with zero data loss.
 
-Watch our short video that explains Lab 1 - Provisioning your Autonomous Database instance & Lab 2 - Provisioning your Oracle Analytics Cloud instance in detail:
+Watch our short video that explains Lab 1 - Provisioning your Autonomous Database instance:
 
-[](youtube:rpKwrm-7eCk)
+[](youtube:IfWJhnodAxk)
 
 Estimated Lab Time: 15 minutes
 
@@ -38,7 +38,7 @@ Estimated Lab Time: 15 minutes
 
     This will produce a drop-down menu, where you should select **Autonomous Data Warehouse.**
 
-    ![Oracle Cloud Web Console](./images/lab100_1.png)
+    ![Oracle Cloud Web Console](./images/lab100_1_2.png)
 
     This will take you to the management console page.
 
@@ -70,7 +70,7 @@ Estimated Lab Time: 15 minutes
 
     [We have selected 'Always Free Tier On'. To learn more about this option check the following link](https://www.oracle.com/uk/cloud/free/#always-free).
 
-    ![ADB Creation Details](./images/lab100_3.png)
+    ![ADB Creation Details](./images/lab100_3_2.png)
 
     > **Choose Database version:** 19c
     >
@@ -140,7 +140,3 @@ You have just created an Autonomous Database with the latest features of Oracle 
 - **Contributors** - Victor Martin, Melanie Ashworth-March, Andrea Zengin
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

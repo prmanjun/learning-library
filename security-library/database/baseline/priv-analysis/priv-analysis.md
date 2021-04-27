@@ -45,7 +45,7 @@ This lab assumes you have:
       <copy>cd $DBSEC_LABS/priv-analysis</copy>
       ````
 
-3. Start by ensuring the user has the `CAPTURE_ADMIN` role and creating the PA Capture
+3. Start by ensuring the user has the "`CAPTURE_ADMIN`" role and creating the Privilege Analysis capture
 
       ````
       <copy>./pa_create_capture.sh</copy>
@@ -157,7 +157,3 @@ Technical Documentation:
 - **Contributors** - Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

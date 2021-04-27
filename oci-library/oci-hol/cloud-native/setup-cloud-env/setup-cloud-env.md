@@ -18,30 +18,9 @@ Estimated time: 20 minutes
 - Your Oracle Cloud Trial Account
 - You have already applied for and received your Oracle Cloud Free Tier Account.
 
-*In addition to the workshop*, feel free to watch the walkthrough companion video by clicking on the following image:
-[](youtube:wIoLDX7iWXo?start=0&end=60)
-
 ## **STEP 1:** Log into OCI Tenancy
 
    Log in to your OCI dashboard and retrieve information required to create resources.
-
-1. From any browser go to oracle.com to access the Oracle Cloud.
-
-    [https://www.oracle.com/](https://www.oracle.com/)
-
-  ![Login Screen](images/login-screen.png " ")
-
-1. Click the icon in the upper right corner.  Click on **Sign in to Cloud**.
-
-  ![Signup](images/signup.png " ")
-
-1. Enter your **Cloud Account Name** in the input field and click the **Next** button.  *NOTE: this is NOT your email. This is the name of your tenancy noted in the email you received during signup. Do NOT click the Sign-In button, this will take you to Single Sign-On, not the Oracle Cloud.*
-
-  ![Cloud Login](images/cloud-login-tenant.png " ")
-
-1. Enter your username (this may be your email address) and password and click on **Sign In**.  
-
-  ![Username](images/username.png " ")
 
 1. Once you log in you will see a page similar to the one below. Click on "Infrastructure Dashboard."
 
@@ -86,8 +65,11 @@ Now you are ready to move on to Step 3.
 
    ![Quick Create Cluster](images/OKE-create-cluster.png " ")
 
-1. Keep the name to **cluster1** and the other default values, click Next to review the cluster settings  
-<sup>_Optionally choose visibility type to **Public** if you want public access to your nodes and number of nodes to **2** or **1** if you want reduced number of nodes_</sup>
+1. Keep the name to **cluster1** and the other default values, click Next to review the cluster settings. Do not choose the Kubernetes API Endpoint to be _Private Endpoint_ or you will need a bastion or an admin instance to access the kubectl commands. You can explore Private Endpoint on an expecific lab.
+<sup>_Optionally choose visibility of the Kubernetes Worker Nodes to **Public Workers** if you want public access to your nodes and number of nodes to **2** or **1** if you want reduced number of nodes_</sup>
+
+Keep the name to cluster1 and the other default values, click Next to review the cluster settings
+Optionally choose visibility type to Private Endpoint to host your Kubernetes endpoint in a private subnet. Also choose visibility type to Public Workers if you want public access to your nodes. You can also change the number of nodes to 2 or 1 if you want to reduce the number of nodes.
 
    ![Cluster Details](images/OKE-create-cluster-details.png " ")
 
@@ -142,9 +124,9 @@ Now you are ready to move on to Step 3.
 
     ````shell
    NAME        STATUS   ROLES   AGE   VERSION
-   10.0.10.2   Ready    node    1m    v1.17.9
-   10.0.10.3   Ready    node    1m    v1.17.9
-   10.0.10.4   Ready    node    1m    v1.17.9
+   10.0.10.2   Ready    node    1m    v1.19.7
+   10.0.10.3   Ready    node    1m    v1.19.7
+   10.0.10.4   Ready    node    1m    v1.19.7
     ````
 
 You may now [proceed to the next lab](#next).
@@ -153,10 +135,5 @@ You may now [proceed to the next lab](#next).
 
 - **Author** - Satyajeet Joshi
 - **Contributors** -  Kamryn Vinson, Adao Junior
-- **Last Updated By/Date** - Adao Junior, October 2020
+- **Last Updated By/Date** - Adao Junior, April 2021
 
-## Need Help?
-
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.   Please include the workshop name   and lab in your request.

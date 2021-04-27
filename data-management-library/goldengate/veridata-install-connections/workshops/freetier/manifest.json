@@ -1,5 +1,6 @@
 {
   "workshoptitle": "Getting Started with Oracle GoldenGate Veridata",
+    "help": "livelabs-help-db_us@oracle.com",
     "tutorials": [
 
       {
@@ -9,19 +10,35 @@
         }
         ,
         {
-              "title": "Lab 1: Install and Configure Oracle GoldenGate Veridata",
+              "title": "Lab: Install and Configure Oracle GoldenGate Veridata",
               "description": "This lab walks you through the required and optional tasks to install Oracle GoldenGate Veridata.",
               "filename": "./../../ggv-install-veridata/ggv-install-veridata.md"
         }
         ,
+        {
+            "title": "Lab: Create Datasource Connections",
+            "description": "This lab walks you through the steps to create datasource connections.",
+            "filename": "./../../ggv-create-connections/ggv-create-connections.md"
+        }
+        ,
 
         {
-              "title": "Lab 2: Create Connections to Autonomous Data Warehouse (ADW) and Autonomous Transaction Processing (ATP)",
-              "description": "This lab describes how to connect the Oracle GoldenGate Veridata to Autonomous Data Warehouse (ADW) and Autonomous Transaction Processing (ATP) by using the Oracle Wallet.",
-              "filename": "./../../ggv-adw-atp/ggv-adw-atp.md"
+              "title": "Lab: Create Groups, Compare Pairs, and Jobs ",
+              "description": "This lab walks you through the steps to create groups and compare pairs.",
+              "filename": "./../../ggv-create-groups-compare-pairs/ggv-create-groups-compare-pairs.md"
           }
-
-
+          ,
+          {
+              "title": "Lab: Repair Jobs and Generate SQL Files ",
+              "description": "This lab walks you through the steps to repair jobs and data.",
+              "filename": "./../../ggv-repair-data/ggv-repair-data.md"
+            }
+            ,
+            {
+                "title": "Lab: View Reports ",
+                "description": "This lab walks you through the steps to view comparision Reports.",
+                "filename": "./../../ggv-reports/ggv-reports.md"
+              }
 
        ]
-  }
+    }

@@ -1,10 +1,18 @@
-# Upload Data to Hadoop Distributed File System and Object Storage
+<if type="freetier">
+# Upload Data to HDFS and Object Storage
+</if>
+
+<if type="livelabs">
+# Upload Data to HDFS
+</if>
 
 ## Introduction
 
 In this lab, you will download and run two sets of scripts. First, you will download and run the Hadoop Distributed File System (HDFS) scripts to download data from [Citi Bikes NYC](https://www.citibikenyc.com/system-data) to a new local directory on your master node in your BDS cluster. The HDFS scripts manipulates some of the downloaded data files, and then upload them to new HDFS directories. The HDFS scripts also create Hive databases and tables which you will query using Hue. Second, you will download and run the object storage scripts to download data from [Citi Bikes NYC](https://www.citibikenyc.com/system-data) to your local directory using OCI Cloud Shell. The object storage scripts uploads the data to a new bucket in Object Storage. See the [Data License Agreement](https://www.citibikenyc.com/data-sharing-policy) for information about the Citi Bikes NYC data license agreement.
 
 **Note:** The Object Storage service provides reliable, secure, and scalable object storage. Object storage is a storage architecture that stores and manages data as objects. You can use Object Storage objects and buckets to store and manage data. An object stores any type of data, regardless of the content type. A bucket is a logical container for storing objects.  See [Overview of Object Storage](https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm#Overview_of_Object_Storage) in the Oracle Cloud Infrastructure documentation.
+
+Estimated Lab Time: 45 minutes
 
 ### Objectives
 
@@ -15,12 +23,25 @@ In this lab, you will download and run two sets of scripts. First, you will down
 
 
 ### What Do You Need?
-+ This lab assumes that you have successfully completed all the labs in the **Contents** menu.
++ This lab assumes that you have successfully completed the following labs in the **Contents** menu:
+    <if type="freetier">
+    + **Lab 1: Setup the BDS Environment**
+    </if>
+    <if type="livelabs">
+    + **Lab 1: Review Creating BDS Environment Resources (Optional)**
+    </if>
+    + **Lab 2: Create a BDS Hadoop Cluster**
+    + **Lab 3: Add Oracle Cloud SQL to the Cluster**
+    + **Lab 4: Access a BDS Node Using a Public IP Address**
+    + **Lab 5: Use Cloudera Manager and Hue to Access a BDS Cluster**
+    + **Lab 6: Create a Hadoop Administrator User**
+
 + Download some stations and bike trips data files from [Citibikes](https://www.citibikenyc.com/system-data) and some randomized weather data from a public bucket in Object Storage.
 
+<if type="freetier">
 ## **STEP 1:** Gather Information About the Compartment and the Master Node Reserved Public IP Address
 
-1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used to create the resources in **Lab 1**, if you are not already logged in. On the **Sign In** page, select your `tenancy` if needed, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
 
 2. In the **Oracle Cloud Console** navigation menu, navigate to **Governance and Administration > Identity > Compartments > training-compartment**. In the row for the compartment, in the **OCID** column, hover over the OCID link and then click **Copy**. Next, paste that OCID to an editor or a file, so that you can retrieve it later in this lab.
 
@@ -32,6 +53,20 @@ In this lab, you will download and run two sets of scripts. First, you will down
 
   ![](./images/traininmn0-ip-address.png " ")
 
+</if>
+
+<if type="livelabs">
+## **STEP 1:** Gather Information About the Master Node Reserved Public IP Address
+
+1. Log in to the **Oracle Cloud Console**, if you are not already logged in, using your LiveLabs credentials and instructions. The **Oracle Cloud Console** Home page is displayed.
+
+2. In the **Oracle Cloud Console** navigation menu, navigate to **Core Infrastructure > Networking > Virtual Cloud Networks > IP Management**. The **Reserved Public IP Addresses** page is displayed. In the **List Scope** on the left pane, make sure that your **training-compartment** is selected.
+
+3. In row for the `traininmn0-public-ip` reserved IP address, copy the reserved public IP address associated with the master node in the **Reserved Public IP** column. Next, paste that IP address to an editor or a file, so that you can retrieve it later in this lab. You might need this IP address to ssh to the master node, if you didn't save your ssh connection in Lab 6.
+
+  ![](./images/traininmn0-ip-address.png " ")
+
+</if>
 
 ## **STEP 2:** Connect to the Cluster's First Master Node Using Secure Shell (SSH)
 
@@ -43,12 +78,23 @@ In this lab, we will connect to our cluster using Windows **PuTTY** and provide 
 
 1. Start **PuTTY**. The **PuTTY Configuration** window is displayed. In the **Saved Sessions** section, click the `ssh to traininmn0 on BDS cluster` saved session that you created in **Lab 6**, and then click **Load**.
 
+   <if type="freetier">
    ![](./images/connect-to-traininmn0.png " ")
+   </if>
+
+   <if type="livelabs">
+   ![](./images/ll-connect-to-traininmn0.png " ")
+   </if>
 
 2. Click **Open**. You are connected to the **`traininmn0`** master node.
 
+   <if type="freetier">
    ![](./images/connected.png " ")
+   </if>
 
+   <if type="livelabs">
+   ![](./images/ll-connected.png " ")
+   </if>
 
 3.  Log in as the **`training`** Hadoop Administrator user that you created in **Lab 6**.
 
@@ -61,8 +107,13 @@ In this lab, we will connect to our cluster using Windows **PuTTY** and provide 
     ```
     $ <copy>id</copy>
     ```
-
+    <if type="freetier">
     ![](./images/connect-as-training.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-connect-as-training.png " ")
+    </if>
 
 4. Use the `cd` command to change the working directory to that of the **`training`** user. Use the `ls -l` command to confirm that you are in the `training` working directory:
 
@@ -70,9 +121,13 @@ In this lab, we will connect to our cluster using Windows **PuTTY** and provide 
     $ <copy>cd</copy>
     $ <copy>ls -l</copy>
     ```
-
+    <if type="freetier">
     ![](./images/change-directory.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-change-directory.png " ")
+    </if>
 
 ## **STEP 3:** Download and Run HDFS Scripts to Set Up the HDFS Data
 
@@ -92,33 +147,52 @@ To view the complete data files that are available, navigate to [Citibike System
     ```
     $ <copy>wget https://objectstorage.us-phoenix-1.oraclecloud.com/n/oraclebigdatadb/b/workshop-data/o/bds-livelabs/env.sh</copy>
     ```
-
+    <if type="freetier">
     ![](./images/run-env-script.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-run-env-script.png " ")
+    </if>
 
 2. Run the following command to download the **`download-all-hdfs-data.sh`** script from a public bucket in Object Storage to the **`training`** working directory. You will run this script to download the dataset to your local working directory. The script will then upload this data to HDFS.
 
     ```
     $ <copy>wget https://objectstorage.us-phoenix-1.oraclecloud.com/n/oraclebigdatadb/b/workshop-data/o/bds-livelabs/download-all-hdfs-data.sh</copy>
     ```
-
+    <if type="freetier">
     ![](./images/run-download-hdfs-data.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-run-download-hdfs-data.png " ")
+    </if>
 
 3. Add the **execute** privilege to the two downloaded `.sh` files as follows:
 
     ```
     $ <copy>chmod +x *.sh</copy>
     ```
-
+    <if type="freetier">
     ![](./images/execute-privilege.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-execute-privilege.png " ")
+    </if>
 
 4. Display the content of the **`env.sh`** file using the **cat** command. This file sets the target local and HDFS directories.
 
     ```
     $ <copy>cat env.sh</copy>
     ```
-
+  <if type="freetier">  
   ![](./images/env-script.png " ")
+  </if>
 
+  <if type="livelabs">  
+  ![](./images/ll-env-script.png " ")
+  </if>
 
   **Note:** You will download the data from [Citi Bikes NYC](https://www.citibikenyc.com/system-data) to the new **`Downloads`** local target directory as specified in the **`env.sh`** file. You will upload the data from the local **`Downloads`** directory to the following new HDFS directories under the new **`/data`** HDFS directory as specified in the **`env.sh`** and the HDFS scripts: **`biketrips`**, **`stations`**, and **`weather`**.
 
@@ -127,8 +201,13 @@ To view the complete data files that are available, navigate to [Citibike System
     ```
     $ <copy>cat download-all-hdfs-data.sh</copy>
     ```
-
+    <if type="freetier">
     ![](./images/cat-download-hdfs-script.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-cat-download-hdfs-script.png " ")
+    </if>
 
   The **`download-citibikes-hdfs.sh`** script does the following:
 
@@ -153,38 +232,62 @@ To view the complete data files that are available, navigate to [Citibike System
     ```
     $ <copy>./download-all-hdfs-data.sh</copy>
     ```
+    <if type="freetier">
     ![](./images/run-hdfs-script.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-run-hdfs-script.png " ")
+    </if>
 
 7. Text messages will scroll on the screen. After a minute or so, the **Weather data loaded** and **Done** messages are displayed on the screen.
 
+    <if type="freetier">
     ![](./images/script-completed.png " ")
+    </if>
 
-8. Navigate to the local **`Downloads`** directory to display the downloaded trip data, stations, and weather data files.
+    <if type="livelabs">
+    ![](./images/ll-script-completed.png " ")
+    </if>
+
+8. Navigate to the local **`Downloads`** directory, and then use the `ls -l` command to display the downloaded trips, stations, and weather data files.
 
     ```
-    $ <copy>ls -l</copy>
     $ <copy>cd Downloads</copy>
-    $ <copy>ls -ls</copy>
     ```
-
+    <if type="freetier">
     ![](./images/data-downloaded.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-data-downloaded.png " ")
+    </if>
 
 9. Use the **`head`** command to display the first two records from the **`stations.json`** file.
 
     ```
     $ <copy>head -2 stations.json </copy>
     ```
-
+    <if type="freetier">
     ![](./images/view-stations.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-view-stations.png " ")
+    </if>
 
 10. Use the **`head`** command to display the first 10 records from the **`weather-newark-airport.csv`** file.
 
     ```
     $ <copy>head weather-newark-airport.csv </copy>
     ```
-
+    <if type="freetier">
     ![](./images/view-weather.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-view-weather.png " ")
+    </if>
 
 11. Use the following commands to display the HDFS directories that were created, and list their contents.
 
@@ -194,17 +297,27 @@ To view the complete data files that are available, navigate to [Citibike System
     $ <copy>hadoop fs -ls /data/stations</copy>
     $ <copy>hadoop fs -ls /data/weather</copy>
     ```
-
+    **Note:** Hit the **[Enter]** key on your keyboard to execute the last command above.
+    <if type="freetier">
     ![](./images/hdfs-directories.png " ")
+    </if>
+
+    <if type="livelabs">
+    ![](./images/ll-hdfs-directories.png " ")
+    </if>
 
 12. Use the following command to display the first 5 rows from the uploaded **`JC-201901-citibike-tripdata.csv`** file in the **`/data/biketrips`** HDFS folder. Remember, the header row for this uploaded `.csv` file was removed when you ran the **`download-citibikes-hdfs.sh`** script.
 
     ```
     $ <copy>hadoop fs -cat /data/biketrips/JC-201902-citibike-tripdata.csv | head -5</copy>
     ```
-
+    <if type="freetier">
     ![](./images/view-tripdata.png " ")
+    </if>
 
+    <if type="livelabs">
+    ![](./images/ll-view-tripdata.png " ")
+    </if>
 
 ## **STEP 4:** Query the Uploaded HDFS Data Using Hue
 
@@ -221,27 +334,39 @@ In this step, you log into Hue as the **`training`** administrator user and quer
   In the preceding command, substitute **_``ip-address``_** with your own **_``ip-address``_** that is associated with the **first utility node** in your cluster, **`traininun0`**.
 
   In our example, we used the reserved public IP address that is associated with our first utility node as follows:
-
+    <if type="freetier">
     ```
     https://193.122.194.103:8888
     ```
+    </if>
+
+    <if type="livelabs">
+    ```
+    https://158.101.36.9:8888
+    ```
+    </if>
 
 3. If this is the first time you are accessing Hue, the Hue Login screen is displayed. Enter your **`username`** (**`admin`** by default) and the **`password`** that you specified when you created the cluster such as **`Training123`**.
+**Note:** In the optional **STEP 5: Add the training User to Hue (optional)** in **Lab 6**, you added the new `training` user to Hue.
 
   ![](./images/hue-login-page.png " ")
 
-  The **Hue Editor** page is displayed. Note the **`bikes`** and **`weather`** Hive databases that were created when you ran the scripts in the previous step in this lab.
+  The **Hue Editor** page is displayed with the **`default`** Hive database. To display the **`bikes`** and **`weather`** Hive databases that were created when you ran the scripts in the previous step, click the **`default`** Hive database.
 
   ![](./images/hue-home-page.png " ")
 
-4. Copy the following query that ranks the top 10 most popular start stations, paste it in the Query section in Hue, and then click **Execute** ![](./images/execute-icon.png).
+  The **`bikes`** and **`weather`** Hive databases are displayed.
+
+  ![](./images/hive-databases.png " ")
+
+4. Copy the following query that ranks the top 10 most popular start stations, paste it in the Query section in Hue, and then click **Execute** ![](./images/execute-icon.png). You can also select the **`bikes`** database from the the **Database** drop-down list although that is not needed in the following query as we prefixed the table name with the database name, **`bikes.trips`**, in the `from` clause.
 
     ```
     <copy>select start_station_name, value,
        rank() over (order by value desc) as ranking
     from (
     select start_station_name, count(*) as value
-    from trips
+    from bikes.trips
     group by start_station_name
   ) as t
 limit 10;</copy>
@@ -257,7 +382,11 @@ limit 10;</copy>
 
   ![](./images/hue-doc.png " ")
 
+  <if type="livelabs">
+  **This concludes this lab and the workshop.**
+  </if>
 
+<if type="freetier">
 ## **STEP 5:** Download and Run Object Storage Scripts to Set Up the Object Storage Data
 
 In this step, you will download two scripts that will set up your Object Storage environment and download the object storage dataset from [Citi Bikes NYC](https://www.citibikenyc.com/system-data). The scripts and a randomized weather data file are stored in a public bucket in Object Storage.
@@ -291,10 +420,10 @@ In this step, you will download two scripts that will set up your Object Storage
 
     ![](./images/view-os-env-script.png " ")
 
-5. To input and edit text, press the **[i]** key on your keyboard (insert mode) at the current cursor position. The **INSERT** keyword is displayed at the bottom of the file to indicate that you can now make your edits to this file. Scroll-down to the line that you want to edit. Copy your **training-compartment** **OCID** value that you identified in **STEP 1**, and then paste it between the **`" "`** in the **`export COMPARTMENT_OCID=""`** command.
+
+5. To input and edit text, press the **[i]** key on your keyboard (insert mode) at the current cursor position. The **INSERT** keyword is displayed at the bottom of the file to indicate that you can now make your edits to this file. Scroll-down to the line that you want to edit. Copy your **training-compartment OCID** value that you identified in **STEP 1**, and then paste it between the **`" "`** in the **`export COMPARTMENT_OCID=""`** command.
 
     ![](./images/vi-env-script-os.png " ")
-
 
     **Note:** You will upload the Object Store data to the **`training`** bucket as specified in the `env.sh` file.
 
@@ -302,12 +431,14 @@ In this step, you will download two scripts that will set up your Object Storage
 
     ![](./images/saving-os.png " ")
 
-7. At the **$** command line prompt, enter the following command, or click **Copy** to copy the command, and then paste it on the command line. You will run this script to download the dataset to your local working directory. You will then upload this data to a new object in a new bucket. Press the **`[Enter]`** key to run the command.
+
+7. At the **$** command line prompt, click **Copy** to copy the following command, and then paste it on the command line. You will run this script to download the dataset to your local working directory. You will then upload this data to a new object in a new bucket. Press the **[Enter]** key to run the command.
 
     ```
     <b>$</b> <copy>wget https://objectstorage.us-phoenix-1.oraclecloud.com/n/oraclebigdatadb/b/workshop-data/o/bds-livelabs/download-all-objstore.sh
     </copy>
     ```
+
     ![](./images/download-os-script.png " ")
 
 
@@ -319,6 +450,7 @@ In this step, you will download two scripts that will set up your Object Storage
 
     ![](./images/chmod-scripts.png " ")
 
+
 9. Use the **`cat`** command to display the content of this script. This script runs the `env.sh` script, downloads the **`download-citibikes-objstore.sh`** and **`download-weather-objstore.sh`** scripts, adds execute privilege to both of those scripts, and then runs the two scripts.
 
     ```
@@ -326,6 +458,7 @@ In this step, you will download two scripts that will set up your Object Storage
     ```
 
     ![](./images/cat-os-script.png " ")
+
 
   You can use the **`cat`** command to display the content of this script. The **`download-all-objstore.sh`** script runs the **`env.sh`** script which sets the environment. The script writes some of the data from [Citi Bikes NYC](https://www.citibikenyc.com/system-data), and a randomized weather data that is stored in a public bucket in Object Storage to the your local Cloud Shell directory and to new objects in a new bucket named **`training`**, as specified in the **`env.sh`** script. The **`training`** bucket will contain the following new objects:
 
@@ -365,7 +498,12 @@ In this step, you will download two scripts that will set up your Object Storage
 
     **Note:** To view all the data in a file, select **Download** from the context menu, and then double-click the downloaded file to open it using its native application, MS-Excel (.csv) in this example.  
 
-**This concludes this lab and the workshop.**
+    </if>
+
+<if type="freetier">
+This concludes this lab. You may now [proceed to the next lab](#next).
+</if>
+
 
 ## Want to Learn More?
 
@@ -377,14 +515,9 @@ In this step, you will download two scripts that will set up your Object Storage
 ## Acknowledgements
 
 * **Author:**
-    + Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
+    + Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
 * **Contributor:**
     + Martin Gubar, Director, Oracle Big Data Product Management
 * **Reviewer:**  
     + Martin Gubar, Director, Oracle Big Data Product Management
-* **Last Updated By/Date:** Lauran Serhal, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date:** Lauran Serhal, March 2021

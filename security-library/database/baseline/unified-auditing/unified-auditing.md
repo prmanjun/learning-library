@@ -57,7 +57,7 @@ This lab assumes you have:
       <copy>./ua_current_audit_settings.sh</copy>
       ````
 
-    - We have already set the environment for you in pure Unified Auditing mode, hence you should see that Unified Audit is set to `TRUE`
+    - We have already set the environment for you in pure Unified Auditing mode, hence you should see that Unified Audit is set to **TRUE**
 
       ![](./images/ua-001.png " ")
 
@@ -93,7 +93,7 @@ This lab assumes you have:
 
    ![](./images/ua-005.png " ")
 
-5. Display the existing audit records for the database you connect to (by default, the script will choose `pdb1` as the database to query)
+5. Display the existing audit records for the database you connect to (by default, the script will choose **pdb1** as the database to query)
 
       ````
       <copy>./ua_query_existing_audit_records.sh</copy>
@@ -129,8 +129,8 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
 
 2. On your Glassfish App, perform the the following steps:
 
-    - Open a web browser window to `http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`
-    - Login to the HR Application as `hradmin` with the password `Oracle123`
+    - Open a web browser window to *`http://<YOUR_DBSEC-LAB_VM_PUBLIC_IP>:8080/hr_prod_pdb1`*
+    - Login to the HR Application as *`hradmin`* with the password "*`Oracle123`*"
 
       ![](./images/ua-008.png " ")
 
@@ -144,14 +144,14 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
 
       ![](./images/ua-011.png " ")
 
-    - Change some of the criteria and Search again.
-    - Repeat 2-3 times to ensure you have enough traffic
+    - Change some of the criteria and Search again
+    - **Repeat 2-3 times** to ensure you have enough traffic
 
 3. Go back to your terminal session and **press [return]** when you are ready to see the results
 
    ![](./images/ua-012.png " ")
 
-4.  Then, run a query to generate traffic from `SQL*Plus` on the host OS
+4.  Then, run a query to generate traffic from **SQL*Plus** on the host OS
 
       ````
       <copy>./ua_query_employeesearch.sh</copy>
@@ -159,7 +159,7 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
 
    ![](./images/ua-013.png " ")
 
-5. Now, create the Unified Audit Policy
+5. Now, create the **Unified Audit Policy**
 
       ````
       <copy>./ua_create_audit_policy.sh</copy>
@@ -167,7 +167,7 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
 
    ![](./images/ua-014.png " ")
 
-    **Note**: The Unified Audit Policy will capture your machine-related details to create the  `WHEN` clause
+    **Note**: The Unified Audit Policy will capture your machine-related details to create the  **WHEN** clause
 
 6. After creating the Unified Audit Policy you must enable it!
 
@@ -191,13 +191,13 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
 
       - Open our Glassfish App and perform again a random research as previously
 
-      - Then, go back to your terminal session an press [return]
+      - Then, go back to your terminal session an press **[return]**
 
          ![](./images/ua-016.png " ")
 
           **Note**: They should not be generated based on this Unified Audit Policy because we are **excluding** application audit data
 
-8. Query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table again using `SQL*Plus` to generate audit data
+8. Query the `EMPLOYEESEARCH_PROD.DEMO_HR_EMPLOYEES` table again using SQL*Plus to generate audit data
 
       ````
       <copy>./ua_query_employeesearch.sh</copy>
@@ -214,7 +214,7 @@ In this lab, you will audit who is using the `EMPLOYEESEARCH_PROD` objects outsi
    ![](./images/ua-017.png " ")
 
     **Note**:
-    - You can see we have an entry that corresponds with our use of `SQL*Plus` while not capturing queries from the Glassfish application
+    - You can see we have an entry that corresponds with our use of SQL*Plus while not capturing queries from the Glassfish application
     - We trust the application to execute queries as `EMPLOYEESEARCH_PROD` but we do not trust anyone else
     - We want to audit everyone else
 
@@ -314,11 +314,11 @@ In this lab you will configure the Unified Audit Trail and review an audit of Or
       <copy>./ua_datapump_export_hr_table.sh</copy>
       ````
 
-    ...as a user authorized (`SYSTEM`): successfully!
+    ...as a user authorized (`SYSTEM`): **Successfully!**
     
     ![](./images/ua-029a.png " ")
 
-     ...and as a user who is not authorized (`DBSAT_ADMIN`): in failure!
+     ...and as a user who is not authorized (`DBSAT_ADMIN`): **In Failure!**
 
     ![](./images/ua-029b.png " ")
 
@@ -382,7 +382,3 @@ Technical Documentation:
 - **Contributors** - Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

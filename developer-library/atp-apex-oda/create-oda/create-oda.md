@@ -32,17 +32,29 @@ Watch our short video that explains Lab 3 - Create Oracle Digital Assistant, Lab
 
 [](youtube:kdvjXTMC-PI)
 
-Estimated Lab Time: 15 minutes
+Estimated Lab Time: 10 minutes
+
+Watch the video below for an overview of the Create Oracle Digital Assistant lab
+[](youtube:-5m8CB3J9fs)
+
+### Objectives
+
+In this lab, you will:
+-  Create and explore your Digital Assistant instance
+
+### Prerequisites
+
+- This lab assumes you have logged into your to Oracle Cloud account.
 
 ## **STEP 1**: Create a Digital Assistant instance
 
 **Create** a Digital Assistant instance to start working with bots. You can find advance set up steps on the [official documentation](https://docs.oracle.com/en/cloud/paas/digital-assistant/use-chatbot/order-service-and-provision-instance.html#GUID-7E4F1CE5-FB40-45DF-B0F0-949289F5E184).
 
-1. Go to the **Menu** and **Digital Assistant**:
+1. Go to the **Menu**, **Analytics & AI** and **Digital Assistant**:
 
-    ![ODA Menu](./images/oda_1.png)
+    ![ODA Menu](./images/oda_1_1.png)
 
-2. Click on **Create** Digital Assistant Instance button:
+2. Click on **Create Digital Assistant Instance** button:
 
     ![ODA Menu](./images/oda_2.png)
 
@@ -61,39 +73,36 @@ Estimated Lab Time: 15 minutes
 
 5. You will have to **Log-in** again with your **Account name**, **User** and **Password**.
 
-    Type your **Account Name** or **Tenancy**:
+    Ensure you are on the right **Tenancy** or **Account** and click **Continue**.
 
-    ![ODA Log in](./images/oda_login_1.png)
+    ![ODA Log in](./images/oda-login-1-new.png)
 
-6. And then click in **Continue** on the **Single Sign-On (SSO)** side:
+    If not, click on **Change Tenant**, type your **Account Name** or **Tenancy** and click **Continue**.
 
-    ![ODA Log in](./images/oda_login_2.png)
+    ![ODA Log in](./images/oda-tenancy-1.png)
+    ![ODA Log in](./images/oda-tenancy-2.png)
 
-7. Add your **Username**, **Password** and you are ready to visit **Oracle Digital Assistant Home** page.
+6. Provide your **Username**, **Password** and click **Sign In** to visit **Oracle Digital Assistant Home** page.
 
-    You will be on the Oracle Digital Assistant **Dashboard** where you can start building your bots.
+    ![ODA Log in](./images/oda-login-2-new.png)
 
-    ![ODA Menu](./images/oda_5.png)
+7. You will be on the Oracle Digital Assistant **Dashboard** where you can start building your bots.
+
+    ![ODA Menu](./images/oda_5_new.png)
 
 ## **STEP 2**: Explore your Digital Assistant
 
 You can always **Watch Videos** on the **Learn** section at the bottom and explore the documentation of Oracle Digital Assistant by following the links on the dashboard.
 
-## It works
-
 Make sure you look around and feel familiar with the menus.
 
-![ODA Menu](./images/oda_6.png)
+![ODA Menu](./images/oda_6_new.png)
 
-*Congratulations! You are ready to go to the next workshop!*
+You may now [proceed to the next lab](#next).
 
-## **Acknowledgements**
+## Acknowledgements
 
 - **Author** - Victor Martin - Principal Cloud Engineer | Priscila Iruela - Database Business Development
 - **Contributors** - Melanie Ashworth-March
-- **Last Updated By/Date** - Kamryn Vinson, October 2020
+- **Last Updated By/Date** - Anoosha Pilli, March 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

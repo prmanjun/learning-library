@@ -1,6 +1,6 @@
 # Welcome to the Oracle GoldenGate Veridata Hands-on Workshop!
 
-The **Getting Started to Oracle GoldenGate Veridata Workshop** is a series of step-by-step labs that guide you through the process of installing and configuring Oracle GoldenGate Veridata. You'll also explore how to connect the Oracle GoldenGate Veridata to Autonomous Data Warehouse (ADW) and Autonomous Transaction Processing (ATP) by using the Oracle Wallet.
+The **Getting Started to Oracle GoldenGate Veridata Workshop** is a series of step-by-step labs that guide you through the process of installing and configuring Oracle GoldenGate Veridata. You'll also explore how to create connections, connect the Oracle GoldenGate Veridata to Autonomous Data Warehouse (ADW) and Autonomous Transaction Processing (ATP) by using the Oracle Wallet, create groups and compare pairs, create groups, configure compare pairs, create and execute jobs, view reports,
 
 ## Access the Labs Using Our Web Interface
 
@@ -13,8 +13,10 @@ Alternatively, you can follow the individual workshop labs on this repo:
 
 - [Introduction to Oracle GoldenGate Veridata](../workshops/freetier/intro.md)
 - [Install and Configure Oracle GoldenGate Veridata ](../ggv-install-veridata/ggv-install-veridata.md)
+- [Create Connections](../ggv-create-connections/ggv-create-connections.md)
 - [Connect the Oracle GoldenGate Veridata Agent to Autonomous Data Warehouse](../ggv-adw-atp/ggv-adw-atp.md)
-
+- [Create Groups, Compare Pairs, Jobs, and Run Jobs](../ggv-create-groups-compare-pairs/ggv-create-groups-compare-pairs.md)
+- [View Reports](../ggv-reports/ggv-reports.md)
 
 <!-- Keep this content -->
 ## Oracle Cloud Account

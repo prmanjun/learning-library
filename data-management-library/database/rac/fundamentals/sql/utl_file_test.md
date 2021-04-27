@@ -78,6 +78,7 @@ UTL\_FILE provides file access both on the client side and on the server side. W
     ````
     <copy>
     declare fl utl_file.file_type;
+            data varchar2(200);
     begin
         fl := utl_file.fopen('ORAHOME','data.txt','r');
         utl_file.get_line(fl, data);
@@ -103,8 +104,3 @@ UTL\_FILE provides file access both on the client side and on the server side. W
 * **Authors** - Troy Anthony, Anil Nair
 * **Contributors** - Kay Malcolm
 * **Last Updated By/Date** - Kay Malcolm, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

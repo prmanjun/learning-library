@@ -15,6 +15,8 @@ You will create a highly scalable application that relies on Oracle Container En
 Click on [Sign Up For a Free Trial](?lab=sign-up-for-free-trial) to get your Oracle Free Trial. If you already have an Oracle Free Trial or Paid account, you can proceed to [Lab 1: Provision a DevCS Instance](?lab=lab-1-setup-oci,-oke,-atp-cloud-shell).
 
 Access a complete walkthrough video of this lab [here](https://tinyurl.com/helidonoracledb-msdataworkshop). 
+Note that a few minor steps (such as the creation of OCI Vault secrets, etc.) have changed from this video and the documentation should be followed. 
+We will be updating the video soon.
 
 If you need any help please join the databasehome.slack.com (#microservices) channel.
 
@@ -32,5 +34,3 @@ If you need any help please join the databasehome.slack.com (#microservices) cha
 * **Contributors** - Jaden McElvey, Technical Lead - Oracle LiveLabs Intern
 * **Last Updated By/Date** - Tom McGinn, June 2020
 
-## Need Help?
-Please submit feedback or ask for help using this [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/building-microservices-with-oracle-converged-database). Please login using your Oracle Sign On and click the **Ask A Question** button to the left.  You can include screenshots and attach files.  Communicate directly with the authors and support contacts.  Include the *lab* and *step* in your request. 

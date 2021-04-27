@@ -10,6 +10,10 @@ Your Oracle Cloud Free Tier account will use the Oracle Cloud Free Trial **credi
 
 Provisioning an Oracle Analytics Cloud instance can take over **40 minutes**.
 
+Watch our short video that explains Lab 2 - Provisioning your Oracle Analytics Cloud instance:
+
+[](youtube:ZAqXlhivQCg)
+
 Estimated workshop Time 15 minutes.
 
 ### Objectives
@@ -48,9 +52,9 @@ in the top right hand side of your screen. If your username is shown as:
 
     [More information about federated users](https://docs.cloud.oracle.com/en-us/iaas/Content/Identity/Tasks/usingscim.htm).
 
-2. Return to the *Home Console Page* and navigate to **Analytics** under **Solutions and Platform** section and then **Analytics Cloud**.
+2. Return to the *Home Console Page* and navigate to **Analytics & AI** section and then **Analytics Cloud**.
 
-    ![Oracle Analytics Console](./images/lab200_5.png)
+    ![Oracle Analytics Console](./images/lab200_5_2.png)
 
     > **Note**: You must be connected as a **Single Sign On** (**Federated** user) user to a tenancy, which has available cloud credits to see this menu item. Local OCI users are not able to do this.
 
@@ -95,7 +99,3 @@ in the top right hand side of your screen. If your username is shown as:
 - **Contributors** - Victor Martin, Melanie Ashworth-March, Andrea Zengin
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

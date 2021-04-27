@@ -1,0 +1,22 @@
+{
+  "workshoptitle": "My ToDO List App with React JS",
+    "tutorials": [
+      {
+        "title": "Introduction",
+        "filename": "./README.md"
+      },
+      {
+        "title": "Part I: Setup OCI Cloud services: ATP, OKE, OCIR",
+        "filename": "./setup-dev-environment/README.md"
+      },
+      {
+        "title": "Part II: Configure and Deploy the Backend (Java/Helidon)",
+        "filename": "./backend/README.md"
+      },
+      {
+        "title": "Part III: Configure and Deploy the Frontend (React JS)",
+        "filename": "./frontend/README.md"
+      }
+
+    ]
+}

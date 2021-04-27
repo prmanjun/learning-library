@@ -1,19 +1,20 @@
 {
     "workshoptitle": "High Performance Compute - Siemens Simcenter STAR-CCM+",
-    "tutorials": [
-        {
-            "title": "Prerequisites",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-        },
+    "help": "livelabs-help-hpc_us@oracle.com",
+	"tutorials": [
         {
             "title": "Introduction",
             "description": "Brief Introduction on Oracle HPC",
-            "filename": "../../intro/intro.md"   
+            "filename": "../../intro/intro.md"
+        },
+        {
+            "title": "Getting Started",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Siemens STAR-CCM Introduction",
             "description": "Introduction to the software",
-            "filename": "../../starCCM-intro/starCCM-intro.md"      
+            "filename": "../../starCCM-intro/starCCM-intro.md"
         },
         {
             "title": "Lab 1: Generate SSH Key - Cloud Shell",
@@ -22,15 +23,14 @@
         {
             "title": "Lab 2: Launch HPC Cluster Network",
             "description": "Steps to launch HPC Cluster Network",
-            "filename": "../../launch-cluster/launch-cluster.md"        
+            "filename": "../../launch-cluster/launch-cluster.md"
         },
         {
             "title": "Lab 3: Access your Cluster",
             "description": "Steps to access the cluster",
             "filename": "../../access-cluster/access-cluster.md"
-            
         },
-        {         
+        {
             "title": "Lab 4: Configure Visualization",
             "description": "Setup and configure Visualization Tools",
             "filename": "../../config-visualization/config-visualization.md"
@@ -51,8 +51,11 @@
         {
             "title": "Benchmark Example",
             "filename": "../../benchmark/benchmark.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
-        
     ]
 }
-

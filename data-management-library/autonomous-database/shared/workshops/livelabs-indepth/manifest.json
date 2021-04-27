@@ -1,6 +1,7 @@
 {
     "workshoptitle" : "Analyzing your data with Autonomous Database",
-    "tutorials": [
+    "help": "livelabs-help-db_us@oracle.com",
+	"tutorials": [
       {
           "title": "Introduction to ADB on Shared Infrastructure",
           "description": "Introduction to ADB on Shared Infrastructure",
@@ -14,7 +15,7 @@
         {
             "title": "Lab 2: Getting Started",
             "description": "Provision Autonomous Database",
-            "filename": "./../../adb-provision/adb-provision.md"
+            "filename": "./../../adb-provision/adb-provision-livelabs.md"
         },
         {
             "title": "Lab 3: Working with Free Sample Data Sets",
@@ -70,6 +71,11 @@
             "title": "Lab 13: Building a Simple Machine Learning Algorithm",
             "description": "Simple Introduction to Machine Learning Algorithms (DBMS_PREDICTIVE_ANALYTICS)",
             "filename": "./../../adw-machine-learning/adw-machine-learning.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
         }
     ]
 }

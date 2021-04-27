@@ -1,12 +1,14 @@
 # Introduction
 
-## Oracle Machine Learning ##
+## About this Workshop
 
 Oracle Machine Learning is a powerful technique for analyzing data, and in this sequence of labs, we will show you how to apply it to the most valuable data in your organization - existing enterprise data in Oracle Database. If you are an Oracle data professional but not a data scientist, this workshop will take you through your first machine learning project from data preparation to a successful deployment of a model integrated into an APEX application.
 
 Watch the video below for an introduction to Oracle Machine Learning and a brief demo.
 
 [](youtube:MMfgcD3sC9I)
+
+Estimated Workshop Time: 2 hours
 
 ### Workshop Scenario - Alpha Office
 
@@ -16,18 +18,28 @@ Alpha Office can purchase credit score information, but they need more than that
 
 This is a fictitious example, but it reflects a real-world need. You keep your most valuable data in Oracle Database. But do you get the most value out of that data? Are there business problems that you could help your company to solve with machine learning? After you have completed this lab, you will have some of the core expertise to start applying machine learning to your company’s data and business problems. We wish you lots of success!
 
-## More Information on Oracle Machine Learning
+### Objective
+
+In this workshop you will:
+- Provision an Autonomous Database and load data into the ADW
+- Create machine learning model
+- Migrate machine learning model into ATP
+- Use prediction in an application
+
+### Prerequisites
+
+- This lab assumes you have logged into your to Oracle Cloud account
+
+[Please proceed to the next lab](#next).
+
+## Learn More
 
 [Oracle Machine Learning Product Page](https://www.oracle.com/database/technologies/datawarehouse-bigdata/machine-learning.html)
 
 ## Acknowledgements
 
 - **Authors/Contributors** - Derrick Cameron, Leah Bracken, Charlie Berger
-- **Contributors** - Arabella Yao, Ayden Smith, Jeffrey Malcolm Jr, LiveLabs QA
-- **Last Updated By/Date** - Kay Malcolm, June 2020
-- **Workshop Expiration Date** - April 31, 2021
+- **Contributors** - Anoosha Pilli, Arabella Yao, Ayden Smith, Jeffrey Malcolm Jr, LiveLabs QA
+- **Last Updated By/Date** - Anoosha Pilli, March 2021
+- **Workshop Expiration Date** - March 31, 2022
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

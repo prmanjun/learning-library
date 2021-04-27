@@ -229,7 +229,7 @@ Go to putty settings -> SSH -> Tunnels and provide the source port and destinati
 - **Authors** - Balasubramanian Ramamoorthy, Arvind Bhope
 - **Contributors** - Laxmi Amarappanavar, Kanika Sharma, Venkata Bandaru, Ashish Kumar, Priya Dhuriya, Maniselvan K.
 - **Team** - North America Database Specialists.
-- **Last Updated By** - Kay Malcolm, Director, Database Product Management, June 2020
+- **Last Updated By** - Kay Malcolm, Database Product Management, June 2020
 - **Expiration Date** - June 2021   
 
 **Issues-**

@@ -1,8 +1,9 @@
 {
     "workshoptitle": "Deploying MySQL InnoDB Cluster on OCI with Terraform",
-    "tutorials": [
-        {         
-            "title": "Prerequisites",
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
+        {
+            "title": "Getting Started",
             "description": "Login to Oracle Cloud",
             "publisheddate": "03/10/2020",
             "contentid": "12nnnn",
@@ -42,6 +43,11 @@
             "title": "Lab 6: Resource Manager - Stack",
             "publisheddate": "09/29/2020",
             "filename": "./../../stack/stack.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
-     ]
+    ]
 }

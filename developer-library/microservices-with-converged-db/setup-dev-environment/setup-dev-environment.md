@@ -21,24 +21,29 @@ Cloud Shell is a small virtual machine running a Bash shell which you access thr
 
 Click the Cloud Shell icon in the top-right corner of the Console.
 
-  ![](images/7-open-cloud-shell.png " ")
+Just responded in email as well
 
-## **STEP 2**: Download workshop source code
-1. To work with application code, you need to download a GitHub repository using
-    the following curl and unzip command. The workshop assumes this is done from your root directory.
-
-    ```
-    <copy>cd ~ ; curl -sL https://tinyurl.com/yyvf9bpk --output master.zip ; unzip master.zip ; rm master.zip</copy>
-    ```
-
-  You should now see `msdataworkshop-master` in your root directory
-
-
-2. Change directory into the msdataworkshop-master directory:
+## **STEP 2**: Make a clone of the workshop source code
+1. To work with application code, you need to make a clone from the GitHub repository using the following command. The workshop assumes this is done from your root directory.
 
     ```
-    <copy>cd msdataworkshop-master</copy>
+    <copy>cd ~ ; git clone https://github.com/oracle/microservices-datadriven.git</copy>
     ```
+
+  You should now see `microservices-datadriven` in your root directory
+
+
+2. Change directory into the cd microservices-datadriven/grabdish directory:
+
+    ```
+    <copy>cd ~/microservices-datadriven/grabdish</copy>
+    ```
+   
+   NOTE: THE CLOUD SHELL WILL DISCONNECT AFTER A CERTAIN PERIOD OF INACTIVITY. 
+   
+   IF YOU ARE DISCONNECTED OR LOG OFF AND RETURN TO CLOUD SHELL, MAKE SURE YOU ARE IN THE `~/microservices-datadriven/grabdish` DIRECTORY.
+  
+   
 
 ## **STEP 3**: Create an OCI compartment and an OKE cluster in that compartment
 
@@ -60,13 +65,13 @@ Click the Cloud Shell icon in the top-right corner of the Console.
 
     ![](images/20-compartment-ocid.png " ")
 
-4. Go back into your cloud shell and verify you are in the `~/msdataworkshop-master` directory.
+4. Go back into your cloud shell and verify you are in the `~/microservices-datadriven/grabdish` directory.
 
 5. Run `./setCompartmentId.sh <COMPARTMENT_OCID> <REGION_ID>` where your `<COMPARTMENT_OCID>` and `<REGION_ID>` values are set as arguments.
 
   For example:
 
-   `./setCompartmentId.sh ocid1.compartment.oc1..aaaaaaaaxbvaatfz6yourcomparmentidhere5dnzgcbivfwvsho77myfnqq us-ashburn-1`
+   `./setCompartmentId.sh ocid1.compartment.oc1..aaaaaaaaxbvaatfz6yourcomparmentidhere us-ashburn-1`
 
 5.  To create an OKE cluster, return to the OCI console and open up the hamburger button in the top-left
         corner of the Console and go to **Developer Services > Kubernetes Clusters**.
@@ -96,28 +101,99 @@ Click the Cloud Shell icon in the top-right corner of the Console.
 
       ![](images/32-close-cluster-create.png " ")
 
-11. Once launched it should usually take around 5-10 minutes for the cluster to be
+11. Once launched it should usually take just a few minutes for the cluster to be
     fully provisioned and the Cluster Status should show Active.
 
       ![](images/33-click-cluster-name.png " ")
 
       ![](images/34-copy-cluster-id.png " ")
 
-    _There is no need to wait for the cluster to be fully provisioned at this point as we will verify cluster creation and create a kube config in order to access it in a later step._
+    Click on the link for the cluster you've just created to see the detail page.
+    
+      ![](images/clusterdetailpage.png " ")
 
-## **STEP 4**: Create ATP databases
+    Click the **Access Cluster** button.
+    
+      ![](images/accessyourclustercopylink.png " ")
 
-  Run the `createATPPDBs.sh` script.
+    Click on the link to copy the oci command.
+    
+      ![](images/kubeconfigcreateoutput.png " ")
+
+    Return the Cloud Shell, paste and run the command to add the ~/.kube/config needed to access the kubernetes cluster.
+    
+      ![](images/kubeconfigcommandline.png " ")
+
+## **STEP 4**: Create OCI Vault Secrets for the ATP PDB users and FrontEnd microservice authentication
+
+1. Open up the hamburger menu in the top-left corner of the Console and select **Security > Vault**.
+
+     ![](images/vaultmenu.png " ")
+     
+2. Click **Create Vault** , specify a name and click **Create**.
+
+   ![](images/masterencryptionkeys.png " ")
+   
+   Click the link for the vault you just created.
+   
+   COPY THE OCID FOR THE VAULT AND NOTE IT FOR LATER USE.
+ 
+3. Click **Master Encryption Key** , click **Create Key**, enter a name, and click **Create Key**
+   
+      ![](images/createmasterencryptionkey.png " ")
+        
+4. Decide upon a password to be used for all database users that follows the Oracle requirements found here (eg `Welcome12345`: https://docs.oracle.com/en/database/oracle/oracle-database/19/dbseg/keeping-your-oracle-database-secure.html#GUID-451679EB-8676-47E6-82A6-DF025FD65156 
+
+5. Click **Secrets** , click **Create Secret**, enter a name, description, encryption key (created in previous step), leave the default **Plain-Text** Secret Type Template, and provide the DB password (in the **Secret Contents** field) for the database users you will create later and click **Create Secret**
+   
+      ![](images/createsecret.png " ")
+      
+   COPY THE OCID OF THIS DB PASSWORD SECRET AND NOTE IT FOR LATER USE.
+        
+6. Repeat the process to create a secret for the FrontEnd microservice authentication
+   
+     ![](images/createfrontendauthpwsecret.png " ")
+        
+   COPY THE OCID OF THIS FRONTEND MICROSERVICE AUTH PASSWORD SECRET AND NOTE IT FOR LATER USE.
+   
+7. Open up the hamburger menu in the top-left corner of the Console and select **Identity > Dynamic Groups**.
+
+     ![](images/dynamicgroupmenu.png " ")
+
+8. Click **Create Dynamic Group** , specify a name, add the following matching rule providing your compartment ocid
+
+     `All {instance.compartment.id = 'ocid1.compartment.oc1..aaaaaaaaaaaputyourcompartmentidhere'}`
+     
+     and click **Create**.
+
+     ![](images/createdynamicgroup.png " ")
+     
+9. Open up the hamburger menu in the top-left corner of the Console and select **Identity > Policies**:
+
+     ![](images/policymenu.png " ")
+     
+10. Click **Create Policy** specify a name and the following matching rule providing your compartment and vault ocids
+   
+   `Allow dynamic-group yourdynamicgroupname to manage secret-family in compartment id ocid1.compartment.oc1..yourcompartmentid where target.vault.id = 'ocid1.vault.oc1.phx.yourvaultid'`
+  
+     ![](images/createpolicy.png " ")
+     
+    and click **Create**
+     
+
+## **STEP 5**: Create ATP databases
+
+  Run the `createATPPDBs.sh` script providing the Vault Secret ocids (created and noted in **Step 4**) for the DB users followed by the ocid for the FrontEnd microservice user
 
   ```
-  <copy>./createATPPDBs.sh</copy>
+  <copy>./createATPPDBs.sh <REPLACE WITH VAULT SECRET OCID FOR DB USER> <REPLACE WITH VAULT SECRET OCID FOR FRONTEND USER AUTH></copy>
   ```
 
+   Notice creation of the ORDERDB and INVENTORYDB PDBs and Frontend Auth secret.
 
-   Notice creation of the ORDERDB and INVENTORYDB PDBs.
+   ![](images/createpdboutput1.png " ")
 
-
-   ![](images/createATPPDBoutput.png " ")
+   ![](images/createpdboutput2.png " ")
 
    _OCIDs for the PDBs are stored and will be used later to create kubernetes secrets that microservices will use to access them._
 
@@ -178,24 +254,11 @@ You are now going to create an Oracle Cloud Infrastructure Registry and an Auth 
     ```
 
 
-## **STEP 6**: Access OKE from the Cloud Shell
-
-1. Run `./verifyOKEAndCreateKubeConfig.sh`
-
- ```
- <copy>./verifyOKEAndCreateKubeConfig.sh</copy>
- ```
-
-2. Notice `/.kube/config` is created for the cluster and the `msdataworkshop` namespace is also created.
-
-  ![](images/verifyOKEOutput.png " ")
-
-
-## **STEP 7**: Install GraalVM, Jaeger, and Frontend Loadbalancer
+## **STEP 6**: Install GraalVM, Jaeger, and Frontend Loadbalancer
 Run the `installGraalVMJaegerAndFrontendLB.sh` script to install both GraalVM and Jaeger.
 
  ```
- <copy>./installGraalVMJaegerAndFrontendLB.sh</copy>
+ <copy>cd ~/microservices-datadriven/grabdish; ./installGraalVMJaegerAndFrontendLB.sh</copy>
  ```
 
 You may now proceed to the next lab.
@@ -209,5 +272,3 @@ You may now proceed to the next lab.
 * **Last Updated By/Date** - Tom McGinn, June 2020
 
 
-## Need Help?
-Please submit feedback or ask for help using this [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/building-microservices-with-oracle-converged-database). Please login using your Oracle Sign On and click the **Ask A Question** button to the left.  You can include screenshots and attach files.  Communicate directly with the authors and support contacts.  Include the *lab* and *step* in your request.

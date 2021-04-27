@@ -1,8 +1,9 @@
 {
-  "workshoptitle": "Configuring NAT Gateway for Private Compute Instance",
-    "tutorials": [
+    "workshoptitle": "Configuring NAT Gateway for Private Compute Instance",
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
@@ -17,6 +18,11 @@
         {
             "title": "Lab 2: Configuring NAT Gateway for Private Compute Instance",
             "filename": "./../../nat-gateway/nat-gateway.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

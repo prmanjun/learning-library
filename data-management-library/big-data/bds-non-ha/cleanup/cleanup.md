@@ -7,6 +7,8 @@ In this lab, you will learn how to delete the resources that you created in this
 **Note:**    
 If you are using a **Free Trial** account to run this workshop, Oracle recommends that you at least delete the BDS cluster that you created when you complete the workshop, to avoid unnecessary charges.
 
+Estimated Lab Time: 25 minutes
+
 ### Objectives
 
 * Delete your **`training-cluster`** Big Data Service Cluster.
@@ -14,12 +16,12 @@ If you are using a **Free Trial** account to run this workshop, Oracle recommend
 
 ### What Do You Need?
 
-This lab assumes that you have successfully completed all the labs listed in the **Contents** menu.
+This lab assumes that you have successfully completed all of the preceding labs in the **Contents** menu.
 
 **Note:**     
 If you want to list the resources in your **`training-compartment`**, you can use the **Compartment Explorer** page. From the **Oracle Cloud Console** navigation menu, navigate to **Governance and Administration > Governance > Compartment Explorer**. On the **Compartment Explorer** page, in the **Search Compartments** field, type **`training`**, and then select **`training-compartment`** from the list of compartments. The resources in the **`training-compartment`** are displayed.
 
-## **STEP 1:** Delete Your **`training-cluster`** Big Data Service Cluster
+## **STEP 1:** Delete Your Big Data Service Cluster
 
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used in the workshop.
 
@@ -66,7 +68,7 @@ To delete a VCN, it must first be empty and have no related resources or attache
 
 1. From the **Oracle Cloud Console** navigation menu, navigate to **Core Infrastructure > Networking > Virtual Cloud Networks**.
 
-2. From the list of available VCNs in your compartment, click the VCN's name link in the **Name** column. The **Virtual Cloud Network Details** page is displayed.
+2. From the list of available VCNs in your compartment, click the **training-vcn** name link in the **Name** column. The **Virtual Cloud Network Details** page is displayed.
 
   ![](./images/vcn-details-page.png " ")
 
@@ -127,15 +129,15 @@ To delete a VCN, it must first be empty and have no related resources or attache
 
   ![](./images/delete-biketrips.png " ")
 
-4. A confirmation message box is displayed. Enter **biketrips** in the **TYPE THE FOLDER NAME TO CONFIRM DELETION** text box, and then click **Delete**. The object is deleted and the **Bucket Details** page is re-displayed.
+4. A confirmation message box is displayed. Enter **biketrips** in the **Type the folder name to confirm deletion** text box, and then click **Delete**. The object is deleted and the **Bucket Details** page is re-displayed.
 
 5. On the row for the **stations** object, click the **Actions** button, and then select **Delete Folder** from the context menu.
 
-6. A confirmation message box is displayed. Enter **stations** in the **TYPE THE FOLDER NAME TO CONFIRM DELETION** text box, and then click **Delete**. The object is deleted and the  **Bucket Details** page is re-displayed.
+6. A confirmation message box is displayed. Enter **stations** in the **Type the folder name to confirm deletion** text box, and then click **Delete**. The object is deleted and the  **Bucket Details** page is re-displayed.
 
 7. On the row for the **weather** object, click the **Actions** button, and then select **Delete Folder** from the context menu.
 
-8. A confirmation message box is displayed. Enter **weather** in the **TYPE THE FOLDER NAME TO CONFIRM DELETION** text box, and then click **Delete**. The object is deleted and the  **Bucket Details** page is re-displayed.
+8. A confirmation message box is displayed. Enter **weather** in the **Type the folder name to confirm deletion** text box, and then click **Delete**. The object is deleted and the  **Bucket Details** page is re-displayed.
 
 9. Scroll up the page, and then click the **Delete** button. A confirmation message box is displayed. Click **Delete**. The bucket is deleted and the **Buckets** page is re-displayed.
 
@@ -147,8 +149,6 @@ To delete a VCN, it must first be empty and have no related resources or attache
 2. From the list of available compartments, search for your **training-compartment**.
 
 3. From the **Compartments** page, click the **Actions** button associated with **training-compartment**. Select **Delete** from the context menu.
-
-    ![](./images/search-compartment.png " ")
 
 4. A confirmation message box is displayed. Click **Delete**. The status of the deleted compartment changes from **Active** to **Deleting** until the compartment is successfully deleted. You can click on the compartment name link in the **Name** column to display the status of this operation.
 
@@ -166,14 +166,10 @@ To delete a VCN, it must first be empty and have no related resources or attache
 ## Acknowledgements
 
 * **Author:**  
-    + Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
-* **Reviewers:**  
+    + Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
+* **Contributors:**  
     + Martin Gubar, Director, Oracle Big Data Product Management
     + Alexey Filanovskiy, Senior Principal Product Manager, DW & Big Data Global Leaders Program
     + Ben Gelernter, Principal User Assistance Developer, DB Development - Documentation
-* **Last Updated By/Date:** Lauran Serhal, December 2020
+* **Last Updated By/Date:** Lauran Serhal, January 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

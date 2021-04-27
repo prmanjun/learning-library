@@ -79,31 +79,31 @@ If you didn't execute them yet, do it right now by following the instructions be
       <copy>./tde_set_tde_parameters.sh</copy>
       ````
 
-6. Create the Oracle Wallet for the container database
+6. Create the **Oracle Wallet** for the container database
 
       ````
       <copy>./tde_create_wallet.sh</copy>
       ````
 
-7. Create the container database TDE Master Key (MEK)
+7. Create the container database TDE Master Key (**MEK**)
 
       ````
       <copy>./tde_create_mek_cdb.sh</copy>
       ````
 
-8. Create the pluggable database `PDB1` Master Key (MEK)
+8. Create the pluggable database **pdb1** Master Key (MEK)
 
       ````
       <copy>./tde_create_mek_pdb.sh pdb1</copy>
       ````
 
-9. Ceate the autologin wallet
+9. Ceate the **Autologin** Oracle Wallet
 
       ````
       <copy>./tde_create_autologin_wallet.sh</copy>
       ````
 
-10. You should now see all these file, including the `cwallet.sso` file
+10. You should now see all these file, including the **cwallet.sso** file
 
       ````
       <copy>./tde_view_wallet_on_os.sh</copy>
@@ -124,9 +124,9 @@ If you didn't execute them yet, do it right now by following the instructions be
 ## **STEP 1**: Add an Endpoint
 First of all, we need Oracle Key Vault to know about our database server. We do this by creating it as an endpoint in OKV
 
-1. Open a Web Browser at the URL `https://<OKV-VM_@IP-Public>`
+1. Open a Web Browser at the URL *`https://<OKV-VM_@IP-Public>`*
 
-2. Login to Oracle Key Vault Web Console as "*RESTADMIN*" with the password "*T06tron.*"
+2. Login to Oracle Key Vault Web Console as *`RESTADMIN`* with the password "*`T06tron.`*"
 
    ![](./images/okv-001.png " ")
 
@@ -138,7 +138,7 @@ First of all, we need Oracle Key Vault to know about our database server. We do 
 
    ![](./images/okv-003.png " ")
 
-5. You will use the `OKVdeploy.tar` file to deploy the utiliy to automate the processes
+5. You will use the **OKVdeploy.tar** file to deploy the utiliy to automate the processes
 
     - Open a SSH session on your DBSec-Lab VM as Oracle User
 
@@ -160,7 +160,7 @@ First of all, we need Oracle Key Vault to know about our database server. We do 
 
        ![](./images/okv-004.png " ")
 
-    - Create the script to create the Endpoint, Wallet and deploy the OKV software
+    - Create the script to create the Endpoint, the Oracle Wallet and deploy the OKV software
 
           ````
         <copy>./okv_crea_config_script.sh</copy>
@@ -168,7 +168,7 @@ First of all, we need Oracle Key Vault to know about our database server. We do 
 
        ![](./images/okv-005.png " ")
 
-    - Add your `CDB1` database on DBSec-Lab VM as Endpoint
+    - Add your **cdb1** database on DBSec-Lab VM as Endpoint
 
           ````
         <copy>./okv_execute_scripts.sh</copy>
@@ -176,7 +176,10 @@ First of all, we need Oracle Key Vault to know about our database server. We do 
 
        ![](./images/okv-006.png " ")
 
-    - Before finishing, we have to change the Endpoint password. This is the password the OKV endpoint client software uses to communicate with the Key Vault Server. Please modify default password `change-on-install` by *`Oracle123`*
+    - Before finishing, we have to change the Endpoint password
+    
+       - This is the password the OKV endpoint client software uses to communicate with the Key Vault Server
+       - Modify the default Wallet password "*`change-on-install`*" by the new one "*`Oracle123`*"
 
           ````
         <copy>./okv_change_endpoint_pwd.sh</copy>
@@ -188,18 +191,18 @@ First of all, we need Oracle Key Vault to know about our database server. We do 
 
    ![](./images/okv-008.png " ")
 
-7. Click on the Endpoint name: here `CDB1_ON_DBSECLAB`
+7. Click on the Endpoint name (here *`CDB1_ON_DBSECLAB`*)
 
-8. Confirm that the Wallet created in OKV is the default Wallet for this Endpoint (see the "Default" section)
+8. In the **Default Wallet** section, confirm that the Wallet created in OKV is the default Wallet for this Endpoint
 
    ![](./images/okv-009.png " ")
 
-**Your Endpoint is now added!**
+9. Your Endpoint is now added!
 
 ## **STEP 2**: View the Contents of the OKV Virtual Wallet
 Any time after adding the Endpoint to this host, you can run this script to view the contents of the Virtual Wallet in Oracle Key Vault
 
-1. Go back to your SSH session and view the Wallet contents on the Operating System
+1. Go back to your SSH session and view the Wallet contents on the **Operating System**
 
       ````
     <copy>./okv_view_wallet_on_os.sh</copy>
@@ -207,7 +210,7 @@ Any time after adding the Endpoint to this host, you can run this script to view
 
    ![](./images/okv-010.png " ")
 
-2. ... within the database
+2. ... within the **database**
 
       ````
     <copy>./okv_view_wallet_in_db.sh</copy>
@@ -215,7 +218,7 @@ Any time after adding the Endpoint to this host, you can run this script to view
 
    ![](./images/okv-011.png " ")
 
-3. ... and finally in Key Vault
+3. ... and finally in **Key Vault**
 
       ````
     <copy>./okv_view_wallet_in_kv.sh</copy>
@@ -225,7 +228,7 @@ Any time after adding the Endpoint to this host, you can run this script to view
 
 ## **STEP 3**: Upload the Wallet
 
-Typically, the first thing that users will do is upload their existing Oracle Wallets (ewallet.p12 files) to Oracle Key Vault
+Typically, the first thing that users will do is upload their existing Oracle Wallets (**ewallet.p12** files) to Oracle Key Vault
 
 1. Upload the Wallet to Oracle Key Vault
 
@@ -251,15 +254,15 @@ Typically, the first thing that users will do is upload their existing Oracle Wa
 
    ![](./images/okv-014b.png " ")
 
-4. Go back to the OKV Web Console as "*RESTADMIN*" User to have a look of these information
+4. Go back to the OKV Web Console as *`RESTADMIN`* to have a look of these information
 
    ![](./images/okv-001.png " ")
 
-5. Click on "**All Items**"
+5. Click on **All Items**
 
    ![](./images/okv-015.png " ")
 
-6. Filter by your EndPoint name: here *`CDB1_ON_DBSECLAB`*
+6. Filter by your EndPoint name (here *`CDB1_ON_DBSECLAB`*)
 
    ![](./images/okv-016.png " ")
 
@@ -277,7 +280,7 @@ Typically, the first thing that users will do is upload their existing Oracle Wa
 
 Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate from storing our Master Keys in Wallet files to querying them from Oracle Key Vault
 
-1. Go back to your SSH session and migrate the virtual Wallet to Online Master Key. In this step, we set the `tde_configuration` initialization parameters from `keystore_configuration=FILE` to `keystore_configuration=OKV|FILE`. This is a dynamic parameter so we do not need to restart the database.
+1. Go back to your SSH session and migrate the virtual Wallet to Online Master Key. In this step, we set the `TDE_CONFIGURATION` initialization parameters from `KEYSTORE_CONFIGURATION=FILE` to `KEYSTORE_CONFIGURATION=OKV|FILE`. This is a dynamic parameter so we do not need to restart the database.
 
       ````
     <copy>./okv_migrate_wallet_to_kv.sh</copy>
@@ -285,7 +288,7 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
    ![](./images/okv-019.png " ")
 
-2. Now, view the contents of the Wallet in the database. You will now see rows in `v$encryption_wallet` for `OKV`
+2. Now, view the contents of the Wallet in the database. You will now see rows in `V$ENCRYPTION_WALLET` for OKV
 
       ````
     <copy>./okv_view_wallet_in_db.sh</copy>
@@ -293,7 +296,7 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
    ![](./images/okv-020.png " ")
 
-3. Then put the OKV endpoint password to the `Secure External Password Store (SEPS)` Wallet: this will allow the database to automatically access the Master Key in Oracle Key Vault
+3. Then put the OKV endpoint password to the **Secure External Password Store (SEPS)** Wallet: this will allow the database to automatically access the Master Key in Oracle Key Vault
 
       ````
     <copy>./okv_add_kv_pwd_to_seps.sh</copy>
@@ -309,7 +312,7 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
    ![](./images/okv-022.png " ")
 
-5. Finish to set the `SEPS` Wallet
+5. Finish to set the SEPS Wallet
 
       ````
     <copy>./okv_setup_external_store.sh</copy>
@@ -331,7 +334,7 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
        ![](./images/okv-025.png " ")
 
-7. Go back to the OKV Web Console as "*RESTADMIN*" User to have a look of these information
+7. Go back to the OKV Web Console as *`RESTADMIN`* to have a look of these information
 
    ![](./images/okv-001.png " ")
 
@@ -339,7 +342,7 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
    ![](./images/okv-015.png " ")
 
-9. Filter by your EndPoint name: here `CDB1_ON_DBSECLAB`
+9. Filter by your EndPoint name (here *`CDB1_ON_DBSECLAB`*)
 
    ![](./images/okv-016.png " ")
 
@@ -355,9 +358,9 @@ Once we have uploaded the Oracle Wallet files into OKV Server, we can migrate fr
 
 ## **STEP 5**: Perform Rekey Operation
 
-You must create a Master Key for the container database before continuing. Each pluggable database must have their own master key as well (except for PDB$SEED)
+You must create a Master Key for the container database before continuing. Each pluggable database must have their own master key as well (except for `PDB$SEED`)
 
-1. Go back to your SSH session and rekey the container database TDE Master Key
+1. Go back to your SSH session and rekey the **container database** TDE Master Key
 
       ````
     <copy>./okv_online_cdb_rekey.sh</copy>
@@ -365,7 +368,7 @@ You must create a Master Key for the container database before continuing. Each 
 
    ![](./images/okv-027.png " ")
 
-2. Now, rekey a Master Key for the pluggable database `PDB1`
+2. Now, rekey a Master Key for the pluggable database **pdb1**
 
       ````
     <copy>./okv_online_pdb_rekey.sh pdb1</copy>
@@ -373,7 +376,7 @@ You must create a Master Key for the container database before continuing. Each 
 
    ![](./images/okv-028.png " ")
 
-3. If you want, you can do the same for `PDB2`. This is not a requirement though but it might be helpful to show some databases with TDE and some without!
+3. If you want, you can do the same for **pdb2**. This is not a requirement and it might be helpful to show some databases with TDE and some without!
 
       ````
     <copy>./okv_online_pdb_rekey.sh pdb2</copy>
@@ -387,25 +390,25 @@ You must create a Master Key for the container database before continuing. Each 
 
    ![](./images/okv-029.png " ")
 
-6. Go back to the OKV Web Console as "*RESTADMIN*" User to have a look of these information
+5. Go back to the OKV Web Console as *`RESTADMIN`* to have a look of these information
 
    ![](./images/okv-001.png " ")
 
-7. Click on "**All Items**"
+6. Click on **All Items**
 
    ![](./images/okv-015.png " ")
 
-8. Filter by your EndPoint name: here `CDB1_ON_DBSECLAB`
+7. Filter by your EndPoint name (here *`CDB1_ON_DBSECLAB`*)
 
    ![](./images/okv-016.png " ")
 
-9. Click [**Go**]
+8. Click [**Go**]
 
-10. Sort by Ascending
+9. Sort by Ascending
 
    ![](./images/okv-017.png " ")
 
-11. You can see at the bottom your rekeyed Master Keys for CDB1, PDB1 (and PDB2 if you did it)
+10. You can see at the bottom your rekeyed Master Keys for **cdb1** and **pdb1** (and pdb2 if you did it)
 
    ![](./images/okv-030.png " ")
 
@@ -528,7 +531,4 @@ Technical Documentation:
 - **Contributors** - Peter Wahl, Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

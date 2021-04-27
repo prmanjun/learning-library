@@ -29,7 +29,7 @@ Oracle’s Autonomous Database is the perfect quick-start service for fast data 
 ### Workshop Prerequisites
 This workshop requires an Oracle Cloud account. As a result of creating a reservation on LiveLabs, you should have logged into your LiveLabs generated Oracle Cloud environment.
 
-**You are all set; let's begin! Click Lab 2 in the Contents menu on the right.**
+**You are all set; let's begin! Click Getting Started in the Contents menu on the left.**
 
 ## Learn More
 
@@ -47,9 +47,4 @@ Use these links to get more information about Oracle Autonomous Database:
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
-- **Last Updated By/Date** - Richard Green, April 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/autonomous-database-shared). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+- **Last Updated By/Date** - Richard Green, April 2021

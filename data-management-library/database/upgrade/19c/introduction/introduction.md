@@ -2,113 +2,89 @@
 
 ## About this Workshop
 
-This introduction covers the complete "parent" workshop. The objectives are written to cover all of the labs included in the workshop.
+Oracle Database 19c is the *Long Term* Release for the Oracle Database 12c and 18c family of products. It is available on all popular on-prem platforms, Oracle Exadata and Oracle Database Appliance, and in the Oracle Cloud. As the latest Long Term Release, it offers customers the highest levels of stability and the longest error correction window. And, by upgrading to Oracle Database 19c customers can have Premier Support and Extended Support through to April, 2024 and April 2027 respectively.  There is a direct upgrade path to Oracle Database 19c from 11gR2, 12cR1, 12cR2 and 18c releases.
 
-Estimated Lab Time: n minutes -- this estimate is for the entire workshop - it is the sum of the estimates provided for each of the labs included in the workshop.
+![](./images/19cupgrade.png " ")
 
-### About Product/Technology
-Enter background information here....
+Therefore in the interests of maintaining business continuity,  customers still running on prior releases (e.g. 11gR2, 12cR1, 12cR2, 18c) are encouraged to start planning their 19c upgrades before current support windows expire. Always refer to [MOS note #742060.1](https://support.oracle.com/epmos/faces/DocumentDisplay?id=742060.1&displayIndex=1) for the latest status of Oracle Database releases and support coverage.
 
-*You may add an option video, using this format: [](youtube:YouTube video id)*
+Estimated Lab Time: 120 minutes
 
-  [](youtube:zNKxJjkq0Pw)
+  [](youtube:lOzL5irmuJo)
 
 ### Objectives
 
-*List objectives for the lab - if this is the intro lab, list objectives for the workshop, for example:*
+In this workshop, you will:
+* Setup your Upgrade Compute Instance in the Cloud
+* Load the database
+* Capture and Preserve SQL
+* Perform Auto Upgrade tasks
+* Run an AWR Diff Report
+* Analyze SQL
+* Tune and manage SQL Plans
+* Perform upgrades using the plugin method
 
-In this lab, you will:
-* Provision
-* Setup
-* Data Load
-* Query
-* Analyze
-* Visualize
 
 ### Prerequisites
+* An Oracle Free Tier, Paid or LiveLabs Cloud Account
 
-*Use this section to describe any prerequisites, including Oracle Cloud accounts, set up requirements, etc.*
+## About the Product/Technology
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* Item no 2 with url - [URL Text](https://www.oracle.com).
+This workshop is preloaded with 3 different Oracle Homes and 5 databases.
 
-*This is the "fold" - below items are collapsed by default*
+![](./images/architecture.png " ")
 
-## **STEP 1**: title
+The 3 different databases 
 
-Step 1 opening paragraph.
+- Oracle 11.2.0.4 – /u01/app/oracle/product/11.2.0.4
+- Oracle 12.2.0.1 – /u01/app/oracle/product/12.2.0.1
+- Oracle 19.5.0 – /u01/app/oracle/product/19
 
-1. Sub step 1
+The workshop also contains 5 different databases for running the various upgrade scenarios in each lab.
 
-  To create a link to local file you want the reader to download, use this format:
+- UPGR – 11.2.0.4 database (non-CDB)
+- FTEX – 11.2.0.4 database (non-CDB)
+- DB12 – 12.2.0.1 database (non-CDB)
+- CDB1 – 12.2.0.1 database (CDB)
+- CDB2 – 19.5.0 database (CDB)
 
-  Download the [starter file](files/starter-file.sql) SQL code.
+## Upgrade and Data Migration Methods and Processes
 
-  *Note: do not include zip files, CSV, PDF, PSD, JAR, WAR, EAR, bin or exe files - you must have those objects stored somewhere else. We highly recommend using Oracle Cloud Object Store and creating a PAR URL instead. See [Using Pre-Authenticated Requests](https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)*
+### Database Upgrade Assistant (DBUA)
 
-2. Sub step 2 with image and link to the text description below. The `sample1.txt` file must be added to the `files` folder.
+- Provides a graphical user interface that guides you through the upgrade of a database. DBUA can be launched during installation with the Oracle Universal Installer, or you can launch DBUA as a standalone tool at any time in the future.
 
-    ![Image alt text](images/sample1.png "Image title")
+### Manual upgrade using the Parallel Upgrade Utility, and other command-line utilities
 
-3. Ordered list item 3 with the same image but no link to the text description below.
+- Enables upgrades to be performed using shell scripts.
 
-    ![Image alt text](images/sample1.png)
+### Migrating data using Oracle Data Pump
 
-4. Example with inline navigation icon ![Image alt text](images/sample2.png) click **Navigation**.
+- Provides export and import utilities. Oracle Data Pump can perform a full or partial export from your database, followed by a full, or partial import into the new release of Oracle Database. Export/Import in Oracle Data Pump can copy a subset of the data, leaving the database unchanged.
 
-5. One example with bold **text**.
+### CREATE TABLE AS SQL statement
 
-   If you add another paragraph, add 3 spaces before the line.
+- Migrates data from a database into a new Oracle Database release. By using this method, you can copy a subset of the data, leaving the database unchanged.
 
-## **STEP 2:** title
+### Upgrading CDBs and PDBs using a priority list to group and upgrade PDBs according to their priority.
 
-1. Sub step 1
+- Run the Parallel Upgrade Utility (dbupgrade, or catctl.pl) using the -L option to run the upgrade using a priority list, and to call that list as the upgrade runs.  Synchronizing a standby database, upgrading, and using Oracle GoldenGate to synchronize the upgraded database (a zero downtime option)
 
-  Use tables sparingly:
+### Using Fleet Patching and Provisioning (FPP) to upgrade databases.
 
-  | Column 1 | Column 2 | Column 3 |
-  | --- | --- | --- |
-  | 1 | Some text or a link | More text  |
-  | 2 |Some text or a link | More text |
-  | 3 | Some text or a link | More text |
+- In a Fleet Patching and Provisioning (FPP) upgrade (formerly known as Rapid Home Provisioning), you will complete a new Oracle Database installation. After testing the database, and modifying it in accordance with the standard operating environment (SOE) that you want to use for your databases, you create an FPP gold image. A DBA will deploy instances of that gold image to servers that have earlier release databases that you will want to upgrade. After deployment of these gold images, a DBA can run a single rhpctl command to move files, perform configuration changes, and perform other steps required to use the new binaries. Refer to Oracle Clusterware Administration and Deployment Guide for more information about Rapid Home Provisioning.
 
-2. You can also include bulleted lists - make sure to indent 4 spaces:
 
-    - List item 1
-    - List item 2
-
-3. Code examples
-
-    ```
-    Adding code examples
-  	Indentation is important for the code example to appear inside the step
-    Multiple lines of code
-  	<copy>Enclose the text you want to copy in <copy&gt;</copy>.</copy>
-    ```
-
-4. Code examples that include variables
-
-	```
-  <copy>ssh -i <ssh-key-file></copy>
-  ```
-
-*At the conclusion of the lab add this statement:*
-You may proceed to the next lab.
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
-*(optional - include links to docs, white papers, blogs, etc)*
-
-* [URL text 1](http://docs.oracle.com)
-* [URL text 2](http://docs.oracle.com)
+* [Database Upgrade Guide Documentation - 19c](https://docs.oracle.com/en/database/oracle/oracle-database/19/upgrd/intro-to-upgrading-oracle-database.html#GUID-FA024F34-A61A-4C4B-AA60-C123A9191A16)
+* [Database Upgrade Blog](https://blogs.oracle.com/database/19c-upgrades)
+* [Oracle Databases Release and Support Coverage](https://support.oracle.com/epmos/faces/DocumentDisplay?id=742060.1&displayIndex=1)
 
 ## Acknowledgements
-* **Author** - <Name, Title, Group>
-* **Contributors** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- optional, use this when you are using a Pre-Authorized Request (PAR) URL to an object in Oracle Object Store.
+* **Author** - Mike Dietrich, Database Product Management
+* **Contributors** -  Roy Swonger, Sanjay Rupprel, Cristian Speranta
+* **Last Updated By/Date** - Kay Malcolm, February 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

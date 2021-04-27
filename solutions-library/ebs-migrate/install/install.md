@@ -37,9 +37,10 @@ Download the Backup Module from My Oracle Support to the backup module server.
     </copy>
     ```
 
-2. Change to the stage directory.
+2. Change to the Oracle user and then go to the stage directory.
 
         <copy>
+        sudo su - oracle
         cd /u01/install/APPS/stage
         </copy>
 
@@ -91,7 +92,7 @@ You may proceed to the next lab.
 * [Creating a Backup of an On-Premises Oracle E-Business Suite Instance on Oracle Cloud Infrastructure](https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/compute-iaas/creating_backup_of_ebs_instance_on_oci/101_backup_oci.html)
 * [Requirements for Oracle E-Business Suite on Oracle Cloud Infrastructure (Doc ID 2438928.1)](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=97656525609392&id=2438928.1&_afrWindowMode=0&_adf.ctrl-state=1bsk4t5eng_4#S2)
 
-## Acknowledgements
+## Acknowledgments
 
 * **Author:** William Masdon, Cloud Engineering
 * **Contributors:** 
@@ -100,7 +101,4 @@ You may proceed to the next lab.
     - Quintin Hill, Cloud Engineering
 * **Last Updated By/Date:** William Masdon, Cloud Engineering, Dec 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

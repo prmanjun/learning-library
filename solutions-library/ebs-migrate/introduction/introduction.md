@@ -54,10 +54,10 @@ This workshop uses the following components:
 
 In this lab, you will:
 * Create a standalone E-Business Suite Environment that will act as the source for the migration.
-* Prepare the source EBS enviornment for migration.
+* Prepare the source EBS environment for migration.
 * Install the Oracle E-Business Suite Cloud Backup Module on the source environment.
 * Create a backup of the source EBS environment and store it on the Oracle Object Storage service.
-* Provision a new EBS instance in Cloud Manager using the backup of the source EBS enviornment.
+* Provision a new EBS instance in Cloud Manager using the backup of the source EBS environment.
 
 ### **Prerequisites**
 
@@ -101,7 +101,7 @@ The following terms are commonly employed in Oracle E-Business Suite cloud opera
 
 **Compartments** – Allows you to organize and control access to your cloud resources. A compartment is a collection of related resources (such as instances, virtual cloud networks, block volumes) that can be accessed only by certain groups.
 
-**Oracle E-Business Suite Cloud Backup Module** – The Oracle E-Business Suite Cloud Backup Module is a stand-alone tool that interviews the user to establish settings, and then uses those settings to back up an Oracle E-Business Suite environment to Oracle Cloud Infrastructure Object Storage.
+**Oracle E-Business Suite Cloud Backup Module** – The Oracle E-Business Suite Cloud Backup Module is a standalone tool that interviews the user to establish settings, and then uses those settings to back up an Oracle E-Business Suite environment to Oracle Cloud Infrastructure Object Storage.
 
 **Oracle E-Business Suite Cloud Manager** - Oracle E-Business Suite Cloud Manager is a graphical user interface used for creating, managing, and configuring Oracle E-Business Suite environments on Oracle Cloud Infrastructure. Oracle E-Business Suite Cloud Manager can be used with the Oracle E-Business Suite Cloud Backup Module to lift and shift or clone environments from on-premises to Oracle Cloud Infrastructure.
 
@@ -119,7 +119,7 @@ The following terms are commonly employed in Oracle E-Business Suite cloud opera
 
 **Virtual Cloud Network (VCN)** – A virtual version of a traditional network – including subnets, route tables, and gateways – on which your instances run. A cloud network resides within a single region, but can cross multiple availability domains.
 
-## Acknowledgements
+## Acknowledgments
 
 * **Author:** William Masdon, Cloud Engineering
 * **Contributors:** 
@@ -128,7 +128,4 @@ The following terms are commonly employed in Oracle E-Business Suite cloud opera
     - Quintin Hill, Cloud Engineering
 * **Last Updated By/Date:** William Masdon, Cloud Engineering, Dec 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

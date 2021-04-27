@@ -104,7 +104,7 @@ Let's create a **Greeting Intent**.
 
     - **Conversation Name**: ListTasks
     - **Name**: ListTasks
-    - **Utterances to Add**: In this field is where you have to type the different Greetings that you want to include as part of the Intent. Type on this field `list my tasks` and click enter. Wait to be added as part of the intents. Type on the same field `show me my tasks` and wait to be added as before. And finally type on the same field `tasks` and wait to be added as before.
+    - **Utterances to Add**: In this field is where you have to type the different list of tasks that you want to include as part of the Intent. Type on this field `list my tasks` and click enter. Wait to be added as part of the intents. Type on the same field `show me my tasks` and wait to be added as before. And finally type on the same field `tasks` and wait to be added as before.
 
     The three **Intents** that you added a few seconds ago will be visible in the page. Check the following screenshot to confirm.
 
@@ -124,27 +124,27 @@ Time to **integrate** your **Custom Component with the Intent** `ListTasks` crea
 
     ![Flows 2](./images/flows_2.png)
 
-2. **Copy** the `YAML` content from [here](files/flow.yml) and paste it into the canvas.
+2. **Copy** the `YAML` content from <a href="./files/flow.yml" target="\_blank">here</a> and paste it into the canvas.
 
     The **Flows** section should look like this one:
 
-    ![Flows 3](./images/flows_3.png)
+    ![Flows 3](./images/flows_3_3.png)
 
-3. **Make sure** the syntax is correct. **Click** on the `Validate` button. **Be sure** that you get the **correct validation message** on the top of the page as you can see on the image below:
+3. **Make sure** the syntax is correct. **Click** on the `Validate` button. You will get a warning message **We have identified some issues that might cause problems with the my tasks skill. Open the logger window to see more details.** on the top of the page as you can see on the image below. You can explore the warning on **View validation results** section to learn. We can proceed with next steps.
 
-    ![Flows 4](./images/flows_4.png)
+    ![Flows 4](./images/flows_4_3.png)
 
 4. Click **Train** button to run the **Machine Learning Algorithm**.
 
-    ![Flows 5](./images/flows_5.png)
+    ![Flows 5](./images/flows_5_2.png)
 
 5. **Be sure** that you get the **correct train message** confirmation on the top of the page as you can see on the image below:
 
-    ![Flows 6](./images/flows_6.png)
+    ![Flows 6](./images/flows_6_2.png)
 
 6. **Run** the test of the skill clicking the `Play` button next to `Validate`.
 
-    ![Run Flows](./images/flows_7.png)
+    ![Run Flows](./images/flows_7_2.png)
 
     The way to test the conversation is typing any of the **Intents** that we have created on this Lab5.
 
@@ -201,7 +201,3 @@ Continue to Next Steps for more information!
 - **Contributors** - Melanie Ashworth-March
 - **Last Updated By/Date** - Kamryn Vinson, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

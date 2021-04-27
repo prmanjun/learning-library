@@ -5,6 +5,9 @@ This lab will show you how to connect to your DB System.
 
 Estimated Lab Time:  5 minutes 
 
+Watch the video below for an overview of the Build a DB System lab
+[](youtube:tRo33KktXt0)
+
 ### About Terraform and Oracle Cloud Resource Manager
 For more information about Terraform and Resource Manager, please see the appendix below.
 
@@ -21,11 +24,15 @@ For more information about Terraform and Resource Manager, please see the append
 ## **STEP 1**: Login to Oracle Cloud
 
 1.  Login to Oracle Cloud
-2.  Open up the hamburger menu in the left hand corner.  
+2.  Click on the down arrow next to Oracle Cloud Infrastructure Direct Sign in
+3.  Enter your username and password you were provided
+4.  Change the password if prompted
+5.  In the upper right corner select the region you were assigned
+6.  Open up the hamburger menu in the left hand corner.  
 
-3.  From the hamburger menu, select Bare Metal, VM, Exadata in the Oracle Database category. 
+7.  From the hamburger menu, select **Bare Metal, VM, and Exadata** in the Oracle Database category. 
 
-  ![](./images/setup-compute-1.png " ")
+  ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbcs.png " ")
 
 2.  Identify your database system from your My Reservations page in LiveLabs and click it.  (Note:  Remember to choose the compartment that you were assigned if running on LiveLabs)
 
@@ -39,18 +46,18 @@ For more information about Terraform and Resource Manager, please see the append
 
   ![](./images/setup-compute-4.png " ")
 
-5. Now that you have your IP address select the method of connecting. Choose the environment where you created your ssh-key in the previous lab (Generate SSH Keys) and select one of the following steps.  We recommend you choose Oracle Cloud Shell for this series of workshops.
-- [Step 5: Oracle Cloud Shell (RECOMMENDED)](#STEP5:OracleCloudShell)
-- [Step 6: MAC or Windows CYGWIN Emulator](#STEP6:MACorWindowsCYGWINEmulator)
-- [Step 7: Putty](#STEP7:WindowsusingPutty)
+5. Now that you have your IP address select the method of connecting. Choose the environment where you created your ssh-key in the previous lab (Generate SSH Keys) and select one of the following steps. If you choose to use Oracle Cloud Shell, you will need to copy your SSH Private and Public Key to the cloud shell and set the proper permissions, otherwise, choose the platform that matches your local environment. 
+- [Step 2: Oracle Cloud Shell (RECOMMENDED)](#STEP5:OracleCloudShell)
+- [Step 3: MAC or Windows CYGWIN Emulator](#STEP6:MACorWindowsCYGWINEmulator)
+- [Step 4: Putty](#STEP7:WindowsusingPutty)
 
-## **STEP 5**: Oracle Cloud Shell
+## **STEP 2**: Oracle Cloud Shell
 
 1.  To re-start the Oracle Cloud shell, go to your Cloud console and click the Cloud Shell icon to the right of the region.  *Note: Make sure you are in the region you were assigned*
 
     ![](../clusterware/images/start-cloudshell.png " ")
 
-2.  Using one of the Public IP addresses in Step 4, enter the command below to login as the *opc* user and verify connection to your nodes.    
+2.  Using one of the Public IP addresses, enter the command below to login as the *opc* user and verify connection to your nodes.    
 
     ````
     ssh -i ~/.ssh/<sshkeyname> opc@<Your Public IP Address>
@@ -62,9 +69,9 @@ For more information about Terraform and Resource Manager, please see the append
 5.  You may now *proceed to the next lab*.  
 
 
-## **STEP 6**: MAC or Windows CYGWIN Emulator
+## **STEP 3**: MAC or Windows CYGWIN Emulator
 *NOTE:  If you have trouble connecting and are using your work laptop to connect, your corporate VPN may prevent you from logging in. Log out of your VPN before connecting. *
-1.  Using one of the Public IP addresses in Step 4, open up a terminal (MAC) or cygwin emulator as the opc user.  Enter yes when prompted.
+1.  Using one of the Public IP addresses, open up a terminal (MAC) or cygwin emulator as the opc user.  Enter yes when prompted.
 
     ````
     ssh -i ~/.ssh/<sshkeyname> opc@<Your Public IP Address - node1>
@@ -74,13 +81,13 @@ For more information about Terraform and Resource Manager, please see the append
 2. You can also log in to the **Public IP Address of node2**
 
     ````
-    ssh -i ~/.ssh/<sshkeyname> opc@<Your Public IP Address - node1>
+    ssh -i ~/.ssh/<sshkeyname> opc@<Your Public IP Address - node2>
     ````
     ![](./images/em-mac-linux-ssh-login.png " ")
 
 3. After successfully logging in, you may *proceed to the next lab*
 
-## **STEP 7**: Windows using Putty
+## **STEP 4**: Windows using Putty
 *NOTE:  If you have trouble connecting and are using your work laptop to connect, your corporate VPN may prevent you from logging in. Log out of your VPN before connecting. *
 
 On Windows, you can use PuTTY as an SSH client. PuTTY enables Windows users to connect to remote systems over the internet using SSH and Telnet. SSH is supported in PuTTY, provides for a secure shell, and encrypts information before it's transferred.
@@ -226,7 +233,3 @@ If you have other compute instances you are not using, you can go to those insta
 * **Contributors** - Kay Malcolm, Product Manager, Database Product Management
 * **Last Updated By/Date** - Kay Malcolm, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

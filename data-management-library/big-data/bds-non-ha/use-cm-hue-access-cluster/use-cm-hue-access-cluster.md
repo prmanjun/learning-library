@@ -2,6 +2,11 @@
 
 ## Introduction
 
+<if type="livelabs">
+_**IMPORTANT:**_     
+_In this lab, you will **only review** (or optionally view the video) how to access Cloudera Manager (CM) and Hue directly in a web browser. This requires creating two ingress security rules and opening the ports for Cloudera Manager and Hue. Since you are using the LiveLabs environment, the two security rules are already created for you, and the two ports for CM and Hue are already opened._
+</if>
+
 To ensure security, when BDS deploys a cluster, the nodes in the cluster are not accessible on the public internet. By default, the IP addresses for the cluster nodes are private.
 
 In the previous lab, you made the utility node in your non-HA cluster accessible from the internet by mapping the node's private IP addresses to a public IP address; however, making the utility node publicly available isn't enough to make services that run on those nodes available from the internet.
@@ -10,16 +15,27 @@ All services are only available on certain ports. For example, in a non-HA clust
 
 In this lab, you will learn how to access CM and Hue directly in a web browser.
 
+Estimated Lab Time: 30 minutes
 
 ### Objectives
 
 * Use Cloudera Manager (CM) and Hue to access a Big Data Service (BDS) cluster.
+<if type="livelabs">
+* Review how to add ingress rules to the default security rule that enables you to access both CM and Hue.
+</if>
+<if type="freetier">
 * Add ingress rules to the default security rule that enables you to access both CM and Hue.
+</if>
 
 ### What Do You Need?
 
-This lab assumes that you have successfully completed the following labs in the **Contents** menu on the right:
+This lab assumes that you have successfully completed the following labs in the **Contents** menu:
+<if type="freetier">
 + **Lab 1: Setup the BDS Environment**
+</if>
+<if type="livelabs">
++ **Lab 1: Review Creating BDS Environment Resources (Optional)**
+</if>
 + **Lab 2: Create a BDS Hadoop Cluster**
 + **Lab 3: Add Oracle Cloud SQL to the Cluster**
 + **Lab 4: Access a BDS Node Using a Public IP Address**
@@ -32,9 +48,15 @@ Watch a video demonstration of using Cloudera Manager and Hue to access a Big Da
 
 ## **STEP 1:** Create Ingress Security Rules (and Open Ports) for Cloudera Manager and Hue
 
-In this step, you will add ingress security rules to the default security list in your cluster's VCN. This will allow access from anywhere on the internet to Cloudera Manager on port **`7183`** and Hue on port **`8888`**.
+In this step, you will <if type="freetier">add</if> <if type="livelabs">review how to add
+</if> ingress security rules to the default security list in your cluster's VCN. This will allow access from anywhere on the internet to Cloudera Manager on port **`7183`** and Hue on port **`8888`**.
 
-1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+<if type="livelabs">
+_**Note:** All screen captures in this lab show the resources' names used when you run the workshop in your own tenancy and not the resources' names in your assigned LiveLabs environment._
+</if>
+
+1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. <if type="livelabs">_**Note:** If you are using the LiveLabs environment, you do not have administrative privileges._ </if>On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
+</if>
 
 2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Networking**, select **Virtual Cloud Networks**.
 
@@ -87,7 +109,7 @@ In this step, you will add ingress security rules to the default security list i
 
   ![](./images/ingress-rules-added.png " ")
 
-## **STEP 2:** Use Cloudera Manager to Access the Cluster
+## **STEP 2:** Use Cloudera Manager (CM) to Access the Cluster
 
 In this step, you will use CM to access the cluster. In a non-HA cluster, CM runs on the first utility node, **`traininun0`**. You will use the reserved public IP address that is associated with **`traininun0`** that you created in step 2 of **Lab 4, Access a BDS Node Using a Public IP Address**.
 
@@ -103,9 +125,19 @@ In this step, you will use CM to access the cluster. In a non-HA cluster, CM run
 
     In our example, we used the reserved public IP address that is associated with our first utility node as follows:
 
+    <if type="freetier">
     ```
     https://193.122.194.103:7183
     ```
+    </if>
+
+    <if type="livelabs">
+
+    ```
+    https://158.101.36.9:7183
+    ```
+
+    </if>
 
 3. On the CM Login screen, enter your **`username`** which is **`admin`** by default in CM. For the password, enter the **`password`** that you specified when you created the cluster such as **`Training123`**. Click **Sign In**.
 
@@ -165,9 +197,17 @@ In this step, you will use Hue to access the cluster. In a non-HA cluster, Hue r
 
     In our example, we used the reserved public IP address that is associated with our first utility node as follows:
 
+    <if type="freetier">
     ```
     https://193.122.194.103:8888
     ```
+    </if>
+
+    <if type="livelabs">
+    ```
+    https://158.101.36.9:8888
+    ```
+    </if>
 
 3. On the Hue Login screen, enter your **`username`** which is **`admin`** by default in Hue. For the password, enter the **`password`** that you specified when you created the cluster such as **`Training123`**. Click **Sign In**, or **Create Account** if this is the first time you log in to Hue.
 
@@ -187,8 +227,7 @@ In this step, you will use Hue to access the cluster. In a non-HA cluster, Hue r
 
   ![](./images/hue-logout.png " ")
 
-
-**This concludes this lab. Please proceed to the next lab in the Contents menu.**
+This concludes this lab. You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 
@@ -204,12 +243,7 @@ In this step, you will use Hue to access the cluster. In a non-HA cluster, Hue r
 ## Acknowledgements
 
 * **Author:**
-    + Lauran Serhal, User Assistance Developer, Oracle Database and Big Data User Assistance
+    + Lauran Serhal, Principal User Assistance Developer, Oracle Database and Big Data User Assistance
 * **Technical Contributor:**
     + Martin Gubar, Director, Oracle Big Data Product Management
-* **Last Updated By/Date:** Lauran Serhal, December 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date:** Lauran Serhal, March 2021

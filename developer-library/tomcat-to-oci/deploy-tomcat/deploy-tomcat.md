@@ -63,26 +63,6 @@ For this lab, you need
 
     ![](./images/setup-tf-fingerprint.png)
 
-5. With this information, create the appropriate TF_VARS, in a `TF_VARS.sh` file
-
-    ```
-    <copy>
-    export TF_VAR_tenancy_ocid=ocid1.tenancy....
-    export TF_VAR_user_ocid=ocid1.user.oc1..
-    export TF_VAR_region=us-ashburn-1
-    export TF_VAR_fingerprint=50:d0:7d:f7:0e:05:cd:87:3b:2a:cb:50:b1:17:90:e9
-    export TF_VAR_private_key_path=~/.oci/oci_api_key.pem
-    </copy>
-    ```
-
-6. Source the TF_VARS.sh file
-
-    ```
-    <copy>
-    source ./TF_VARS.sh
-    </copy>
-    ```
-
 ## **STEP 2:** Get the Terraform code
 
 For this step, you may want to open up a separate shell terminal.
@@ -117,16 +97,34 @@ In order to run the deployment, you need to define a few settings in a file name
 
     ```
     <copy>
-    tenancy_ocid="<tenancy_ocid>"
-    ssh_public_key="<content of the SSH public key created inside the Docker environment>"
-    region="<oci_region>"
-    compartment_ocid="<compartment_ocid>"
+    # Authentication
+    tenancy_ocid         = "<tenancy_ocid>"
+    user_ocid            = "<user_ocid>"
+    fingerprint          = "<finger_print>"
+    private_key_path     = "<pem_private_key_path>"
+
+    # Region
+    region = "<oci_region>"
+
+    # Compartment
+    compartment_ocid = "<compartment_ocid>"
+
+    # ATP instance Password 
     atp_db_name = "ATPDB"
     atp_name = "TomcatATP"
     atp_password = "<password 12-30 chars including Upper + Number>"
-    numberOfNodes=1
+
+    # Number of Tomcat nodes (optional)
+    numberOfNodes = 2
+
+    # Customer SSH Public Key (optional)
+    ssh_public_key = "<ssh_public_key>"
     </copy>
     ```
+
+    *For the SSH Public key, make sure to provide the SSH key generated in the 'on-premises' environment and copied earlier.*
+
+
 
 3. Save the `terraform.tfvars` file
 
@@ -179,8 +177,3 @@ You may proceed to the next lab.
 ## Acknowledgements
  - **Author** - Subash Singh, Emmanuel Leroy, October 2020
  - **Last Updated By/Date** - Emmanuel Leroy, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

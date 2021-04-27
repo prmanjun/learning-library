@@ -1,12 +1,13 @@
 {
     "workshoptitle": "Introduction to Cloud Native",
-    "tutorials": [
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
         {
             "title": "Introduction",
             "filename": "../../intro/intro.md"
         },
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "filename": "../../../../../common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
@@ -32,6 +33,11 @@
         {
             "title": "Lab 5 (OPTIONAL): Clean Up",
             "filename": "../../cleanup/cleanup.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

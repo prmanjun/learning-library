@@ -28,48 +28,35 @@ In this lab, you will:
   
     ```
     
-    $ <copy>cd /home/oracle/labs/M104781GC10</copy>
-    
+    $ <copy>cd /home/oracle/labs/M104781GC10</copy>  
     $ <copy>/home/oracle/labs/M104781GC10/setup_SYSLOG_audit.sh</copy>
     
-    Connected to:
-    
-    Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production
-    
+    Connected to:  
+    Oracle Database 21c Enterprise Edition Release 21.0.0.0.0 - Production   
     Version 21.2.0.0.0
     
-    SQL> shutdown abort
-    
+    SQL> shutdown abort   
     ORACLE instance shut down.
     
-    SQL> exit
-    
-    ...
-  
-    /usr/bin/ar cr /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/libknlopt.a /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/kzaiang.o
-    
-    chmod 755 /u01/app/oracle/product/21.2.0/dbhome_1/bin
-    
-    - Linking Oracle
-    
-    rm -f /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/oracle
-    
+    SQL> exit   
+    ...  
+    /usr/bin/ar cr /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/libknlopt.a /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/kzaiang.o 
+    chmod 755 /u01/app/oracle/product/21.2.0/dbhome_1/bin  
+    - Linking Oracle  
+    rm -f /u01/app/oracle/product/21.2.0/dbhome_1/rdbms/lib/oracle 
     ...
     
     SQL> STARTUP
     
     ...
     
-    SQL> CREATE USER c##test IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;
-    
+    SQL> CREATE USER c##test IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;    
     User created.
     
-    SQL> GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE TO c##test CONTAINER=ALL;
-    
+    SQL> GRANT CREATE SESSION, CREATE TABLE, UNLIMITED TABLESPACE TO c##test CONTAINER=ALL;   
     Grant succeeded.
     
-    SQL> EXIT
-    
+    SQL> EXIT  
     $
     
     ```
@@ -86,37 +73,28 @@ In this lab, you will:
     Connected.
     
     SQL> <copy>CREATE AUDIT POLICY pol_common ACTIONS create table CONTAINER=ALL;</copy>
-    
     Audit policy created.
     
-    SQL> <copy>AUDIT POLICY pol_common;</copy>
-    
+    SQL> <copy>AUDIT POLICY pol_common;</copy>    
     Audit succeeded.
     
-    SQL> <copy>CREATE AUDIT POLICY pol_root ACTIONS insert;</copy>
-    
+    SQL> <copy>CREATE AUDIT POLICY pol_root ACTIONS insert;</copy>    
     Audit policy created.
     
-    SQL> <copy>AUDIT POLICY pol_root;</copy>
-    
+    SQL> <copy>AUDIT POLICY pol_root;</copy>    
     Audit succeeded.
     
     SQL> <copy>COL policy_name FORMAT A18</copy>
     
     SQL> <copy>COL audit_option FORMAT A18</copy>
     
-    SQL> <copy>SELECT policy_name, audit_option, common
-    
-          FROM AUDIT_UNIFIED_POLICIES  
-    
+    SQL> <copy>SELECT policy_name, audit_option, common   
+          FROM AUDIT_UNIFIED_POLICIES      
           WHERE policy_name like 'POL%'; </copy>
     
-    POLICY_NAME        AUDIT_OPTION       COM
-    
-    ------------------ ------------------ ---
-    
-    POL_COMMON         CREATE TABLE       YES
-    
+    POLICY_NAME        AUDIT_OPTION       COM   
+    ------------------ ------------------ ---   
+    POL_COMMON         CREATE TABLE       YES    
     POL_ROOT           INSERT             NO
     
     SQL>
@@ -128,18 +106,14 @@ In this lab, you will:
   
     ```
     
-    SQL> <copy>CONNECT system@PDB21</copy>
-    
-    Enter password: <i><copy>password</copy></i>
-    
+    SQL> <copy>CONNECT system@PDB21</copy>    
+    Enter password: <i><copy>password</copy></i>   
     Connected.
     
-    SQL> <copy>CREATE AUDIT POLICY pol_pdb21 ACTIONS select;</copy>
-    
+    SQL> <copy>CREATE AUDIT POLICY pol_pdb21 ACTIONS select;</copy>   
     Audit policy created.
     
-    SQL> <copy>AUDIT POLICY pol_pdb21;</copy>
-    
+    SQL> <copy>AUDIT POLICY pol_pdb21;</copy>    
     Audit succeeded.
     
     SQL>
@@ -155,18 +129,13 @@ In this lab, you will:
     
     SQL> <copy>COL audit_option FORMAT A18</copy>
     
-    SQL> <copy>SELECT policy_name, audit_option, common
-    
-          FROM AUDIT_UNIFIED_POLICIES  
-    
+    SQL> <copy>SELECT policy_name, audit_option, common   
+          FROM AUDIT_UNIFIED_POLICIES      
           WHERE policy_name like 'POL%';</copy> 
     
-    POLICY_NAME        AUDIT_OPTION       COM
-    
-    ------------------ ------------------ ---
-    
-    POL_COMMON         CREATE TABLE       YES
-    
+    POLICY_NAME        AUDIT_OPTION       COM    
+    ------------------ ------------------ ---    
+    POL_COMMON         CREATE TABLE       YES    
     POL_PDB21          SELECT             NO
     
     SQL>
@@ -180,12 +149,10 @@ In this lab, you will:
   
     ```
     
-    SQL> <copy>CONNECT / AS SYSDBA</copy>
-    
+    SQL> <copy>CONNECT / AS SYSDBA</copy>    
     Connected.
     
-    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local0.info' SCOPE=SPFILE;</copy>
-    
+    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local0.info' SCOPE=SPFILE;</copy>    
     System altered.
     
     SQL>
@@ -197,32 +164,24 @@ In this lab, you will:
   
     ```
     
-    SQL> <copy>CONNECT sys@PDB21 AS SYSDBA</copy>
-    
+    SQL> <copy>CONNECT sys@PDB21 AS SYSDBA</copy>   
     Enter password: <i><copy>password</copy></i>
     
     Connected.
     
-    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local1.warning' SCOPE=SPFILE;</copy>
-    
-    ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local1.warning'  SCOPE=SPFILE
-    
-    *
-    
-    ERROR at line 1:
-    
+    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local1.warning' SCOPE=SPFILE;</copy>    
+    ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='local1.warning'  SCOPE=SPFILE   
+    *    
+    ERROR at line 1:    
     ORA-65040: operation not allowed from within a pluggable database
     
-    SQL> <copy>CONNECT / AS SYSDBA</copy>
-    
+    SQL> <copy>CONNECT / AS SYSDBA</copy>    
     Connected.
     
-    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_SYSTEMLOG='local1.warning' SCOPE=SPFILE;</copy>
-    
+    SQL> <copy>ALTER SYSTEM SET UNIFIED_AUDIT_SYSTEMLOG='local1.warning' SCOPE=SPFILE;</copy>   
     System altered.
     
-    SQL> <copy>EXIT</copy>
-    
+    SQL> <copy>EXIT</copy>   
     $
     
     ```
@@ -234,46 +193,31 @@ In this lab, you will:
 3.  Restart the database instance because the initialization parameter `UNIFIED_AUDIT_COMMON_SYSTEMLOG` has been set at the `SPFILE` scope. Execute the `/home/oracle/labs/M104781GC10/wallet.sh` to restart the instance and also open the wallet.
 
   
-    ```
-    
-    $ <copy>/home/oracle/labs/M104781GC10/wallet.sh</copy>
-    
-    ...
-    
-    SQL> host mkdir /u01/app/oracle/admin/CDB21/tde
-    
+    ```   
+    $ <copy>/home/oracle/labs/M104781GC10/wallet.sh</copy>   
+    ...   
+    SQL> host mkdir /u01/app/oracle/admin/CDB21/tde    
     mkdir: cannot create directory '/u01/app/oracle/admin/CDB21/tde': File exists
     
-    SQL>
-    
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL ;
-    
-    ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL
-    
-    *
-    
-    ERROR at line 1:
-    
+    SQL>    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL ;    
+    ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL   
+    *    
+    ERROR at line 1:    
     ORA-28389: cannot close auto login wallet
-    
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;
-    
+   
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;   
     keystore altered.
     
     ...
     
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY <i>WElcome123##</i> container=all;
-    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY <i>WElcome123##</i> container=all;   
     keystore altered.
     
-    SQL> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL;
-    
-    ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL
-    
-    *
-    
-    ERROR at line 1:
-    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL;   
+    ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL   
+    *   
+    ERROR at line 1:   
     ORA-46663: master keys not created for all PDBs for REKEY
     
     SQL> 
@@ -287,8 +231,7 @@ In this lab, you will:
     
     ```
     
-    $ <copy>exit</copy>
-    
+    $ <copy>exit</copy>   
     exit
     
     #
@@ -302,22 +245,15 @@ In this lab, you will:
     
     # <copy>vi /etc/rsyslog.conf</copy>
     
+    ...   
+    #### RULES ####    
     ...
     
-    #### RULES ####
-    
-    ...
-    
-    # Save boot messages also to boot.log
-    
-    local7.*                                                /var/log/boot.log
-    
-    <copy># Unified Audit Rules
-    
-    local0.info            /var/log/root_common_audit_records.log
-    
-    local1.warning         /var/log/root_audit_records.log</copy>
-    
+    # Save boot messages also to boot.log    
+    local7.*                                                /var/log/boot.log    
+    <copy># Unified Audit Rules    
+    local0.info            /var/log/root_common_audit_records.log    
+    local1.warning         /var/log/root_audit_records.log</copy>    
     ...
     
     # 
@@ -327,16 +263,12 @@ In this lab, you will:
 3. Restart the SYSLOG daemon.
 
   
-    ```
-    
-    # <copy>cd /etc/init.d</copy>
-    
-    # <copy>service rsyslog restart</copy>
-    
+    ```  
+    # <copy>cd /etc/init.d</copy>   
+    # <copy>service rsyslog restart</copy>   
     Redirecting to /bin/systemctl restart  rsyslog.service
     
-    ...
-    
+    ...   
     # 
     
     ```
@@ -348,28 +280,22 @@ In this lab, you will:
   
     ```
     
-    SQL> <copy>CONNECT c##test</copy>
-    
+    SQL> <copy>CONNECT c##test</copy>    
     Enter password: <i><copy>password</copy></i>
     
-    SQL> <copy>ALTER SESSION SET default_sharing = 'EXTENDED DATA';</copy>
-    
+    SQL> <copy>ALTER SESSION SET default_sharing = 'EXTENDED DATA';</copy>    
     Session altered.
     
-    SQL> <copy>CREATE TABLE test (id NUMBER, label VARCHAR2(10));</copy>
-    
+    SQL> <copy>CREATE TABLE test (id NUMBER, label VARCHAR2(10));</copy>    
     Table created.
     
-    SQL> <copy>INSERT INTO test VALUES (1,'A');</copy>
-    
+    SQL> <copy>INSERT INTO test VALUES (1,'A');</copy>    
     1 row created.
     
-    SQL> <copy>INSERT INTO test VALUES (2,'B');</copy>
-    
+    SQL> <copy>INSERT INTO test VALUES (2,'B');</copy>    
     1 row created.
     
-    SQL> <copy>COMMIT;</copy>
-    
+    SQL> <copy>COMMIT;</copy>   
     Commit complete.
     
     SQL>
@@ -381,8 +307,7 @@ In this lab, you will:
   
     ```
     
-    # <copy>grep -i  'Oracle Unified Audit'  /var/log/root_common_audit_records.log</copy>
-    
+    # <copy>grep -i  'Oracle Unified Audit'  /var/log/root_common_audit_records.log</copy>    
     Nov 13 15:52:56 db21si journal: Oracle Unified Audit[23128]: LENGTH: '215' TYPE:"4" DBID:"2809789491" SESID:"2759083216" CLIENTID:"" ENTRYID:"1" STMTID:"9" DBUSER:"C##TEST" CURUSER:"C##TEST" <b>ACTION:"1"</b> RETCODE:"0" SCHEMA:"C##TEST" OBJNAME:"TEST" <b>PDB_GUID:"B3316DF8AB281563E053E704F40AD8A9"</b>
     
     #
@@ -425,30 +350,23 @@ In this lab, you will:
     
     ```
     
-    SQL> <copy>CONNECT c##test@PDB21</copy>
-    
-    Enter password: <i><copy>password</copy></i>
-    
+    SQL> <copy>CONNECT c##test@PDB21</copy>   
+    Enter password: <i><copy>password</copy></i>    
     Connected.
     
-    SQL> <copy>CREATE TABLE testpdb21 (id NUMBER, label VARCHAR2(10));</copy>
-    
+    SQL> <copy>CREATE TABLE testpdb21 (id NUMBER, label VARCHAR2(10));</copy>   
     Table created.
     
-    SQL> <copy>INSERT INTO testpdb21 VALUES (1,'A');</copy>
-    
+    SQL> <copy>INSERT INTO testpdb21 VALUES (1,'A');</copy>   
     1 row created.
     
-    SQL> <copy>INSERT INTO testpdb21 VALUES (2,'B');</copy>
-    
+    SQL> <copy>INSERT INTO testpdb21 VALUES (2,'B');</copy>   
     1 row created.
     
-    SQL> <copy>COMMIT;</copy>
-    
+    SQL> <copy>COMMIT;</copy>    
     Commit complete. 
     
-    SQL> <copy>EXIT</copy>
-    
+    SQL> <copy>EXIT</copy>   
     $
     
     ```
@@ -508,48 +426,35 @@ In this lab, you will:
     
     ...
     
-    SQL> ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='' SCOPE=SPFILE;
-    
+    SQL> ALTER SYSTEM SET UNIFIED_AUDIT_COMMON_SYSTEMLOG='' SCOPE=SPFILE;   
     System altered.
     
-    SQL> ALTER SYSTEM SET UNIFIED_AUDIT_SYSTEMLOG='' SCOPE=SPFILE;
-    
+    SQL> ALTER SYSTEM SET UNIFIED_AUDIT_SYSTEMLOG='' SCOPE=SPFILE;    
     System altered.
     
-    SQL> noaudit POLICY pol_common;
-    
+    SQL> noaudit POLICY pol_common;   
     Noaudit succeeded.
     
-    SQL> drop AUDIT POLICY pol_common;
-    
+    SQL> drop AUDIT POLICY pol_common;   
     Audit Policy dropped.
     
-    SQL> exit
-    
+    SQL> exit   
     ...
     
-    SQL> host mkdir /u01/app/oracle/admin/CDB21/tde
-    
+    SQL> host mkdir /u01/app/oracle/admin/CDB21/tde  
     mkdir: cannot create directory '/u01/app/oracle/admin/CDB21/tde': File exists
     
-    SQL>
-    
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL ;
-    
-    ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL
-    
-    *
-    
-    ERROR at line 1:
-    
+    SQL> 
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL ;    
+    ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE CONTAINER=ALL   
+    *   
+    ERROR at line 1:   
     ORA-28389: cannot close auto login wallet
     
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;
-    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE CLOSE IDENTIFIED BY <i>WElcome123##</i> CONTAINER=ALL;  
     keystore altered.
     
-    SQL> ALTER SYSTEM SET wallet_root = '/u01/app/oracle/admin/CDB21/tde'
-    
+    SQL> ALTER SYSTEM SET wallet_root = '/u01/app/oracle/admin/CDB21/tde'  
       2         SCOPE=SPFILE;
     
     System altered.
@@ -560,82 +465,57 @@ In this lab, you will:
     
     ...
     
-    SQL> shutdown abort
-    
+    SQL> shutdown abort  
     ORACLE instance shut down.
     
-    SQL> exit
-    
+    SQL> exit   
     ...
     
-    Connected to an idle instance.
-    
-    SQL> STARTUP
-    
-    ORACLE instance started.
-    
-    Total System Global Area  851440088 bytes
-    
-    Fixed Size                  9691608 bytes
-    
-    Variable Size             570425344 bytes
-    
-    Database Buffers          134217728 bytes
-    
-    Redo Buffers               19664896 bytes
-    
-    In-Memory Area            117440512 bytes
-    
-    Database mounted.
-    
+    Connected to an idle instance.   
+
+    SQL> STARTUP    
+    ORACLE instance started.    
+    Total System Global Area  851440088 bytes    
+    Fixed Size                  9691608 bytes    
+    Variable Size             570425344 bytes   
+    Database Buffers          134217728 bytes  
+    Redo Buffers               19664896 bytes   
+    In-Memory Area            117440512 bytes   
+    Database mounted.  
     Database opened.
     
-    SQL> ALTER PLUGGABLE DATABASE all OPEN;
-    
+    SQL> ALTER PLUGGABLE DATABASE all OPEN;  
     Pluggable database altered.
     
-    SQL> exit
-    
+    SQL> exit 
     ...
     
-    SQL> ALTER SYSTEM SET tde_configuration =
-    
-      2                       'KEYSTORE_CONFIGURATION=FILE'
-    
-      3                        SCOPE=BOTH;
-    
+    SQL> ALTER SYSTEM SET tde_configuration =   
+      2                       'KEYSTORE_CONFIGURATION=FILE'    
+      3                        SCOPE=BOTH;   
     System altered.
     
-    SQL> ADMINISTER KEY MANAGEMENT CREATE KEYSTORE IDENTIFIED BY <i>WElcome123##</i> ;
-    
-    ADMINISTER KEY MANAGEMENT CREATE KEYSTORE IDENTIFIED BY <i>WElcome123##</i> 
-    
-    *
-    
-    ERROR at line 1:
-    
+    SQL> ADMINISTER KEY MANAGEMENT CREATE KEYSTORE IDENTIFIED BY <i>WElcome123##</i> ;    
+    ADMINISTER KEY MANAGEMENT CREATE KEYSTORE IDENTIFIED BY <i>WElcome123##</i>    
+    *   
+    ERROR at line 1:    
     ORA-46630: keystore cannot be created at the specified location
     
-    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY <i>WElcome123##</i> container=all;
-    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY <i>WElcome123##</i> container=all;   
     keystore altered.
     
-    SQL> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL;
-    
+    SQL> ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY <i>WElcome123##</i> WITH BACKUP CONTAINER=ALL;   
     keystore altered.
     
     ...
     
-    SQL> noAUDIT POLICY pol_pdb21;
-    
+    SQL> noAUDIT POLICY pol_pdb21;   
     Noaudit succeeded.
     
     SQL> drop AUDIT POLICY pol_pdb21;
-    
     Audit Policy dropped.
     
     SQL> EXIT
-    
     $
     
     ```
@@ -643,11 +523,7 @@ In this lab, you will:
 You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
+* **Author** - Donna Keesling, Database UA Team
 * **Contributors** -  Kay Malcolm, Database Product Management
 * **Last Updated By/Date** -  Kay Malcolm, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

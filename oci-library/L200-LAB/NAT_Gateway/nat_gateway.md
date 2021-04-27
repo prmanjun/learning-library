@@ -205,14 +205,18 @@ We need to connect to the **private instance** to check internet
 connectivity with it. Since the instance has been launched in a private
 subnet therefore doesn’t have any public IP address so we can’t directly ssh into the instance. However, we can ssh into our private  instance from our Public instance which is in the public subnet.
 
-In Order to ssh into private instance we will use the ssh proxy command. This command allows us to “tunnel” through the bastion host to our private instance, while maintaining SSH keys locally on our laptop. Storing private SSH keys on a public server such as a Bastion host is not recommended.
+In Order to ssh into private instance we will use the ssh jump command. This command allows us to “jump” through the bastion host to our private instance, while maintaining SSH keys locally on our laptop. Storing private SSH keys on a public server such as a Bastion host is not recommended. 
 
 ```
-$ ssh -t -o ProxyCommand='ssh -i /pathtosshprivatekey/ opc@<Bastion Host public IP> -W %h:%p %r' -i /pathtosshprivatekey/ opc@<private instance
-IP>  
+$ ssh -i /path/to/sshprivatekey -J opc@<Bastion Host public IP> opc@<private instance IP> 
 ```
 
-![](media/image22.png)
+
+Note: If the keys are different, add -i before the private instance.
+
+```
+$ ssh -i /path/to/sshprivatekey -J opc@<Bastion Host public IP> -i /path/to/differentprivatekey opc@<private instance IP> 
+```
 
 You are now connected to the Private instance and the bastion host. The bastion host is part of the public subnet and is connected to internet via the internet gateway. The Private instance is in a private subnet, with no public IP or public internet access. You can confirm access as show below. 
 

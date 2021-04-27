@@ -1,6 +1,7 @@
 {
   "workshoptitle": "Visualizing Your Data",
-    "tutorials": [
+    "help": "livelabs-help-db_us@oracle.com",
+	"tutorials": [
         {
             "title": "Introduction",
             "description": "Introduction",
@@ -14,7 +15,7 @@
         {
             "title": "Lab 1: Provision an ADW Instance",
             "description": "Provision a new ADW instance and connect to the database",
-            "filename": "./../../../adb-provision/adb-provision.md"
+            "filename": "./../../../adb-provision/adb-provision-livelabs.md"
         },
         {
             "title": "Lab 2: Working with Free Sample Data Sets",
@@ -30,6 +31,11 @@
             "title": "Lab 4: Visualizing Your Data",
             "description": "Create Rich Data Visualizations",
             "filename": "./../../../adw-visualizations/adw-visualizations.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
         }
     ]
 }

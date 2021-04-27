@@ -1,17 +1,23 @@
 {
-  "workshoptitle": "Using OCI Audit Service",
-    "tutorials": [
+    "workshoptitle": "Using OCI Audit Service",
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Introduction",
-            "filename": "./../../intro/intro.md"
+            "filename": "./../../labs/intro.md"
         },
         {
             "title": "Lab 1: Using OCI Audit Service",
-            "filename": "./../../audit-service/audit-service.md"
+            "filename": "./../../labs/audit-service.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

@@ -82,10 +82,11 @@ INMEMORY` tables in `HR` schema in `PDB21`, and finally inserts rows in `HR` tab
     $ <copy>sqlplus sys@PDB21 AS SYSDBA</copy>
     Enter password: <b><i>WElcome123##</i></b>
     Connected to:
+    ```
+    ```
     SQL> <copy>COL table_name FORMAT A18</copy>
 
-    SQL> <copy>SELECT table_name, inmemory, inmemory_compression 
-    
+    SQL> <copy>SELECT table_name, inmemory, inmemory_compression
     FROM   dba_tables WHERE  owner='HR';</copy>
     TABLE_NAME         INMEMORY INMEMORY_COMPRESS
     ------------------ -------- -----------------
@@ -107,8 +108,8 @@ INMEMORY` tables in `HR` schema in `PDB21`, and finally inserts rows in `HR` tab
     ```
     SQL> <copy>ALTER TABLE hr.job_history INMEMORY MEMCOMPRESS FOR CAPACITY LOW;</copy>
     Table altered.
-    
-    SQL> <copy>SELECT table_name, inmemory, inmemory_compression 
+
+    SQL> <copy>SELECT table_name, inmemory, inmemory_compression
     FROM   dba_tables WHERE  owner='HR';</copy>
     TABLE_NAME         INMEMORY INMEMORY_COMPRESS
     ------------------ -------- -----------------
@@ -131,327 +132,260 @@ INMEMORY` tables in `HR` schema in `PDB21`, and finally inserts rows in `HR` tab
     ```
     SQL> <copy>CONNECT / AS SYSDBA</copy>
     Connected.
-    
+    ```
+    ```
+
     SQL> <copy>ALTER SYSTEM SET INMEMORY_AUTOMATIC_LEVEL=HIGH SCOPE=SPFILE;</copy>
     System altered.
-    
-    SQL> <copy>SHUTDOWN IMMEDIATE</copy>
-    Database closed.
-    Database dismounted.
-    ORACLE instance shut down.
-    
-    SQL> <copy>STARTUP</copy>
-    ORACLE instance started.
-    
-    Total System Global Area  851442944 bytes
-    Fixed Size                  9571584 bytes
-    Variable Size             440401920 bytes
-    Database Buffers          276824064 bytes
-    Redo Buffers                7204864 bytes
-    In-Memory Area            117440512 bytes
-    Database mounted.
-    Database opened.
-    
-    SQL> <copy>ALTER PLUGGABLE DATABASE ALL OPEN;</copy>
-    Pluggable database altered.
-    
-    SQL> 
+
+    SQL> <copy>exit;</copy>
+    ```
+    ```
+    <copy>cd /home/oracle/labs/M104784GC10</copy>
+    <copy>/home/oracle/labs/M104784GC10/wallet.sh</copy>
     ```
 
 2. Query the data dictionary to determine whether `HR` tables are specified as `INMEMORY`.
 
-  
+
     ```
-    
-    SQl> <copy>CONNECT sys@PDB21 AS SYSDBA</copy>
-    
+    SQl> <copy>sqlplus sys@PDB21 AS SYSDBA</copy>
+
     Enter password: <b><i>WElcome123##</i></b>
-    
+
     Connected.
-    
-    SQL> <copy>SELECT table_name, inmemory, inmemory_compression 
-    
-    FROM   dba_tables WHERE  owner='HR';</copy>
-    
-    TABLE_NAME         INMEMORY INMEMORY_COMPRESS
-    
-    ------------------ -------- -----------------
-    
-    REGIONS            DISABLED
-    
-    LOCATIONS          DISABLED
-    
-    DEPARTMENTS        DISABLED
-    
-    JOBS               DISABLED
-    
-    EMPLOYEES          DISABLED
-    
-    JOB_HISTORY        ENABLED  FOR CAPACITY LOW
-    
-    EMP                ENABLED  FOR QUERY LOW
-    
-    COUNTRIES          DISABLED
-    
-    8 rows selected.
-    
-    SQL>
-    
     ```
-  
+    ```
+
+    SQL> <copy>SELECT table_name, inmemory, inmemory_compression
+    FROM   dba_tables WHERE  owner='HR';</copy>
+
+    TABLE_NAME         INMEMORY INMEMORY_COMPRESS
+
+    ------------------ -------- -----------------
+    REGIONS            DISABLED
+    LOCATIONS          DISABLED
+    DEPARTMENTS        DISABLED
+    JOBS               DISABLED
+    EMPLOYEES          DISABLED
+    JOB_HISTORY        ENABLED  FOR CAPACITY LOW
+    EMP                ENABLED  FOR QUERY LOW
+    COUNTRIES          DISABLED
+
+    8 rows selected.
+
+    SQL>
+
+    ```
+
 3. Why are the `HR` tables not enabled to `INMEMORY`, except those already manually set to `INMEMORY`? Display the `INMEMORY_AUTOMATIC_LEVEL` in the PDB.
 
-  
+
     ```
-    
+
     SQl> <copy>SHOW PARAMETER INMEMORY_AUTOMATIC_LEVEL</copy>
-    
+
     NAME                                 TYPE        VALUE
-    
     ------------------------------------ ----------- -------------
-    
     inmemory_automatic_level             string      LOW
-    
+
     SQL> <copy>SELECT ispdb_modifiable FROM v$parameter WHERE name='inmemory_automatic_level';</copy>
-    
+
     ISPDB
-    
     -----
-    
     TRUE
-    
+
     SQL>
-    
+
     ```
 
 4. Set `INMEMORY_AUTOMATIC_LEVEL` to `HIGH` at the PDB level, and re-start `PDB21`.
 
-  
+
     ```
-    
+
     SQl> <copy>ALTER SYSTEM SET INMEMORY_AUTOMATIC_LEVEL=HIGH SCOPE=SPFILE;</copy>
-    
+
     System altered.
-    
-    SQL> <copy>SHUTDOWN IMMEDIATE</copy>
-    
-    Pluggable Database closed.
-    
-    SQL> <copy>STARTUP</copy>
-    
-    Pluggable Database opened.
-    
-    SQL>
-    
+
+    SQL> <copy>exit;</copy>
+    ```
+    ```
+    <copy>cd /home/oracle/labs/M104784GC10</copy>
+    <copy>/home/oracle/labs/M104784GC10/wallet.sh</copy>
     ```
 
 ## **STEP 4:** Test
 
 1. Wait one minute to observe the `HR` tables to be automatically assigned the `INMEMORY` attribute.
 
-  
+
     ```
-    
-    SQL> <copy>SELECT table_name, inmemory, inmemory_compression 
-    
+    SQl> <copy>sqlplus sys@PDB21 AS SYSDBA</copy>
+
+    Enter password: <b><i>WElcome123##</i></b>
+
+    Connected.
+    ```
+    ```
+
+    SQL> <copy>SELECT table_name, inmemory, inmemory_compression
     FROM   dba_tables WHERE  owner='HR';</copy>
-    
+
     TABLE_NAME         INMEMORY INMEMORY_COMPRESS
-    
     ------------------ -------- -----------------
-    
     REGIONS            <b>ENABLED  AUTO</b>
-    
     LOCATIONS          <b>ENABLED  AUTO</b>
-    
     DEPARTMENTS        <b>ENABLED  AUTO</b>
-    
     JOBS               <b>ENABLED  AUTO</b>
-    
     EMPLOYEES          <b>ENABLED  AUTO</b>
-    
     JOB_HISTORY        ENABLED  FOR CAPACITY LOW
-    
     EMP                ENABLED  FOR QUERY LOW
-    
     COUNTRIES          DISABLED
-    
+
     8 rows selected.
-    
+
     SQL>
-    
+
     ```
-  
+
 2. *Observe that `HR.JOB_HISTORY` and `HR.JOB_EMP` which were manually specified as `INMEMORY`, retain their previous settings.*
-  
+
 3. Why is `HR.COUNTRIES` not automatically enabled?
 
     ```
-    
+
     SQL> <copy>ALTER TABLE hr.countries INMEMORY;</copy>
-    
+
     ALTER TABLE hr.countries INMEMORY
-    
+
     *
-    
+
     ERROR at line 1:
-    
+
     ORA-64358: in-memory column store feature not supported for IOTs
-    
+
     SQL>
-    
+
     ```
 4. Populate the in-memory tables into the IM Column Store.
 
-  
+
     ```
-    
+
     SQL> <copy>@/home/oracle/labs/M104783GC10/AutoIM_scan_AUTO.sql</copy>
-    
+
     SQL> set echo on
-    
+
     SQL> begin
-    
       2  for i in (select constraint_name, table_name from dba_constraints where table_name='EMPLOYEES') LOOP
-    
       3  execute immediate 'alter table hr.employees drop constraint '||i.constraint_name||' CASCADE';
-    
       4  end loop;
-    
       5  end;
-    
       6  /
-    
+
     PL/SQL procedure successfully completed.
-    
+
     SQL> drop index hr.EMP_EMP_ID_PK;
-    
     drop index hr.EMP_EMP_ID_PK
-    
                   *
-    
     ERROR at line 1:
-    
     ORA-01418: specified index does not exist
-    
     SQL>
-    
+
     SQL> INSERT INTO hr.employees SELECT * FROM hr.employees;
-    
     107 rows created.
-    
+
     SQL> /
-    
     214 rows created.
-    
+
     ...
-    
+
     SQL> /
-    
     27392 rows created.
-    
-    SQL> COMMIT;
-    
+
+    SQL> COMMIT
     Commit complete.
-    
+
     SQL> /
-    
     ...
-    
     SQL> /
-    
     Commit complete.
-    
+
     SQL> COMMIT;
-    
     Commit complete.
-    
+
     SQL>
-    
+
     ```
-  
+
 5. Why aren't the `ENABLED AUTO` tables not populated into the IM column store? The internal statistics are not sufficient yet to identify cold and hot data in the IM column store to consider which segments can be populated into the IM column store.
 
 6. Execute the `/home/oracle/labs/M104783GC10/AutoIM_scan_AUTO.sql` SQL script to insert more rows into `HR.EMPLOYEES` table, query the `HR.EMPLOYEES` table and possibly then get the table automatically populated into the IM column store.
 
-  
+
     ```
-    
+
     SQL> <copy>@/home/oracle/labs/M104783GC10/AutoIM_scan.sql</copy>
-    
+
     SQL> SELECT /*+ FULL(hr.employees) NO_PARALLEL(hr.employees) */ count(*) FROM hr.employees;
-    
       COUNT(*)
-    
     ----------
-    
           107
-    
+
     SQL> SELECT /*+ FULL(hr.departments) NO_PARALLEL(hr.departments) */ count(*) FROM hr.departments;
-    
+
       COUNT(*)
-    
     ----------
-    
             27
-    
+
     SQL> SELECT /*+ FULL(hr.locations) NO_PARALLEL(hr.locations) */ count(*) FROM hr.locations;
-    
+
       COUNT(*)
-    
     ----------
-    
             23
-    
+
     SQL> SELECT /*+ FULL(hr.jobs) NO_PARALLEL(hr.jobs) */ count(*) FROM hr.jobs;
-    
+
       COUNT(*)
-    
     ----------
-    
             19
-    
+
     SQL> SELECT /*+ FULL(hr.regions) NO_PARALLEL(hr.regions) */ count(*) FROM hr.regions;
-    
+
       COUNT(*)
-    
     ----------
-    
             4
-    
+
     SQL> SELECT /*+ FULL(hr.emp) NO_PARALLEL(hr.emp) */ count(*) FROM hr.emp;
-    
+
       COUNT(*)
-    
     ----------
-    
       3506176
-    
+
     SQL>
-    
+
     ```
 
 7. Display the population status of the `HR` tables into the IM Column Store. You may have to wait for a few minutes before the population of `EMPLOYEES` table starts.
 
-  
+
     ```
-    
+
     SQL> <copy>SELECT segment_name, inmemory_size, bytes_not_populated, inmemory_compression FROM v$im_segments;</copy>
-    
+
     SEGMENT_NAME INMEMORY_SIZE BYTES_NOT_POPULATED INMEMORY_COMPRESS
-    
     ------------ ------------- ------------------- -----------------
-    
     EMP               44433408                   0 FOR QUERY LOW
-    
     EMPLOYEES          1310720                   0 AUTO
-    
+
     SQL> <copy>EXIT</copy>
-    
+
     $
-    
+
     ```
-  
+
+
 *Observe the `HR.EMPLOYEES` table is now populated with an `INMEMORY_COMPRESS` value set to `AUTO`. Compression used the automatic in-memory management based on internal statistics. After some time, the `HR.EMP` may be evicted according to the internal statistics. If you re-query the `HR.EMP` table, the statistics may decide to evict the `HR.EMPLOYEES` to let the `HR.EMP` populate back into the IM column store.*
 
 You may now [proceed to the next lab](#next).
@@ -462,11 +396,7 @@ You may now [proceed to the next lab](#next).
 * [Performance and HA - 21c](https://docs.us.oracle.com/en/database/oracle/oracle-database/21/nfcon/performance-and-high-availability-248721359.html)
 
 ## Acknowledgements
-* **Author** - Dominique Jeunot, Database UA Team
-* **Contributors** -  Kay Malcolm, Database Product Management
-* **Last Updated By/Date** -  Kay Malcolm, November 2020
+* **Author** - Donna Keesling, Database UA Team
+* **Contributors** -  David Start, Kay Malcolm, Database Product Management
+* **Last Updated By/Date** -  David Start, December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/database-19c). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -140,7 +140,7 @@ These directories will hold:
 
     ![](./images/8.png " ")
 
-## **STEP 3:** Enable SSH on all Requred Nodes
+## **STEP 3:** Enable SSH on all Required Nodes
 
 All nodes must have SSH enabled. 
 
@@ -189,7 +189,7 @@ In our case Application Tier Node, DB Tier Node and Backup module are on the sam
 
     ![](./images/12.png " ")
 
-3. Verify if ssh connection using privateIP is working.
+3. Verify the ssh connection by using the private IP of the source environment. 
     
     ```
     <copy>
@@ -201,7 +201,7 @@ In our case Application Tier Node, DB Tier Node and Backup module are on the sam
 
     ![](./images/13.png " ")
 
-5. After verifing the connection is established you can close it. 
+5. After verifying the connection is established you can close it. 
         
     ```
     <copy>
@@ -235,7 +235,7 @@ In our case Application Tier Node, DB Tier Node and Backup module are on the sam
 
     ![](./images/16.png " ")
 
-3. Check wether the Database is in archive mode.
+3. Check whether the Database is in archive mode.
 
     ```
     <copy>
@@ -286,7 +286,7 @@ You may proceed to the next lab.
 * [Creating a Backup of an On-Premises Oracle E-Business Suite Instance on Oracle Cloud Infrastructure](https://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/compute-iaas/creating_backup_of_ebs_instance_on_oci/101_backup_oci.html)
 * [Requirements for Oracle E-Business Suite on Oracle Cloud Infrastructure (Doc ID 2438928.1)](https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=97656525609392&id=2438928.1&_afrWindowMode=0&_adf.ctrl-state=1bsk4t5eng_4#S2)
 
-## Acknowledgements
+## Acknowledgments
 
 * **Author:** William Masdon, Cloud Engineering
 * **Contributors:** 
@@ -295,7 +295,4 @@ You may proceed to the next lab.
     - Quintin Hill, Cloud Engineering
 * **Last Updated By/Date:** William Masdon, Cloud Engineering, Dec 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

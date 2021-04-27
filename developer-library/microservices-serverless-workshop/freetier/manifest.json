@@ -1,5 +1,7 @@
 {
-    "tutorials": [
+  "workshoptitle": "Microservices/Serverless Workshop (Gigi's Pizza)",
+  "help": "livelabs-help_us@oracle.com",  
+  "tutorials": [
         {
             "title": "Introduction",
             "filename": "./../intro/intro.md"
@@ -39,6 +41,11 @@
         {
           "title": "Lab 8: Create a Digital Assistant User Interface",
           "filename": "./../create-digital-assistant/create-digital-assistant.md"
+        },
+        {
+          "title": "Need Help?",
+          "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+          "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
         }
 
     ]

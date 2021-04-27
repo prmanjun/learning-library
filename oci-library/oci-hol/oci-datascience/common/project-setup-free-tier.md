@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Projects are used to collect related data science resources and artifact, such that it enables you to organize your work. They contain a collection of notebook sessions and models.
+Projects are used to collect related data science resources and artifacts, such that it enables you to organize your work. They contain a collection of notebook sessions and models.
 
 *Estimated Lab Time*: 5 minutes
 
@@ -23,7 +23,7 @@ You create a Data Science project to organize your notebook sessions and models 
 1. Open the navigation menu.
 1. Under **Data and AI**, select **Data Sciences**, and then click **Projects**.
     ![](../speed-up-ds-with-the-ads-sdk/images/select-projects.png)
-1. Select the compartment that where the project is to be created.
+1. Select the compartment where the project is to be created.
     ![](../speed-up-ds-with-the-ads-sdk/images/compartment.png)
 1. Click **Create Project**.
     ![](../speed-up-ds-with-the-ads-sdk/images/create-project.png)
@@ -45,9 +45,4 @@ You can *proceed to the next lab*.
 * **Author**: [John Peach](https://www.linkedin.com/in/jpeach/), Principal Data Scientist
 * **Last Updated By/Date**:
     * [John Peach](https://www.linkedin.com/in/jpeach/), Principal Data Scientist, November 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-cloud-infrastructure-fundamentals). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
 

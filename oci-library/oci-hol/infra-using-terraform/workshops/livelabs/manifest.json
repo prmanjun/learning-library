@@ -1,8 +1,10 @@
 {
-  "workshoptitle": "Deploying Infrastructure using Terraform",
-    "tutorials": [
+    "workshoptitle": "Deploying Infrastructure using Terraform",
+    "help": "livelabs-help-db_us@oracle.com",
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
         },
         {
@@ -16,6 +18,11 @@
         {
             "title": "Lab 2: Deploying Infrastructure using Terraform",
             "filename": "./../../infra-using-terraform/infra-using-terraform.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

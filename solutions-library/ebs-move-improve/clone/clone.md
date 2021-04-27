@@ -22,13 +22,11 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
 
 1. Navigate to the Cloud Manager Environments page.
 
-2. For ebsholenv1, click the stacked lines to the right of the environemtn and select **Clone**. 
+2. From the ebsholenv1 environment page, click **Clone** in the top right. 
 
-  ![](./images/clone.png " ")
+  ![](./images/selectclone.png " ")
 
   Enter Details (see screenshot and points below)
-
-  ![](./images/1.png " ")
 
 3. Enter the following values for the clone details (Note these variables in your key-data.txt):
 
@@ -38,33 +36,59 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
 
     c. **Source WebLogic Server Password**: welcome1
 
-4. **Web Entry Point**: Select **New Load Balancer (LBaaS)**
+    d. Then Click **Next**
 
-5. **Load Balancer Shape**: Select 100Mbps
+    ![](./images/clone.png " ")
 
-6. Enter these values for the following Web Entry properties.
+4. Application Tier: Click **Edit** And Enter and verify the following values
+    
+    a. **Web Entry Type**: New Load Balancer
 
-    a. **Protocol**: https
+    b. **Load Balancer Shape**: Select 100Mbps
 
-    b. **Hostname**: ebsholenv2
+    c. **Protocol**: https
 
-    c. **Domain**: example.com
+    d. **Hostname**: ebsholenv2 
 
-    d. **Port**: 443
+    e. **Protocol**: https
 
-7. Click **Submit**
+    f. **Hostname**: ebsholenv2
+
+    g. **Port**: 443
+
+    h. Click **Save Zone** and **Next**
+
+  ![](./images/web-entry.png " ")
+
+5. Extensibility Options:
+    
+    a. Click **Next**
+
+    ![](./images/extensibilityoptions.png " ")
+  
+6. SSH Keys:
+
+    a. Upload your SSH Key on the SSH Page
+
+    ![](./images/add-ssh.png " ")
+
+7. Review: 
+
+    a. Review the information and click Submit
+
+     ![](./images/submit.png " ")
 
 8. You can check the status of the activity to clone the environment in the Activities page. The new environment is listed on the Environments page.
 
 ## **STEP 2:** Configure Local Host Files for the Cloned Environment and Log in to Oracle E-Business Suite
 
-1. In the Oracle Cloud Infrastructure console, find the IP address for the Oracle E-Business Suite web entry point by navigating to **Networking** > **Load Balancers**.
+1. Now click the Cloud Manager Environment: "ebsholenv2"
 
-![](./images/lbs.png " ")
+2. Then click the arrow next to **Zone: oneclickdemo**
 
-2. On the Load Balancers page, you will find a load balancer named ebsholenv2-lbaas. Obtain the public IP address of this load balancer and record in your ```key-data.txt``` file.
+  1. Note the IP address listed at **Web Entry IP:**
 
-![](./images/lb2.png " ")
+![](./images/envpage.png " ")
 
 3. Edit the local hosts file on your laptop and add an entry.
 
@@ -114,7 +138,9 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
 
 4. Log in to Oracle E-Business Suite:
 
-  a. Click [here](https://ebsholenv2.example.com/OA_HTML/AppsLocalLogin.jsp) to navigate to the URL in your browser.
+  a. From the Cloud Manager environment page. Click the link following **Login Page:**
+
+    ![](./images/envpage-2.png " ")
 
   b. When prompted, accept the warning concerning the certificate coming from an unauthorized certificate authority as we are using a self-signed certificate. (You will change the certificate with your own when executing this procedure outside of this hands-on lab.)
 
@@ -131,7 +157,4 @@ Watch this short video to preview how to clone Oracle E-Business Suite using clo
   - Mitsu Mehta, Cloud Engineering
 * **Last Updated By/Date:** Quintin Hill, Cloud Engineering, Sept 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/ebs-on-oci-automation). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one. 

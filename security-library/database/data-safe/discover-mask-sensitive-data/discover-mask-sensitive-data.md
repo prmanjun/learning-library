@@ -23,19 +23,19 @@ To complete this lab, you need to have the following:
 - An Oracle Cloud account
 - Access to an Autonomous Database as the `ADMIN` user, sample data for Oracle Data Safe loaded into the database, and the Discovery and Masking features enabled on your database
 - Access to an Oracle Data Safe service
-- Privileges to use the Discovery and Masking features on your database
+- Privileges in the Oracle Data Safe Console to use the Discovery and Masking features on your database
 
 ### Assumptions
 
-- You have a browser tab signed in to the Oracle Cloud Infrastructure Console. If not, please refer to the [Prerequisites](?lab=prerequisites) for this workshop.
-- You completed the [Provision and Register and Autonomous Database](?lab=lab-1-provision-register-autonomous) lab in this workshop.
-- Your data values will be different than those shown in the screenshots in this lab.
+- You are signed in to the Oracle Cloud Infrastructure Console. If not, please refer to the [Getting Started](?lab=getting-started) page.
+- You completed the [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous) lab in this workshop.
+- The target database name used in the example screenshots is ad01. Your data values will most likely be different.
 
 
 
 ## **STEP 1**: View sensitive data in your database
 
-In this step, you use SQL Developer Web to query sensitive data in your database. You can access SQL Developer Web from your database's Console.
+In this step, you use Oracle Database Actions to query sensitive data in your database. You can access Database Actions from your database's Console.
 
 1. Select the browser tab that is signed in to the Oracle Cloud Infrastructure Console. If needed, sign in again.
 
@@ -47,35 +47,39 @@ In this step, you use SQL Developer Web to query sensitive data in your database
 
 5. Click the name of your database.
 
-6. On the **Autonomous Database Details** page, click the **Tools** tab.
+6. On the **Autonomous Database Details** page, click the **Tools** subtab.
 
-7. In the **SQL Developer Web** section, click **Open SQL Developer Web**. The **Oracle Database Actions | Sign in** page is opened.
+7. In the **Database Actions** section, click **Open Database Actions**. A new browser tab is opened displaying the **Oracle Database Actions | Sign in** page.
 
-8. In the **Username** field, enter `ADMIN`. In the **Password** field, enter the password that you created for the `ADMIN` user when you provisioned the database. Click **Sign In**.
+8. In the **Username** field, enter `ADMIN`, and then click **Next**.
 
-9. If a help note is displayed, click the **X** button to close it.
+9. In the **Password** field, enter the password that you created for the `ADMIN` user when you provisioned the database, and then click **Sign In**.
 
-10. On the **Navigator** tab, select the `HCM1` schema from the first drop-down list. In the second drop-down list, leave **Tables** selected.
+10. Under **Development**, click **SQL**.
 
-  ![Navigator tab in SQL Web Developer](images/select-hcm1.png)
+11. If a help note is displayed, click the **X** button to close it.
 
-11. Drag the `EMPLOYEES` table to the worksheet.
+12. On the **Navigator** tab, select the `HCM1` schema from the first drop-down list. In the second drop-down list, leave **Tables** selected.
+
+  ![Navigator tab in Oracle Database Actions](images/select-hcm1.png)
+
+13. Drag the `EMPLOYEES` table to the worksheet.
 
   ![EMPLOYEES table](images/drag-employees-table-to-worksheet.png)
 
-12. When prompted to choose an insertion type, click **Select**, and then click **Apply**.
+14. When prompted to choose an insertion type, click **Select**, and then click **Apply**.
 
-   ![Choose the type of insertion dialog box](images/insertion-type-select.png)
+ ![Choose the type of insertion dialog box](images/insertion-type-select.png)
 
-13. View the SQL query on the worksheet.
+15. View the SQL query on the worksheet.
 
-   ![Worksheet tab showing EMPLOYEES table](images/query-employees-table.png)
+  ![Worksheet tab showing EMPLOYEES table](images/query-employees-table.png)
 
-14. On the toolbar, click the **Run Statement** button (green circle with a white arrow) to execute the query.
+16. On the toolbar, click the **Run Statement** button (green circle with a white arrow) to execute the query.
 
- ![Run Statement button on toolbar](images/run-statement-button.png)
+  ![Run Statement button on toolbar](images/run-statement-button.png)
 
-15. Review the query results. If needed, click the **Query Result** tab.
+17. Review the query results. If needed, click the **Query Result** tab.
 
     - Data such as `employee_id`, `first_name`, `last_name`, `email`, `phone_number`, and `hire_date`, are considered sensitive data and should be masked if shared for non-production use, such as development and analytics.
 
@@ -98,13 +102,11 @@ The Data Discovery wizard generates a sensitive data model that contains sensiti
 
 3. Click **Service Console**. The **Home** page in the Oracle Data Safe Console is displayed.
 
-
 4. To access the Data Discovery wizard, click the **Data Discovery** tab.
-
 
 5. On the **Select Target for Sensitive Data Discovery** page, select your target database, and then click **Continue**.
 
- ![Select Target for Sensitive Data Discovery page](images/select-target-for-sensitive-data-discovery.png)
+  ![Select Target for Sensitive Data Discovery page](images/select-target-for-sensitive-data-discovery.png)
 
 
 6. On the **Select Sensitive Data Model** page, leave **Create** selected, enter **SDM1** for the name, enable **Show and save sample data**, select your compartment, and then click **Continue**.
@@ -206,9 +208,7 @@ The Data Masking wizard generates a masking policy for your target database base
 
 4. For the `HCM1.LOCATIONS.STREET_ADDRESS` column, click the arrow to the right of the masking format to view other masking formats.
 
-  **Tip:** To quickly find a column on the page, you can enter its name in the **Search** field at the top of the page.
-
- ![HCM1.LOCATIONS.STREET_ADDRESS circled and masking formats drop-down list](images/view-masking-formats.png)
+  ![HCM1.LOCATIONS.STREET_ADDRESS circled and masking formats drop-down list](images/view-masking-formats.png)
 
 
 5. Next to the arrow, click the **Edit Format** button (pencil icon).
@@ -271,13 +271,13 @@ The Data Masking wizard generates a masking policy for your target database base
 
 8. Review the data, and then close the report.
 
- ![Data Masking report in PDF format](images/data-masking-report-pdf.png)
+  ![Data Masking report in PDF format](images/data-masking-report-pdf.png)
 
 
 
 ## **STEP 5**: Validate the masked data in your database
 
-1. Return to SQL Developer Web. You should have a browser tab named **Oracle Database Actions | SQL Worksheet** opened from STEP 1 in this lab.
+1. Return to Oracle Database Actions. You should have a browser tab named **Oracle Database Actions | SQL Worksheet** opened from STEP 1 in this lab.
 
 2. Take a moment to review the original data.
 
@@ -294,20 +294,14 @@ The Data Masking wizard generates a masking policy for your target database base
   ![Masked EMPLOYEE data](images/masked-query-results.png)
 
 
-
+Congratulations! You have completed the Oracle Data Safe Fundamentals workshop.
 
 
 ## Learn More
 
-* [Data Discovery](https://docs.cloud.oracle.com/en-us/iaas/data-safe/doc/data-discovery.html)
-* [Data Masking](https://docs.cloud.oracle.com/en-us/iaas/data-safe/doc/data-masking.html)
+* [Data Discovery](https://docs.oracle.com/en-us/iaas/data-safe/doc/data-discovery.html)
+* [Data Masking](https://docs.oracle.com/en-us/iaas/data-safe/doc/data-masking.html)
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, November 3, 2020
-
-
-## Need Help?
-Please submit feedback or ask for help using our [Data Safe Community Support Forum]( https://community.oracle.com/tech/developers/categories/data-safe). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date** - Jody Glover, March 29, 2021

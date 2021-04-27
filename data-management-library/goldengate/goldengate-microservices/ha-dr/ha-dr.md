@@ -1,259 +1,342 @@
-# GoldenGate Microservices HA / DR replication
+# GoldenGate Microservices Active-Active
+
 ## Introduction
-Oracle GoldenGate for Microservices Workshop Architecture
+This lab will introduce you to Oracle GoldenGate for Microservices Workshop Architecture and High Availability / Disaster Recovery using Active-Active Technology.
+Since we have already done multiple labs, this one will take what we used so far to script this using DB container reset scripts, SQL scripts to setup AutoCDR in the database, OGGCA silent deployment scripts and GG REST API scripts to do a rapid deployment.
 
-*Estimated Lab Time*:  60 minutes
+*Estimated Lab Time*:  45 minutes
 
-#### Lab Architecture
-![](./images/ggmicroservicesarchitecture.png " ")
+### Lab Architecture
+  ![](./images/ggmicroservicesarchitecture.png " ")
 
 ### Objectives
 
-KEY FEATURES
-
-Non-invasive, real-time transactional data streaming
-
-- Secured, reliable and fault-tolerant data delivery
-- Easy to install, configure and maintain
-- Streams real-time changed data
-- Easily extensible and flexible to stream changed data to other relational targets
-
-KEY BENEFITS
-
-- Improve IT productivity in integrating with data management systems
-- Use real-time data in big data analytics for more timely and reliable insight
-- Improve operations and customer experience with enhanced business insight
-- Minimize overhead on source systems to maintain high performance
-
-Oracle GoldenGate Classic provides optimized and high performance delivery.
-
-Oracle GoldenGate Classic real-time data streaming platform also allows customers to keep their data reservoirs up to date with their production systems.
+- Rapid Deployment using:
+  - OGGCA silent deployment scripts (remove and recreate deployments).
+  - REST API to setup bi-directional GoldenGate replication between two databases.
+  - SQL Scripts to setup up auto conflict detection and resolution in the database.
 
 ### Prerequisites
-
 This lab assumes you have:
 - A Free Tier, Paid or LiveLabs Oracle Cloud account
 - SSH Private Key to access the host via SSH
 - You have completed:
-    - Lab: Generate SSH Keys
-    - Lab: Prepare Setup
+    - Lab: Generate SSH Keys (*Free-tier* and *Paid Tenants* only)
+    - Lab: Prepare Setup (*Free-tier* and *Paid Tenants* only)
     - Lab: Environment Setup
-    - Lab: Configure GoldenGate
+    - Lab: Initialize Environment
+    - Lab: Create One-Way Replication
 
-In this lab we will setup GoldenGate Microservices Active - Active Replication
+## **STEP 1**:Generate Transactions with Swingbench
 
-## **STEP 1:** Configuration for Microservices HA / DR Lab
+1. As user *oracle* from the SSH terminal session, navigate to `~/Desktop/Scripts/HOL/Lab8` and start Swingbench utility
 
-1. Open a terminal session
+     ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab8
+    ./start_swingbench.sh
+    </copy>
+    ```
 
-![](./images/terminal3.png " ")
+    ![](./images/h1.png " ")
 
-```
-<copy>sudo su - oracle</copy>
-```
+2. Open a browser tab session to the Performance Metrics Server for *Boston* Deployment
 
-2. create_credential_TGGAlias.sh
+    ```
+    <copy>https://<Your Public IP Address>/Boston/pmsrvr</copy>
+    ```
 
-```
-<copy>sh ./create_credential_TGGAlias.sh Welcome1 17001 c##ggate@orcl ggate</copy>
-```
-3. After running this script,you can go to your browser and verify that the credential was created
+    ![](./images/h2.png " ")
 
-4. Open a terminal session
+3. Click on *IREP* Replicat to view detailed live performance metrics
 
-![](./images/terminal3.png " ")
+    ![](./images/h3.png " ")
 
-````
-<copy>sudo su - oracle</copy>
-````
+## **STEP 2**: Configure Active-Active Replication
 
-4. Change directory to Lab 5
+1. Navigate to `~/Desktop/Scripts/HOL/Lab9` and create credentials and alias for Boston GG User
 
-```
-<copy>cd /Desktop/Scripts/HOL/Lab5</copy>
-```
-```
-<copy>sh ./create_credential_TGGAlias.sh Welcome1 17001 c##ggate@orcl ggate</copy>
-```
-5. After running this script, go to your browser and that the credential was created
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab9/Build
+    ./create_credential_GGAlias.sh Welcome1 17001 c##ggate@orcl ggate SGGATE2</copy>
+    ```
 
-6. Open a new browser tab and connect to Admin Server
+    ![](./images/h4.png " ")
 
-![](./images/b1.png " ")
+2. Go to the browser tab session of the Admin Server for *Atlanta* Deployment and validate
 
-```
-<copy>https://localhost:17001</copy>
-```
+    ```
+    <copy>https://<Your Public IP Address>/Atlanta/adminsrvr</copy>
+    ```
+    ![](./images/h5.png " ")
 
-Login with the following credentials
+3. Navigate to `~/Desktop/Scripts/HOL/Lab9/Build` and run `create_credential_Protcol.sh`
 
-```
-<copy> oggadmin/Welcome1</copy>
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab9/Build
+    ./create_credential_Protcol.sh Welcome1 17001 oggadmin Welcome1 WSTARGET2
+    </copy>
+    ```
+    ![](./images/h6.png " ")
 
-```
-7. Select the "Hamburger Menu"
+4. Go to the browser tab session of the Admin Server for *Boston* Deployment and validate
 
-![](./images/b2.png " ")
+    ```
+    <copy>https://<Your Public IP Address>/Boston/adminsrvr</copy>
+    ```
+    ![](./images/h7.png " ")
 
-8. Select Administrator
+5. Add Schema Trandata for Boston schema SOE
 
-![](./images/b3.png " ")
+    ```
+    <copy>./add_SchemaTrandata_182.sh Welcome1 17001</copy>
+    ```
 
+    ![](./images/h8.png " ")
 
-![](./images/b4.png " ")
+    ![](./images/h9.png " ")
 
-9. Next add the schema
+6. Add Extract to Boston Deployment
 
-Back to terminal session run:
+    ```
+    <copy>./add_Extract2.sh Welcome1 17001 EXTSOE1  </copy>
+    ```
 
-```
-<copy>sh ./add_SchemaTrandata_Target.sh Welcome1 17001</copy>
-```
+    ![](./images/h10.png " ")
 
-**Note: You can also check that SCHEMATRANDATA has been added from the Administration
-Service -> Configuration page as well. Simply log in to the TCGGATE alias**
+7. Go to the browser tab session of the Admin Server for *Boston* Deployment and validate
 
-10. Then, under “Trandata”, make sure that the magnifying glass and radio button for
-“Schema” is selected. Enter “oggoow191.soe” into the search box and then select the magnifying glass to the right of the search box to perform the search.
+    ```
+    <copy>https://<Your Public IP Address>/Boston/adminsrvr</copy>
+    ```
 
-![](./images/b5.png " ")
+    ![](./images/h11.png " ")
 
+8. Add Distribution path from Boston to connect to Atlanta
 
-## **STEP 2:** Add Extract and Distribution Path on oggoow191
+    ```
+    <copy>./add_DistroPath2.sh Welcome1 17002 SOE2SOE1 bb 16003 ba</copy>
+    ```
 
-You will use the following two scripts to configure these processes
+    ![](./images/h14.png " ")
 
--	add_extract_Target.sh
--	Add_DistroPath.sh
+    ```
+    <copy>https://<Your Public IP Address>/Boston/distsrvr</copy>
+    ```
+
+    ![](./images/h15.png " ")
+
+9. Create Alias
+
+    ```
+    <copy>./create_credential_GGAlias.sh Welcome1 16001 ggate@oggoow19 ggate TGGATE1</copy>
+    ```
+
+    ![](./images/h16.png " ")
+
+    ```
+    <copy>https://<Your Public IP Address>/Atlanta/adminsrvr</copy>
+    ```
+
+    ![](./images/h17.png " ")
+
+10. Create Checkpoint Table
+
+    ```
+    <copy>./add_CheckpointTable.sh Welcome1 16001 OracleGoldenGate.TGGATE1</copy>
+    ```
+
+    ![](./images/h18.png " ")
 
-1. From the Terminal Window in the VNC Console, navigate to the Lab6 directory under
-~/Desktop/Scripts/HOL/Lab6.
-```
-<copy>cd ~/Desktop/Scripts/HOL/Lab6</copy>
-```
-2. Create GoldenGate Extract
+    ```
+    <copy>https://<Your Public IP Address>/Atlanta/adminsrvr</copy>
+    ```
 
-```
-<copy>sh ./add_extract_Target.sh Welcome1 17001 EXTSOE1</copy>
-```
-4. After the script has completed, you can go to the Administration Server and see that the extract is there on the Overview page. Remember to use the short URL to access the Administration Server.
+    ![](./images/h19.png " ")
 
-```
-<copy>https://localhost/Atlanta/adminsrvr</copy>
-```
+11. Create Replicat at Atlanta
 
-![](./images/b6.png " ")
+    ```
+    <copy>./add_Replicat1.sh Welcome1 16001 IREP1</copy>
+    ```
+    ![](./images/h20.png " ")
 
-5. Now you will create the Distribution Path that will be used to ship trail files from the Deployment to the Deployment. In order to do this, you will need to run the add_DistroPath.sh script.
+    ```
+    <copy>https://<Your Public IP Address>/Atlanta/adminsrvr</copy>
+    ```
+    ![](./images/h21.png " ")
 
-At your terminal session:
-```
-<copy>sh ./add_DistroPath.sh Welcome1 17002 SOE12SOE zz 16003 za</copy>
-```
-6. After running the add_DistroPath.sh script, you will see the path created in the Distribution Service. Using the short URL approach, you can quickly see the Distribution Path. Using your browser navigate to the Distribution Server and review the Distribution Path.
 
-7.  At the URL
-```
-<copy>https://localhost/Atlanta/distsrvr</copy>
-```
-![](./images/b7.png " ")
+## **STEP 3**: Setup Auto CDR
 
+1.  Connect to database as sysdba and execute the scripts below to setup auto CDR on oggoow19 and oggoow191 database. The conflict detection and resolution configured by <b>ADD\_AUTO\_CDR</b> procedure is based on the timestamp. The entry with latest timestamp wins.
 
-## **STEP 3:**  Create the Replicat on oggoow191  Target
+    ```
+    <copy>
+        sqlplus / as sysdba
+    </copy>
+    ```
 
+    ```
+    <copy>
+    alter session set container=oggoow19;
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','addresses');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','customers');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','orders');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','order_items');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','card_details');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','product_information');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','inventories');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','product_descriptions');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','warehouses');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','cdrdemo');
+    prompt Done setting up AutoCDR
+    </copy>
+    ```
 
-To begin this Task, follow the below steps:
+    ```
+    <copy>
+    alter session set container=oggoow191;
+    </copy>
+    ```
 
-1. From the Terminal window in the VNC Console, navigate to the Lab8 directory under
-~/Desktop/Scripts/HOL.
+    ```
+    <copy>
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','addresses');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','customers');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','orders');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','order_items');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','card_details');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','product_information');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','inventories');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','product_descriptions');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','warehouses');
+    exec DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR('soe','cdrdemo');
+    exit;
+    echo "Done setting up AutoCDR"
+    echo
+    </copy>
+    ```
 
-2. From your terminal session
-```
-<copy>cd ~/Desktop/Scripts/HOL/Lab8</copy>
-```
-•	create_credential_GGAlias_Source.sh
-•	add_CheckpointTable_Atlanta.sh
-•	add_Replicat_Atlanta.sh
+    ![](./images/h22.png " ")
 
-```
-<copy>sh ./create_credential_GGAlias_Source.sh  Welcome1 16001 ggate@oggoow19 ggate</copy>
-```
+2. Search into ALL\_GG\_AUTO\_CDR\_TABLES to Verify tables on which auto CDR is done.
 
-3. Upon a successful run, you can check the Administration Services for the Atlanta deployment from within the browser and verify the account was created. Log in with User name oggadmin and password Welcome1 when prompted.
+    sqlplus / as sysdba<br/>
+    alter session set container=OGGOOW19;<br/>
+    SELECT TABLE_NAME FROM ALL\_GG\_AUTO\_CDR\_TABLES;<br/>
 
-4. From the URL
-https://localhost/Boston/adminsrvr
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/cdrauto
+    ./verifytable_cdr_bothdb.sh
+    </copy>
+    ```
 
-![](./images/b8.png " ")
+    ![](./images/verify_cdr_tablenames_combined_sh.png " ")
 
-Back at your terminal session:
-```
-<copy>sh ./add_CheckpointTable_Atlanta.sh Welcome1 16001</copy>
-```
 
-![](./images/b9.png " ")
+3. Start GoldenGate Processes
 
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab9
+    ./start_replication.sh Welcome1 17001 EXTSOE1 17002 SOE2SOE1 16001 IREP1</copy>
+    ```
 
-5. With the target database User Alias and Checkpoint Table created, you can now create the Replicat. In order to create the Replicat, you will need to run the add_Replicat_Atlanta.sh script. Enter the following command to run the script:
+    ![](./images/h23.png " ")
 
-```
-<copy>sh ./add_Replicat_Atlanta.sh Welcome1 16001 IREP1</copy>
-```
 
-6. After the script is done running, you will see a running Replicat in the Administration Service for your deployment.
+## **STEP 4**: Generate Load with Swingbench
 
+In this step we will use a script to invoke Swingbench to apply data to the source (Atlanta) and target (Boston) databases at the same time and then validate performance using the Performance Metric Service.
 
-![](./images/b10.png " ")
+1. As user *oracle* from the SSH terminal session, navigate to `~/Desktop/Scripts/HOL/Lab9` and start Swingbench utility
 
+     ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/Lab9
+    ./start_swingbench.sh
+    </copy>
+    ```
 
-## **STEP 4:** Enable Auto CDR Collision Detect
+    ![](./images/h25.png " ")
 
-1. Run the below commands for both the pdb’s for specific tables to enable Auto Conflict detection and Resolution.
+2. Go to the browser tab session of the Performance Metrics Server for *Atlanta* Deployment and select "*IREP1 > Database Statistics*" to validate
 
-```
-<copy>SQL> alter session set container = oggoow191;</copy>
-```
-```
-<copy>SQL> BEGIN
-  DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR(
-    schema_name => 'soe',
-    table_name  => 'addresses');
-END;
-/</copy>
-```
-```
-<copy>SQL> alter session set container = oggoow19;</copy>
-```
-```
-<copy>SQL> BEGIN
-  DBMS_GOLDENGATE_ADM.ADD_AUTO_CDR(
-    schema_name => 'soe',
-    table_name  => 'addresses');
-END;
-/</copy>
-```
+    ```
+    <copy>https://<Your Public IP Address>/Atlanta/pmsrvr</copy>
+    ```
 
-![](./images/b11.png " ")
+    ![](./images/h26.png " ")
 
-### Summary
+3. Go to the browser tab session of the Performance Metrics Server for *Boston* Deployment and select "*IREP > Database Statistics*" to validate
 
-Oracle GoldenGate offers high-performance, fault-tolerant, easy-to-use, and flexible real- time data streaming platform for big data environments. It easily extends customers’ real-time data
-integration architectures to big data systems without impacting the performance of the source systems and enables timely business insight for better decision making.
+    ```
+    <copy>https://<Your Public IP Address>/Boston/pmsrvr </copy>
+    ```
 
-You may now *proceed to the next lab*
+    ![](./images/h27.png " ")
+
+## **STEP 5**: Remove Auto CDR from table
+
+1. To remove auto cdr from the table, use <b>REMOVE\_AUTO\_CDR</b>  method of DBMS\_GOLDENGATE\_ADM package.
+
+    ```
+    <copy>
+    sqlplus / as sysdba
+    </copy>
+    ```
+
+    ```
+    <copy>
+    alter session set container=OGGOOW19;
+    </copy>
+    ```
+
+     ```
+    <copy>
+    exec DBMS_GOLDENGATE_ADM.REMOVE_AUTO_CDR('soe','cdrdemo');
+    </copy>
+    ```
+
+    ```
+    <copy>
+    alter session set container=OGGOOW191;
+    </copy>
+    ```
+     ```
+    <copy>
+    exec DBMS_GOLDENGATE_ADM.REMOVE_AUTO_CDR('soe','cdrdemo');
+    </copy>
+    ```
+    ```
+    <copy>
+    exit
+    </copy>
+    ```
+
+
+2. Search into ALL\_GG\_AUTO\_CDR\_TABLES to Verify if CDR is removed from CDRDEMO table or not.
+
+    ```
+    <copy>
+    cd ~/Desktop/Scripts/HOL/cdrauto
+    ./verifytable_cdr_bothdb.sh
+    </copy>
+    ```
+
+    ![](./images/verify_cdr_tablenames_combined_removed_sh.png " ")
+
+You may now [proceed to the next lab](#next).
 
 ## Learn More
 
-* [GoldenGate Microservices](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/getting-started-oracle-goldengate.htm#GGCON-GUID-5DB7A5A1-EF00-4709-A14E-FF0ADC18E842")
-
-* [GoldenGate Microservices](https://docs.oracle.com/goldengate/c1230/gg-winux/GGCON/getting-started-oracle-goldengate.htm#GGCON-GUID-5DB7A5A1-EF00-4709-A14E-FF0ADC18E842")
+* [GoldenGate Microservices](https://docs.oracle.com/en/middleware/goldengate/core/19.1/understanding/getting-started-oracle-goldengate.html#GUID-F317FD3B-5078-47BA-A4EC-8A138C36BD59)
 
 ## Acknowledgements
-* **Author** - Brian Elliott, Data Integration, November 2020
-* **Contributors** - Zia Khan
-* **Last Updated By/Date** - Brian Elliott, November 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Author** - Madhu Kumar S., Data Integration, December 2020
+* **Contributors** - Brian Elliott, Meghana Banka, Rene Fontcha
+- **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, January 2021

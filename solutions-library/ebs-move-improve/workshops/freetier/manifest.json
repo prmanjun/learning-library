@@ -1,15 +1,16 @@
 {
-  "workshoptitle": "Lift and Shift On-premises EBS to OCI",
+    "workshoptitle": "Lift and Shift On-premises EBS to OCI",
+    "help": "livelabs-help-oci_us@oracle.com",
     "tutorials": [
-        {
-            "title": "Prerequisites",
-            "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable).",
-            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
-        },
         {
             "title": "Introduction",
             "description": "Introduction to EBS lift and shift",
             "filename": "../../introduction/introduction.md"
+        },
+        {
+            "title": "Getting Started",
+            "description": "This is the prerequisites for customers using Free Trial and Paid tenancies, and Always Free accounts (if applicable).",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },
         {
             "title": "Lab 1: Preparing Your Tenancy for Oracle E-Business Suite",
@@ -36,6 +37,10 @@
             "filename": "../../migrate/migrate.md"
         },
         {
+            "title": "Optional (Advanced):  Extend EBS Environment with OCI Services",
+            "filename": "../../extend/extend.md"
+        },
+        {
             "title": "Next Steps:  Load and Optimize Data from EBS",
             "filename": "../../optimize-data/optimize-data.md"
         },
@@ -43,6 +48,11 @@
             "title": "Teardown Your EBS Environments",
             "description": "Teardown Your Oracle E-Business Suite Environments",
             "filename": "../../teardown/teardown.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
      ]
 }

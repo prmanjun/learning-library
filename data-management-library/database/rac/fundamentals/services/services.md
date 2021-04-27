@@ -52,7 +52,7 @@ You should have already identified your database name and instance name.  Each p
     ssh -i ~/.ssh/sshkeyname opc@<<Node 2 Public IP Address>>
     ps -ef | grep pmon
     ````
-    ![](./clusterware/images/racnode2-login.png " ")  
+    ![](../clusterware/images/racnode2-login.png " ")  
 
 6. Run the command to determine your database name and additional information about your cluster on **node 1**.  Run this as the *grid* user.
 
@@ -92,7 +92,7 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
     ````
     ![](./images/lab6-step1-num6.png " ")
 
-7. Examine where the service is running by using **lsnrctl** to check the SCAN listener or a local listener on each node. **srvctl** will also show you where the service is running.
+2. Examine where the service is running by using **lsnrctl** to check the SCAN listener or a local listener on each node. **srvctl** will also show you where the service is running.
 
     ````
     <copy>
@@ -101,7 +101,7 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
     ````
     ![](./images/lab6-step1-num7.png " ")
 
-8.  Use the lsnrctl utility to list the services on both **node 1** and **node 2** as the *grid* user.
+3.  Use the lsnrctl utility to list the services on both **node 1** and **node 2** as the *grid* user.
     ````
     <copy>
     lsnrctl services
@@ -113,7 +113,7 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
 
     Note that this service is only active on one instance at a time, so both **local** listeners will not include an entry for this service. In the example shown here, the listener on racnode2 would **not** have an entry for **Service "svctest.tfexsubdbsys.tfexvcndbsys.oraclevcn.com"*
 
-9.  Any of the SCAN listeners will show where the service is offered. Note that SCAN Listeners run from the GI HOME so you have to change the ORACLE_HOME environment variable in order to view the information about the SCAN Listeners.  Run the lsnrctl command below on **node 2** as the *grid*.
+4.  Any of the SCAN listeners will show where the service is offered. Note that SCAN Listeners run from the GI HOME so you have to change the ORACLE_HOME environment variable in order to view the information about the SCAN Listeners.  Run the lsnrctl command below on **node 2** as the *grid*.
 
     ````
     <copy>
@@ -123,7 +123,7 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
     ````
     ![](./images/scan-node2.png " ")
 
-10. Repeat it on **node 1** as well.
+5. Repeat it on **node 1** as well.
 
     ![](./images/scan-node1.png " ")
 
@@ -167,19 +167,33 @@ user/password@**//hostname:port/servicename**  EZConnect does not support all se
     ````
     **sqlplus user/password@//SCAN Address Name/service-name**
     ````
-5. Connect via sqlplus and replace the password with the password you chose for your cluster.
+
+5. To get the SCAN address run the following command
+
+    ````
+    <copy>
+    srvctl config scan
+    </copy>
+    ````  
+
+6. Connect via sqlplus and replace the scan address name and the password with the password you chose for your cluster.
    
     ````
-     sqlplus sh/W3lc0m3#W3lc0m3#@//racnode-scan.tfexsubdbsys.tfexvcndbsys.oraclevcn.com/svctest.tfexsubdbsys.tfexvcndbsys.oraclevcn.com
-    ````
+    <copy>
+    sqlplus sys/W3lc0m3#W3lc0m3#@//<Node2HostName>/svctest.pub.racdblab.oraclevcn.com as sysdba
+    </copy>
+    ```` 
+
     ![](./images/lab6-step2-num5-2.png " ")
 
 
 6. Using a different cloud shell window (connected to either node) open a SQL*Plus connection as SYS to the PDB associated with this service
 
     ````
-    sqlplus sys/W3lc0m3#W3lc0m3#@//racnode-scan.tfexsubdbsys.tfexvcndbsys.oraclevcn.com/pdb1.tfexsubdbsys.tfexvcndbsys.oraclevcn.com as sysdba
-    ````
+    <copy>
+    sqlplus sys/W3lc0m3#W3lc0m3#@//<PutScanNameHere>/pdb1.pub.racdblab.oraclevcn.com as sysdba
+    </copy>
+    ```` 
     and run the following SQL statement
 
     ````
@@ -245,20 +259,20 @@ where you will see similar to:
 
     You should notice that an entry for this service is configured for each instance.
 
-1. Set your oracle environment and ddit your tnsnames.ora file (in $ORACLE_HOME/network/admin wherever you are running your client connections from). 
+3. Set your oracle environment and edit your tnsnames.ora file (in $ORACLE_HOME/network/admin wherever you are running your client connections from). 
    
-   ````
-   . oraenv
-   <<Press enter>>
-   /u01/app/oracle/product/19.0.0.0/dbhome_1
-   vi $ORACLE_HOME/network/admin/tnsnames.ora
-   ````
-   ![](./images/oraenv.png " ")
+    ````
+    . oraenv
+    <<Press enter>>
+    /u01/app/oracle/product/19.0.0.0/dbhome_1
+    vi $ORACLE_HOME/network/admin/tnsnames.ora
+    ````
+    ![](./images/oraenv.png " ")
 
-   ![](./images/tnsnames-1.png " ")
+    ![](./images/tnsnames-1.png " ")
 
 
-2. Add the following two entries.  Click **:wq!** to save.
+4. Add the following two entries.  Click **:wq!** to save.
 
     *Note:* that these tnsnames entries do not comply with the recommended format for continuous availability. They are only used to be illustrative of connection load balancing (CLB)
 
@@ -267,20 +281,53 @@ where you will see similar to:
     CLBTEST = (DESCRIPTION =
        (ADDRESS = (PROTOCOL = TCP)(HOST = racnode-scan.tfexsubdbsys.tfexvcndbsys.oraclevcn.com)(PORT = 1521))
        (LOAD_BALANCE = no) (FAILOVER = yes)
-       (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = unisrv.tfexsubdbsys.tfexvcndbsys.oraclevcn.com) ) )
+       (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = unisrv.pub.racdblab.oraclevcn.com) ) )
 
 
     CLBTEST-LOCAL = (DESCRIPTION =
         (LOAD_BALANCE = on) (FAILOVER = off)
-        (ADDRESS = (PROTOCOL = TCP)(HOST = racnode1)(PORT = 1521))
-        (ADDRESS = (PROTOCOL = TCP)(HOST = racnode2)(PORT = 1521))
-        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = unisrv.tfexsubdbsys.tfexvcndbsys.oraclevcn.com)))
+        (ADDRESS = (PROTOCOL = TCP)(HOST = HostName1)(PORT = 1521))
+        (ADDRESS = (PROTOCOL = TCP)(HOST = HostName2)(PORT = 1521))
+        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = unisrv.pub.racdblab.oraclevcn.com)))
     </copy>
     ````
 
     ![](./images/tnsnames-2.png " ")
 
-3. Create 10 connections using the alias CLBTEST and look at where the connections were established
+5. Run the command to get your scan name
+    ````
+    <copy>
+    srvctl config scan
+    </copy>
+    ````
+
+6. Run the nslookup command followed by your scan name
+
+    ````
+    <copy>
+    nslookup <PutScanNameHere>
+    </copy>
+    ````
+    ![](./images/nslookup.png " ")
+
+7. Run the ping command
+
+    ````
+    <copy>
+    ping <putScanNameHere> -c 2
+    </copy>
+    ````
+    ![](./images/ping.png " ")
+
+ 8. Use the CLBTEST alias to connect
+
+     ````
+    <copy>
+    $ORACLE_HOME/bin/sqlplus sh/W3lc0m3#W3lc0m3#@CLBTEST 
+    </copy>
+    ````
+   
+5. Create 10 connections using the alias CLBTEST and look at where the connections were established
 
     ````
     SQL> select inst_id, service_name, count(*) from gv$session where service_name = 'unisrv' group by inst_id, service_name;
@@ -296,7 +343,7 @@ where you will see similar to:
 
     The SCAN listener attempts to distribute connections based on SESSION COUNT by default. The connections will not always end up equally balanced across instances. You can instruct the listener to use the load on an instance to balance connection attempts (the listener will store run queue information), but this is not the default.
 
-4. Now do the same with the CLBTEST-LOCAL alias (close the first sessions as it will make it easier to illustrate what happens)
+6. Now do the same with the CLBTEST-LOCAL alias (close the first sessions as it will make it easier to illustrate what happens)
 
     ````  
     INST_ID     SERVICE_NAME          COUNT(*)
@@ -311,7 +358,7 @@ where you will see similar to:
     ---------- -------------------- ----------
       1         unisrv                   10
     ````
-5. What if an instance is not available?  Shutdown one of the instances with srvctl - specify \"-f\" as you want to forcibly close services if any are running.
+7. What if an instance is not available?  Shutdown one of the instances with srvctl - specify \"-f\" as you want to forcibly close services if any are running.
     ````
     <copy>
     srvctl stop instance -d aTFdbVm_replacename -i aTFdbVm2 -f
@@ -319,7 +366,7 @@ where you will see similar to:
     </copy>
     ````
 
-6. Attempt to use the CLBTEST-LOCAL alias to connect as the *oracle* user on **node 1**.  Remember to replace the password with the database password you chose when you provisioned the instance. If the ADDRESS to the instance you just stopped is chosen, you will see the foll
+8. Attempt to use the CLBTEST-LOCAL alias to connect as the *oracle* user on **node 1**.  Remember to replace the password with the database password you chose when you provisioned the instance. If the ADDRESS to the instance you just stopped is chosen, you will see the foll
    
    ````
    sudo su - oracle
@@ -351,7 +398,7 @@ where you will see similar to:
     Version 19.7.0.0.0
     SQL>
     ````
-7. The recommended connect string for all Oracle Drivers of version 12.2 or later is:
+9. The recommended connect string for all Oracle Drivers of version 12.2 or later is:
 
     ````
     Alias (or URL) = (DESCRIPTION =
@@ -366,7 +413,7 @@ where you will see similar to:
 
     Oracle recommends the connection string configuration for successfully connecting at failover, switchover, fallback and basic startup. Set RETRY_COUNT, RETRY_DELAY, CONNECT_TIMEOUT and TRANSPORT_CONNECT_TIMEOUT parameters in the tnsnames.ora file or in the URL to allow connection requests to wait for service availability and connect successfully. Use values that allow for your RAC and Data Guard failover times.
 
-8.  Update your tnsnames.ora file to specify a configuration similar to that below. This connect string will be used in later labs
+10.  Update your tnsnames.ora file to specify a configuration similar to that below. This connect string will be used in later labs
     ````
     <copy>
     vi /u01/app/oracle/product/19.0.0.0/dbhome_1/network/admin/tnsnames.ora
@@ -376,10 +423,10 @@ where you will see similar to:
     ````
     <copy>
     RECSRV=(DESCRIPTION =
-   (CONNECT_TIMEOUT=90)(RETRY_COUNT=20)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)
-   (ADDRESS_LIST =(LOAD_BALANCE=on)
-      (ADDRESS = (PROTOCOL = TCP)(HOST=racnode-scan.tfexsubdbsys.tfexvcndbsys.oraclevcn.com)(PORT=1521)))
-   (CONNECT_DATA=(SERVICE_NAME = testy.tfexsubdbsys.tfexvcndbsys.oraclevcn.com)))
+     (CONNECT_TIMEOUT=90)(RETRY_COUNT=20)(RETRY_DELAY=3)(TRANSPORT_CONNECT_TIMEOUT=3)
+     (ADDRESS_LIST =(LOAD_BALANCE=on)
+     (ADDRESS = (PROTOCOL = TCP)(HOST=racnode-scan.tfexsubdbsys.tfexvcndbsys.oraclevcn.com)(PORT=1521)))
+     (CONNECT_DATA=(SERVICE_NAME = testy.pub.racdblab.oraclevcn.com)))
    </copy>
     ````
 
@@ -391,10 +438,5 @@ You may now *proceed to the next lab*.
 
 ## Acknowledgements
 * **Authors** - Troy Anthony, Anil Nair
-* **Contributors** - Kay Malcolm
-* **Last Updated By/Date** - Kay Malcolm, October 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-maa-dataguard-rac). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Contributors** - Kay Malcolm, Kamryn Vinson
+* **Last Updated By/Date** - Kamryn Vinson, March 2021

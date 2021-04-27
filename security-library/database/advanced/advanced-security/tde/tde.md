@@ -84,7 +84,7 @@ This lab assumes you have:
 
    ![](./images/tde-003.png " ")
 
-3. Create the software keystore (Oracle Wallet) for the container database. You will see the status result goes from `NOT_AVAILABLE` to `OPEN_NO_MASTER_KEY`.
+3. Create the software keystore (**Oracle Wallet**) for the container database. You will see the status result goes from `NOT_AVAILABLE` to `OPEN_NO_MASTER_KEY`.
 
       ````
       <copy>./tde_create_wallet.sh</copy>
@@ -92,11 +92,11 @@ This lab assumes you have:
 
    ![](./images/tde-004.png " ")
 
-4. Now, your wallet has been created!
+4. Now, your Oracle Wallet has been created!
 
 ## **STEP 3**: Create Master Key
 
-1. To create the container database TDE Master Key (MEK), run the following command
+1. To create the container database TDE Master Key (**MEK**), run the following command
 
       ````
       <copy>./tde_create_mek_cdb.sh</copy>
@@ -104,7 +104,7 @@ This lab assumes you have:
 
    ![](./images/tde-005.png " ")
 
-2. To create a Master Key (MEK) for the pluggable database `PDB1`, run the following command
+2. To create a Master Key (MEK) for the pluggable database **pdb1**, run the following command
 
       ````
       <copy>./tde_create_mek_pdb.sh pdb1</copy>
@@ -112,7 +112,7 @@ This lab assumes you have:
 
    ![](./images/tde-006.png " ")
 
-3. If you want, you can do the same for `PDB2`. This is not a requirement though. It might be helpful to show some databases with TDE and some without.
+3. If you want, you can do the same for **pdb2**... This is not a requirement and it might be helpful to show some databases with TDE and some without
 
       ````
       <copy>./tde_create_mek_pdb.sh pdb2</copy>
@@ -124,7 +124,7 @@ This lab assumes you have:
 
 ## **STEP 4**: Create Auto-login Wallet
 
-1. Run the script to view the wallet on the Operating System. Notice there is no `cwallet.sso`, there will be when we create the auto login wallet.
+1. Run the script to view the Oracle Wallet content on the Operating System
 
       ````
       <copy>./tde_view_wallet_on_os.sh</copy>
@@ -132,7 +132,7 @@ This lab assumes you have:
 
    ![](./images/tde-010.png " ")
 
-2. You can view what the wallet looks like in the database
+2. You can view what the Oracle Wallet looks like in the database
 
       ````
       <copy>./tde_view_wallet_in_db.sh</copy>
@@ -140,7 +140,7 @@ This lab assumes you have:
 
    ![](./images/tde-011.png " ")
 
-3. Now, create the autologin wallet
+3. Now, create the **Autologin Oracle Wallet**
 
       ````
       <copy>./tde_create_autologin_wallet.sh</copy>
@@ -148,7 +148,7 @@ This lab assumes you have:
 
    ![](./images/tde-012.png " ")
 
-4. Run the same queries... You should now see the `cwallet.sso` file
+4. Run the same queries to view the Oracle Wallet content on the Operating System
 
       ````
       <copy>./tde_view_wallet_on_os.sh</copy>
@@ -156,9 +156,9 @@ This lab assumes you have:
 
    ![](./images/tde-013.png " ")
 
-       **Note**: Now you should see the `*.sso` file
+       **Note**: You should now see the **cwallet.sso** file
 
-5. And no changes to the wallet in the database
+5. And no changes to the Oracle Wallet in the database
 
       ````
       <copy>./tde_view_wallet_in_db.sh</copy>
@@ -178,7 +178,7 @@ This lab assumes you have:
 
    ![](./images/tde-015.png " ")
 
-2. Next, encrypt the data by encrypting the entire tablespace
+2. Next, **encrypt** the data by encrypting the entire tablespace
 
       ````
       <copy>./tde_encrypt_tbs.sh</copy>
@@ -206,7 +206,7 @@ This lab assumes you have:
 
    ![](./images/tde-018.png " ")
 
-2. Next, change the init parameter `encrypt_new_tablespaces` to be `ALWAYS` so all new tablespaces are encrypted
+2. Next, change the init parameter `ENCRYPT_NEW_TABLESPACES` to be **ALWAYS** so all new tablespaces are encrypted
 
       ````
       <copy>./tde_encrypt_all_new_tbs.sh</copy>
@@ -214,7 +214,7 @@ This lab assumes you have:
 
    ![](./images/tde-019.png " ")
 
-3. Finally, create a tablespace to test it. The tablespace `TEST` will be created without specifying the encryption parameters (the default encryption is `AES256`) and will be dropped after.
+3. Finally, create a tablespace to test it. The tablespace **TEST** will be created without specifying the encryption parameters (the default encryption is **AES256**) and will be dropped after.
 
       ````
       <copy>./tde_create_new_tbs.sh</copy>
@@ -242,13 +242,13 @@ This lab assumes you have:
 
     - You can see the new key generated for the container
 
-2. To rekey a Master Key (MEK) for the pluggable database `PDB1`, run the following command
+2. To rekey a Master Key (MEK) for the pluggable database **pdb1**, run the following command
 
       ````
       <copy>./tde_rekey_mek_pdb.sh pdb1</copy>
       ````
 
-    - Have a look on the `PDB1` key before rekeying...
+    - Have a look on the pdb1 key before rekeying...
 
     ![](./images/tde-023.png " ")
 
@@ -258,7 +258,7 @@ This lab assumes you have:
 
     - You can see the new key generated for the pluggable database
 
-3. If you want, you can do the same for `PDB2`
+3. If you want, you can do the same for **pdb2**
 
       ````
       <copy>./tde_rekey_mek_pdb.sh pdb2</copy>
@@ -272,7 +272,7 @@ This lab assumes you have:
 
 ## **STEP 8**: View Keystore Details
 
-1. Once you have a keystore, you can run either of these scripts. You will notice there are multiple copies of the `ewallet.p12` file. Every time you make a change, including create or rekey, the `ewallet.p12` file is backed up. You will also see the contents of the wallet file by using `orapki`
+1. Once you have a keystore, you can run either of these scripts. You will notice there are multiple copies of the **ewallet.p12** file. Every time you make a change, including create or rekey, the ewallet.p12 file is backed up. You will also see the contents of the Oracle Wallet file by using **orapki**
 
    - View the OS files related to the keystore
 
@@ -306,7 +306,7 @@ This lab assumes you have:
 
     ![](./images/tde-026.png " ")
 
-3. Third, delete the associated wallet files
+3. Third, delete the associated Oracle Wallet files
 
       ````
       <copy>./tde_delete_wallet_files.sh</copy>
@@ -374,7 +374,4 @@ Video
 - **Contributors** - Gian Sartor, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

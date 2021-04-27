@@ -19,9 +19,172 @@ This lab assumes you have:
 
 ## **STEP 1**: Download the Scripts
 
-1. [The training and testing scripts can be downloaded here.](https://objectstorage.us-ashburn-1.oraclecloud.com/p/Me4VsLIUHWzJ-GJ1C5_1dTuMwzDNWQbubhP0lJwqxdsOWpwiBoAUe0HFxHzx_w_Y/n/c4u03/b/ai-ml-library/o/jblau-ai-object-detection.zip) 
+1. Copy the training script to a file
+```
+# if your dataset is in COCO format, this cell can be replaced by the following three lines:
+from detectron2.config import get_cfg
+from detectron2.data.datasets import register_coco_instances
+from detectron2.data.catalog import MetadataCatalog, DatasetCatalog
+from detectron2.engine import DefaultTrainer
+import os
 
-2. Download the zip file and put it in the `coco-annotation` directory on the instance and extract the contents. This should be the same directory where the `datasets` directory is located. The scripts are configured to look for the `datasets` directory in the location where they reside.
+# Parameters for locating traing and testing dataset
+# NOTE: Train and Test images should be separate. They are the same in this tutorial for the sake of expedience
+
+DATASET_NAME_TRAINING = "my_dataset_train"
+DATASET_ANNOTATION_TRAIN_PATH = "./datasets/fruit-types/fruit-types.json"
+DATASET_IMAGES_TRAIN_PATH = "./datasets/fruit-types/"
+
+# Hyperparameters for model training
+NUM_WORKERS = 2 # Number CPU workers loading GPU
+IMAGES_PER_BATCH = 2
+BASE_LEARNING_RATE = 0.002
+MAX_ITERATIONS = 100000
+BATCH_SIZE_PER_IMAGE = 128
+NUM_CLASSES = 4
+
+# Training options
+OUTPUT_DIR = "./output"
+
+# Change this to true to resume from the last checkpoint in OUTPUT_DIR
+# This will start from the last iteration, so make sure MAX_ITERATIONS is above that value
+RESUME_FROM_LAST_CHECKPOINT = True 
+
+
+register_coco_instances(DATASET_NAME_TRAINING, {}, DATASET_ANNOTATION_TRAIN_PATH, DATASET_IMAGES_TRAIN_PATH)
+
+metadata = MetadataCatalog.get(DATASET_NAME_TRAINING)
+data_dicts = DatasetCatalog.get(DATASET_NAME_TRAINING)
+
+# Uncomment below to write a sample of data to the output folder for setup verification
+#from detectron2.utils.visualizer import Visualizer
+#import random
+#import cv2
+#NUM_SAMPLES = 3
+#for (i, d) in random.sample(data_dicts, NUM_SAMPLES):
+#    img = cv2.imread(d["file_name"])
+#    visualizer = Visualizer(img[:, :, ::-1], metadata=metadata, scale=0.5)
+#    vis = visualizer.draw_dataset_dict(d)
+#    cv2.imwrite("test-" + "str(i)" + ".jpg", vis.get_image()[:, :, ::-1])
+
+cfg = get_cfg()
+cfg.merge_from_file(
+    "./configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"
+)
+cfg.DATASETS.TRAIN = (DATASET_NAME_TRAINING,)
+cfg.DATASETS.TEST = ()
+cfg.DATALOADER.NUM_WORKERS = NUM_WORKERS
+cfg.MODEL.WEIGHTS = "detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl"  # initialize from model zoo
+cfg.SOLVER.IMS_PER_BATCH = IMAGES_PER_BATCH
+cfg.SOLVER.BASE_LR = BASE_LEARNING_RATE
+cfg.SOLVER.MAX_ITER = (
+    MAX_ITERATIONS
+) 
+cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = (
+    BATCH_SIZE_PER_IMAGE
+)
+cfg.MODEL.ROI_HEADS.NUM_CLASSES = NUM_CLASSES  
+
+cfg.OUTPUT_DIR = OUTPUT_DIR
+
+os.makedirs(cfg.OUTPUT_DIR, exist_ok=True)
+trainer = DefaultTrainer(cfg)
+trainer.resume_or_load(resume=RESUME_FROM_LAST_CHECKPOINT)
+trainer.train()
+```
+
+2. Copy the testing script to a file
+```
+from detectron2.data.datasets import register_coco_instances
+from detectron2.data.catalog import MetadataCatalog, DatasetCatalog
+from detectron2.engine import DefaultPredictor
+from detectron2.utils.visualizer import ColorMode, Visualizer
+from detectron2.config import get_cfg
+import os
+import cv2
+
+# Dataset parameters
+USE_COCO_DEMO = True # This value should be true to use the COCO demo, false for custom model
+DATASET_NAME_VALIDATION = "my_dataset_val"
+DATASET_ANNOTATION_VALIDATION_PATH = "./datasets/fruit-types-val/fruit-types-val.json"
+DATASET_IMAGES_VALIDATION_PATH = "./datasets/fruit-types-val/"
+
+# Model parameters
+MODEL_DIR = "./output/" # Based on the setting from the training script for output
+MODEL_FILENAME = "model_final.pth"
+
+# Hyperparameters
+NUM_WORKERS = 2
+NUM_CLASSES = 2
+
+# Validation options
+SCORE_THRESHOLD = 0.8 # Minimum accuracy in percent (0.7 = 70%) to report a positive result
+RESULTS_DIR = "./results/"
+
+def setup_cfg():
+    cfg = get_cfg()
+    cfg.merge_from_file(
+        "./configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"
+    )
+    if USE_COCO_DEMO is True:
+        cfg.MODEL.WEIGHTS = "detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl"
+    else:
+        cfg.MODEL.WEIGHTS = os.path.join(MODEL_DIR, MODEL_FILENAME)
+        cfg.MODEL.ROI_HEADS.NUM_CLASSES = NUM_CLASSES
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = SCORE_THRESHOLD
+
+    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = SCORE_THRESHOLD
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = SCORE_THRESHOLD
+    cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = SCORE_THRESHOLD
+    cfg.DATALOADER.NUM_WORKERS = NUM_WORKERS
+    cfg.DATASETS.TEST = (DATASET_NAME_VALIDATION, )
+
+    return cfg
+
+def run_prediction(predictor, image, metadata, instance_mode):
+    predictions = predictor(image)
+    # Convert image from OpenCV BGR format to Matplotlib RGB format.
+    image = image[:, :, ::-1]
+    visualizer = Visualizer(image, metadata, instance_mode=instance_mode)
+    vis_output = None
+    if "panoptic_seg" in predictions:
+        panoptic_seg, segments_info = predictions["panoptic_seg"]
+        vis_output = visualizer.draw_panoptic_seg_predictions(
+            panoptic_seg.to("cpu"), segments_info
+        )
+    else:
+        if "sem_seg" in predictions:
+            vis_output = visualizer.draw_sem_seg(
+                predictions["sem_seg"].argmax(dim=0).to("cpu")
+            )
+        if "instances" in predictions:
+            instances = predictions["instances"].to("cpu")
+            vis_output = visualizer.draw_instance_predictions(predictions=instances)
+
+    return predictions, vis_output
+
+register_coco_instances(DATASET_NAME_VALIDATION, {}, DATASET_ANNOTATION_VALIDATION_PATH, DATASET_IMAGES_VALIDATION_PATH)
+
+metadata = None
+if USE_COCO_DEMO is True:
+    metadata = MetadataCatalog.get("__unused")
+else:
+    metadata = MetadataCatalog.get(DATASET_NAME_VALIDATION)
+
+data_dicts = DatasetCatalog.get(DATASET_NAME_VALIDATION)
+
+cfg = setup_cfg()
+predictor = DefaultPredictor(cfg)
+
+os.makedirs(RESULTS_DIR, exist_ok=True)
+for i, d in enumerate(data_dicts):    
+    im = cv2.imread(d["file_name"])
+    outputs = predictor(im)
+    predictions, vis_out = run_prediction(predictor, im, metadata, ColorMode.IMAGE_BW)
+    vis_out.save(RESULTS_DIR + "result-" + str(i) + ".jpg")
+```
+
+3. Place the two files with the above scripts into the `coco-annotation` directory on the instance and extract the contents. This should be the same directory where the `datasets` directory is located. The scripts are configured to look for the `datasets` directory in the location where they reside.
 
 ## **STEP 2**: Review the Training Script and Run
 
@@ -119,7 +282,4 @@ This lab assumes you have:
 * **Author** - Justin Blau, Senior Solutions Architect, Big Compute
 * **Last Updated By/Date** - Justin Blau, Big Compute, October 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/artificialintelligence). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -46,7 +46,7 @@ This lab assumes you have:
 
 1. Open a Web Browser at the URL *`https://<DBSecLab-VM_@IP-Public>:7803/em`*
 
-2. Login to Oracle Enterprise Manager 13c Console as "*SYSMAN*" with the password "*Oracle123*"
+2. Login to Oracle Enterprise Manager 13c Console as *`SYSMAN`* with the password "*`Oracle123`*"
 
    ![](./images/dms-001.png " ")
 
@@ -58,11 +58,11 @@ This lab assumes you have:
 
    ![](./images/dms-003.png " ")
 
-5. Click [**Create**] to add a new ADM called `Employee_ADM` on the `cdb1_pdb1` database:
+5. Click [**Create**] to add a new ADM
     - Name the ADM: *`Employee_ADM`*
     - Click the spyglass for Source Database and select *`cdb_PDB1`*
-    - Chose the option type **Custom Application Suite**
-    - Checkbox the option **Create One Application For Each Schema (default)**
+    - Choose the option type *`Custom Application Suite`*
+    - Checkbox the option *`Create One Application For Each Schema (default)`*
 
       ![](./images/dms-004.png " ")
 
@@ -70,13 +70,13 @@ This lab assumes you have:
 
 6. Click [**Continue**]
 
-7. Select the "Named" radio button, choose the Credential Name *`DMS_ADMIN`* (pwd: `Oracle123`) and click [**Login**]
+7. Select the **Named** radio button, choose the Credential Name *`DMS_ADMIN`* (pwd: "*`Oracle123`*") and click [**Login**]
 
    ![](./images/dms-005.png " ")
 
-    **Note**: Alternatively, SYS can be used as well... In a production environment, you could limit the privileges of DMS_ADMIN to only the packages necessary to perform their duties
+    **Note**: Alternatively, `SYS` can be used as well... In a production environment, you could limit the privileges of `DMS_ADMIN` to only the packages necessary to perform their duties
 
-8. Select the *EMPLOYEESEARCH_DEV* schema for the application data model
+8. Select the *`EMPLOYEESEARCH_DEV`* schema for the application data model
 
    ![](./images/dms-006.png " ")
 
@@ -90,9 +90,9 @@ This lab assumes you have:
 
    ![](./images/dms-008.png " ")
 
-    **Tips**: Right click on "View Job Details" link and select "Open Link in New Tab" to follow the process
+    **Tips**: Right click on **View Job Details** link and select **Open Link in New Tab** to follow the process in another Web browser tab
 
-12. Once the job completes, the `EMPLOYEE_ADM` will no longer be in a locked, uneditable status. Check the status by refreshing this page (refresh icon) and move forward when the Most Recent Jobs Status of the `Employee_ADM` has "**Succeeded**"!
+12. Once the job completes, the `EMPLOYEE_ADM` will no longer be in a locked, uneditable status. Check the status by refreshing this page (**refresh icon**) and move forward when the Most Recent Jobs Status of the `Employee_ADM` has "**Succeeded**"!
 
 ## **STEP 2**: Enhance the meta-model
 
@@ -100,7 +100,7 @@ This lab assumes you have:
 
    ![](./images/dms-009.png " ")
 
-2. You may be asked for the database credentials. If so, select the "Named" radio button, choose the default credential using the `DMS_ADMIN` username and click [**Continue**]
+2. You may be asked for the database credentials. If so, select the **Named** radio button, choose the default credential using the `DMS_ADMIN` username and click [**Continue**]
 
    ![](./images/dms-010.png " ")
 
@@ -119,7 +119,7 @@ This lab assumes you have:
 
       ![](./images/dms-013.png " ")
 
-    - The `DEMO_HR_USERS` table uses `USERID`, but the relationship is not registered in the database as a foreign key constraint. Therefore, you must add a Dependent column on the `USERID` column
+    - The `DEMO_HR_USERS` table uses **USERID**, but the relationship is not registered in the database as a foreign key constraint. Therefore, you must add a Dependent column on the `USERID` column
 
       ![](./images/dms-014.png " ")
 
@@ -179,7 +179,7 @@ This lab assumes you have:
 
 2. Click [**Create Like...**]
 
-3. Create the customized Sensitive Column Type "`EMAIL_ORA`" to identify the email from oracle.com
+3. Create the customized Sensitive Column Type "`EMAIL_ORA`" to identify the email from "oracle.com"
     - Name: *`EMAIL_ORA`*
     - Description: *`Search for EMAIL from Oracle Corp`*
     - Column Name: *`EMAIL.*;MAIL.*`*
@@ -277,9 +277,9 @@ This lab assumes you have:
 
    ![](./images/dms-039.png " ")
 
-    **Tips**: Right click on "View Job Details" link and select "Open Link in New Tab" to follow the process
+    **Tips**: Right click on **View Job Details** link and select **Open Link in New Tab** to follow the process in another Web browser tab
 
-10. Once the job completes, click "**Discover Results...**"
+10. Once the job completes, click [**Discover Results...**]
 
    ![](./images/dms-040.png " ")
 
@@ -287,9 +287,14 @@ This lab assumes you have:
 
    ![](./images/dms-041.png " ")
 
-12. Notice that the Sensitive Status of these columns is currently set to **Undefined**. Set the sensitive status of all columns to "Sensitive" that you want to mask. Select each identified sensitive column entry and click "**Set Sensitive Status**" menu item and then pick *`Sensitive`* sub menu item. Upon successful completion, you should see all "Undefined" labels toggle to "Sensitive". For this lab, select the *`PAYMENT_ACCT_NO`*, *`EMAIL`*, *`FIRST_NAME`*, *`LAST_NAME`* and *`ROUTING_NUMBER`*.
+12. Notice that the Sensitive Status of these columns is currently set to **Undefined** and now you have to set the sensitive status of all columns to **Sensitive** that you want to mask
+    - Select each identified sensitive column entry that you want to mask (for this lab, select the *`PAYMENT_ACCT_NO`*, *`EMAIL`*, *`FIRST_NAME`*, *`LAST_NAME`* and *`ROUTING_NUMBER`*)
+    - Click [**Set Sensitive Status**] menu item
+    - Then select "*`Sensitive`*"
 
    ![](./images/dms-042.png " ")
+
+    **Note**: Upon successful completion, you should see all "`UNDEFINED`" labels toggle to "`SENSITIVE`"
 
 13. Click [**OK**]
 
@@ -359,7 +364,7 @@ This lab assumes you have:
 
    ![](./images/dms-052.png " ")
 
-5. In this particular example, we are going to select the Masking Format *`Mask Oracle Corp Email`* we've defined ourselves previously in Step 6
+5. In this particular example, we are going to select the Masking Format "*`Mask Oracle Corp Email`*" we've defined ourselves previously in Step 6
 
    ![](./images/dms-053.png " ")
 
@@ -391,7 +396,7 @@ This lab assumes you have:
 
 13. Click [**OK**]
 
-14. We’ll now use the same algorythm for the `LASTNAME` column but this one according to the FIRSTNAME column value in order to keep the consistence of the employee identity for the app. Of course in real life we won't do that, but here we only want to show you how to associate a masking value to another. Select *`DEMO_HR_EMPLOYEES.LASTNAME`* row and click on **Define Format** icon.
+14. We’ll now use the same algorythm for the `LASTNAME` column but this one according to the `FIRSTNAME` column value in order to keep the consistence of the employee identity for the app. Of course in real life we won't do that, but here we only want to show you how to associate a masking value to another. Select *`DEMO_HR_EMPLOYEES.LASTNAME`* row and click on **Define Format** icon.
 
 15. Select **Shuffle** from the drop down list box
 
@@ -425,7 +430,7 @@ This lab assumes you have:
 
 23. You can see the algorythmic sequence and click [**OK**]
 
-24. We’ll define a customised format to the *`DEMO_HR_SUPPLEMENTAL_DATA.ROUTING_NUMBER`* column as the format `999-999-999` where digits are randomly attributed. Select the row and click on the **Define Format** icon
+24. We’ll define a customised format to the *`DEMO_HR_SUPPLEMENTAL_DATA.ROUTING_NUMBER`* column as the format **999-999-999** where digits are randomly attributed. Select the row and click on the **Define Format** icon
 
 25. Select **Random Digits** from the drop down list box
 
@@ -529,7 +534,7 @@ This lab assumes you have:
 
 ## **STEP 10**: Generate Data Masking Scripts
 
-1. Once you've defined all the data masking formats in Step 9, the status of your masking definition is "**`Script Not Generated`**"
+1. Once you've defined all the data masking formats in Step 9, the status of your masking definition is "**Script Not Generated**"
 
    ![](./images/dms-078.png " ")
 
@@ -541,7 +546,7 @@ This lab assumes you have:
 
     **Note**: Enterprise Manager Cloud Control 13c may route the submission as a submitted Job, in that event you will see a screen that looks like the one below. Submit the job with Named Credentials
 
-3. At the Database Login screen, choose the Named Credential for `DMS_ADMIN`
+3. At the Database Login screen, choose the **Named** credential for `DMS_ADMIN`
 
    ![](./images/dms-010.png " ")
 
@@ -614,7 +619,7 @@ This lab assumes you have:
 
       **Note**: We have already pre-configured this Named Credential for you but you have to put your own SSH Private Key to enable it!
 
-    - In the section **Credential Properties**, load your *`OCI SSH Private Key`*
+    - In the section **Credential Properties**, load your *`SSH Private Key`* generated in Lab 1 of this workshop (remember, this key must be **in RSA format**!)
 
       ![](./images/dms-203.png " ")
 
@@ -636,7 +641,10 @@ This lab assumes you have:
 
     **Note**: This action will run the masking operation on your target database
 
-4. Select the masking mode used during the script generating phase previoulsy (here, select *`Mask In-Database`*) and tick *`The select target is not a production database`*
+4. Select the masking mode used during the script generating phase previoulsy
+
+    - Here, select "*`Mask In-Database`*"
+    - And tick "*`The selected target is not a production database.`*"
 
    ![](./images/dms-088.png " ")
 
@@ -673,7 +681,7 @@ This lab assumes you have:
 
 1. Once the job successfully completes, query the masked data in the Development and Production environments for a before and after comparison
 
-2. Open **SQL Developer** on your PC and connect to *`pdb1 as sysdba`*
+2. Open **SQL Developer** on your PC and connect to **pdb1 as sysdba**
 
    ![](./images/dms-093.png " ")
 
@@ -681,15 +689,15 @@ This lab assumes you have:
 
    ![](./images/dms-094.png " ")
 
-4. Do it again in order to have two tabs and put a comment to differentiate them as follow:
+4. Do it again in order to have 2 tabs and put a comment to differentiate them as follow:
 
-    - The first one for the original data in Production before masking
+    - The first one for the original data in **Production before masking**
 
-   ![](./images/dms-095.png " ")
+       ![](./images/dms-095.png " ")
 
-    - The second one for the masked data in Dev after masking
+    - The second one for the masked data in **Dev after masking**
 
-   ![](./images/dms-096.png " ")
+       ![](./images/dms-096.png " ")
 
 5. Copy the following queries for the **PROD**
 
@@ -728,28 +736,28 @@ This lab assumes you have:
 7. **Execute all these queries** and **compare the results** to confirm your sensitives data have been masked
 
     - Employee Data:
-      - **Before masking** (in PROD)
+        - **Before masking** (in PROD)
 
-      ![](./images/dms-099.png " ")
+          ![](./images/dms-099.png " ")
 
-      - **After masking** (in DEV)
+        - **After masking** (in DEV)
 
-      ![](./images/dms-100.png " ")
+          ![](./images/dms-100.png " ")
 
     - Users Data:
-      - **Before masking** (in PROD)
+        - **Before masking** (in PROD)
 
-      ![](./images/dms-101.png " ")
+          ![](./images/dms-101.png " ")
 
-      - **After masking** (in DEV)
+        - **After masking** (in DEV)
 
-      ![](./images/dms-102.png " ")
+          ![](./images/dms-102.png " ")
 
 8. **Now, your sensitive data has been masked!**
 
 ## **STEP 13**: (Optional) Restore Dev Data
 
-This lab will reset the `EMPLOYEESEARCH_DEV` tables on `PDB1` by cloning data from `EMPLOYEESEARCH_PROD` schema
+This lab will reset the `EMPLOYEESEARCH_DEV` tables on **pdb1** by cloning data from `EMPLOYEESEARCH_PROD` schema
 
 1. Open a SSH session on your DBSec-Lab VM as Oracle User
 
@@ -816,7 +824,4 @@ Video
 - **Contributors** - Manish Choudhary, Rene Fontcha
 - **Last Updated By/Date** - Hakim Loumi, Database Security PM - December 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

@@ -1,8 +1,9 @@
 {
     "workshoptitle": "Migrate WebLogic Server to OCI with Autonomous Database",
+    "help": "livelabs-help-weblogic_us@oracle.com",
     "tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "description": "Login to Oracle Cloud",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
         },{
@@ -62,6 +63,11 @@
             "publisheddate": "07/30/2020",
             "filename": "../../../tear-down/tear-down.md",
             "type": "atp"
+        },
+        {
+            "title": "Need Help?",
+            "publisheddate": "10/06/2020",
+            "filename": "../../../need-help/need-help.md"
         }
      ]
 }

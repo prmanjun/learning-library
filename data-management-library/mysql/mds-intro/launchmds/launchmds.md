@@ -20,16 +20,17 @@ In this lab, you will be guided through the following steps:
 - Create a MySQL DB System.
 - Create Client Virtual Machine
 - Connect to MySQL Database
-- Clean up the resources
+- Start, stop, reboot, or delete a MySQL Database
 
 ### Prerequisites
 
 - An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
 - Some Experience with MySQL Shell
+- Complete Lab 1: Create Local SSH Key
 
 ## **STEP 1**: Create Compartment
 
-You must have an OCI tenancy subscribed to the US East (Ashburn) region and enough limits configured for your tenancy to create a MySQL DB System. Make sure to log-in to the Console as an Administrator.
+You must have an OCI tenancy subscribed to your home region and enough limits configured for your tenancy to create a MySQL DB System. Make sure to log-in to the Console as an Administrator.
 
 1. On the Navigation Menu, under Governance and Administration, select Identity -> Compartments.
 
@@ -41,7 +42,7 @@ You must have an OCI tenancy subscribed to the US East (Ashburn) region and enou
 
    **Note**:  Two Compartments, named Oracle Account Name (root) and a compartment for PaaS, were automatically created by the Oracle Cloud. 
 
-3. On Create Compartment, enter Name MDS_Sandbox, Description, select Parent Compartment, and click on Create Compartment.ompartment.
+3. On Create Compartment, enter Name **MDS_Sandbox**, Description, select Parent Compartment, and click on Create Compartment.ompartment.
 
     ![Compartment3](./images/01compartment03.png " ")
     
@@ -57,7 +58,7 @@ You must have an OCI tenancy subscribed to the US East (Ashburn) region and enou
 2.	On Policies Page, under List Scope, select the Compartment(root) and click on the Create Policy button.
     ![Policy2](./images/02policy02.png " ")
 
-3.	On Create Policy , enter Name MDS_Policy, Description, select Root comaprtment, and click on Customize (Advanced) button. 
+3.	On Create Policy, enter Name **MDS_Policy**, Description, select Root comaprtment. On Policy Builder turn on the “Show manual editor”  switch. 
     ![Policy3](./images/02policy03.png " ")
 4. Enter the following required MySQL Database Service policies:
 
@@ -96,69 +97,154 @@ You must have an OCI tenancy subscribed to the US East (Ashburn) region and enou
 2. Click on Start VCN Wizard.
     ![VCN](./images/03vcn02.png " ")
 
-3. On Start VCN Wizard, select VCN with Internet Connectivity and click on Button Start VCN Wizard. 
+3. Select VCN with Internet Connectivity 
+
+    click on Button Start VCN Wizard 
     ![VCN](./images/03vcn03.png " ")
 
-4. On Create a VCN with Internet Connectivity, under Basic Information enter VCN Name **MDS_VCN** 
+4. Create a VCN with Internet Connectivity 
 
-    select MDS_Sandbox Compartment.  Under Configure VCN and Subnets, add 10.0.0.0/16 on VCN CIDR Block, 10.0.0.0/24 on Public Subnet CIDR Block, and 10.0.1.0/24 on Private Subnet CIDR Block and click Next.
-    ![VCN](./images/03vcn044.png " ") 
+    On Basic Information  Complete the following fields 
+    - VCN Name **MDS_VCN**    
+    - Compartment **MDS_Sandbox** 
 
-5. Under Review and Create, review the Oracle Virtual Cloud Network (VCN) and Subnets information and click on Create.
+    Your screen should look similar to the following
+    ![VCN](./images/03vcn044.png " ")
+  
+5. Click the Next button at the bottom of the screen 
+
+6. Review Oracle Virtual Cloud Network (VCN), Subnets, and Gateways
+         
+    Click Create button to create the VCN
     ![VCN](./images/03vcn04.png " ")
 
-6. The Virtual Cloud Network creation is complete. 
+7. The Virtual Cloud Network creation is completing 
     ![VCN](./images/03vcn05.png " ")
     
-    Here is the completed VCN Creation
+8. Click on "View Virtual Cloud Network" button to display the  created VCN
     ![VCN](./images/03vcn06.png " ")
+
+9. Click on the VCN Name **MDS_VCN**. 
+            ![COMPUTE](./images/03vcn08.png " ")
+
+10.	On the Virtual Cloud Network Details page, under Resources, click on Security Lists (2).
+        ![COMPUTE](./images/03vcn09.png " ")
+
+11.	On Security Lists in <Compartment Name> Compartment, click on Security List for Private Subnet-MDS_VCN.
+
+    ![COMPUTE](./images/03vcn10.png " ")
+
+12.	On Security List for Private Subnet-MDS_VCN  page, under Ingress Rules, click on Add Ingress Rules.
+    ![COMPUTE](./images/03vcn11.png " ")
+
+13.	On Add Ingress Rule, add an Ingress Rule with Source CIDR 0.0.0.0/0 and Destination Port Name 3306, 33060 
+
+    Click on Add Ingress Rule.
+    ![COMPUTE](./images/03vcn12.png " ")
+
+14.	On Security List for Private Subnet-MDS_VCN page
+    
+     New Ingress Rules will be shown under the Ingress Rules List
+    ![COMPUTE](./images/03vcn13.png " ")
 
 ## **STEP 4:** Create a MySQL DB System.
 
-1. On the Navigation Menu, under Database, select MySQL -> DB Systems
+1. Open the navigation menu. Under MySQL, click DB Systems
     ![MDS](./images/04mysql01.png " ")
 
-2. On DB Systems in MDS_Sandbox Compartment, click on Create MySQL DB System.
+2. Click on Create MySQL DB System
     ![MDS](./images/04mysql02.png" ")
 
-3. On Create MySQL DB System, under DB System Information, select a Compartment.
+3. On Create MySQL DB System dialog complete the fields in each section
 
-4. Enter a Name **MDS_DB** for the DB System
+    - Provide basic information for the DB System
+    - Setup your required DB System
+    - Create Administrator credentials
+    - Configure Networking
+    - Configure placement
+    - Configure hardware
+    - Configure Backups
+    - Show Advanced Options
 
-5. Add a Description, select an Availability Domain, select a configuration for the MySQL Shape, and click Next.
-    ![MDS](./images/04mysql03.png " ")
+4. On Provide basic information for the DB System:
+      
+    Select Compartment **MDS_Sandbox**
+      
+    Name enter **MDS_DB**
+      
+    Description enter **MDS_DB**
 
-6. On Create MySQL DB System, under Database Information, create the Administrator Credentials by entering Username (admin) and Password (Welcome1!), 
+    ![MDS](./images/04mysql02_02.png " ")
 
-    Specify the network information selecting the Virtual Cloud Network and Subnet in the compartment and entering Hosting Name, and click Next.
-    ![MDS](./images/04mysql04.png" ")
-
-7. On Backup Information, select Enable Automatic Backups
-    Select the Backup Retention Period (1 day)
+5. On Setup your required DB System 
     
-    Select Default Backup Window, and click on Create.
-    ![MDS](./images/04mysql05.png" ")
+    System Select **Standalone** to specify a single-instance DB System
+    ![MDS](./images/04mysql02_03.png " ")
 
-8. The New MySQL DB System will be ready to use after a few minutes. The state will be shown as Creating during the creation.
-    ![MDS](./images/04mysql06.png" ")
+6. On Create Administrator credentials
 
-9. The state Active indicates that the DB System is ready to use. 
+    Username to **admin**
+
+    Password to **Welcome1!**  
+    
+    Confirm Password **Welcome1!**
+    ![MDS](./images/04mysql02_04.png " ")
+
+7. On Configure networking Keep default values
+
+    Virtual Cloud Network: **MDS_VCN**
+    
+    Subnet: **Private Subnet-MDS_VCN (Regional)**
+
+    ![MDS](./images/04mysql02_05.png " ")
+
+8. On Configure placement  keep checked  "Availability Domain"
+    
+    Do not check "Choose a Fault Domain" for this DB System. Oracle will chooses the best placement for you.
+    ![MDS](./images/04mysql02_06.png" ")
+
+9. On Configure hardware keep default shape  **MySQL.VM.Standard.E3.1.8GB**
+
+    Data Storage Size (GB) keep default value **50**
+    ![MDS](./images/04mysql02_07.png" ")
+
+19. On Configure Backups, keep  "Enable Automatic Backups" checked
+    
+    set Retention period to **7**
+    
+    select "Default Backup Window"
+    
+    ![MDS](./images/04mysql02_08.png" ")
+    
+20. Click on Create button 
+    ![MDS](./images/04mysql02_09.png" ")
+
+11. The New MySQL DB System will be ready to use after a few minutes. 
+
+    The state will be shown as Creating during the creation
+    ![MDS](./images/04mysql02_10.png" ")
+
+12. The state Active indicates that the DB System is ready to use. 
 
     Check the MySQL endpoint (Address) under Instances in the MySQL DB System Details page. 
 
-    ![MDS](./images/04mysql07.png" ")
+    ![MDS](./images/04mysql02_11.png" ")
 
 ## **STEP 5:** Create Client Virtual Machine
+
+**Important:** If you have not already completed "Lab 1: Create Local SSH Key", please do so now. 
+
+When you are finished, return to this step.
 
 1. You will need a client machine to connect to your brand new MySQL database. To launch a Linux Compute instance, go to the Console, menu Compute, Instances
     ![COMPUTE](./images/05compute01.png " ")
 
-2. On Instances in MDS_Sandbox Compartment, click on Create Instance.
+2. On Instances in **MDS_Sandbox** Compartment, click on Create Instance.
     ![COMPUTE](./images/05compute02.png " ")
 
 3. On Create Compute Instance enter **MDS_Client**  for the instance Name. 
     
-4. Make sure MDS_Sandbox compartment is selected. 
+4. Make sure **MDS_Sandbox** compartment is selected. 
  
 5. Choose an operating system or image source (for this lab , select Oracle Linux), 
  
@@ -168,17 +254,17 @@ You must have an OCI tenancy subscribed to the US East (Ashburn) region and enou
 
     ![COMPUTE](./images/05compute03.png " ")
 
-   For VCN make sure MDS_VCN is selected, "Assign a public IP address" should be set to Yes.  
+   For VCN make sure **MDS_VCN** is selected, "Assign a public IP address" should be set to Yes.  
     ![COMPUTE](./images/05compute04.png " ")
 
-
-7. If you have not already created your SSH key, perform "Lab 1: Create Local SSH Key". 
-    
-   When you are done return to the next line (STEP 5: #8) .
-
-8.  Add SSH Keys: Select CHOOSE SSH KEY FILES and browse to select the
-SSH public key, which was created earlier. (In this example it is id_rsa).
-
+7. If you have not already created your SSH key, perform "Lab 1: Create Local SSH Key".  When you are done return to the next line (STEP 5: #8) .
+8. In the Add SSH keys section, generate an SSH key pair or upload your own public key. Select one of the following options: 
+* **Generate SSH keys:** Oracle Cloud Infrastructure generates an RSA key pair for the instance. Click Save Private Key, and then save the private key on your computer. Optionally, click Save Public Key and then save the public key.
+* **Generate SSH keys:** Oracle Cloud Infrastructure generates an RSA key pair for the instance. Click Save Private Key, and then save the private key on your computer. Optionally, click Save Public Key and then save the public key.  
+* **Choose SSH key files:** Upload the public key portion of your key pair. Either browse to the key file that you want to upload, or drag and drop the file into the box. To provide multiple keys, press and hold down the Command key (on Mac) or the CTRL key (on Windows) while selecting files.
+* **Paste SSH keys:** Paste the public key portion of your key pair in the box.
+* **No SSH keys:** Do NOT select this option! You will not be able to connect to the Compute Instance using SSH.
+  
     ![COMPUTE](./images/05compute06.png " ")
 
 9. The New Virtual Machine will be ready to use after a few minutes. The state will be shown as Provisioning during the creation
@@ -186,23 +272,27 @@ SSH public key, which was created earlier. (In this example it is id_rsa).
 
 10.	The state Running indicates that the Virtual Machine is ready to use. 
 
-    Save the Public IP Address under Primary VNIC Information on the Instance page. 
+    **Save the Public IP Address** under "Instance Access"  on the **MDS_Client** Instance page. 
     ![COMPUTE](./images/05compute08.png " ")
 
 ## **STEP 6:** Connect to MySQL Database
 
-1. If you are a Linux or Mac user go to STEP 6: #2
+1. If you are a Linux, Mac, or  Windows 10 Powershell user go to STEP 6: #2
 
    If you are a Windows user click Start menu from your windows machine for Git which should include the Git Bash command.
 
-    Click on the Git Bash command. This will take you to the Git Bash terminal as shown below and continue to  STEP 6: #2. 
+    Click on the Git Bash command. This will take you to the Git Bash terminal as shown below 
+    
+    and continue to  STEP 6: #2. 
     ![Connect](./images/06connect0.png" ")
 
 2.  From a terminal window on your local system. Connect to the Compute Instance with the SSH command. 
 
-    Indicate the location of the private key you created earlier with MDS_Client. Enter the username opc and the Public IP Address.
+    Indicate the location of the private key you created earlier with **MDS_Client**. 
+    
+    Enter the username **opc** and the Public **IP Address**.
 
-    Note: The **MDS_Client**  shows the  Public IP Address as mentioned on Step 4: #9
+    Note: The **MDS_Client**  shows the  Public IP Address as mentioned on Step 5: #10
     
     (Example: **ssh -i ~/.ssh/id_rsa opc@&132.145.170.990**)
 
@@ -237,7 +327,27 @@ SSH public key, which was created earlier. (In this example it is id_rsa).
 
     ![Connect](./images/06connect07.png " ")
 
-6. (Optional) At this point, you can also use MySQL Workbench from your local machine to connect to the MySQL endpoint using your new Compute instance as a jump box. 
+6. On MySQL Shell, switch to SQL mode  to try out some SQL commands 
+
+    Type the following command at the prompt:
+    
+    `\SQL`
+
+    ![Connect](./images/06connect13.png " ")
+
+    To display a list of databases, type the following command at the prompt:
+   
+    `SHOW DATABASES;`
+    
+    To display the database version, current_date, and user type the following command at the prompt:
+
+    `SELECT VERSION(), CURRENT_DATE, USER();`
+
+    To display MysQL user and host from user table type the following command at the prompt:
+    
+    `SELECT USER, HOST FROM mysql.user;`
+
+7. (Optional) At this point, you can also use MySQL Workbench from your local machine to connect to the MySQL endpoint using your new Compute instance as a jump box. 
 
    In your pre installed MySQL Workbench, 
    
@@ -253,20 +363,62 @@ SSH public key, which was created earlier. (In this example it is id_rsa).
 
     ![Connect](./images/06workbench02.png " ")
 
-## **STEP 7:** Clean up the resources
+## **STEP 7:** Start, stop, or reboot MySQL DB System
 
-1. Delete the MySQL DB System.
-    ![Clean](./images/07clean01.png " ")
+Open the navigation menu. Under MySQL, click DB Systems.
+![MDS](./images/04mysql01.png " ")
 
-2. Terminate the Compute instance.
-    ![Clean](./images/07clean02.png " ")
+List DB Systems
+![MDS](./images/04mysql02_06.png " ")
+Choose  **MDS_Sandbox** Compartment 
 
-3. Delete the Virtual Cloud Network.
-    ![Clean](./images/07clean03.png " ")
+Click **MDS_DB** to open the DB System details page
+![MDS](./images/04mysql07.png " ")
 
-4. Delete the MySQL policies for the compartment.
-    ![Clean](./images/07clean04.png " ")
+Select one of the following actions:
+* Start: Starts a stopped DB System. After the DB System is started, the Stop action is enabled and the Start option is disabled.
+* Stop: Stops a running DB System. After the DB System is powered off, the Start action is enabled.
+* Restart: Shuts down a DB System, and restarts it.
 
+**Note**  Stopping a DB System stops billing for all OCPUs associated with it. 
+* Billing continues for storage. 
+* Billing for OCPUs resumes if you restart the DB System.
+* If you selected Stop or Restart, the Stop/Restart MySQL DB System dialog is displayed.
+
+Select a shutdown type:
+* Fast: Flushes dirty pages before shutting down the DB System. 
+
+    Some flush operations must be performed during next startup, potentially increasing the duration of the startup process.
+* Slow: Flushes dirty pages and purges undo log pages for older transactions. 
+    
+    The shutdown itself can take longer, but the subsequent startup is faster.
+* Immediate: Does not flush dirty pages and does not purge any undo log pages. 
+    Stops MySQL immediately. Page flushes and log purging will take place during the next startup, increasing the duration of the startup process.
+
+Select the required shutdown type and click the Stop or Restart button, depending on the action chosen.
+
+## **STEP 8:** Delete MySQL DB System
+
+Deleting a DB System permanently deletes it. Any manual backups associated with the deleted DB System are retained for their retention periods. Automatic backups are deleted with the DB System.
+
+Open the navigation menu. Under MySQL, click DB Systems.
+![MDS](./images/04mysql01.png " ")
+
+List DB Systems
+![MDS](./images/04mysql02_06.png " ")
+Choose  **MDS_Sandbox** Compartment 
+
+Click **MDS_DB** to open the DB System details page
+![MDS](./images/04mysql07.png " ")
+
+Click on "More Actions" drop down list and select **Delete**
+![MDS](./images/04mysql08.png " ")
+
+A prompt is displayed asking you to confirm the deletion.
+![MDS](./images/04mysql08_1.png " ")
+Enter the word, all caps, "DELETE" and click "Delete 1 MySQL DB System" button.
+
+When delete process is done **MDS_DB** will be set to Delete status.
 ## Learn More
 
 * [Oracle Cloud Infrastructure MySQL Database Service Documentation ](https://docs.cloud.oracle.com/en-us/iaas/mysql-database)
@@ -274,10 +426,7 @@ SSH public key, which was created earlier. (In this example it is id_rsa).
 ## Acknowledgements
 * **Author** -  Airton Lastori, MySQL Principal Product Manager, MySQL Product Management 
 * **Contributors** -  Priscila Galvao, MySQL Solution Engineering
-* **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, December 2020
+* **Last Updated By/Date** - Perside Foster, MySQL Solution Engineering, April 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [MySQL Support Forum](https://community.oracle.com/tech/developers/categories/MySQL). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
 

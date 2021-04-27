@@ -43,7 +43,7 @@ Know More:[ Oracle J2EE (JEE)](https://www.oracle.com/in/java/technologies/java-
 - **Authors** - Balasubramanian Ramamoorthy, Dhananjay Kumar, Pradeep Chandramouli
 - **Contributors** - Nishanth Kaushik,Kanika Sharma,Srinivas Pothukuchi,Arvind Bhope
 - **Team** - North America AppDev Specialists
-- **Last Updated By** - Kay Malcolm, Director, Database Product Management, June 2021
+- **Last Updated By** - Kay Malcolm, Database Product Management, June 2021
 - **Expiration Date** - June 2021
 
 ## Issues?

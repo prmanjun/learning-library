@@ -1,8 +1,9 @@
 {
     "workshoptitle": "Migrate a WebLogic domain to Oracle Cloud Infrastructure",
+    "help": "livelabs-help-weblogic_us@oracle.com",
     "tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "description": "Login to Oracle Cloud",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
         },{
@@ -67,6 +68,11 @@
             "title": "Lab 9: Tear down the Environment",
             "publisheddate": "07/30/2020",
             "filename": "../../../tear-down/tear-down.md"
+        },
+        {
+            "title": "Need Help?",
+            "publisheddate": "10/06/2020",
+            "filename": "../../../need-help/need-help.md"
         }
      ]
 }

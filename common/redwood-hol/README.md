@@ -28,6 +28,7 @@ To transition from the existing template look-and-feel to the new one, the follo
     ```
     {
         "workshoptitle":"<title of your workshop>",  <==== add this line to your manifest
+        "help": "livelabs-help-db_us@oracle.com", <==== add this line to provide a button that will generate an e-mail to the LiveLabs team for support
         "tutorials": [
     ```
 

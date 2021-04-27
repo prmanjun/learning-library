@@ -2,11 +2,11 @@
 
 ## Introduction
 
-In this lab, you are going to log in as user `customer_360`. You will learn how to clear previous tables, create new tables, and populate the tables with your data.
+In this lab, you are going to log in as user `CUSTOMER_360`. You will learn how to clear previous tables, create new tables, and populate the tables with your data.
 
-You will create 7 tables (customer, account, merchant, owned_by, purchased, transfer, parent_of). The entity-relationship diagram for these tables is shown below.
+You will create 7 tables (customer, account, merchant, purchased, transfer, parent_of). The entity-relationship diagram for these tables is shown below.
 
-![ER Diagram of tables](images/c360_erDiagram.png " ")
+![](images/er-diagram.jpg)
 
 Estimated time: 7 minutes
 
@@ -17,258 +17,220 @@ Estimated time: 7 minutes
 
 ### Prerequisites
 
-- This lab assumes you have successfully completed the lab - Create and enable a user in SQLDeveloper Web.
+- This lab assumes you have successfully completed the lab - Create and enable a user in SQL Developer Web.
 
-## **STEP 1:** Log in to SQLDevWeb as user c360
+## **STEP 1:** Log in to SQL Developer Web
 
-1. Open the correct URL for SQlDevWeb for the CUSTOMER_360 user. It is almost the same URL as the one for the Admin user execpt that `admin` in that url is replaced with the schema-alias we provided, i.e. with `c360`.
+Open the correct URL for SQL Developer Web for the `CUSTOMER_360` user. It is almost the same URL as the one for the Admin user execpt that `admin` in that url is replaced with the schema-alias we provided, i.e. with `customer_360`.
 
-  ![](images/admin_url.png " ")
+![](images/admin_url.jpg)
 
-2. Login as `CUSTOMER_360` using the password you entered when creating the user.
+Login as `CUSTOMER_360` using the password you entered when creating the user.
 
-  *Note: Use the password you choose in Step 1.2 in Lab 4.*
+*Note: Use the password you choose in Step 2 in Lab 4.*
 
-  ![Login as Customer_360](images/ADB_SDW_LoginAsC360.png " ")
+![](images/login-c360.jpg)
 
-  ![Connected as Customer_360](images/ADB_SDW_ConnectedAsC360.png " ")
+![](images/sdw-c360.jpg)
 
 ### Troubleshooting
 
-If you receive a *Service Unavailable* error, it may be that the  `customer_360` account is locked.
+If you receive a *Service Unavailable* error, it may be that the `CUSTOMER_360` account is locked.
 
-![](images/troubleshooting_login.png " ")
+![](images/troubleshooting_login.png)
 
 You can try the following steps:
 
-1. Log in as ADMIN, enter and run the command in Worksheet:
+1. Log in as `ADMIN`, enter and run the command in Worksheet:
 
     ```
-    <copy>select username, account_status from dba_users ;</copy>
+    <copy>SELECT username, account_status FROM dba_users;</copy>
     ```
 
-  In Query Result, check the account status of `CUSTOMER_360`. The status should be `OPEN`.
+    In Query Result, check the account status of `CUSTOMER_360`. The status should be `OPEN`.
 
-  ![](images/troubleshoot_query_result.png " ")
+    ![](images/troubleshoot_query_result.png)
 
 2. If the status is `LOCKED`, enter and run the command to unlock the user:
 
     ```
-    <copy>alter user CUSTOMER_360 account unlock</copy>
+    <copy>ALTER USER customer_360 ACCOUNT UNLOCK;</copy>
     ```
 
 3. Then, the status should change to `OPEN`. You can check again using command:
 
     ```
-    <copy>select username, account_status from dba_users ;</copy>
+    <copy>SELECT username, account_status FROM dba_users;</copy>
     ```
 
 ## **STEP 2:** Drop existing tables if any
 
-1. To ensure a clean slate, drop any existing tables. Copy, paste, and execute the following commands into the SQL Worksheet.
+To ensure a clean slate, drop any existing tables. Copy, paste, and execute the following commands into the SQL Worksheet.
 
-    ```
-    <copy>
-    DROP TABLE account;
-    DROP TABLE customer;
-    DROP TABLE merchant;
-    DROP TABLE owned_by;
-    DROP TABLE parent_of;
-    DROP TABLE purchased;
-    DROP TABLE transfer;
+```
+<copy>
+DROP TABLE account;
+DROP TABLE customer;
+DROP TABLE merchant;
+DROP TABLE owned_by;
+DROP TABLE parent_of;
+DROP TABLE purchased;
+DROP TABLE transfer;
+</copy>
+```
 
-    </copy>
-    ```
+![](images/drop-table.jpg)
 
-  ![Drop existing tables](images/ADB_SDW_C360_DropTables.png " ")
+## **STEP 3:** Create and populate the `ACCOUNT` table
 
-## **STEP 3:** Create and populate the Account table
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
+```
+<copy>
+CREATE TABLE account (
+  id NUMBER NOT NULL
+, account_no VARCHAR2(20)
+, customer_id NUMBER
+, open_date VARCHAR2(20)
+, balance NUMBER
+, CONSTRAINT account_pk PRIMARY KEY (id)
+);
 
-    ```
-    <copy>
-    CREATE TABLE account (
-      id NUMBER NOT NULL
-    , type VARCHAR2(20)
-    , account_no VARCHAR2(20)
-    , balance NUMBER
-    , CONSTRAINT account_pk PRIMARY KEY (id)
-    );
+INSERT INTO account VALUES (201,'xxx-yyy-201',101,'2015-10-04',1500);
+INSERT INTO account VALUES (202,'xxx-yyy-202',102,'2012-09-13',200);
+INSERT INTO account VALUES (203,'xxx-yyy-203',103,'2016-02-04',2100);
+INSERT INTO account VALUES (204,'xxx-yyy-204',104,'2018-01-05',100);
+INSERT INTO account VALUES (211,'xxx-zzz-211',NULL,NULL,NULL);
+INSERT INTO account VALUES (212,'xxx-zzz-212',NULL,NULL,NULL);
+COMMIT;
+</copy>
+```
 
-    INSERT INTO account (id,type,account_no,balance) VALUES (201,'account','xxx-yyy-201',1500);
-    INSERT INTO account (id,type,account_no,balance) VALUES (202,'account','xxx-yyy-202',200);
-    INSERT INTO account (id,type,account_no,balance) VALUES (203,'account','xxx-yyy-203',2100);
-    INSERT INTO account (id,type,account_no,balance) VALUES (204,'account','xxx-yyy-204',100);
-    INSERT INTO account (id,type,account_no,balance) VALUES (211,'account','xxx-zzz-211',NULL);
-    INSERT INTO account (id,type,account_no,balance) VALUES (212,'account','xxx-zzz-212',NULL);
-    COMMIT;
+![](images/create-table.jpg)
 
-    </copy>
-    ```
+## **STEP 4:** Create and populate the `CUSTOMER` table
 
-  ![Create Account table](images/ADB_SDW_C360_CreateAccountTable.png " ")
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-## **STEP 4:** Create and populate the Customer table
+```
+<copy>
+CREATE TABLE customer (
+  id NUMBER NOT NULL,
+  name VARCHAR2(20),
+  age NUMBER,
+  location VARCHAR2(20),
+  gender VARCHAR2(20),
+  student VARCHAR2(20)
+, CONSTRAINT customer_pk PRIMARY KEY (id)
+);
 
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
+INSERT INTO customer VALUES (101,'John',10,'Boston',NULL,NULL);
+INSERT INTO customer VALUES (102,'Mary',NULL,NULL,'F',NULL);
+INSERT INTO customer VALUES (103,'Jill',NULL,'Boston',NULL,NULL);
+INSERT INTO customer VALUES (104,'Todd',NULL,NULL,NULL,'true');
+COMMIT;
+</copy>
+```
 
-    ```
-    <copy>
-    CREATE TABLE customer (
-      id NUMBER NOT NULL,
-      type VARCHAR2(20),
-      name VARCHAR2(20),
-      age NUMBER,
-      location VARCHAR2(20),
-      gender VARCHAR2(20),
-      student VARCHAR2(20)
-    , CONSTRAINT customer_pk PRIMARY KEY (id)
-    );
+## **STEP 5:** Create and populate the `MERCHANT` table
 
-    INSERT INTO customer (id,type,name,age,location,gender,student) VALUES (101,'customer','John',10,'Boston',NULL,NULL);
-    INSERT INTO customer (id,type,name,age,location,gender,student) VALUES (102,'customer','Mary',NULL,NULL,'F',NULL);
-    INSERT INTO customer (id,type,name,age,location,gender,student) VALUES (103,'customer','Jill',NULL,'Boston',NULL,NULL);
-    INSERT INTO customer (id,type,name,age,location,gender,student) VALUES (104,'customer','Todd',NULL,NULL,NULL,'true');
-    COMMIT;
-    </copy>
-    ```
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-  ![Create Customer table](images/ADB_SDW_C360_CreateCustomerTable.png " ")
+```
+<copy>
+CREATE TABLE merchant (
+  id NUMBER NOT NULL
+, name VARCHAR2(20)
+, CONSTRAINT merchant_pk PRIMARY KEY (id)
+);
 
-## **STEP 5:** Create and populate the Merchant table
+INSERT INTO merchant VALUES (301,'Apple Store');
+INSERT INTO merchant VALUES (302,'PC Paradise');
+INSERT INTO merchant VALUES (303,'Kindle Store');
+INSERT INTO merchant VALUES (304,'Asia Books');
+INSERT INTO merchant VALUES (305,'ABC Travel');
+COMMIT;
+</copy>
+```
 
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
+## **STEP 7:** Create and populate the `PARENT_OF` table
 
-    ```
-    <copy>
-    CREATE TABLE merchant (
-      id NUMBER NOT NULL
-    , type VARCHAR2(20)
-    , name VARCHAR2(20)
-    , CONSTRAINT merchant_pk PRIMARY KEY (id)
-    );
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-    INSERT INTO merchant (id,type,name) VALUES (301,'merchant','Apple Store');
-    INSERT INTO merchant (id,type,name) VALUES (302,'merchant','PC Paradise');
-    INSERT INTO merchant (id,type,name) VALUES (303,'merchant','Kindle Store');
-    INSERT INTO merchant (id,type,name) VALUES (304,'merchant','Asia Books');
-    INSERT INTO merchant (id,type,name) VALUES (305,'merchant','ABC Travel');
-    COMMIT;
+```
+<copy>
+CREATE TABLE parent_of (
+  customer_id_parent NUMBER
+, customer_id_child NUMBER
+, CONSTRAINT parent_of_pk PRIMARY KEY (customer_id_parent, customer_id_child)
+);
 
-    </copy>
+INSERT INTO parent_of VALUES (103,104);
+COMMIT;
+</copy>
+```
 
-    ```
+## **STEP 8:** Create and populate the `PURCHASED` table
 
-  ![Create Merchant table](images/ADB_SDW_C360_CreateMerchantTable.png " ")
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-## **STEP 6:** Create and populate the Owned_By table
+```
+<copy>
+CREATE TABLE purchased (
+  id NUMBER
+, account_id NUMBER
+, merchant_id NUMBER
+, amount NUMBER
+, CONSTRAINT purchased_pk PRIMARY KEY (id)
+);
 
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
+INSERT INTO purchased VALUES (1001,201,301,800);
+INSERT INTO purchased VALUES (1002,201,302,15);
+INSERT INTO purchased VALUES (1003,202,301,150);
+INSERT INTO purchased VALUES (1004,202,302,20);
+INSERT INTO purchased VALUES (1005,202,304,10);
+INSERT INTO purchased VALUES (1006,203,301,350);
+INSERT INTO purchased VALUES (1007,203,302,20);
+INSERT INTO purchased VALUES (1008,203,303,15);
+INSERT INTO purchased VALUES (1009,204,303,10);
+INSERT INTO purchased VALUES (1010,204,304,15);
+INSERT INTO purchased VALUES (1011,204,305,450);
+COMMIT;
+</copy>
+```
 
-    ```
-    <copy>
-    CREATE TABLE owned_by (
-      from_id NUMBER,
-      to_id NUMBER,
-      since VARCHAR2(20)
-    );
+## **STEP 9:** Create and populate the `TRANSFER` table
 
-    INSERT INTO owned_by (from_id,to_id,since) VALUES (201,101,'2015-10-04');
-    INSERT INTO owned_by (from_id,to_id,since) VALUES (202,102,'2012-09-13');
-    INSERT INTO owned_by (from_id,to_id,since) VALUES (203,103,'2016-02-04');
-    INSERT INTO owned_by (from_id,to_id,since) VALUES (204,104,'2018-01-05');
-    COMMIT;
-    </copy>
-    ```
+Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
 
-  ![Create owned_by table](images/ADB_SDW_C360_CreateOwnedByTable.png " ")
+```
+<copy>
+CREATE TABLE transfer (
+  id NUMBER
+, account_id_from NUMBER
+, account_id_to NUMBER
+, amount NUMBER
+, transfer_date VARCHAR2(20)
+, CONSTRAINT transfer_pk PRIMARY KEY (id)
+);
 
-## **STEP 7:** Create and populate the Parent_Of table
+INSERT INTO transfer VALUES (100001,201,202,200,'2018-10-05');
+INSERT INTO transfer VALUES (100002,211,202,900,'2018-10-06');
+INSERT INTO transfer VALUES (100003,202,212,850,'2018-10-06');
+INSERT INTO transfer VALUES (100004,201,203,500,'2018-10-07');
+INSERT INTO transfer VALUES (100005,203,204,450,'2018-10-08');
+INSERT INTO transfer VALUES (100006,204,201,400,'2018-10-09');
+INSERT INTO transfer VALUES (100007,202,203,100,'2018-10-10');
+INSERT INTO transfer VALUES (100008,202,201,300,'2018-10-10');
+COMMIT;
+</copy>
+```
 
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
-
-    ```
-    <copy>
-    CREATE TABLE parent_of (
-      from_id NUMBER
-    , to_id NUMBER
-    );
-
-    INSERT INTO parent_of (from_id,to_id) VALUES (103,104);
-    COMMIT;
-    </copy>
-    ```
-
-  ![Create parent_of table](images/ADB_SDW_C360_CreateParentOfTable.png " ")
-
-## **STEP 8:** Create and populate the Purchased table
-
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
-
-    ```
-    <copy>
-    CREATE TABLE purchased (
-      from_id NUMBER,
-      to_id NUMBER,
-      amount NUMBER
-    );
-
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (201,301,800);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (201,302,15);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (202,301,150);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (202,302,20);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (202,304,10);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (203,301,350);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (203,302,20);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (203,303,15);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (204,303,10);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (204,304,15);
-    INSERT INTO purchased (from_id,to_id,amount) VALUES (204,305,450);
-    COMMIT;
-    </copy>
-    ```
-
-  ![Create purcahsed table](images/ADB_SDW_C360_CreatePurchasedTable.png " ")
-
-## **STEP 9:** Create and populate the Transfer table
-
-1. Clear the SQL Worksheet. Copy, paste, and run the following SQL script.
-
-  The quotes are needed since DATE is a reserved word.
-
-    ```
-    <copy>
-    CREATE TABLE transfer (
-      from_id NUMBER
-    , to_id NUMBER
-    , amount NUMBER
-    , "DATE" VARCHAR2(20)
-    );
-
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (201,202,200,'2018-10-05');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (211,202,900,'2018-10-06');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (202,212,850,'2018-10-06');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (201,203,500,'2018-10-07');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (203,204,450,'2018-10-08');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (204,201,400,'2018-10-09');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (202,203,100,'2018-10-10');
-    INSERT INTO transfer (from_id,to_id,amount,"DATE") VALUES (202,201,300,'2018-10-10');
-    COMMIT;
-    </copy>
-    ```
-
-  ![Create transfer table](images/ADB_SDW_C360_CreateTransferTable.png " ")
-
-You may now proceed to the next lab
+You may now proceed to the next lab.
 
 ## Acknowledgements
 
 * **Author** - Jayant Sharma, Product Manager, Spatial and Graph
-* **Contributors** - Thanks to Jenny Tsai for helpful, constructive feedback that improved this workshop.
-* **Last Updated By/Date** - Arabella Yao, Product Manager Intern, Database Management, June 2020
+* **Contributors** - Thanks to Jenny Tsai and Arabella Yao for helpful, constructive feedback that improved this workshop.
+* **Last Updated By/Date** - Ryota Yamanaka, Product Manager, Spatial and Graph, January 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/oracle-graph). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

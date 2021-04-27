@@ -41,7 +41,7 @@ First, we are going to create an ADW Instance.
 
     ![](./images/006.png  " ")
 
-3.  Select **Compartment** by clicking on the drop-down list. If you are using a LiveLabs environment, be sure to select the compartment provided by the environment. (Note that yours will be different - do not select **ManagedCompartmentforPaaS**) and then enter **Display Name**, **Database Name**.
+3.  Select **Compartment** by clicking on the drop-down list. (Note that yours will be different - do not select **ManagedCompartmentforPaaS**) and then enter **Display Name**, **Database Name**.
 
     ![](./images/007.png  " ")
 
@@ -391,8 +391,3 @@ Please proceed to the next lab.
 - **Author** - Derrick Cameron, Leah Bracken (v2)
 - **Last Updated By/Date** - Anoosha Pilli, Product Manager, DB Product Management, May 2020
 - **Contributors** -  Arabella Yao, Ayden Smith, Jeffrey Malcolm Jr, June 2020
-
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

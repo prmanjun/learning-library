@@ -8,35 +8,6 @@ In this lab you will review GoldenGate for Classic
 
   ![](./images/image110_1.png " ")
 
-### Objectives
-- Deploy GoldenGate Classic
-
-### Prerequisites
-This lab assumes you have:
-- A Free Tier, Paid or LiveLabs Oracle Cloud account
-- SSH Private Key to access the host via SSH
-- You have completed:
-    - Lab: Generate SSH Keys
-    - Lab: Prepare Setup
-    - Lab: Environment Setup
-
-## **STEP 0:** Running your Lab
-### Login to Host using SSH Key based authentication
-Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
-  - Authentication OS User - “*opc*”
-  - Authentication method - *SSH RSA Key*
-  - OS User – “*ggadmin*”.
-
-1. First login as “*opc*” using your SSH Private Key
-
-2. Then sudo to “*ggadmin*”. E.g.
-
-    ```
-    <copy>sudo su - ggadmin</copy>
-    ```
-
-***Congratulations!*** You can proceed to the next lab, or to any other lab. Each lab can be run independently.
-
 ## About Oracle GoldenGate Classic
 
 ### KEY FEATURES
@@ -65,6 +36,39 @@ Oracle GoldenGate real-time data streaming platform also allows customers to kee
 Oracle GoldenGate classic offers high-performance, fault-tolerant, easy-to-use, and flexible real- time data streaming platform for relational environments. It easily extends customers’ real-time data
 integration architectures to data systems without impacting the performance of the source systems and enables timely business insight for better decision making.
 
+### Objectives
+- Deploy GoldenGate Classic
+
+### Prerequisites
+This lab assumes you have:
+- A Free Tier, Paid or LiveLabs Oracle Cloud account
+- SSH Private Key to access the host via SSH
+- You have completed:
+    - Lab: Generate SSH Keys
+    - Lab: Prepare Setup
+    - Lab: Environment Setup
+
+
+*Estimated Lab Time*:  60 minutes
+
+## **STEP 0:** Running your Lab
+### Login to Host using SSH Key based authentication
+Refer to *Lab Environment Setup* for detailed instructions relevant to your SSH client type (e.g. Putty on Windows or Native such as terminal on Mac OS):
+  - Authentication OS User - “*opc*”
+  - Authentication method - *SSH RSA Key*
+  - OS User – “*ggadmin*”.
+
+1. First login as “*opc*” using your SSH Private Key
+
+2. Then sudo to “*ggadmin*”. E.g.
+
+    ```
+    <copy>sudo su - ggadmin</copy>
+    ```
+
+***Congratulations!*** You can proceed to the next lab, or to any other lab. Each lab can be run independently.
+
+
 You may now *proceed to the next lab*.
 
 ## Learn More
@@ -78,7 +82,4 @@ You may now *proceed to the next lab*.
 * **Contributors** - Madhu Kumar, Rene Fontcha
 * **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

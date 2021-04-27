@@ -1,107 +1,183 @@
-# Provision an Instance
+# Provisioning the Siebel Application
 
 ## Introduction
 
-*Describe the lab in one or two sentences, for example:* This lab walks you through the steps to ...
+In this exercise, you will create your Siebel application by setting up the Siebel Marketplace image and then use Jenkins to deploy an instance of Siebel.
 
-Estimated Lab Time: n minutes
-
-### About Product/Technology
-Enter background information here..
+Estimated Lab Time: 1 hour 15 minutes
 
 ### Objectives
 
-*List objectives for the lab - if this is the intro lab, list objectives for the workshop*
-
-In this lab, you will:
-* Objective 1
-* Objective 2
-* Objective 3
+To deploy the Siebel Instance, in this lab, you will:
+*   Launching Instance of Siebel from Marketplace
+*   Deploy the Siebel Application
+*   Generate a Jenkins URL
+*   Deploy and access Siebel instance
 
 ### Prerequisites
+* A user with 'manage' access to Networking and Compute, compartment, and marketplace access
+* SSH key
+* VCN setup from the previous lab
 
-*Use this section to describe any prerequisites, including Oracle Cloud accounts, set up requirements, etc.*
+## **STEP 1**: Launching Instance of Siebel from Marketplace
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* Item no 2 with url - [URL Text](https://www.oracle.com).
+1. Make sure you are on the Oracle Cloud Infrastructure site
 
-*This is the "fold" - below items are collapsed by default*
+2. Navigate to ***Oracle Cloud Infrastructure Marketplace*** by using the dropdown menu on the left side of your screen and clicking the ***Marketplace*** option under ***Solutions and Platforms***
 
-## **STEP 1**: title
+  ![From the menu bar in OCI console, click on Marketplace](./images/2.png " ")
 
-Step 1 opening paragraph.
+3. In the search bar type in siebel and hit search. Click on ***Siebel CRM 20.x install Container w/Sample Database*** image
 
-1. Sub step 1
+  ![Select the Siebel CRM 20.x install Container w/sample database image option](./images/3.png " ")
 
-  To create a link to local file you want the reader to download, use this format:
+4. In the instance page select the most up to date version and then select the compartment you made earlier. Then click ***Launch Instance***
 
-  Download the [starter file](files/starter-file.sql) SQL code.
+  ![Select the desired compartment then select Launch Instance](./images/4.png " ")
 
-  *Note: do not include zip files, CSV, PDF, PSD, JAR, WAR, EAR, bin or exe files - you must have those objects stored somewhere else. We highly recommend using Oracle Cloud Object Store and creating a PAR URL instead. See [Using Pre-Authenticated Requests](https://docs.cloud.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)*
+5. In the Create Compute Instance page you will need to fill in additional info for your Instance
 
-2. Sub step 2 with image and link to the text description below. The `sample1.txt` file must be added to the `files` folder.
+    a.  **Name:** You can name it whatever you like, such as "siebel_instance"
 
-    ![Image alt text](images/sample1.png "Image title")
+    b.  **Select compartment:** Select the compartment that you created earlier
 
-3. Ordered list item 3 with the same image but no link to the text description below.
+    c.  **Configure placement and hardware:** You can leave this as it is by default for this Lab
 
-    ![Image alt text](images/sample1.png)
+    d.   For the next **Configure networking** section you will choose the ***SELECT EXISTING VIRTUAL CLOUD NETWORK*** option and choose the ***SELECT EXSISTING SUBNET*** option before selecting the Network and Subnet you created in the prevous lab
 
-4. Example with inline navigation icon ![Image alt text](images/sample2.png) click **Navigation**.
+    Make sure that ***ASSIGN A PUBLIC IP ADDRESS*** is also selected since we will use this to deploy our Siebel application
 
-5. One example with bold **text**.
+    e. **Add SSH keys:** here you will need to selct the ssh key you created earlier. You can either use the
 
-   If you add another paragraph, add 3 spaces before the line.
+    *   ***CHOOSE PUBLIC KEY FILES*** and open the public key file you made if you know its location
 
-## **STEP 2:** title
+        or you can use the
 
-1. Sub step 1
+    *   ***PASTE PUBLIC KEYS*** and paste the data within the keyfile if you have the file open
 
-  Use tables sparingly:
+    f.  **Configure boot volume:** You can leave this as default
 
-  | Column 1 | Column 2 | Column 3 |
-  | --- | --- | --- |
-  | 1 | Some text or a link | More text  |
-  | 2 |Some text or a link | More text |
-  | 3 | Some text or a link | More text |
+    g. Now review your settings and click ***Create*** at the bottom of the page when you are ready
 
-2. You can also include bulleted lists - make sure to indent 4 spaces:
+    ![Fill in desired name, compartment, AD, and leave everthing else as is](./images/5.1.png " ")
+    ![Select existing virtual cloud network, selct existing subnet, select assign a public IP adress, add your own ssh key then click create](./images/5.2.png " ")
 
-    - List item 1
-    - List item 2
+6. Now you will be taken to the Instance Page and will see that your newly created instance is provisioning
 
-3. Code examples
+     Once you see the small orange box change to green your instance will have provisioned successfully and now you can move onto the next step in the Lab
 
-    ```
-    Adding code examples
-  	Indentation is important for the code example to appear inside the step
-    Multiple lines of code
-  	<copy>Enclose the text you want to copy in <copy></copy>.</copy>
-    ```
+     ![Once the orange box changes to a green box your intance will have been succesfully provisioned](./images/6.png " ")
 
-4. Code examples that include variables
 
-	```
-  <copy>ssh -i <ssh-key-file></copy>
+## **STEP 2**: Deploying the Siebel Application
+
+After you have created the instance, you have to generate two URLs:
+*	Jenkins URL: To deploy Siebel application
+*	Application domain URL: To create Siebel industry specific application
+
+Generating Jenkins URL
+
+1.	Copy the Public IP Address from your previously created Instance
+
+  ![Copy the public IP adress of the instance you created ](./images/2.1.png " ")
+
+2.	Add the port 8080 preceded with a colon and paste the URL in a browser window to open the Jenkins application like this "<public IP address>:port number"
+
+    For example, you would type: 111.111.111.11:8080 into you browser search bar
+
+    **Note:** If your instance was created recently you may not be able to access the Jenkins URL right away, it may take an additional 5 min before you can complete this step
+
+3. Once you arrive at the Jenkins site you will enter the information as follows
+
+  USERNAME AND PASSWORD :  siebel/oracle
+
+  ![After reaching the site enter the username siebel, and password oracle. All lowercase](./images/2.3.png " ")
+
+4. After you have logged in you will see the Jenkins Home Screen. Select the ***SiebelDeploy*** option from the list
+
+  ![When logged in you will see this home screen, select siebel deploy](./images/2.4.png " ")
+
+5. Now select the ***Open Blue Ocean*** Option from the dropdown on the lefthand side of the screen
+
+  ![Select blue ocean from the left hand menu](./images/2.5.png " ")
+
+6. Select the ***Run*** button to create your new instance
+
+  ![SSelect the run button on the lefthand side of the screen](./images/2.6.png " ")
+
+7. In the window that opens you can specify the Siebel version and Industry that you desire. For this Lab we will choose Siebel version ***20.8*** and select ***Sales*** as the industry; then click the ***Run*** button
+
+  ![Select verion 20.8 , Then select Sales. Select sample version of docker](./images/2.7.png " ")
+
+8. After hitting run you will see that your new Siebel instance is being created, by clicking on it you can see more details
+
+    **This can take 40 minutes to fully deploy**
+
+    ![Wait unti the instance shows that it was successfully deployed. When finished it will have the green circle](./images/2.8.png " ")
+
+    Once it is finished provisioning you will see its status change to a green circle with a check signifying that it is complete and that you may move onto the next step
+
+## **STEP 3**: Generating application domain URL
+
+Generating the Application domain URL
+
+1. You can create the application URL using the port 4430, that you opened in the previous lab, and the industry you selected while deployment
+
+  **NOTE:** For this step you Google Chrome may not allow you to access the site, we recommend using an alternative such as Firefox for this step
+
+  The url you will need to type into your browser's search bar should look like this:
+
   ```
+https://<public IP address>:4430/siebel/app/<industry>/enu
+```
 
-*At the conclusion of the lab add this statement:*
-You may proceed to the next lab.
+  For example, if you selected Sales, your application URL for Sales industry  could be the following.
 
-## Learn More
+    https://111.111.111.11:4430/siebel/app/sales/enu
 
-*(optional - include links to docs, white papers, blogs, etc)*
+    **NOTE:** Make sure your url has ***"https"*** and not ***"http"*** at the beginning of it otherwise you will not obtain access
 
-* [URL text 1](http://docs.oracle.com)
-* [URL text 2](http://docs.oracle.com)
+    ![Type the appropriate url into the firefox searchbar](./images/blast.png " ")
+
+2. When accessing the url you may come across a "Potential Security Risk" warning message
+
+    ![Click the advanced button on this warning screen](./images/bblast.png " ")
+
+    Since this is the url and IP address that you created, you know that it is safe and that you can safely bypass the warning
+
+    You can do this on Firefox by first clicking the ***Advanced Settings*** button and then clicking ***Accept Risk and Continue*** button
+
+    ![Click the accept the risk and continue button](./images/aclast.png " ")
+
+3. Now you should see the proper site where you can log in with the default Siebel credentials
+
+  USERNAME AND PASSWORD :    SADMIN/Welcome1
+
+  ![On this login screen enter the default Siebel credentials, username SADMIN andd the password Welcome1](./images/last.png " ")
+
+  Please also note that the application URL will be specific to the Industry you select for deployment, for example, the URL could be:
+
+  For Service - https://"your ip address":4430/siebel/app/callcenter/enu
+
+  For Siebel Management Console (SMC) - https://"your ip address":4430/siebel/smc
+
+# Extension to provision
+Verify Siebel version on home screen
+login home Page
+from the health menu - check technical support Option
+popup box will show Siebel version, db connection, etc.
+
+In this lab you launched an instance of Siebel from the OCI marketplace, deployed the Siebel application, and then deployed the Siebel CRM Application.
+
+***Congratulations*** on completing this interactive lab and integrating Siebel with OCI. Please continue to work within the OCI environment using our other tutorials and explore our countless other features and possibilities
+
 
 ## Acknowledgements
-* **Author** - <Name, Title, Group>
-* **Contributors** -  <Name, Group> -- optional
-* **Last Updated By/Date** - <Name, Group, Month Year>
-* **Workshop (or Lab) Expiry Date** - <Month Year> -- optional, use this when you are using a Pre-Authorized Request (PAR) URL to an object in Oracle Object Store.
+* **Authors**
+  - JB Anderson, Cloud Engineering
+  - Chris Wegenek, Cloud Engineering
+  - Naresh Sanodariya, Cloud Engineering
+* **Contributors** -  Arunkumar Ravichandran, Cloud Engineering
+* **Last Updated By/Date** - Chris Wegenek, Cloud Engineering, Jan 2021
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
 
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.

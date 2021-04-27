@@ -1,8 +1,9 @@
 {
-  "workshoptitle": "Lift and Shift On-premises EBS to OCI",
+    "workshoptitle": "Lift and Shift On-premises EBS to OCI",
+    "help": "livelabs-help-oci_us@oracle.com",
     "tutorials": [
         {
-            "title": "Prerequisites",
+            "title": "Getting Started",
             "description": "Prerequisites for LiveLabs (Oracle-owned tenancies).",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
         },
@@ -29,6 +30,11 @@
             "title": "Teardown Your Oracle E-Business Suite Environments",
             "description": "Teardown Your Oracle E-Business Suite Environments",
             "filename": "../../teardownLL/teardownLL.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

@@ -163,12 +163,11 @@ Note: if multiple risk providers were configured, one tile would be shown for ea
     ![Image](images/L6014.png)
 
 
-###Additional Information
+## Additional Information
 
 This workbook is primarily designed to provide the necessary instructions and context to allow you to complete the labs in the Oracle Identity Cloud Service Workshop.  If you would like additional information about the Oracle solution, you can contact your local Oracle account team and/or review some of the following publicly available information about the solution.
 
 * [Identity Cloud Service website](https://cloud.oracle.com/en_US/identity)
-* [White Papers and eBook](https://cloud.oracle.com/opc/paas/ebooks/Oracle_Identity_Cloud.pdf)
 * [Solution Data Sheet](http://www.oracle.com/technetwork/middleware/id-mgmt/overview/idcs-datasheet-3097388.pdf)
 * [Product documentation](http://docs.oracle.com/cloud/latest/identity-cloud/index.html)
 * [Blogs](https://blogs.oracle.com/imc/)
@@ -180,5 +179,5 @@ This workbook is primarily designed to provide the necessary instructions and co
 * **Last Updated By/Date** - Lucian Ionescu, Principal Solution Engineer, 15.09.2020
 
 
-## See an issue?
-Please submit feedback using this [form](https://apexapps.oracle.com/pls/apex/f?p=133:1:::::P1_FEEDBACK:1). Please include the *workshop name*, *lab* and *step* in your request.  If you don't see the workshop name listed, please enter it manually. If you would like for us to follow up with you, enter your email in the *Feedback Comments* section.
+
+

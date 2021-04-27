@@ -1,6 +1,7 @@
 {
-      "workshoptitle": "Speed Up Data Science with the Accelerated Data Science SDK",
-      "tutorials": [
+    "workshoptitle": "Speed Up Data Science with the Accelerated Data Science SDK",
+    "help": "livelabs-help-oci_us@oracle.com",
+	"tutorials": [
         {
             "title": "Introduction",
             "description": "Introduction to the Data Science Service",
@@ -30,6 +31,11 @@
             "title": "Lab 5: Shutting Down a Notebook Session",
             "description": "Deactivate or terminate a notebook session.",
             "filename": "./../../common/notebook-shutdown.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/oci-library/need-help/need-help-livelabs.md"
         }
     ]
 }

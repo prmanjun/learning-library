@@ -1,11 +1,12 @@
 {
     "workshoptitle":"Analyze, Query, and Visualize Property Graphs with Oracle Database",
-    "tutorials": [
-      {
-          "title": "Prerequisites",
-          "description": "Register for a Free Tier account",
-          "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
-      },
+    "help": "livelabs-help-db_us@oracle.com",
+	"tutorials": [
+        {
+            "title": "Getting Started",
+            "description": "Register for a Free Tier account",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
+        },
         {
             "title": "Introduction",
             "description": "Introduction",
@@ -50,6 +51,11 @@
             "title": "Lab 8: Graph Visualization",
             "description":"Graph Query and Visualization of the Customer 360 data on the Free Tier compute",
             "filename":"../../visualize-graphs/visualize-graphs.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
         }
     ]
 }

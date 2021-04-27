@@ -1,9 +1,16 @@
 # In-Memory Joins and Aggregations
 
 ## Introduction
+
+In this lab, you will explore how to enable In-Memory on the Oracle Database and perform various queries on the In-Memory Column Store.
+
 Watch the video below to get an overview of joins using Database In-Memory.
 
 [](youtube:y3tQeVGuo6g)
+
+Quick walk through on how to perform In-Memory Joins and Aggregations.
+
+[](youtube:-yactiOo8fA)
 
 ### Objectives
 
@@ -19,7 +26,7 @@ This lab assumes you have completed the following labs:
 * Lab: Querying the IMC
 
 
-## Step: In-Memory Joins and Aggregation
+## Step 1: In-Memory Joins and Aggregation
 
 Up until now we have been focused on queries that scan only one table, the LINEORDER table. Let’s broaden the scope of our investigation to include joins and parallel execution. This section executes a series of queries that begin with a single join between the  fact table, LINEORDER, and a dimension table and works up to a 5 table join. The queries will be executed in both the buffer cache and the column store, to demonstrate the different ways the column store can improve query performance above and beyond the basic performance benefits of scanning data in a columnar format.
 
@@ -30,7 +37,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
     sqlplus ssb/Ora_DB4U@localhost:1521/orclpdb
     set pages 9999
     set lines 100
-    <copy>    
+    </copy>    
     ````
 
     ![](images/num1.png " ") 
@@ -139,7 +146,3 @@ Oracle Database adds In-Memory database functionality to existing databases, and
 - **Contributors** - Kay Malcolm, Anoosha Pilli, DB Product Management
 - **Last Updated By/Date** - Kay Malcolm, Director, DB Product Management, August 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.    Please include the workshop name and lab in your request. 
