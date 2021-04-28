@@ -4,39 +4,39 @@
 	"tutorials": [
       {
         "title": "Introduction",
-        "filename": "./workshop-intro/workshop-intro.md"
+        "filename": "./0-intro/intro.md"
       },
       {
         "title": "Getting Started",
         "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md"
       },
       {
-        "title": "Lab 1: Setup OCI, OKE, ATP and Cloud Shell",
-        "filename": "./setup-dev-environment/setup-dev-environment.md"
+        "title": "Lab 1: Setup",
+        "filename": "./1-setup/setup.md"
       },
       {
-        "title": "Lab 2: Build the GitHub code and deploy the microservices",
-        "filename": "./build-code-deploy-microservices/build-code-deploy-microservices.md"
+        "title": "Lab 2: Data-centric microservices walkthrough with Helidon MP",
+        "filename": "./2-walkthrough-helidon/walkthrough-helidon.md"
       },
       {
-        "title": "Lab 3: Setup database connection secrets, tables and AQ messaging",
-        "filename": "./setup-atp-connectivity-data-and-messaging/setup-atp-connectivity-data-and-messaging.md"
+        "title": "Lab 3: Polyglot Microservices",
+        "filename": "./3-polyglot/polyglot.md"
       },
       {
-        "title": "Lab 4: Data-centric microservices walkthrough with Helidon MP",
-        "filename": "./data-centric-microservices-helidon/data-centric-microservices-helidon.md"
+        "title": "Lab 4: Scaling",
+        "filename": "./4-scaling/scaling.md"
       },
       {
-        "title": "Lab 5: Polyglot Microservices",
-        "filename": "./review-polyglot-code-ha-setup/review-polyglot-code-ha-setup.md"
+        "title": "Lab 5: Tracing Using Jaeger",
+        "filename": "./5-tracing/tracing.md"
       },
       {
-        "title": "Lab 6: Scaling the Application",
-        "filename": "./scaling/scaling.md"
+        "title": "Lab 6: Create an APEX App to Make Sense of the Data",
+        "filename": "./6-apex/apex.md"
       },
       {
-        "title": "Lab 7: Create an APEX App to Make Sense of the Data",
-        "filename": "./build-an-apex-app/build-an-apex-app.md"
+        "title": "Lab 7: Tear Down",
+        "filename": "./7-teardown/teardown.md"
       },
       {
         "title": "Need Help?",

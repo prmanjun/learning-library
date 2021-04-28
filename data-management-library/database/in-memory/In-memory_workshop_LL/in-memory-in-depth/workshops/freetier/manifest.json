@@ -1,0 +1,63 @@
+{
+    "workshoptitle": "Oracle In-Memory In-Depth Workshop",
+    "include": {"starter-file.sql":"../../data-load/files/starter-file.sql",
+                "sample.json":"../../data-load/files/sample.json",
+                "step2.md":"../../data-load/files/step2.md"},
+    "support": "https://community.oracle.com/tech/developers/categories/autonomous-database-shared",
+    "help": "livelabs-help-**enterarea**_us@oracle.com",
+    "tutorials": [
+      {
+        "title": "Introduction and Overview",
+        "description":"In-Memory Overview",
+        "publisheddate": "10/15/2020",
+        "filename":"../../In_memory/Intro.md"
+    },
+    {
+        "title": "Lab setup",
+        "description": "Lab Setup",
+        "partnumber": "Ennnnn_01",
+        "publisheddate": "10/10/2020",
+        "contentid": "12nnnn",
+        "filename": "../../In_memory/LabSetup/Labsetup_mk.md"
+    },
+    {
+        "title": "LAB 01 :In-Memory Basics",
+        "description": "Enable, load, QUERY",
+        "partnumber": "Ennnnn_01",
+        "publisheddate": "10/10/2020",
+        "contentid": "12nnnn",
+        "filename": "../../In_memory/Enable_load/setup-inmem.md"
+    },
+
+    {
+        "title": "LAB 02 :In-Memory Features",
+        "description":"vector joins, hints,dbms packages.",
+        "publisheddate": "04/07/2020",
+        "filename":"../../In_memory/IM_features/queries.md"
+    },
+
+    {
+        "title": "LAB 03 :Mixed workoad",
+        "description":"Multitenant Application Containers",
+        "publisheddate": "04/07/2020",
+        "filename":"../../In_memory/Mixed_workload/mixed-workload.md"
+    },
+    {
+        "title": "LAB 04 :In-Memory POC using Sql*Developer",
+        "description":"Multitenant Application Containers",
+        "publisheddate": "04/07/2020",
+        "filename":"../../In_memory/sqlDev/InmemoryPOC.md"
+    },
+    {
+        "title": "LAB 05 :Miscellaneous Complementary Features",
+        "description":"Multitenant Application Containers",
+        "publisheddate": "04/07/2021",
+        "filename":"../../In_memory/sqlDev/InmemoryPOCMisc.md"
+    },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-freetier.md"
+        }
+    ]
+}

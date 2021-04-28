@@ -29,7 +29,7 @@ This lab assumes you have:
 
   ![](./images/em-create-stack.png " ")
 
-4.  Select **My Configuration**, choose the **.ZIP FILE** button, click the **Browse** link and select the zip file (dbsec-lab-mkplc-freetier.zip) that you downloaded. Click **Select**.
+4.  Select **My Configuration**, choose the **.ZIP FILE** button, click the **Browse** link and select the zip file that you downloaded. Click **Select**.
 
   ![](./images/zip-file.png " ")
 

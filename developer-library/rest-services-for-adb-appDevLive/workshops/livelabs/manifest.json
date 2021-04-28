@@ -1,0 +1,55 @@
+{
+  "workshoptitle": "RESTful Services for your Autonomous Database",
+    "help": "livelabs-help-db_us@oracle.com",
+	"tutorials": [
+        {
+            "title": "Introduction",
+            "description": "About the Introduction to REST Services Workshop",
+            "filename": "../../intro/intro.md"
+        },
+        {
+            "title": "Login to Oracle Cloud",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs.md"
+        },
+        {
+            "title": "Lab 1: Provisioning Autonomous Database (ADW and ATP)",
+            "description": "Provision an Autonomous Database - ATP or ADW",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md"
+        },
+        {
+            "title": "Lab 2: Connect to ADB",
+            "description": "Connect to an Autonomous Database with SQL Developer Web",
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/sqldevweb-login/sqldevweb-login.md"
+        },
+        {
+            "title": "Lab 3: User Setups",
+            "description": "RESTful Services for your Autonomous Database",
+            "filename": "../../user_setups/user_setups.md"
+        },
+        {
+            "title": "Lab 4: Create and Auto-REST enable a table",
+            "description": "Modern App Dev with Oracle REST Data Services",
+            "filename": "../../create_table/create_table.md"
+        },
+        {
+            "title": "Lab 5: Load data and create business logic in the database",
+            "description": "Modern App Dev with Oracle REST Data Services",
+            "filename": "../../load_data_and_biz_objs/load_data_and_biz_objs.md"
+        },
+        {
+            "title": "Lab 6: REST enable tables and business logic",
+            "description": "Modern App Dev with Oracle REST Data Services",
+            "filename": "../../REST_enable_objects/REST_enable_objects.md"
+        },
+        {
+            "title": "Lab 7: Securing the REST endpoints",
+            "description": "Modern App Dev with Oracle REST Data Services",
+            "filename": "../../secure_endpoints/secure_endpoints.md"
+        },
+        {
+            "title": "Need Help?",
+            "description": "Solutions to Common Problems and Directions for Receiving Live Help",
+            "filename":"https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/need-help/need-help-livelabs.md"
+        }
+    ]
+}
