@@ -26,9 +26,9 @@ In this lab, you will:
 
 1. Spin up a database using Oracle Cloud Infrastructure to serve as the "Primary" database
 
-2. Click on the "Bare Metal, VM, and Exadata" tab under "Oracle Database" on the Cloud Console sidebar. 
+2. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Bare Metal, VM, and Exadata**.
 
-  ![](./screenshots/dg-screenshots/1-1.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbcs.png " ")
 
 3. Now let's create a DB System by clicking "Create DB System"
 

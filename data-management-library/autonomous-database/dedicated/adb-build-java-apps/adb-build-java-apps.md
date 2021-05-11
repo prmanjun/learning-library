@@ -23,8 +23,9 @@ As an application developer,
 
 ## STEP 1: Download sample java application
 
-- Login to your Oracle Cloud Infrastructure account and select *Compute* and *Instances* from the hamburger menu top left.
-    ![](./images/Compute1.png " ")
+- Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 - Select the right Oracle Developer Cloud image you created in earlier labs. 
 
@@ -94,8 +95,9 @@ tar xzfv ojdbc8-full.tar.gz
 
 ## STEP 2: Transfer database wallet to developer client
 
-- Login to Oracle Cloud Infrastructure account and click on *Autonomous Transaction Processing* from top left menu.
-    ![](./images/atpd1.png " ")
+- Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 - Click on Autonomous Database and select your previously created database.
     ![](./images/atpd2.png " ")

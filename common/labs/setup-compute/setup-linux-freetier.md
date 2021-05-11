@@ -28,8 +28,9 @@ This lab assumes you have:
 If you already have a VCN created, skip this step and proceed to *STEP 3*.
 
 1.  Login to your Oracle Cloud account
-2.  Click the **Create a Stack** tile on the homepage.  You may also get to Resource Manager by clicking on the Hamburger **Menu** -> **Solutions and Platform** -> **Resource Manager**
-![Create a stack](images/db19c-freetier-step1.png " ")
+2.  Click the **Create a Stack** tile on the homepage.  Or, click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 3.  In the Browse Solutions window, select **Default VCN**.
     ![Image alt text](images/db19c-freetier-step1-2.png " ")
 
@@ -58,7 +59,8 @@ Now that your stack has been created, you will run an *apply* job to create the 
 ![Image alt text](images/db19c-freetier-step1-12.png " ")
 7. Copy the first subnet id to a notepad and save for the next step.  If you would like to further inspect the VCN, complete #s 8-12.  Otherwise skip to the next section.
 ![Image alt text](images/db19c-freetier-step1-13.png " ")
-8.  Click on the hamburger menu in the upper left corner of your browser.  Select **Networking**->**Virtual Cloud Networks**. ![Image alt text](images/db19c-freetier-step1-14.png " ")
+8.  Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 9.  The VCN you created should be listed.  Click on the VCN you just created.
 ![Image alt text](images/db19c-freetier-step1-15.png " ")  
 10.  On the VCN homepage notice the 3 subnets that were created.  Each subnet is tied to an Availability Domain.  Click on the first subnet that matches AD-1.
@@ -69,8 +71,9 @@ Now that your stack has been created, you will run an *apply* job to create the 
 ![Image alt text](images/db19c-freetier-step1-18.png " ")        
 
 ## **STEP 3**: Setup Compute Stack
-1.  Click the **Create a Stack** tile on the homepage.  You may also get to Resource Manager by clicking on the Hamburger **Menu** -> **Solutions and Platform** -> **Resource Manager**
-![Create a stack](images/db19c-freetier-step1.png " ")
+1.  Click the **Create a Stack** tile on the homepage. Or, click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
+
 3.  In the Browse Solutions window, select **Compute**. Click the **Select Solution** button.
     ![Image alt text](images/linux-compute-step3-1.png " ")
 
@@ -104,7 +107,8 @@ Now that your stack has been created, you will run an *apply* job to create the 
 ![Image alt text](images/linux-compute-step3-9.png " ")
 6. You will notice that 3 objects were created.  Your instance has a private IP address and a public IP address.  Copy the public IP address, you will need it to connect to your instance.
 ![Image alt text](images/db19c-freetier-step1-12.png " ")
-7.  Click on the hamburger menu in the upper left corner of your browser.  Select **Compute**->**Instance**. ![Image alt text](images/linux-compute-step3-10.png " ")
+7. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 8.  The compute instance you created should be listed. Note the public IP address.
 ![Image alt text](images/linux-compute-step3-11.png " ")     
 

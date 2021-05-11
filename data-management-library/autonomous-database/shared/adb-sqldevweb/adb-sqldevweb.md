@@ -4,6 +4,8 @@
 
 In this lab, you will explore the provided sample data sets that come with your Autonomous Data Warehouse (ADW) or Autonomous Transaction Processing (ATP) instance using SQL Worksheet.
 
+Estimated Lab Time: 5 minutes
+
 ### Before You Begin
 
 This lab uses SQL Worksheet, one of the features of the Database Actions web-based interface for Oracle Autonomous Database.

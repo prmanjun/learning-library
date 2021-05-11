@@ -7,7 +7,7 @@ In this lab, you will download the Oracle Resource Manager (ORM) stack zip file 
 
 ### Objectives
 -   Download ORM stack
--   Configure an existing Virtual Cloud Network (VCN)
+-   Configure an existing Virtual Cloud Network (VCN) - Optional
 
 ### Prerequisites
 This lab assumes you have:
@@ -21,7 +21,7 @@ This lab assumes you have:
 
 We strongly recommend using this stack to create a self-contained/dedicated VCN with your instance(s). Skip to *Step 3* to follow our recommendations. If you would rather use an exiting VCN then proceed to the next step as indicated below to update your existing VCN with the required Egress rules.
 
-## **Step 2**: Adding Security Rules to an Existing VCN   
+## **Step 2**: Adding Security Rules to an Existing VCN  (Optional) 
 This workshop requires a certain number of ports to be available, a requirement that can be met by using the default ORM stack execution that creates a dedicated VCN. In order to use an existing VCN the following ports should be added to Egress rules
 
 | Port           |Description                            |
@@ -52,4 +52,4 @@ You may now [proceed to the next lab](#next).
 
 * **Author** - Rene Fontcha, LiveLabs Platform Lead, NA Technology
 * **Contributors** - Meghana Banka, Rene Fontcha, Narayanan Ramakrishnan
-* **Last Updated By/Date** - Rene Fontcha, LiveLabs Platform Lead, NA Technology, April 2021
+* **Last Updated By/Date** - Kay Malcolm, May 2021

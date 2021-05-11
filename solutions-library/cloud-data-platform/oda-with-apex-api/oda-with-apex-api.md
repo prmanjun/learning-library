@@ -32,9 +32,9 @@ In this lab, you will learn how to navigate to an Oracle Digital Assistant insta
 
     ![](./images/1.png " ")
 
-2. In the side menu, navigate to **Digital Assistant** under Data and AI.
-
-    ![](./images/2.png " ")
+2. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Digital Assistant**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-assist.png " ")
 
 3. On the Digital Assistant Instances screen, find the **Compartment** drop down on the left, and select the compartment of your choice from the drop down list.  Here, I am choosing the CloudDataWorkshop compartment.
 

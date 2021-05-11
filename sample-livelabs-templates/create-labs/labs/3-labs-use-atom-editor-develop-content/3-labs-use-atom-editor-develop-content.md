@@ -18,7 +18,7 @@ You can use your preferred editor to author and edit your Markdown (.md) content
 * An IDE, such as Atom.
 * A local web server such as **atom-live-server**, a plugin for `Atom.io`.
 
-## **Step 1:** Install Atom
+## **STEP 1:** Install Atom
 `Atom.io` is a 3rd party IDE freely available under MIT License.
 
 To install Atom:
@@ -27,7 +27,7 @@ To install Atom:
   ![](./images/use-atom-editor-download.png " ")
 3. From the extracted files, click `atom.exe` to launch Atom.
 
-## **Step 2:** Install the atom-live-server Plugin
+## **STEP 2:** Install the atom-live-server Plugin
 You must NOT be connected to Oracle's network or VPN while installing the **atom-live-server** package.
 
 To install **atom-live-server**:
@@ -45,7 +45,7 @@ To install **atom-live-server**:
 The **atom-live-server** plugin is added to the **Packages** menu.
   ![](./images/use-atom-editor-welcome-atom-live-server-package-menu.png " ")
 
-## **Step 3:** Merge Content from Git Before you Start Editing your Content
+## **STEP 3:** Merge Content from Git Before you Start Editing your Content
   Everyday before you start editing your content, ensure to do a Merge in **GitHub Desktop**.
   Merging synchronizes the content in your cloned repository with the latest content on the **upstream/master** repository and ensures that you have the most recent versions of the templates and other workshops/labs.
 
@@ -72,10 +72,12 @@ The **atom-live-server** plugin is added to the **Packages** menu.
 
   ![](./images/git-hub-merge-fetch-origin.png " ")
 
-## **Step 4:** Create your Labs and Workshop Content
+## **STEP 4:** Create your Labs and Workshop Content
 Leverage the content from the **learning-library\sample-livelabs-templates\sample-workshop** folder to start creating lab and workshop content for your project.
 
-**Note**: Ensure to update your clone from the **upstream/master** repository (detailed in **Step 2**) on a regular basis whenever we are working on the markdown files.
+*For screen shots of OCI menu navigation, use the images with absolute links in **Lab 1: Provision an Instance** markdown from the sample-workshop. A preview of the images can be found **[here](https://oracle.github.io/learning-library/sample-livelabs-templates/sample-workshop/workshops/freetier/index.html?lab=provision)** under STEP 0.*
+
+**Note**: Ensure to update your clone from the **upstream/master** repository (detailed in **STEP 2**) on a regular basis whenever we are working on the markdown files.
 
 To create your lab and workshop content:
 1. Submit your workshop to the [LiveLabs Workshop Management System](http://bit.ly/oraclelivelabs) BEFORE you begin development.  No github requests will be approved without an approved LWMS ID.
@@ -115,7 +117,7 @@ To create your lab and workshop content:
 
 * Click [here](https://confluence.oraclecorp.com/confluence/display/DBIDDP/LiveLabs+Markdown+Template+Features) for a deeper dive into more robust Markdown Template features.
 
-## **Step 5:** Preview Your Workshop and Labs Using atom-live-server
+## **STEP 5:** Preview Your Workshop and Labs Using atom-live-server
 
   To preview your output in a browser:
 1. Start the **atom-live-server**. In the Atom editor, select **Packages > atom-live-server > Start server**.
@@ -135,7 +137,13 @@ You may now [proceed to the next lab](#next).
 
 ## Want to Learn More?
 [Basic Writing and Formatting Syntax](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+
 [LiveLabs Markdown Template Features](https://confluence.oraclecorp.com/confluence/display/DBIDDP/LiveLabs+Markdown+Template+Features)
+
+[LiveLabs Sample Workshop](https://oracle.github.io/learning-library/sample-livelabs-templates/sample-workshop/workshops/freetier)
+
+[LiveLabs OCI Menu Navigation Common Path Picture](https://oracle.github.io/learning-library/sample-livelabs-templates/sample-workshop/workshops/freetier/?lab=provision#STEP0:UsetheseStandardizedPicturesforOracleCloudNavigation(CommonlyforProvisioning))
+
 ## Acknowledgements
 * **Author:**
     * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate

@@ -6,6 +6,12 @@ This lab walks you through the steps to provision an Oracle Analytics Cloud (OAC
 
 Estimated Lab Time: 15 minutes
 
+Quick walk through on how to provision and register an Oracle Machine Learning model into Oracle Analytics Cloud.
+
+[](youtube:Jv8070F5Uw8)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
+
 ### Objectives
 
 In this lab, you will:
@@ -37,9 +43,9 @@ In this lab, you will:
     ![](./images/analytics-create-instance.png " ")
 
 5. This bring up the **Create Analytics Instance** screen, specify the configuration of the instance:
-    - **Compartment** - Select the compartment that houses the ADW Good Wine instance from Lab 1 in the drop-down list.
-    - **Instance Name** - Use letters and numbers only, starting with a letter. This lab uses **OACWINE** as the instance name.
+    - **Name** - Use letters and numbers only, starting with a letter. This lab uses **OACWINE** as the instance name.
     - **Description** - This is an optional field to add a description or note to remind yourself of what the instance is for. We added **Oracle Analytics Instance for Good Wine Workshop** for our own reference.
+    - **Create in Compartment** - Select the compartment that houses the ADW Good Wine instance from Lab 1 in the drop-down list.
 
     ![](./images/create-cloud1.png " ")
 
@@ -60,7 +66,7 @@ In this lab, you will:
 
 1. First, you need to download the wallet file containing your credentials. From the hamburger menu, select **Autonomous Data Warehouse** and navigate to your Autonomous Database instance.
 
-    ![](./images/choose-adb.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/choose-adb-adw.png " ")
 

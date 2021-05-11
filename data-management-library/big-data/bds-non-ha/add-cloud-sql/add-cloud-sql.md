@@ -34,7 +34,9 @@ You can use the **Clusters** and **Cluster Details** pages to maintain your clus
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
 </if>
 
-2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Data and AI**, select **Big Data**.
+2. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Big Data**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/bigdata.png " ")
 
 3. On the **Clusters** page, on the row for **`training-cluster`**, click the **Actions** button to display the context menu.
 

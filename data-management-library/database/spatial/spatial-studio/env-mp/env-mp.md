@@ -21,9 +21,9 @@ In this lab, you will:
 
 ## **STEP 1**: Select Spatial Studio from Marketplace
 
-1. Log into your Oracle Cloud, click the main hamburger menu, and select  Marketplace > Applications
+1. Click the **Navigation Menu** in the upper left and select **Marketplace**.
 
-    ![Image alt text](images/env-marketplace-1.png "Image title")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/marketplace.png " ")	
 
 2. Search for Spatial Studio and then click on the Oracle Spatial Studio app
 
@@ -203,9 +203,9 @@ Oracle Spatial Studio is now provisioned and tested. The following Lab provides 
 
  **If you would like to fully remove your Marketplace deployment, proceed with the following.**
 
-1. Navigate to Resources > Stack
+1. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
 
-    ![Image alt text](images/env-marketplace-19.png "Image title")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 
 2. Choose the Compartment and Name used in STEP 2. In the example shown below, a compartment named sandbox and Stack named Oracle Spatial Studio was used.
 

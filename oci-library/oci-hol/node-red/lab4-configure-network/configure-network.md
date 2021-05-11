@@ -18,11 +18,12 @@ Estimated Lab Time: 20 minutes
 
 ## **Step 1**: Configure Network Security List
 
-1. Using the menu, click on **Virtual Cloud Network** and then the VCN you created for this practice.
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**. Select the VCN by clicking on its name
 
-   ![Click on the VCN](images/vcn1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. Now click on **Security Lists** on the left navigation bar for the VCN.
+
    ![Click on Security Lists](images/vcn2.png " ")
 
 3. Click on the **Default Security List**.

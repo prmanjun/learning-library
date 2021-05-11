@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "Develop, debug and deploy Kubernetes applications in a remote OKE cluster",
+    "workshoptitle": "Develop, Debug and Deploy Kubernetes Applications in a Remote OKE Cluster",
     "help": "livelabs-help-weblogic_us@oracle.com",
     "tutorials": [
         {
@@ -13,17 +13,17 @@
             "type": "oci"
         },
         {
-            "title": "Lab 1: Install Pre-requisites",
+            "title": "Lab 1: Install Prerequisites",
             "publisheddate": "01/07/2021",
             "filename": "../../../prereq-devops/prereq-devops.md"
         },
         {
-            "title": "Lab 2: Deploy an OKE cluster with OCI Service Broker",
+            "title": "Lab 2: Deploy an OKE Cluster with OCI Service Broker",
             "publisheddate": "01/07/2021",
             "filename": "../../../deploy/deploy.md"
         },
         {
-            "title": "Lab 3: Understanding the demo project",
+            "title": "Lab 3: Understanding the Demo Project",
             "publisheddate": "01/07/2021",
             "filename": "../../../understanding-project/understanding-project.md"
         },
@@ -38,17 +38,17 @@
             "filename": "../../../skaffold/skaffold.md"
         },
         {
-            "title": "Lab 6: Debugging remote containers",
+            "title": "Lab 6: Debug Remote Containers",
             "publisheddate": "01/07/2021",
             "filename": "../../../skaffold-debug/skaffold-debug.md"
         },
         {
-            "title": "Lab 7: Github Actions for CI/CD",
+            "title": "Lab 7: GitHub Actions for CI/CD",
             "publisheddate": "01/07/2021",
             "filename": "../../../ci-cd/ci-cd.md"
         },
         {
-            "title": "Lab 8: Tear down the Environment",
+            "title": "Lab 8: Tear Down the Environment",
             "publisheddate": "01/07/2021",
             "filename": "../../../tear-down-devops/tear-down-devops.md",
             "type": "dbcs"
@@ -56,7 +56,7 @@
         {
             "title": "Need Help?",
             "publisheddate": "10/06/2020",
-            "filename": "../../../../weblogic-to-oci/need-help/need-help.md"
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/developer-library/weblogic-to-oci/need-help/need-help.md"
         }
      ]
 }

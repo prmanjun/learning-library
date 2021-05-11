@@ -28,13 +28,9 @@ Note: Please download the above file before continuing. Normally, while working 
 
 If you are using an Autonomous Database to emulate the EBS database, please follow Step 1, else proceed to Step 2.
 
-1. Go to the navigation menu using the menu button in the top left.
-
-    ![](./images/3.1.png " ")
-
-2. Choose **Autonomous Data Warehouse** from the **Oracle Database** section.
-
-    ![](./images/3.2.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse**.
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 3. Click on the **Create Autonomous Database** button.
 

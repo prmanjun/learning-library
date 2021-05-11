@@ -20,9 +20,9 @@ _Note: You may see differences in account details (eg: Compartment Name is diffe
 
 *Note: it takes approximately 20 minutes to create your workshop environment.*
 
-1. After you have logged in to your LiveLabs environment, click on the menu icon and then select Autonomous Data Warehouse from the menu.
-
-    ![](images/open-adw.png)
+1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse**.
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 2. Select the compartment assigned to you from the **List Scope menu** and then click the ADW instance.
 
@@ -36,9 +36,9 @@ _Note: You may see differences in account details (eg: Compartment Name is diffe
 
 To provision an Autonomous Database:
 
-1. Click the hamburger menu, search for **Autonomous Data Warehouse**, and click on it.
-
-    ![](images/create-adw.png)
+1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse**.
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 2. From the Oracle Cloud Infrastructure Console, on the Autonomous Database page choose your region and select a compartment.
 

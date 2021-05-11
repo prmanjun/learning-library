@@ -28,9 +28,9 @@ In this lab, you will:
 
 1. Log in to the **Oracle Cloud Infrastructure Console** with your username and password. See [Signing in to the Console](https://docs.cloud.oracle.com/en-us/iaas/Content/GSG/Tasks/signingin.htm) in the *Oracle Cloud Infrastructure* documentation.
 
-2. After you log in to the Console, open the navigation menu, and then under **Database Related Services**, select **GoldenGate**.
+2. After you log in to the Console, click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **GoldenGate**.
 
-   ![Select GoldenGate Deployments in Navigation menu](images/01-01-02.png "Access GoldenGate service")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-goldengate.png " ")
 
    You're brought to the **Deployments** page.
 

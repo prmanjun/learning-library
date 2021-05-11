@@ -36,9 +36,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 1:** Export the machine learning model
 
-1.  If you are not logged into Database Actions as ML\_USER user, log in to your cloud account, click the hamburger menu, select **Autonomous Data Warehouse**, choose your compartment and navigate to your instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse** and navigate to your instance.
 
-    ![](./images/choose-adw.png  " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/adw-instance.png " ")
 
@@ -111,9 +111,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 2:** Create ML User in ATP
 
-1.  From the hamburger menu, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
 
-    ![](./images/choose-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     ![](./images/atp-instance.png " ")
 
@@ -143,9 +143,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 3:** Grant Privileges to ML_USER to access Database Actions
 
-1.  From the hamburger menu, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
 
-    ![](./images/choose-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     ![](./images/atp-instance.png " ")
 
@@ -205,9 +205,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 4:** Download ADW Credentials Wallet
 
-1.  Click the hamburger menu and navigate to the **ADW Instance**.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse** and navigate to your instance.
 
-    ![](./images/choose-adw.png  " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/adw-instance.png " ")
 
@@ -231,9 +231,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 5:** Create a Bucket and Upload Your Data
 
-1.  Click the hamburger menu, click on **Object Storage** and select **Object Storage**.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Storage**, and select **Buckets**.
 
-    ![](./images/object-storage.png  " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
 
 2.  Choose the compartment and click **Create Bucket**.
 
@@ -283,9 +283,9 @@ To load data from the Oracle Cloud Infrastructure(OCI) Object Storage you will n
 
 ## **STEP 7:** Copy Machine Learning Models between ADW and ATP
 
-1.  From the hamburger menu, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
 
-    ![](./images/choose-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     ![](./images/atp-instance.png " ")
 

@@ -60,9 +60,9 @@ Service Gateway alleviates the preceding concerns by enabling the following func
 
     ![](./../grafana/images/Grafana_015.PNG " ")
 
-2. From the OCI Services menu, Click **Object Storage**.
+2. Click the **Navigation Menu** in the upper left, navigate to **Storage**, and select **Buckets**.
 
-    ![](./../using-service-gateway/images/SGW_031.PNG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
 
 3. Ensure correct Compartment (Left side of the OCI console).
 

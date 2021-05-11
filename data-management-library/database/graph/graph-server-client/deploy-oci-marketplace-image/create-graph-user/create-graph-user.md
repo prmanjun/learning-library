@@ -20,9 +20,9 @@ Estimated time: 3 minutes
 
 1. Login as the Admin user in SQL Developer Web of the newly created ADB instance.
 
-    Go to your Cloud Console, click **Autonomous Transaction Processing**. Select the ADB instance **ATP Graph** you created in Lab 2.
+    Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
-    ![](images/select_ATP.png)
+	  ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     In Autonomous Database Details page, click **Service Console**. Make sure your brower allow pop-up windows.
 

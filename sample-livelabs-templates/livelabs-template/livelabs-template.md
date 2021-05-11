@@ -29,8 +29,10 @@ In this lab, you will:
 
 *Use this section to describe any prerequisites, including Oracle Cloud accounts, set up requirements, etc.*
 
-* An Oracle Cloud Account - Please review this workshop's LiveLabs landing page to see which environments are supported.
+* An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
 * Item no 2 with url - [URL Text](https://www.oracle.com).
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 
 *This is the "fold" - below items are collapsed by default*
 

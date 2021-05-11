@@ -10,8 +10,8 @@ const shortcutbtn_click = [
     { id: '#btn_h1', placeholder1: '# Enter h1 title here\n', placeholder2: '# ', placeholder3: undefined },
     { id: '#btn_h2', placeholder1: '## Enter h2 title here\n', placeholder2: '## ', placeholder3: undefined },
     { id: '#btn_h3', placeholder1: '### Enter h3 title here\n', placeholder2: '### ', placeholder3: undefined },
-    { id: '#btn_icon', placeholder1: '![alt text](img/img_name.png)', placeholder2: '![', placeholder3: '](img/img_name.png)' },
-    { id: '#btn_image', placeholder1: '![alt text](img/img_name.png "Description of image follows")', placeholder2: '![', placeholder3: '](img/img_name.png "image title")' },
+    // { id: '#btn_icon', placeholder1: '![alt text](images/icon_img_name.png)', placeholder2: '![', placeholder3: '](images/icon_img_name.png)' },
+    { id: '#btn_image', placeholder1: '![alt text](images/img_name.png)', placeholder2: '![', placeholder3: '](images/img_name.png)' },
     { id: '#btn_link', placeholder1: '[Text to display](https://www.example.com)', placeholder2: '[', placeholder3: '](https://www.example.com)' },
     { id: '#btn_bold', placeholder1: '**Enter text here**', placeholder2: '**', placeholder3: '**' },
     { id: '#btn_italics', placeholder1: '_Enter text here_', placeholder2: '_', placeholder3: '_' },
@@ -31,7 +31,7 @@ const nav_pages = [
 // links to the template files on Github
 const template_md = "https://raw.githubusercontent.com/oracle/learning-library/master/sample-livelabs-templates/livelabs-template/livelabs-template.md";
 const template_html = "https://raw.githubusercontent.com/oracle/learning-library/master/templates/redwood-hol/index.html";
-const main_js = "https://oracle.github.io/learning-library/common/redwood-hol/js/main.js";
+const main_js = "https://oracle.github.io/learning-library/common/redwood-hol/js/main.min.js";
 
 // The beautifer is used for beautifying and indenting the HTML source files when the download zip feature is used.
 const beautifier = "./js/beautifier.min.js";
@@ -46,7 +46,7 @@ let images_md = [], images_dir = [];
 
 // document.ready function
 $(() => {
-    $('#lastmodified').text(document.lastModified); //sets the value for the last modified date in the HTML output
+    $('#lastmodified').text('Thu Apr 29 2021 15:55:23 GMT+0530'); //sets the value for the last modified date in the HTML output
     loadFile(nav_pages[0].html); //loads the first page in the array by default
 
     window.localStorage.removeItem("manifestValue"); // REMOVE LATER (after manifest page is fixed)
@@ -442,11 +442,11 @@ let showMdInHtml = () => {
         $(htmlElement).attr('id', 'htmlElement');
         $(htmlElement).html(new showdown.Converter().makeHtml($('#mdBox').val()));
 
-        if (!$('#show_images').is(":checked")) {
-            $('#btn_image_files').hide();
-            $(htmlElement).find('img').removeAttr("src");
-            $(htmlElement).find('img').remove();
-        }
+        // if (!$('#show_images').is(":checked")) {
+        //     $('#btn_image_files').hide();
+        //     $(htmlElement).find('img').removeAttr("src");
+        //     $(htmlElement).find('img').remove();
+        // }
 
         if ($('#htmlBox').length === 0) {
             let htmlBox = document.createElement('div');
@@ -458,9 +458,9 @@ let showMdInHtml = () => {
         $('#previewIframe').remove();
         $('#previewBox').remove();
 
-        if ($('#show_images').is(":checked")) {
+        // if ($('#show_images').is(":checked")) {
             loadImages();
-        }
+        // }
     }
     else {
         window.localStorage.setItem('preview', 'home');
@@ -471,19 +471,19 @@ let showMdInHtml = () => {
             let previewIframe = document.createElement('iframe');
             $(previewIframe).attr({
                 id: 'previewIframe',
-                src: 'preview/index.html',
+                src: 'preview/index.html?nav=close',
                 style: 'height: 1000px;',
                 frameborder: '0'
             });
             $(previewIframe).on('load', function () {
-                if (!$('#show_images').is(":checked")) {
-                    $('#btn_image_files').hide();
-                    $(this).contents().find('img').removeAttr("src");
-                    $(this).contents().find('img').remove();
-                }
-                else {
-                    $('#btn_image_files').show();
-                }
+                // if (!$('#show_images').is(":checked")) {
+                //     $('#btn_image_files').hide();
+                //     $(this).contents().find('img').removeAttr("src");
+                //     $(this).contents().find('img').remove();
+                // }
+                // else {
+                //     $('#btn_image_files').show();
+                // }
                 $(this).height(this.contentWindow.document.body.scrollHeight + 'px');
             });
 
@@ -493,6 +493,7 @@ let showMdInHtml = () => {
         else {
             $('#previewIframe').attr('src', function (i, val) { return val; });
         }
+        loadImages();
         $('#htmlBox').remove();
     }
 }

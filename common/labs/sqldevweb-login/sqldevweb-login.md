@@ -25,7 +25,7 @@ Estimated time: 5 minutes
 ## Conclusion
  You are now connected to your Autonomous Database using SQL Developer Web.
 
-## **Acknowledgements**
+## Acknowledgements
 
  - **Author** - Troy Anthony, Database Product Management, May 2020
  - **Contributors** - Oracle LiveLabs QA Team (Arabella Yao, Product Manager Intern | Jaden McElvey, Technical Lead | Ayden Smith, Intern)

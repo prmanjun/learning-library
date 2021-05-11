@@ -6,6 +6,12 @@ Oracle Machine Learning notebook Apache Zeppelin comes with your Autonomous Data
 
 Estimated Lab Time: 15 minutes
 
+Quick walk through on how to import and run the Machine Learning notebook.
+
+[](youtube:qx2S7Eyuuec)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
+
 ### About Product/Technology
 
 The business problem defined here is to find a good wine that is less than 30 dollars using Oracle Machine Learning models to predict a wine's score.
@@ -35,7 +41,7 @@ In this lab, you will:
 
 1.  From the hamburger menu, select **Autonomous Data Warehouse** and navigate to your Autonomous Database instance.
 
-    ![](./images/choose-adb.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/choose-adb-adw.png " ")
 

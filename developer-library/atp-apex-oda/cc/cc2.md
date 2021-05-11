@@ -210,9 +210,9 @@ Ready to create your **Custom Component** scaffolding.
 
 ## **STEP 4:** Upload the file to Object Storage
 
-1. On the Oracle cloud console, click on hamburger menu, select **Object Storage** from the menu and choose **Object Storage**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Storage**, and select **Buckets**.
 
-    ![Choose object Storage](./images/object-storage.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
 
 2. Choose right **Compartment** from the compartment drop-down and click on **Create Bucket**.
 

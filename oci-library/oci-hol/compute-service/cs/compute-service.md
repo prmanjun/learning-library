@@ -126,11 +126,12 @@ An Oracle Cloud Infrastructure VM compute instance runs on the same hardware as 
 
     **NOTE:** Your browser will not return anything because port 80 was not opened into the Security Lists
 
-4. Using the menu, click on **Virtual Cloud Network** and then the VCN you created for this practice.
+4. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**. Then click on the VCN name you created for this practice.
 
-    ![Click on the VCN](images/vcn1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 5. Now click on **Security Lists** on the left navigation bar for the VCN.
+
     ![Click on Security Lists](images/vcn2.png " ")
 
 6. Click on the **Default Security List**.

@@ -25,7 +25,9 @@ If you want to list the resources in your **`training-compartment`**, you can us
 
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used in the workshop.
 
-2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console**, and then navigate to **Data and AI > Big Data**.
+2. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Big Data**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/bigdata.png " ")
 
 3. On the **Clusters** page, on the row for **`training-cluster`**, click the **Actions** button, and then select **Terminate Big Data Cluster** from the context menu.
 

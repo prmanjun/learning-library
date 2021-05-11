@@ -18,9 +18,9 @@ This lab assumes you have already completed the following:
 
 ## **STEP 1:** Create the VCN
 
-1. Open the navigation menu. Under **Core Infrastructure**, go to **Networking** and click **Virtual Cloud Networks**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-   ![](./images/image-20200505123858663.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. Click **Start VCN Wizard**.
 

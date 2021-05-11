@@ -41,7 +41,9 @@ In this lab, you will:
 
 ### Prerequisites
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
+* An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 
 <if type="livelabs">
 
@@ -67,7 +69,7 @@ In this lab, you will:
 
 5. Click on the menu icon and then select Autonomous Data Warehouse from the menu.
 
-    ![](images/open-adw.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 6. Select the compartment assigned to you from the **List Scope menu** and then click the ADW instance.
 

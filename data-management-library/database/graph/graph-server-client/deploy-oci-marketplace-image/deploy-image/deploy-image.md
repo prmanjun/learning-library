@@ -64,9 +64,9 @@ Oracle Cloud Marketplace stacks are a set of Terraform templates that provide a 
 
 6. Add an Ingress Rule for port 7007 (needed later for the Graph Server).
 
-    Using the menu, under **Networking**, click on **Virtual Cloud Networks**.
+    Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-    ![Click on the VCN](https://oracle.github.io/learning-library/oci-library/L100-LAB/Compute_Services/media/vcn1.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
     Then click on the VCN you created for this lab
     ![](images/vcn_instance.png)
@@ -124,7 +124,7 @@ The steps are as follows:
 
 2.  Download your ADB Wallet if you haven't done so. Go to your Cloud console, under **Database**, select **Autonomous Transaction Processing**. If you don't see your instance, make sure the **Workload Type** is **Transaction Processing** or **All**.
 
-    ![](images/console_atp.png)
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     Click on your Autonomous Database instance. In your Autonomous Database Details page, click **DB Connection**.
 

@@ -1,9 +1,15 @@
 # Visualize Your Data
 
 ## Introduction
-We connected to our ADB instance **ADWWINE**, registered the Machine Learning Model and added the datasets from the ADB instance to Oracle Cloud Analytics instance in the previous Lab. This lab walks you through the steps to visualize the data we're processed into easily digestible canvases using the functionalities of Oracle Cloud Analytics.projects for visualization.
+We connected to our ADB instance **ADWWINE**, registered the Machine Learning Model and added the datasets from the ADB instance to Oracle Cloud Analytics instance in the previous Lab. This lab walks you through the steps to visualize the data we're processed into easily digestible canvases using the functionalities of Oracle Cloud Analytics projects for visualization.
 
 Estimated Lab Time: 30 minutes
+
+Quick walk through on how to visualize your data.
+
+[](youtube:5QuBgxt_mPs)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
 
 ### About Product/Technology
 

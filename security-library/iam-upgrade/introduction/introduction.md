@@ -24,6 +24,9 @@ You may now [proceed to the next lab](#next).
 - You can find more information about the latest version of Oracle IAM [here](https://docs.oracle.com/en/middleware/idm/suite/12.2.1.4/index.html)
 - You can find more information about the upgrade strategies [here](https://docs.oracle.com/en/middleware/fusion-middleware/iamus/place-upgrade-strategies.html#GUID-9F906AE2-5BDF-426D-A97C-AC546ABFBD28)
 
+## Technical support
+For any technical issues related to the IAM upgrade process itself, please contact Oracle support through the same Proactive SR that was created to initiate this lab. SMEs will monitor the SR and respond to any questions or issues.
+
 ## Acknowledgements
 * **Author** - Anbu Anbarasu, Director, Cloud Platform COE  
 * **Contributors** -  Eric Pollard - Sustaining Engineering, Ajith Puthan - IAM Support, Rene Fontcha

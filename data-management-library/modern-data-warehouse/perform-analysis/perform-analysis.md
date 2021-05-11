@@ -26,9 +26,9 @@ As previously mentioned, when you spin up the stack the links to some resources 
 
 ![](./images/5.31.png " ")
 
-1. Click on the **Navigation Menu**, scroll down to **Analytics** and select **Analytics Cloud**.
-
-    ![](./images/5.34.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Analytics Cloud**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-oac.png " ")
 
 2. Choose the right compartment and then select your analytics instance. In the page that opens up, click on **Analytics Home Page** to login to the analytics cloud instance.
 

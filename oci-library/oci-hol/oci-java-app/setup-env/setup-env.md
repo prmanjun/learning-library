@@ -24,10 +24,9 @@ Estimated Lab Time: 10 minutes
 
 In this step, you will create a *Virtual Cloud Network (VCN)*, i.e. a software-defined private network in the Oracle Cloud Infrastructure. See [here](https://docs.cloud.oracle.com/en-us/iaas/Content/Network/Tasks/managingVCNs.htm) for more details on VCN.
 
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-1. Log on the OCI console, select **Networking** in **Core Infrastructure** (top left hamburger button) then **Virtual Cloud Networks**.
-
-    ![](.././images/lab2-1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. Make sure your "root" compartment is selected.
 

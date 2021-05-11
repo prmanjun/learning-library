@@ -73,7 +73,7 @@ To open the notebook, that is used in this lab, have the launcher open. The laun
 1. Click on the **Notebook Examples**. A drop down will appear.
     ![](./../speed-up-ds-with-the-ads-sdk/images/click-ne.png)
 
-1. Select **binary\_classification\_attrition.ipynb**. 
+1. Select the environment **mlcpuv1** and then the notebook **binary\_classification\_attrition.ipynb**. 
     ![](./../speed-up-ds-with-the-ads-sdk/images/load-example.png)
 
 1. Click **Load Example**. The notebook will open in a new tab.

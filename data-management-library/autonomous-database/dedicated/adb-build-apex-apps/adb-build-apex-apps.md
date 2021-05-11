@@ -31,7 +31,7 @@ Oracle Application Express (APEX) is a low-code development platform that enable
 - On your database console, click on DB Connection -> Click on Application Connection -> copy the URL for APEX.
 - Save the URL as we are going to need it later in this lab.
 
-    ![](./images/NavigateATP1.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
     ![](./images/selectADB.png " ")
     ![](./images/tools.png " ")
     ![](./images/getApexURL.png " ")

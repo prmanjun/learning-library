@@ -1,20 +1,20 @@
-# Install pre-requisites
+# Install Prerequisites
 
 ## Introduction
 
 In this lab we will install the software required to run the stack to deploy an OKE cluster with OCI Service Broker.
 
-Because the OCI Service Broker depends on Service Catalog, as well as etcd, all of which are deployed as Helm charts in kubernetes, we need kubectl, as well as helm installed to run the stack. Furthermore the OCI CLI is used for some tasks and is required for kubectl.
+Because the OCI Service Broker depends on Service Catalog, as well as the key vlaue store etcd, all of which are deployed as Helm charts in Kubernetes. we need kubectl, as well as helm installed to run the stack. Furthermore the OCI CLI is used for some tasks and is required for kubectl.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Install the OCI CLI
-- Install kubectl >= 1.18 if not already present
-- install Helm 3.x
+- Install the OCI CLI.
+- Install kubectl >= 1.18 if not already present.
+- install Helm 3.x.
 
 ## **STEP 1:** Install the OCI CLI
 
@@ -26,16 +26,16 @@ In this lab you will:
     </copy>
     ```
 
-    Hit **enter** to use the defaults for all options.
+    Press **Enter** to use the defaults for all options.
 
-2. Restart your shell
+2. Restart your shell.
     ```
     <copy>
     exec -l $SHELL
     </copy>
     ```
 
-3. Configure the OCI CLI
+3. Configure the OCI CLI.
 
     ```
     <copy>
@@ -44,30 +44,30 @@ In this lab you will:
     ```
 
     You will be prompted for:
-    - Location of the config. Hit **Enter**
-    - `user_ocid`: enter your user OCID
-    - `tenancy_ocid`: enter your tenancy OCID
+    - Location of the config. Press **Enter**.
+    - `user_ocid`: enter your user OCID.
+    - `tenancy_ocid`: enter your tenancy OCID.
     - `region`: enter your region from the list provided.
-    - Generate a RSA key pair: hit **Enter** for Yes (default)
-    - Directory for keys: hit **Enter** for the default
-    - name for the key: hit **Enter** for the default
-    - Passphrase: hit **Enter** for no passphrase
+    - Generate a RSA key pair: press **Enter** for Yes (default).
+    - Directory for keys: press **Enter** for the default.
+    - name for the key: press **Enter** for the default.
+    - Passphrase: press **Enter** for no passphrase.
 
 
     You should see an output like:
 
     ```bash
     Private key written to: /home/oracle/.oci/oci_api_key.pem
-    Fingerprint: 21:d4:f1:a0:55:a5:c2:ce:e2:c6:88:4f:bf:2f:f3:af
+    Fingerprint: 21:d4:f1:a0:55:a5:c2:ce:...
     Config written to ~/.oci/config
     ```
 
 
 4. Upload the public key to your OCI account
 
-    In order to use the CLI, you need to upload the public key generated to your user account
+    In order to use the CLI, you need to upload the public key generated to your user account.
 
-    Get the key content with 
+    Get the key content with:
 
     ```
     <copy>
@@ -75,22 +75,20 @@ In this lab you will:
     </copy>
     ```
 
-    or open the file with your prefered editor
+    Or open the file with your prefered editor and copy the full printed output to clipboard.
 
-    and copy the full printed output to clipboard
+5. In the OCI web console:
 
-    In the OCI web console:
-
-    - Under **User -> User Settings**
-    - Click **API Keys**
-    - Click **Add Public Key**
-    - Click **Paste Public Key**
+    - Under **User -> User Settings**.
+    - Click **API Keys**.
+    - Click **Add Public Key**.
+    - Click **Paste Public Key**.
     - Paste the key copied above.
-    - Click **Add**
+    - Click **Add**.
 
     You can verify that the Fingerprint generated matches the fingerprint output of the config.
 
-5. Test your CLI
+6. Test your CLI:
 
     ```
     <copy>
@@ -98,7 +96,7 @@ In this lab you will:
     </copy>
     ```
 
-    This command should output the namespace of your tenancy (usually the name of the tenancy or a randomized string)
+    This command should output the namespace of your tenancy (usually the name of the tenancy or a randomized string).
 
     ```
     {
@@ -106,7 +104,7 @@ In this lab you will:
     }
     ```
 
-    Make a note of this name for later.
+7. Make a note of this name for later.
 
 ## **STEP 2:** Install `kubectl`
 
@@ -131,12 +129,12 @@ In this lab you will:
     </copy>
     ```
 
-    and add the binary to your PATH
+    Add the binary to your PATH
 
     For more detailed instructions, go to:
     [https://kubernetes.io/docs/tasks/tools/install-kubectl/](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-3. Make sure you have a recent version >= 1.18 with
+3. Make sure you have a recent version >= 1.18 with:
 
     ```bash
     <copy>
@@ -146,7 +144,7 @@ In this lab you will:
 
 ## **STEP 3:** Install Helm
 
-1. To install helm on Mac OS X and linux, use:
+1. To install helm on Mac OS X and Linux, use:
 
     ```bash
     <copy>
@@ -155,10 +153,10 @@ In this lab you will:
     ```
 
     For more detailed instructions for your specific OS, go to:
-    [https://helm.sh/docs/intro/install/](https://helm.sh/docs/intro/install/)
+    [https://helm.sh/docs/intro/install/](https://helm.sh/docs/intro/install/).
 
     
-## **STEP 4:** Check you have OpenSSL
+## **STEP 4:** Check OpenSSL
 
 1. Make sure you have OpenSSL installed with
 
@@ -168,7 +166,7 @@ In this lab you will:
     </copy>
     ```
 
-    and see if the command is found or fails. 
+    See if the command is found or fails. 
 
     It should be present by default on your machine.
 

@@ -1,69 +1,69 @@
-# Deploy Tomcat on OCI with ATP
+# Deploy Tomcat on Oracle Cloud Infrastructure with Autonomous Transaction Processing database
 
 ## Introduction
 
-In this lab, we will deploy a Tomcat Cluster on Oracle Cloud Infrastructure with Terraform, along with an Autonomous Transaction Processing Database.
+In this lab, we will deploy a Tomcat Cluster on Oracle Cloud Infrastructure (OCI) with Terraform, along with an Oracle Autonomous Transaction Processing database.
 
-Estimated Lab Time: 25min
+Estimated Lab Time: 25 minutes.
 
 ### Objectives
 
 In this lab, you will provision:
-* A Tomcat cluster based on Compute VM
-* A public load balancer targeting the Tomcat instances
-* An Autonomous Database
+* An Apache Tomcat cluster based on Compute VM.
+* A public load balancer targeting the Tomcat instances.
+* An Oracle Autonomous Database.
 
 ### Prerequisites
 
-For this lab, you need
+For this lab, you need:
 
-* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
-* git installed
+* An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account.
+* Git installed.
 * Terraform installed. If you need guidance to setup Terraform, please visit the [prerequistes](https://github.com/oracle-quickstart/oci-prerequisites) document.
 
-## **STEP 1**: Gather required information
+## **STEP 1**: Gather Required Information
 
-1. Get your `tenancy OCID`
+1. Get your `tenancy OCID`:
 
-    - In the OCI web console, **click** your **User** icon (top right corner), then **Tenancy**
+    - In the Oracle Cloud Console, **click** your **User** icon (top right corner), then **Tenancy**.
 
         ![](./images/setup-tf-tenancy.png)
 
-    - **Copy** the OCID of the tenancy and paste it in your environment file
+    - **Copy** the OCID of the tenancy and paste it in your environment file.
 
         ![](./images/setup-tf-tenancy-ocid.png)
 
-2. Get your `compartment OCID`
+2. Get your `compartment OCID`:
 
-    - In the OCI web console, go to **Identity -> Compartments**
+    - In the Oracle Cloud Console, go to **Identity -> Compartments**.
 
-    ![](./images/setup-tf-compartment.png)
+        ![](./images/setup-tf-compartment.png)
 
-    - navigate to the compartment where you want to deploy the infrastructure
+    - Navigate to the compartment where you want to deploy the infrastructure.
 
-    - **Copy** the OCID of the compartment
+    - **Copy** the OCID of the compartment.
 
-    ![](./images/setup-tf-compartment-ocid.png)
+        ![](./images/setup-tf-compartment-ocid.png)
 
-3. Get your `user OCID`
+3. Get your `user OCID`:
 
-    - In the OCI web console, **click** your **User** icon (top right corner), then **click** your user name 
+    - In the Oracle Cloud Console, **click** your **User** icon (top right corner), then **click** your user name.
         
-    ![](./images/setup-tf-user.png)
+        ![](./images/setup-tf-user.png)
 
-    - **Copy** the OCID of your user and paste it in your environment file
+    - **Copy** the OCID of your user and paste it in your environment file.
 
-    ![](./images/setup-tf-user-ocid.png)
+        ![](./images/setup-tf-user-ocid.png)
 
-4. Get the oci public key `fingerprint`
+4. Get the oci public key `fingerprint`:
 
     - In your user settings, under API Keys, you will find the `fingerprint` value. 
     
     Make sure this is the one matching the oci public key you created for terraform.
 
-    ![](./images/setup-tf-fingerprint.png)
+        ![](./images/setup-tf-fingerprint.png)
 
-## **STEP 2:** Get the Terraform code
+## **STEP 2:** Get the Terraform Code
 
 For this step, you may want to open up a separate shell terminal.
 
@@ -87,13 +87,13 @@ For this step, you may want to open up a separate shell terminal.
     </copy>
     ```
 
-## **STEP 3:** Create a `terraform.tfvars` config file
+## **STEP 3:** Create a `terraform.tfvars` Config File
 
 In order to run the deployment, you need to define a few settings in a file named `terraform.tfvars`
 
 1. Create a file called `terraform.tfvars` and open it with your prefered editor.
 
-2. Enter the followiong information in the `terraform.tfvars` file:
+2. Enter the following information in the `terraform.tfvars` file:
 
     ```
     <copy>
@@ -122,13 +122,13 @@ In order to run the deployment, you need to define a few settings in a file name
     </copy>
     ```
 
-    *For the SSH Public key, make sure to provide the SSH key generated in the 'on-premises' environment and copied earlier.*
+    *For the SSH Public key, make sure to provide the SSH key generated in the on-premises environment and copied earlier.*
 
 
 
 3. Save the `terraform.tfvars` file
 
-## **STEP 4:** Run the deployment
+## **STEP 4:** Run the Deployment
 
 1. Initialize the project
 
@@ -140,7 +140,7 @@ In order to run the deployment, you need to define a few settings in a file name
 
 2. Check the plan (optional)
 
-    To determine what will happen, you can run the *plan* operation
+    To determine what will happen, you can run the `plan` operation
 
     ```
     <copy>

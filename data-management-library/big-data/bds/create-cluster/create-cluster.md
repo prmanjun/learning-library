@@ -40,9 +40,9 @@ Create the cluster as follows:
 
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator that you used so far in this workshop. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
 
-2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** page. Under **Data and AI**, select **Big Data**.
-
-   ![](./images/big-data.png " ")
+2. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Big Data**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/bigdata.png " ")
 
 3. On the **Clusters** page, click **Create Cluster**.
 

@@ -101,7 +101,6 @@ Estimated time: 5 minutes
     - If you want a private endpoint, to allow traffic only from the VCN you specify - where access to the database from all public IPs or VCNs is blocked, then select "Virtual cloud network" in the Choose network access area.
     - You can control and restrict access to your Autonomous Database by setting network access control lists (ACLs). You can select from 4 IP notation types: IP Address, CIDR Block, Virtual Cloud Network, Virtual Cloud Network OCID).
 
-    ![Choose the network access.](./images/Picture100-26e.png " ")
 
 9. Choose a license type. For this lab, choose __License Included__. The two license types are:
 
@@ -122,9 +121,9 @@ Please *proceed to the next lab*.
 
 Click [here](https://docs.oracle.com/en/cloud/paas/autonomous-data-warehouse-cloud/user/autonomous-workflow.html#GUID-5780368D-6D40-475C-8DEB-DBA14BA675C3) for documentation on the typical workflow for using Autonomous Data Warehouse.
 
-## **Acknowledgements**
+## Acknowledgements
 
 - **Author** - Nilay Panchal, ADB Product Management
 - **Adapted for Cloud by** - Richard Green, Principal Developer, Database User Assistance
 - **Contributors** - Oracle LiveLabs QA Team (Jeffrey Malcolm Jr, Intern | Arabella Yao, Product Manager Intern)
-- **Last Updated By/Date** - Richard Green, March 2021
+- **Last Updated By/Date** - Kamryn Vinson, May 2021

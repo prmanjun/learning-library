@@ -32,9 +32,9 @@ Any software client you use to connect to Oracle Cloud Infrastructure must be co
     - API Key Fingerprint
     - API Key Passphrase
 
-2. On your Oracle Cloud account, open up the hamburger menu in the top-left corner of the Console. Choose **Administration > Tenancy Details**.
-
-  ![](images/tenancy-details.png)
+2. Click the **Navigation Menu** in the upper left, navigate to **Governance & Administration**, and select **Tenancy Details**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/admin-details.png " ")
 
 3. The Tenancy Details page shows information about your cloud account. Copy the Tenancy OCID by clicking on the **Copy** link next to it. Save the value in your note file.
 

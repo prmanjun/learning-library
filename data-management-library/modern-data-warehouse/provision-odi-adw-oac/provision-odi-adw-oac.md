@@ -17,13 +17,9 @@ Estimated Lab Time: 30 minutes
 
 ## **STEP 1:** Obtain IDCS Access Token
 
-1. Login to the OCI console and go to the navigation menu using the menu button in the top left.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Federation**.
 
-    ![](./images/1.1.png " ")
-
-2. Scroll down to the **Governance and Administration** section and under **Identity**, select **Federation**.
-
-    ![](./images/1.2.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-federation.png " ")	
 
 3. Click on the link to the **OracleIdentityCloudService**.
 

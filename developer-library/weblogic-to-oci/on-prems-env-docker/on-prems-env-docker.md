@@ -1,20 +1,20 @@
-# Setup a Local (On-Premises) Environment Using Docker
+# Set up a Local (On-Premises) Environment Using Docker
 
 ## Introduction
 
 This lab will walk you through setting up a local environment to simulate an established on-premises environment, using Docker on your local machine.
 
-At the end of this lab, you will have a local environment running with an Oracle 12c Database and WebLogic Server 12c with a domain containing 2 applications and a datasource.
+At the end of this lab, you will have a local environment running with an Oracle 12c database and WebLogic Server 12c with a domain containing 2 applications and a datasource.
 
-Estimated Lab Time: 30 minutes
+Estimated Lab Time: 30 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Get the Docker environment files
-- Startup the Docker-based 'on-premises' demo environment
-- Check that the environment is running properly
+- Get the Docker environment files.
+- Start up the Docker-based on-premises demo environment.
+- Check that the environment is running properly.
 - Create an SSH key pair to communicate with the OCI services.
 
 
@@ -28,20 +28,20 @@ To run this lab, you will need:
 
   ***Note: You need at least 3 CPUs and 6Gb of memory assigned to Docker to run this template.***
 
-- Docker-compose installed (on Linux it needs to be installed separately, but it is installed automatically on Mac OS and Windows)
+- Docker-compose installed (on Linux it needs to be installed separately, but it is installed automatically on Mac OS and Windows).
 
   [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-- Docker Hub Account, to download necessary Docker images
+- Docker Hub account, to download necessary Docker images.
 
   [https://hub.docker.com/signup](https://hub.docker.com/signup)
 
 
-## **STEP 1:** Get the code
+## **STEP 1:** Get the Code
 
 ### **On Linux**
 
-*Make sure you followed the installation instructions to setup Docker as root and:*
+*Make sure you followed the installation instructions to set up Docker as root and:*
 
 1. If you don't have an `oracle` user, create it an add it to a `oracle` group with:
 
@@ -52,7 +52,7 @@ To run this lab, you will need:
     </copy>
     ```
 
-2. Make sure you added the `oracle` user to the `docker` group as root with
+2. Make sure you added the `oracle` user to the `docker` group as root with:
 
     ```bash
     <copy>
@@ -85,7 +85,7 @@ To run this lab, you will need:
     </copy>
     ```
 
-You can also download the code [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip)
+You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip)
 
 ### **On Mac OS X**
 
@@ -98,7 +98,7 @@ You can also download the code [here](https://objectstorage.us-ashburn-1.oraclec
     </copy>
     ```
 
-    If you do not have wget installed, you can download through your browser, or install wget with 
+    If you do not have wget installed, you can download through your browser, or install wget with:
     ```
     <copy>
     brew install wget
@@ -113,43 +113,43 @@ You can also download the code [here](https://objectstorage.us-ashburn-1.oraclec
     </copy>
     ```
 
-You can also download the code [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip)
+You can also download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip)
 
 ### **On Windows**
 
-1. Download the code [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip)
+1. Download the code here: [https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/ufHAcuj6M4xpPsqYVmHBsSA7vFUiAsx7GF_gZMB9hyo/n/ocisateam/b/images/o/weblogic-to-oci.zip).
 
-2. Unzip the file with your preferred tool 
+2. Unzip the file with your preferred tool.
 
-3. Open a terminal and get into the unzipped folder
+3. Open a terminal and get into the unzipped folder.
 
-## **STEP 2:** Agree to the terms of the private docker images
+## **STEP 2:** Agree to the Terms of the Private Docker Images
 
 This repository makes use of Oracle docker images which are licensed and need to be pulled from DockerHub after acknowledging the terms of the license.
 
 1. Sign in to Docker Hub and go to the Weblogic image area at:</br>
-  <a href="https://hub.docker.com/_/oracle-weblogic-server-12c" target="_blank">https://hub.docker.com/_/oracle-weblogic-server-12c</a>
+  <a href="https://hub.docker.com/_/oracle-weblogic-server-12c" target="_blank">https://hub.docker.com/_/oracle-weblogic-server-12c</a>.
   
-    - Click **Proceed to Checkout**
-    - Fill in your information
-    - Accept the terms of license
+    - Click **Proceed to Checkout**.
+    - Fill in your information.
+    - Accept the terms of license.
     - click **Get Content**.
 
 
 2. Go to the **Oracle Database** page and accept the license terms at:</br>
-  <a href="https://hub.docker.com/_/oracle-database-enterprise-edition" target="_blank">https://hub.docker.com/_/oracle-database-enterprise-edition</a>
+  <a href="https://hub.docker.com/_/oracle-database-enterprise-edition" target="_blank">https://hub.docker.com/_/oracle-database-enterprise-edition</a>.
 
-    - Click **Proceed to Checkout**
-    - Fill in your information
-    - Accept the terms of license
+    - Click **Proceed to Checkout**.
+    - Fill in your information.
+    - Accept the terms of license.
     - click **Get Content**.
 
 3. Go to the **Instant Client** page and accept the license terms for the SQL Plus client at:</br>
-  <a href="https://hub.docker.com/_/oracle-instant-client" target="_blank">https://hub.docker.com/_/oracle-instant-client</a>
+  <a href="https://hub.docker.com/_/oracle-instant-client" target="_blank">https://hub.docker.com/_/oracle-instant-client</a>.
 
-    - Click **Proceed to Checkout**
-    - Fill in your information
-    - Accept the terms of license
+    - Click **Proceed to Checkout**.
+    - Fill in your information.
+    - Accept the terms of license.
     - click **Get Content**.
 
 4. Login to docker, providing your docker-hub username and password:
@@ -160,9 +160,9 @@ This repository makes use of Oracle docker images which are licensed and need to
     </copy>
     ```
 
-## **STEP 3:** Start the local environment
+## **STEP 3:** Start the Local Environment
 
-*Startup the local environment stack that will simulate our 'on-premises' environment*
+*Start up the local environment stack that will simulate our on-premises environment*.
 
 1. Make sure you are using the `oracle` user and run:
 
@@ -194,13 +194,13 @@ This repository makes use of Oracle docker images which are licensed and need to
 
     Go to the appropriate registry and image page, and go through the acknowledgement steps.
 
-## **STEP 4:**  Check the local environment is up and running
+## **STEP 4:**  Check the Local Environment
 
-**It may take up to 10 minutes for the domain to be up and running**
+**It may take up to 10 minutes for the domain to be up and running**.
 
 The weblogic container waits for the database to be ready, and the schemas to be created. Be patient.
 
-1. Check that the WebLogic console is available at [http://localhost:7001/console](http://localhost:7001/console) and the WebLogic admin user is `weblogic` with password `welcome1`
+1. Check that the WebLogic console is available at [http://localhost:7001/console](http://localhost:7001/console) and the WebLogic admin user is `weblogic` with password `welcome1`.
 
 2. To check status of the initialization, you can check if the `weblogic-to-oci_oracledbinit_1` container has finished running by running:
 
@@ -218,7 +218,7 @@ The weblogic container waits for the database to be ready, and the schemas to be
 
     If you see a container called `weblogic-to-oci_oracledbinit`, this means the initialization is still ongoing.
 
-3. To troubleshoot problems in the setup, check the logs in the docker containers with:
+3. To troubleshoot problems in the set up, check the logs in the docker containers with:
 
     ```bash
     <copy>
@@ -248,9 +248,9 @@ The weblogic container waits for the database to be ready, and the schemas to be
 
 Since we'll be running all our commands from docker containers, a folder has been mounted on the `~/.ssh/` folder inside both containers, so that it is shared and also accessible from the outside.
 
-We'll create an SSH key pair in this folder
+We'll create an SSH key pair in this folder.
 
-1. Get inside the Oracle Database container:
+1. Get inside the Oracle database container:
 
     ```bash
     <copy>
@@ -258,20 +258,20 @@ We'll create an SSH key pair in this folder
     </copy>
     ```
 
-2. Create the SSH key pair
+2. Create the SSH key pair:
 
     ```bash
     <copy>
     ssh-keygen
     </copy>
     ```
-    and just hit `Enter` (default) for all the prompts
+    Press `Enter` (default) for all the prompts.
 
-3. You should find two files `id_rsa` and `id_rsa.pub` inside the folder `./weblogic-to-oci/ssh/` on your local machine, and under `~/.ssh/` inside the containers
+3. You should find two files `id_rsa` and `id_rsa.pub` inside the folder `./weblogic-to-oci/ssh/` on your local machine, and under `~/.ssh/` inside the containers.
 
-    `id_rsa` is the private key, which should never be shared, and will be required to connect to any OCI resource provisioned with the corresponding public key `id_rsa.pub`
+    `id_rsa` is the private key, which should never be shared, and will be required to connect to any OCI resource provisioned with the corresponding public key `id_rsa.pub`.
 
-    Note this key will be the default SSH key from within either docker container used for the on-premises environment. If you wanted to SSH to the OCI resources from outside the container, you would need to supply the private key as the identity file in the ssh command, with the `-i <path-to-id_rsa>/id_rsa`
+    Note this key will be the default SSH key from within either docker container used for the on-premises environment. If you wanted to SSH to the OCI resources from outside the container, you would need to supply the private key as the identity file in the ssh command, with the `-i <path-to-id_rsa>/id_rsa`.
 
     **Note:** This is only to be done once. If you run it again, a new key will overwrite the previous one and you will lose access to any resource provisioned with that key.
 

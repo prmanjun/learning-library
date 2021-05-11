@@ -23,8 +23,11 @@ Before deactivating a notebook session, save all your work to the attached block
 
 1. [Login to the OCI Console](https://www.oracle.com/cloud/sign-in.html).
 1. Open the navigation menu.
-1. Under **Data and AI**, click **Data Science**, and then click **Projects**.
-    ![](./../speed-up-ds-with-the-ads-sdk/images/select-projects.png)
+
+1. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Data Science**
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-ml-datascience.png " ")
+
 1. Select the compartment for the project.
 1. Click the name of the project to contain the notebook session to open the Projects page.
     ![](./../speed-up-ds-with-the-ads-sdk/images/select-project.png)
@@ -34,6 +37,7 @@ Before deactivating a notebook session, save all your work to the attached block
     ![](./../speed-up-ds-with-the-ads-sdk/images/deactivate.png)
 
 1. Click **Deactivate** to confirm the deactivation. The status changes to **Updating** and then **Inactive**.
+
     ![](./../speed-up-ds-with-the-ads-sdk/images/deactivate2.png)
 
 ## Terminating Notebook Sessions
@@ -56,6 +60,7 @@ To keep the file changes in a notebook session’s boot volume and attached bloc
     ![](./../speed-up-ds-with-the-ads-sdk/images/terminate.png)
 
 1. Click **Terminate** to confirm the termination. The status changes to **Deleting** and then **Deleted**.
+
     ![](./../speed-up-ds-with-the-ads-sdk/images/terminate2.png)
 
 **Congratulations, you have successfully completed the workshop!**

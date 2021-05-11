@@ -9,21 +9,20 @@
         },{
             "title": "Introduction",
             "publisheddate": "07/30/2020",
-            "filename": "../../../intro/intro.md",
-            "type": "oci"
+            "filename": "../../../intro-oci/intro-oci.md"
         },
         {
-            "title": "Lab 1: Setup the Demo On-Premises Environment",
+            "title": "Lab 1: Set up the Demo On-Premises Environment",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env/on-prems-env.md"
         },
         {
-            "title": "Lab 1 Option A: Setup an On-Premises Environment with the Workshop Marketplace Stack",
+            "title": "Lab 1 Option A: Set up an On-Premises Environment with the Workshop Marketplace Stack",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env-mp/on-prems-env-mp.md"
         },
         {
-            "title": "Lab 1 Option B: Setup a Local (On-Premises) Environment with Docker",
+            "title": "Lab 1 Option B: Set up a Local (On-Premises) Environment with Docker",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env-docker/on-prems-env-docker.md"
         },
@@ -40,8 +39,7 @@
         {
             "title": "Lab 4: Provision the Database on OCI",
             "publisheddate": "07/30/2020",
-            "filename": "../../../provision-app-db/provision-app-db.md",
-            "type": "oci"
+            "filename": "../../../provision-app-db-oci/provision-app-db-oci.md"
         },
         {
             "title": "Lab 5: Gather Information about the DB VM on OCI",
@@ -51,8 +49,7 @@
         {
             "title": "Lab 6: Migrate the Application Database",
             "publisheddate": "07/30/2020",
-            "filename": "../../../migrate-app-db-datapump/migrate-app-db-datapump.md",
-            "type": "oci"
+            "filename": "../../../migrate-app-db-datapump-oci/migrate-app-db-datapump-oci.md"
         },
         {
             "title": "Lab 7: Migrate the WebLogic Domain",
@@ -67,7 +64,7 @@
         {
             "title": "Lab 9: Tear down the Environment",
             "publisheddate": "07/30/2020",
-            "filename": "../../../tear-down/tear-down.md"
+            "filename": "../../../tear-down-dbcs/tear-down-dbcs.md"
         },
         {
             "title": "Need Help?",

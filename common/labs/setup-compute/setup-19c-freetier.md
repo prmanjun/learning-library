@@ -34,8 +34,9 @@ If you already have a VCN created, skip this step and proceed to *STEP 3*.
     - [livelabs-db19ccompute-0812.zip](https://objectstorage.us-ashburn-1.oraclecloud.com/p/R_vJuMUIrsFofKYcTuJOsDiXl2xdSjHNQU7yjQPtnh4/n/c4u03/b/labfiles/o/livelabs-db19ccompute-0812.zip) - Packaged terraform instance creation script for creating instance running the 19c Oracle Database
 2.  Save in your downloads folder.
 3.  Login to your Oracle Cloud account.
-4.  Click the **Create a Stack** tile on the homepage.  You may also get to Resource Manager by clicking on the Hamburger **Menu** -> **Solutions and Platform** -> **Resource Manager**.
-   ![Create a stack](images/db19c-freetier-step1.png " ")
+4.  Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 
 5.  Select **My Configuration**, choose the **.ZIP FILE** button, click the **Browse** link and select the zip file (livelabs-db19ccompute-0812.zip) that you downloaded. Click **Select**.
 
@@ -68,10 +69,13 @@ If you already have a VCN created, skip this step and proceed to *STEP 3*.
 *Note:  If you encounter any errors with this step, please see the Troubleshooting Tips in the appendix. 
 
 ## **STEP 3**: Gather compute instance details
-1. Go to the hamburger menu (in the top left corner) and click **Compute** -> **Instances**
-   ![Create a stack](images/workshop-011.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
+
 2. Look for the instance you just created and jot down the public IP address.
-   ![Create a stack](images/workshop-012.png " ")
+    
+    ![Create a stack](images/workshop-012.png " ")
 
 ## **STEP 4**: Connect to your instance
 
@@ -233,7 +237,7 @@ Once you deploy your compute instance, tail the log to determine when the databa
     
 Congratulations!  You now have a fully functional Oracle Database 19c instance (ORCL) running on Oracle Cloud Compute.  
 
-You may now *proceed to the next lab*.  
+You may now [proceed to the next lab](#next).
 
 ## Appendix:  Teraform and Resource Manager
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.  Configuration files describe to Terraform the components needed to run a single application or your entire datacenter.  In this lab a configuration file has been created for you to build network and compute components.  The compute component you will build creates an image out of Oracle's Cloud Marketplace.  This image is running Oracle Linux 7.
@@ -329,7 +333,7 @@ Reload your browser
 
 
 ## Acknowledgements
-- **Author** - Kay Malcolm, DB Product Management
+- **Author** - Kay Malcolm, Senior Director, DB Product Management
 - **Contributors** - Sanjay Narvekar, Troy Anthony, Anoosha Pilli, Arabella Yao, Jeffrey Malcolm Jr.
-- **Last Updated By/Date** - Kay Malcolm, August 2020
+- **Last Updated By/Date** - Didi Han, DB Product Management, May 2021
 

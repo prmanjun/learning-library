@@ -6,6 +6,12 @@ In this lab, you will provision the Oracle Autonomous Database instance, create 
 
 Estimated Lab Time: 30 minutes
 
+Quick walk through on how to provision and load data into an Autonomous Database Instance.
+
+[](youtube:YCxjo_TjqpE)
+
+*Note: The OCI Cloud Service Console navigation may look different then what you see in the video as it is subject to change.*
+
 ### Objectives
 
 In this lab, you will:
@@ -16,12 +22,6 @@ In this lab, you will:
 ### Prerequisites
 
 - This lab requires an [Oracle Cloud account](https://www.oracle.com/cloud/free/). You may use your own cloud account, a cloud account that you obtained through a trial, a Free Tier account, or a LiveLabs account.
-
-### Video Preview
-
-Watch a video demonstration on getting started with Oracle Machine Learning and Oracle Autonomous Database.
-
-[](youtube:UDwlTpbhPX0)
 
 ## **STEP 1**: Provision an Autonomous Database Instance
 
@@ -35,7 +35,7 @@ Watch a video demonstration on getting started with Oracle Machine Learning and 
 
     **Note:** You can also directly access your Autonomous Data Warehouse service in the **Quick Actions** section of the dashboard.
 
-    ![](./images/choose-adb.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 4. From the compartment drop-down menu select the **Compartment** where you want to create your ADB instance. This console shows that no databases yet exist. If there were a long list of databases, you could filter the list by the **State** of the databases (Available, Stopped, Terminated, and so on). You can also sort by **Workload Type**. Here, the **Data Warehouse** workload type is selected.
 
@@ -82,7 +82,7 @@ Watch a video demonstration on getting started with Oracle Machine Learning and 
 
 1.  From the hamburger menu, select **Autonomous Data Warehouse** and navigate to your ADB instance.
 
-    ![](./images/choose-adb.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/choose-adb-adw.png " ")
 
@@ -114,7 +114,7 @@ Watch a video demonstration on getting started with Oracle Machine Learning and 
 
 1.  From the hamburger menu, select **Autonomous Data Warehouse** and navigate to your ADB instance.
 
-    ![](./images/choose-adb.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/choose-adb-adw.png " ")
 

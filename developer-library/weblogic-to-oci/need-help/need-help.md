@@ -18,11 +18,11 @@ When you are finished please don't forget to rate this workshop!  We rely on thi
 
 1.  Go back to your **Workshop Homepage** in LiveLabs by searching for your workshop and clicking the Launch button.
 
-2.  Click on the **Brown Button** to re-access the workshop  
+2.  Click on the **Brown Button** to re-access the workshop.
 
     ![](images/workshop-homepage-2.png " ")
 
-3.  Click **Rate this workshop**
+3.  Click **Rate this workshop**.
 
     ![](images/rate-this-workshop.png " ")
 

@@ -1,29 +1,29 @@
-# Deploy an OKE cluster with OCI Service Broker (OSB)
+# Deploy an OKE Cluster with OCI Service Broker (OSB)
 
 ## Introduction
 
-In this lab we will deploy the OKE cluster with the OCI Service Broker, using the quickstart repository at [https://github.com/oracle-quickstart/oke-with-service-broker](https://github.com/oracle-quickstart/oke-with-service-broker)
+In this lab we will deploy the Oracle Kubernetes Engine (OKE) cluster with the OCI Service Broker, using the quickstart repository at [https://github.com/oracle-quickstart/oke-with-service-broker](https://github.com/oracle-quickstart/oke-with-service-broker).
 
-Estimated Lab Time: 30 minutes
+Estimated Lab Time: 30 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Clone the repository
-- Populate parameter files
-- Run the terraform script to deploy the OKE cluster with OSB
-- Verify the deployment
+- Clone the repository.
+- Populate parameter files.
+- Run the Terraform script to deploy the OKE cluster with OSB.
+- Verify the deployment.
 
 ### Prerequisites
 
 For this lab you will need to have installed the required software:
 
-- kubectl
-- helm
-- oci cli
+- kubectl.
+- Helm.
+- OCI CLI.
 
-## **STEP 1:** Clone the repository
+## **STEP 1:** Clone the Repository
 
 1. Clone the repository with the following command:
 
@@ -34,12 +34,12 @@ For this lab you will need to have installed the required software:
     </copy>
     ```
 
-    or download the code from github at [https://github.com/oracle-quickstart/oke-with-service-broker](https://github.com/oracle-quickstart/oke-with-service-broker)
+    Or download the code from GitHub at [https://github.com/oracle-quickstart/oke-with-service-broker](https://github.com/oracle-quickstart/oke-with-service-broker).
 
 
-## **STEP 2:** Create a `TF_VARS.sh` file
+## **STEP 2:** Create a `TF_VARS.sh` File
 
-1. Create an emtpy file called `TF_VARS.sh` that contains the following environment variables:
+1. Create an empty file called `TF_VARS.sh` that contains the following environment variables:
 
     ```bash
     <copy>
@@ -52,19 +52,17 @@ For this lab you will need to have installed the required software:
     ```
 
     This information can be obtained from:
-    - `TF_VAR_user_ocid`: On the OCI web console, click your user icon on the top right and then `User Settings`. The user OCID is displayed in the user details
+    - `TF_VAR_user_ocid`: On the OCI web console, click your user icon on the top right and then `User Settings`. The user OCID is displayed in the user details.
 
     - `TF_VAR_fingerprint`: As you uploaded your public key when installing the OCI CLI, you should have gathered the key fingerprint. You can find it under **API Keys**.
 
-    - `TF_VAR_private_key_path`: is the path to the private key which corresponded public key was uploaded to your user API Keys. The path is typically `~/.oci/oci_api_key.pem`
+    - `TF_VAR_private_key_path`: is the path to the private key corresponding to the public key uploaded to your user API Keys. The path is typically `~/.oci/oci_api_key.pem`.
 
-    - `TF_VAR_tenancy_ocid`: under your user icon, click **Tenancy** to get to your tenancy details and retrieve the tenancy OCID
+    - `TF_VAR_tenancy_ocid`: under your user icon, click **Tenancy** to get to your tenancy details and retrieve the tenancy OCID.
 
-    - `TF_VAR_region`: is the region code where to deploy, it is part of the console URL, for example `us-ashburn-1`
+    - `TF_VAR_region`: is the code of the region where you want to deploy, for example `us-ashburn-1`.
 
-2. Source the `TF_VARS.sh` file
-
-    Source the file with the command:
+2. Source the `TF_VARS.sh` file with the command:
 
     ```bash
     <copy>
@@ -82,9 +80,9 @@ For this lab you will need to have installed the required software:
     </copy>
     ```
 
-## **STEP 3:** Create a `terraform.tfvars` file
+## **STEP 3:** Create a `terraform.tfvars` File
 
-1. Create a `terraform.tfvars` file from the template `terraform.tfvars.template` (make a copy and rename it `terraform.tfvars)
+1. Create a `terraform.tfvars` file from the `terraform.tfvars.template` template (make a copy and rename it `terraform.tfvars).
 
     ```bash
     <copy>
@@ -92,7 +90,7 @@ For this lab you will need to have installed the required software:
     </copy>
     ```
 
-2. Edit the required variables with the values for your environment
+2. Edit the required variables with the values for your environment.
 
     The following variables are required:
 
@@ -104,11 +102,11 @@ For this lab you will need to have installed the required software:
     secrets_encryption_key_ocid = null
     ```
 
-    - `region` and `tenancy_ocid` should match the values set in `TF_VARS.sh`
+    - `region` and `tenancy_ocid` should match the values set in `TF_VARS.sh`.
 
-    - `compartment_ocid` is the OCID of the compartment where the stack will be deployed. If you have not created a compartment, create one, and/or get the OCID by going to **Identity -> Compartments** and select the compartment to use to see its details and retrieve the OCID.
+    - `compartment_ocid` is the OCID of the compartment where the stack will be deployed. If you have not created a compartment, create one and get the OCID by going to **Identity -> Compartments** and select the compartment to use to see its details and retrieve the OCID.
 
-    - `ssh_authorized_key` is the content of your ***public key*** used for ssh. This will give you access to the worker nodes of the Kubernetes cluster if need be.
+    - `ssh_authorized_key` is the content of your ***public*** key used for ssh. This will give you access to the worker nodes of the Kubernetes cluster if need be.
 
         You can use the `oci_api_key_public` you created when installing the OCI CLI or your default ssh key usually located at `~/.ssh/id_rsa.pub` on Mac or Linux machines.
 
@@ -120,15 +118,15 @@ For this lab you will need to have installed the required software:
         </copy>
         ```
 
-        and copy the full output and then paste it into the `terraform.tfvars` file within the `""`
+        Copy the full output and then paste it into the `terraform.tfvars` file within the quotes.
 
-    - If you wish to encrypt kubernetes secrets at rest, you can provide an encryption key OCID for `secrets_encryption_key_ocid`
+    - If you wish to encrypt Kubernetes secrets at rest, provide an encryption key OCID for `secrets_encryption_key_ocid`.
 
-        You need to have created a **Vault** and an **Encryption Key** to use this feature, otherwise keep the value `null`
+        You need to have created a **Vault** and an **Encryption Key** to use this feature, otherwise keep the value `null`.
     
-## **STEP 4:** Initialize the terraform repository
+## **STEP 4:** Initialize the Terraform Repository
 
-1. Initialize the terraform project with:
+1. Initialize the Terraform project with:
 
     ```bash
     <copy>
@@ -136,7 +134,7 @@ For this lab you will need to have installed the required software:
     </copy>
     ```
 
-## **STEP 5:** Deploy the stack
+## **STEP 5:** Deploy the Stack
 
 1. If you wish to see the plan for the deployment, use:
 
@@ -156,13 +154,13 @@ For this lab you will need to have installed the required software:
 
     Type **yes** at the prompt to confirm.
 
-    This will take between 20 and 40min
+    This will take between 20 and 40 minutes.
 
-## **STEP 6:** Verify the deployment
+## **STEP 6:** Verify the Deployment
 
-If the deployment went smoothly, you should not see errors in the terraform log, and it should be done within 45min.
+If the deployment went smoothly, you should not see errors in the Terraform log, and it should be done within 45 minutes.
 
-1. Check the presence of the pods in the `oci-service-broker` namespace
+1. Check the presence of the pods in the `oci-service-broker` namespace.
 
     ```bash
     <copy>
@@ -182,7 +180,7 @@ If the deployment went smoothly, you should not see errors in the terraform log,
     oci-service-broker-oci-service-broker-67ddfbf76b-rbsvt   1/1     Running   0          2m
     ```
 
-2. Check the presence of the OCI Service Broker classes and plans
+2. Check the presence of the OCI Service Broker classes and plans:
 
     ```bash
     <copy>
@@ -238,9 +236,9 @@ If the deployment went smoothly, you should not see errors in the terraform log,
     clusterservicebroker.servicecatalog.k8s.io/oci-service-broker   https://oci-service-broker.oci-service-broker.svc.cluster.local:8080   Ready    46s
     ```
 
-## **Step 7:** Access the Kubernetes dashboard
+## **Step 7:** Access the Kubernetes Dashboard
 
-    To access the Kubernetes dashboard, run the helper script:
+1. To access the Kubernetes dashboard, run the helper script:
 
     ```bash
     <copy>
@@ -248,9 +246,9 @@ If the deployment went smoothly, you should not see errors in the terraform log,
     </copy>
     ```
 
-    The script will display a token, setup kubeproxy and open the browser to the Kubernetes dashboard page.
+    The script will display a token, set up kubeproxy and open the browser to the Kubernetes dashboard page.
 
-    Copy the token from the script output and paste it at the login prompt, and you can then navigate to the various resources.
+2. Copy the token from the script output and paste it at the login prompt, and you can then navigate to the various resources.
 
 You may proceed to the next lab.
 

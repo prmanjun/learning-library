@@ -58,7 +58,9 @@ _**Note:** All screen captures in this lab show the resources' names used when y
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. <if type="livelabs">_**Note:** If you are using the LiveLabs environment, you do not have administrative privileges._ </if>On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
 </if>
 
-2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Networking**, select **Virtual Cloud Networks**.
+2. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 3. On the **Virtual Cloud Networks** page, click your cluster's Virtual Cloud Network, **`training-vcn`**.
 

@@ -28,9 +28,11 @@ Estimated time: 20 minutes
 
 ## **STEP 2:** Basic OCI Infrastructure Setup
 
-1. Open the navigation menu. Under Governance and Administration, go to **Identity** and click **Compartments**. From this screen, you will see a list of compartments, click **Create Compartment**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**.
 
-   ![Menu Compartments](images/OCI-1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")
+
+1. From this screen, you will see a list of compartments, click **Create Compartment**.
 
    ![Compartment Screen](images/compartmentScreen.png " ")
 
@@ -53,9 +55,10 @@ Now you are ready to move on to Step 3.
 
 ## **STEP 3:** Create OKE Kubernetes Cluster
 
-1. To create an OKE cluster, open up the hamburger button in the top-left corner of the Console and go to **Developer Services** >   **Kubernetes Clusters**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Kubernetes Clusters (OKE)**.
 
-   ![Kubernetes Clusters Menu](images/OKE-clusters-menu.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-OKE.png " ")
+
 
 1. Verify you are in the **AppDev** Compartment and click **Create Cluster**.
 

@@ -26,13 +26,9 @@ In order to provision an analytics cloud instance as part of a **Resource Manage
 
 ### STEP 1: Obtain IDCS Access Token
 
-1. Login to the OCI console and go the navigation menu using the menu button in the top left.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Federation**.
 
-    ![](./images/1.1.png " ")
-
-2. Scroll down to the **Governance and Administration** section and under **Identity**, select **Federation**.
-
-    ![](./images/1.2.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-federation.png " ")
 
 3. Click on the link to the **OracleIdentityCloudService**.
 
@@ -62,9 +58,9 @@ In order to provision an analytics cloud instance as part of a **Resource Manage
 
 ### STEP 2: Provision the Stack
 
-1. In the navigation menu, scroll down to the **Solutions and Platform** section. Under **Resource Manager**, select **Stacks**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
 
-    ![](./images/1.13.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 
 2. Click on the **Create Stack** button.
 
@@ -118,9 +114,9 @@ In order to provision an analytics cloud instance as part of a **Resource Manage
 
 **Note:** In case there is no link to get to analytics instance, follow the two steps given below, else proceed to the next lab.
 
-14. From the navigation menu, under **Solutions and Platform**, go to **Analytics** and select **Analytics Cloud**.
-
-    ![](./images/1.27.png " ")
+14. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Analytics Cloud**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-oac.png " ")
 
 15. Click on the analytics instance to get to its page. Thereafter, click on the **Open URL** button to access the instance.
 
@@ -136,9 +132,9 @@ In order to provision an analytics cloud instance as part of a **Resource Manage
 
     ![](./images/2.1.png " ")
 
-2. Choose **Autonomous Data Warehouse** from the **Oracle Database** section.
-
-    ![](./images/2.2.png " ")
+2. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse**.
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 3. Click on the **Create Autonomous Database** button.
 
@@ -164,9 +160,9 @@ In order to provision an analytics cloud instance as part of a **Resource Manage
 
 ### STEP 2: Provision the Analytics Cloud Instance
 
-1. From the navigation menu, under **Solutions and Platform**, go to **Analytics** and select **Analytics Cloud**.
-
-    ![](./images/2.8.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Analytics Cloud**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-oac.png " ")
 
 2. On the next page, click on the **Create Instance** button.
 

@@ -14,23 +14,17 @@ Estimated Lab Time: 5 minutes
 
 * Create the Schema for Oracle APEX application
 
-
 ### Prerequisites
 
 - Have DBCS Database already running in OCI.
 - Have Oracle APEX Workspace defined for the migration project
 
+## **STEP 1**: Download the Sample Scripts and Form
 
-
-## **STEP 1**: **Download the Sample Scripts and Form**
-
-Download the  sample database DDL  scripts from [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/jrxGuOZ6rX5Ih1zMyt6eFWqWKy3Kwo9rR5fgKGauY1VEDhYis3m58I_b-pa3FkSG/n/c4u03/b/developer-library/o/forms_conversion_ddl.sql) and sample data insert scripts from [here](
-https://objectstorage.us-ashburn-1.oraclecloud.com/p/nrcRTwPDRP9SkWGWtkOEzY8OyskzhnHtSJDINe4TcaWCRqJ8kuHNyQ49ffnHJxRB/n/c4u03/b/developer-library/o/conversion_data_insert.sql)
+1. Download the  sample database DDL  scripts from [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/jrxGuOZ6rX5Ih1zMyt6eFWqWKy3Kwo9rR5fgKGauY1VEDhYis3m58I_b-pa3FkSG/n/c4u03/b/developer-library/o/forms\_conversion\_ddl.sql) and sample data insert scripts from [here](https://objectstorage.us-ashburn-1.oraclecloud.com/p/nrcRTwPDRP9SkWGWtkOEzY8OyskzhnHtSJDINe4TcaWCRqJ8kuHNyQ49ffnHJxRB/n/c4u03/b/developer-library/o/conversion\_data\_insert.sql)
 to use in the lab to your desktop
 
-
-
-## **STEP 2**: **Create Schema Objects**: Run the Scripts
+## **STEP 2**: Create Schema Objects: Run the Scripts
 
 In order to start the conversion process, the database objects associated with your Oracle Forms application must reside in the same database as Oracle APEX.
 
@@ -40,9 +34,13 @@ In order to start the conversion process, the database objects associated with y
 2. Navigate to **SQL scripts** from the Oracle APEX home Page
     ![](images/scipts_upload.png " ")
 
-3. Upload the scripts **forms_conversion_ddl.sql** and  **conversion_data_insert.sql** from your local desktop into APEX ![](images/script_upload1.png " ")
+3. Upload the scripts **forms\_conversion\_ddl.sql** and  **conversion\_data\_insert.sql** from your local desktop into APEX.
 
-4. **Run** the script to create the schema objects for customer and orders form ![](images/scripts_run.png " ")
+    ![](images/script_upload1.png " ")
+
+4. **Run** the script to create the schema objects for customer and orders form.
+
+    ![](images/scripts_run.png " ")
 
 
 ## **STEP 3**: **Create Migration Project**
@@ -50,34 +48,30 @@ In order to start the conversion process, the database objects associated with y
 Create a conversion project by running Create Migration Project Wizard and loading the application metadata extracted from Forms to XML.
 
 1. From the Apex workspace click on **Oracle Forms Migration** on the bottom right corner of the screen
-![](images/forms_migration.png " ")
+    ![](images/forms_migration.png " ")
 
 2. Click on **Create Project** to import XML files that is generated from Forms files.
-![](images/create_migration_project.png " ")
+    ![](images/create_migration_project.png " ")
 
 3. Enter **Project Name**, Choose ``DEMO`` schema and the XML file that is derived from fmb and click Next.
 
 4. Click **Create** to start building the project
-![](images/create_migration_project2.png " ")
+    ![](images/create_migration_project2.png " ")
 
 5. You can see the count of objects that is available in the forms. Just click on the **File name** to see list of objects and the properties attached to it.
-![](images/uploaded_forms.png " ")
+    ![](images/uploaded_forms.png " ")
 
 6. Click on **customers_fmb.xml** you can see the details of Blocks, Triggers, List of Values etc from the Customer Form. You can compare with the form builder to make sure all of the objects from forms are being accounted in APEX.
-![](images/customers_fmb.png " ")
+    ![](images/customers_fmb.png " ")
 
-## **Summary**
+## Summary
 
 At this point, you know how to create an APEX Migration Project and you are ready to start modernizing your forms application fast.
 
 You may now *proceed to the next lab*.
 
-## **Acknowledgements**
+## Acknowledgements
 
   - **Author** -  Vanitha Subramanyam, Senior Solution Architect
   - **Contributors** - Vanitha Subramanyam, Senior Solution Architect
-  - **Last Updated By/Date** - Vanitha Subramanyam, Senior Solution Architect, March 2021
-## Need Help?
-  Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/forms-to-apex-migration-workshops). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-  If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+  - **Last Updated By/Date** - Vanitha Subramanyam, Senior Solution Architect, May 2021

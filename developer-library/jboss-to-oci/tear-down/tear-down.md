@@ -2,20 +2,18 @@
 
 ## Introduction
 
-In this lab, we will tear down the infrastructure deployed on OCI as well as the local Docker environment
+In this lab, we will tear down the infrastructure deployed on OCI as well as the local Docker environment.
 
-Estimated Lab Time: 5min
+Estimated Lab Time: 5 minutes
 
 ### Objectives
 
-In this lab, you will:
-
-* Tear down and clean up resources.
+In this lab, you will tear down and clean up resources.
 
 
-## **STEP 1:** Tear down terraform resources
+## **STEP 1:** Tear Down Terraform Resources
 
-1. Simply run the terraform destroy command
+1. Simply run the terraform destroy command:
 
     ```
     <copy>
@@ -23,11 +21,11 @@ In this lab, you will:
     </copy>
     ```
 
-    You will be prompted to say `yes` to confirm
+    You will be prompted to type `yes` to confirm.
 
-## **STEP 2:** Tear down the local Docker environment
+## **STEP 2:** Tear Down the Local Docker Environment
 
-1. Exit any container you may still be logged into
+1. Exit any container you may still be logged into:
 
     ```bash
     <copy>
@@ -35,14 +33,14 @@ In this lab, you will:
     </copy>
     ```
 
-2. Tear down the docker-compose environment
+2. Tear down the docker-compose environment:
     ```
     <copy>
     docker-compose down
     </copy>
     ```
 
-3. Optionally you may also remove all the unused images and objects
+3. Optionally you may also remove all the unused images and objects.
 
     Attention: this removes anything not in use, so if you have other Docker images you want to keep, you may prefer to selectively delete the images of this workshop only.
 
@@ -55,6 +53,17 @@ In this lab, you will:
     </copy>
     ```
 
+## **STEP 3:** Delete the Database Dump and Storage Bucket
+
+1. In the Oracle Cloud Console go to Object Storage
+
+2. Find the bucket you created earlier
+
+3. Select all files and click **Delete**
+
+4. When done, delete the bucket.
+
+
 ## Acknowledgements
- - **Author** - Subash Singh, Emmanuel Leroy, October 2020
- - **Last Updated By/Date** - Emmanuel Leroy, October 2020
+ - **Author** - Subash Singh, Emmanuel Leroy
+ - **Last Updated By/Date** - Emmanuel Leroy, May 2021

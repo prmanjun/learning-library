@@ -19,9 +19,10 @@ The purpose of this lab is to give you an overview of the Audit Service and an e
 
 1. Sign in using your tenant name, user name and password.
 
-2. From the OCI Services menu, click **Object Storage**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Storage**, and select **Buckets**.
 
-    ![](./../labs/images/AUDIT0010.PNG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
+
 
 3. Select the compartment assigned to you from the drop down menu on the left part of the screen. Then select **Create Bucket**.
 
@@ -72,9 +73,9 @@ The purpose of this lab is to give you an overview of the Audit Service and an e
 
     ![](./../labs/images/AUDIT0013.PNG " ")
 
-7. In OCI services menu, Click **Audit** under **Governance**. 
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Policies**.
 
-    ![](./../labs/images/AUDIT0014.PNG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-audit.png " ")
 
 8. Scroll down or type the bucket name in Keywords section. You can choose other options such as dates and Request Action Type. For this lab we will leave them as default. Audit logs for the Storage bucket should be visible.
 

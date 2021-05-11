@@ -41,7 +41,7 @@ This lab assumes you have:
 
 ##  **STEP 1**: Upgrade IAM Components from 11.1.2.3 to 12.2.1.3
 
-1. Upgrade OID 11.1.2.3 to OUD 12.2.1.3
+1. Upgrade OUD 11.1.2.3 to OUD 12.2.1.3
 
   * Perform all steps outlined in *section 6.6* of Upgrading Oracle Unified Directory guide - [6.6 Upgrading an Existing Oracle Unified Directory Server Instance](https://docs.oracle.com/en/middleware/idm/unified-directory/12.2.1.3/oudig/updating-oracle-unified-directory-software.html#GUID-506B9DAC-2FDB-47C9-8E00-CC1F99215E81)
 
@@ -51,7 +51,7 @@ This lab assumes you have:
   <copy>keytool -list -v -keystore /u01/app/oracle/config/domains/IAMGovernanceDomain/config/fmwconfig/default-keystore.jks -storepass IAMUpgrade12c##</copy>
   ```  
 
-  * Generate new keys using the keytool command
+  * •	Create a temporary folder called /tmp/keystore and then generate new keys using the keytool command
   ```
   <copy>
   keytool -genkeypair -keystore /tmp/keystore/default-keystore.jks -keyalg RSA -validity 3600 -alias xell -dname "CN=wsidmhost.idm.oracle.com, OU=Identity, O=Oracle, C=US" -keysize 2048 -storepass IAMUpgrade12c## -keypass IAMUpgrade12c##
@@ -89,14 +89,14 @@ This lab assumes you have:
   * Move .cert and .csr
   ```
   <copy>
-  cp x*.* /u01/app/oracle/config/domains/IAMGovernanceDomain/config/fmwconfig/
+  cp /tmp/keystore/x*.* /u01/app/oracle/config/domains/IAMGovernanceDomain/config/fmwconfig/
   </copy>
   ```  
 
   * Confirm keystore
   ```
   <copy>
-  updateskeytool -list -v -keystore /u01/app/oracle/config/domains/IAMGovernanceDomain/config/fmwconfig/default-keystore.jks -storepass IAMUpgrade12c##
+  keytool -list -v -keystore /u01/app/oracle/config/domains/IAMGovernanceDomain/config/fmwconfig/default-keystore.jks -storepass IAMUpgrade12c##
   </copy>
   ```  
 
@@ -105,6 +105,7 @@ This lab assumes you have:
       * Navigate to Weblogic Domain > IAMGovernanceDomain
       * Right click IAMGovernanceDomain
       * Select Security > Credentials
+      * Expand the oim entry
       * Highlight xell row
       * Click Edit
       * Update password

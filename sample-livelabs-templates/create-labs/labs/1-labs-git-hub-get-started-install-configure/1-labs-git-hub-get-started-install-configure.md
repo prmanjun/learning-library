@@ -16,7 +16,7 @@ In this lab, you will learn how to create a GitHub Account and associate it with
 * Familiarity with HTML is helpful.
 * Access to the LiveLabs Workshop Management System
 
-## **Step 1:** Submit a workshop to the LiveLabs Workshop Management System
+## **STEP 1:** Submit a workshop to the LiveLabs Workshop Management System
 Before getting started, we recommend you submit your workshop to the LWMS. 	Submitting a workshop tells the Oracle ecosystem you are working on a workshop and submits your idea to the Workshop Council.  We urge you not to delay this step.  There are hundreds of workshops already, this step is important to helps us preserve the quality and integrity of the workshop catalog
 
 1.  Login to Corporate VPN
@@ -28,7 +28,7 @@ Before getting started, we recommend you submit your workshop to the LWMS. 	Subm
 
 Once your workshop is submitted, it will be sent to the workshop council.  The workshop council will approve your workshop or ask for more details.  Once approved, you will be entered into the workflow and given additional steps to progress through to production.
 
-## **Step 2:** Download and Install the latest version of Git (Optional Step)
+## **STEP 2:** Download and Install the latest version of Git (Optional Step)
   **Note**: For UA Developers, Oracle recommends the usage of the GitHub Desktop client because of its simple and user friendly user interface, and it is much easier than using the Git command line. Therefore, this is an optional Step.
 
 To install Git:
@@ -40,7 +40,7 @@ To install Git:
 6. Under **Choose the default behavior of `git pull`**, leave the selected **Default (fast-forward or merge)** option as is and click **Next**.
 7. In the **Configuring experimental options** dialog box, click **Install**.
 
-## **Step 3:** Create and Set Up Your GitHub Account
+## **STEP 3:** Create and Set Up Your GitHub Account
 
 In this Step, you will create and set up your GitHub account.
 
@@ -56,7 +56,7 @@ In this Step, you will create and set up your GitHub account.
 5. Set up a 2 Factor Authentication here: [GitHub Security](https://github.com/settings/security).
     ![](./images/git-2-factor-authentication.png " ")
 
-## **Step 4:** Install GitHub Desktop
+## **STEP 4:** Install GitHub Desktop
 The GitHub Desktop application is a UI client for Windows and Mac that simplifies the complex set of GitHub command line arguments. GitHub Desktop is a fast and easy way to contribute to projects and it simplifies your development workflow. It is much easier than using Git command line.
 
 To setup the GitHub Development Environment and install **GitHub Desktop**:
@@ -76,7 +76,7 @@ To setup the GitHub Development Environment and install **GitHub Desktop**:
     You are now logged in to **GitHub Desktop**.
     ![](./images/get-started-git-hub-desktop.png " ")
 
-## **Step 5:** Fork the learning-library Repository on Your GitHub Account
+## **STEP 5:** Fork the learning-library Repository on Your GitHub Account
   We create workshops and labs in the **learning-library** repository of the **oracle** project. You must fork the learning-library repository to create a duplicate personal copy of the repository on your GitHub account. You own the forked repository and you can edit its contents without affecting the parent repository.
 
   For example, if a user named achepuri forks the learning-library repository in the oracle project, a duplicate repository [achepuri/learning-library](https://github.com/achepuri/learning-library) is created.
@@ -93,7 +93,7 @@ In the following example, user achepuri has forked the **learning-library** repo
 
 In the next Step, you will clone this forked repository.
 
-## **Step 6:** Clone the Forked Repository
+## **STEP 6:** Clone the Forked Repository
 A clone is a copy of your forked repository that lives on your local computer instead of on [GitHub Web UI](http://github.com). When you clone your forked repository, you can edit the files in your preferred editor, such as **Atom** editor, and use the **GitHub Desktop** client to keep track of your changes without having to be online.
 
 To clone the forked repository:

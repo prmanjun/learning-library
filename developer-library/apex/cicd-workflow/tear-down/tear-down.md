@@ -1,4 +1,4 @@
-# Decommissioning the environments
+# Decommission the environments
 
 ## Introduction
 
@@ -8,11 +8,9 @@ Estimated Lab Time: 3 minutes
 
 ### Objectives
 
-In this lab you will:
+In this lab you will clean up the deployment.
 
-- Clean up.
-
-## **STEP 1:** Destroy the databases
+## **STEP 1:** Destroy the Databases
 
 1. Use the following command to destroy the environments and databases:
 
@@ -22,7 +20,7 @@ In this lab you will:
     </copy>
     ```
 
-    Enter `yes` at the prompt to confirm removing all the provisioned resources.
+2. Enter `yes` at the prompt to confirm removing all the provisioned resources.
 
 
 ## Acknowledgements

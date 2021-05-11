@@ -47,7 +47,9 @@ First, follow the steps below to register the source Oracle Autonomous Transacti
 
 Although the ggadmin user is created during the database registration process, it is disabled by default. The following steps guide you through how to enable the ggadmin user.
 
-1.  In the Console navigation menu, under **Oracle Databases**, select **Autonomous Transaction Processing**.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 2.  From the list of databases, select **ATPSource**.
 
@@ -100,4 +102,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 * **Author** - Jenny Chan, Consulting User Assistance Developer, Database User Assistance
 * **Contributors** -  Denis Gray, Database Product Management
-* **Last Updated By/Date** - March 2021
+* **Last Updated By/Date** - May 2021

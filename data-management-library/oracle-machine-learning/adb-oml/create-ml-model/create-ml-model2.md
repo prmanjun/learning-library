@@ -34,9 +34,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 1:** Create ML Notebook
 
-1.  If you are not logged into Machine Learning User Administration as ADMIN user, log in to your cloud account, click the hamburger menu, select **Autonomous Data Warehouse** and navigate to your instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse** and navigate to your instance.
 
-    ![](./images/choose-adw.png  " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
     ![](./images/adw-instance.png " ")
 

@@ -23,7 +23,7 @@ As a LOB user
 ## STEP 1: Create a Bucket
 
 - Login to the OCI tenancy. Goto Menu => Core Infrastructure => Oject Storage => Object Storage
-   ![](./images/Img13.png " ") 
+   ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ") 
    
 - Ensure you are in the right compartment and Click on Create Bucket.
    ![](./images/Img14.png " ") 

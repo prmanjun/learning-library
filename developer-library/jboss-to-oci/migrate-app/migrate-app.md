@@ -2,25 +2,23 @@
 
 ## Introduction
 
-In this lab, we will migrate the application to the JBoss/WildFly Cluster on Oracle Cloud Infrastructure.
+In this lab, we will migrate the application to the JBoss/WildFly cluster on Oracle Cloud Infrastructure (OCI).
 
-Estimated Lab Time: 10min
+Estimated Lab Time: 10 minutes
 
 ### Objectives
 
 In this lab, you will:
-* Move the application over to the JBoss/WildFly cluster on OCI
-* Configure the datasource used by the application to point to the Autonomous Database
+* Move the application over to the JBoss/WildFly cluster on OCI.
+* Configure the datasource used by the application to point to the Oracle Autonomous Database.
 
 ### Prerequisites
 
-For this lab, you need
+For this lab, you need to have provisioned the WildFly cluster on OCI.
 
-* To have provisioned the WildFly cluster on OCI
+## **STEP 1**: Connect to the WildFly Admin Console
 
-## **STEP 1**: Connect to the WildFly admin console
-
-1. From the output of the WildFly deployment, gather the command to create a SOCKSv5 proxy
+1. From the output of the WildFly deployment, gather the command to create a SOCKSv5 proxy.
 
     It should look something like:
 
@@ -28,76 +26,78 @@ For this lab, you need
     ssh -C -D 1088 opc@<BASTION_IP>
     ```
 
-2. Run the command in your terminal
+2. Run the command in your local computer terminal (not the docker container), adding the path to the SSH key file:
 
     ```bash
     <copy>
-    ssh -C -D 1088 opc@<BASTION_IP>
+    ssh -i ./wildfly-to-oci/ssh/id_rsa -C -D 1088 opc@<BASTION_IP>
     </copy>
     ```
 
 2. Open a new FireFox browser window.
 
-3. Go to Preferences
+3. Go to Preferences.
 
-    ![](./images/firefox-prefs.png =25%x*)
+    ![](./images/firefox-prefs.png)
 
-4. In the search bar, type **proxy**, then click **Settings**
+4. In the search bar, type **proxy**, then click **Settings**.
 
     ![](./images/firefox-proxy.png)
 
 5. In the Settings page, Click **Manual proxy configuration**, then **SOCKS v5**, and enter **localhost** for the host and **1088** for the  port as below:
 
-    ![](./images/firefox-proxy-settings.png =70%x*)
+    ![](./images/firefox-proxy-settings.png)
 
 6. Then navigate to the WildFly admin console URL, using the **Private IP** of the wildfly server.
 
     It should be [http://10.1.2.2:9990/console/](http://10.1.2.2:9990/console/) or [http://10.1.2.3:9990/console/](http://10.1.2.3:9990/console/) if this is your first deployment.
 
-    If you get the message below, you are looking at the wrong node, try the other node's IP
+    If you get the message below, you are looking at the wrong node, try the other node's IP.
 
     ![](./images/wrong-node.png)
+    
+7. Log in with the WildFly admin credentials (from terraform.tfvars)
 
-## **STEP 2:** Locate the WAR file
+## **STEP 2:** Locate the WAR File
 
-1. Since we built the `SimpleDB.war` WAR file inside the Docker container, we can find it on your local machine in the 'on-premises' environment folder under:
+1. Since we built the `SimpleDB.war` WAR file inside the Docker container, we can find it on your local machine in the on-premises environment folder under:
 
     ```
     <copy>
-    wildfly-to-oci/wildfly/app
+    wildfly-to-oci/wildfly/app/SimpleDB.war
     </copy>
     ```
 
-## **STEP 3:** Install the application in WildFly console
+## **STEP 3:** Install the Application in the WildFly Console
 
-1. In the WildFly console, click **Start** under **Deployments**
+1. In the WildFly console, click **Start** under **Deployments**.
 
     ![](./images/wildfly-main.png)
 
-2. Then click **By Server Group** -> **main-server-group** and then the **(+)** icon to **Upload New Deployment**
+2. Then click **By Server Group** -> **main-server-group** and then the **(+)** icon to **Upload New Deployment**.
 
     ![](./images/new-deployment.png)
 
 3. On the modal prompt, navigate to the location of the WAR file, and select it.
 
-    ![](./images/deployment-step1.png =70%x*)
+    ![](./images/deployment-step1.png)
 
-4. Click Next
+4. Click **Next**.
 
-    ![](./images/deployment-step2.png =70%x*)
+    ![](./images/deployment-step2.png)
 
-5. Do not change the values in the next screen and click **Finish**
+5. Do not change the values in the next screen and click **Finish**.
 
-6. The domain controller will deploy the application on all servers in the server group
+6. The domain controller will deploy the application on all servers in the server group.
 
-    ![](./images/deployment-step4.png =70%x*)
+    ![](./images/deployment-step4.png)
 
 
-## **STEP 4:** Check the application served via the load balancer
+## **STEP 4:** Check the Application is Served via the Load Balancer
 
-1. Get the load balancer public IP from the Terraform output
+1. Get the load balancer public IP from the Terraform output. 
 
-2. Go to http://`LOAD_BALANCER_IP`/SimpleDB/
+2. Go to http://*LOAD_BALANCER_IP*/SimpleDB/.
 
 3. Check that you see the application being served.
 
@@ -106,5 +106,5 @@ For this lab, you need
 You may proceed to the next lab.
 
 ## Acknowledgements
- - **Author** - Subash Singh, Emmanuel Leroy, October 2020
- - **Last Updated By/Date** - Emmanuel Leroy, October 2020
+ - **Author** - Subash Singh, Emmanuel Leroy
+ - **Last Updated By/Date** - Emmanuel Leroy, May 2021

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This tutorial shows you how to create pages to display data from the business object you created in the previous tutorial and to create new instances of the business object.
+This lab shows you how to create pages to display data from the business object you created in the previous lab and to create new instances of the business object.
 
 ### Estimated Lab Time:  10 minutes
 
@@ -10,12 +10,12 @@ This tutorial shows you how to create pages to display data from the business ob
 
 In Oracle Visual Builder, you create pages in your mobile application by dragging and dropping components. You can use Quick Starts to quickly create pages to display, create, edit, and delete your application's data.
 
-In this tutorial, we'll use Quick Starts to create a page that displays Departments and another that displays Employees. We'll also create pages that let users add a new department and a new employee - again using Quick Starts.
+In this lab, we'll use Quick Starts to create a page that displays Departments and another that displays Employees. We'll also create pages that let users add a new department and a new employee - again using Quick Starts.
 
 
 ## **STEP 1**: Use the main-start Page to Display Departments
 
-These steps assume that you are already logged in to Oracle Visual Builder and are viewing the HR Application you created in the previous tutorial.
+These steps assume that you are already logged in to Oracle Visual Builder and are viewing the HR Application you created in the previous lab.
 
 1.  Click the **Mobile Applications** ![](images/vbcscp_mob_mob_icon.png) tab.
 2.  Expand the **hrmobileapp**, **Flows**, and **main** nodes, then click **main-start**.
@@ -26,7 +26,7 @@ These steps assume that you are already logged in to Oracle Visual Builder and a
 
     Click the **Mobile Applications** tab on the left to hide the Mobile Apps pane and create more room for the Page Designer. You may also want to widen your browser window.
 
-3.  Click **Components**, scroll down to Collection in the Components palette, and drag a **List View** component to the page's Content Placeholder section.
+3.  In the Components palette, scroll down to Collection and drag a **List View** component to the page's Content Placeholder section.
 
 4.  In the Properties pane, click **Add Data** to open the Add Data Quick Start.
 
@@ -51,7 +51,7 @@ These steps assume that you are already logged in to Oracle Visual Builder and a
 
 ## **STEP 2**: Add a Create Page for the Department Business Object
 
-A Create page allows you to create data instances. In this tutorial, you're setting up a Create page that lets your users create new departments.
+A Create page allows you to create data instances. In this step, you're setting up a Create page that lets your users create new departments.
 
 1.  If necessary, click the **List View** component on the page, then click **Quick Start** to display the Quick Start menu again.
 2.  Click **Add Create Page**.

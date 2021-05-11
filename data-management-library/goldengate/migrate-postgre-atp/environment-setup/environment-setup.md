@@ -77,6 +77,8 @@ For a technical overview of this lab step, please watch the following video:
 
 	```
 	<copy>
+	chmod +x update.sh
+	
 	terraform init
 	</copy>
 	```

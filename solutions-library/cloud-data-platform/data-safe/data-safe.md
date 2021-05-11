@@ -76,9 +76,9 @@ You can register an Autonomous Database from its Console in Oracle Cloud Infrast
 
 2. In the upper right corner, select the region in which your Autonomous Database resides.
 
-3. From the navigation menu, select **Autonomous Data Warehouse** or **Autonomous Transaction Processing**.
+3. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
-	![](./images/1.2.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 4. From the **COMPARTMENT** drop-down list, select the compartment that contains your Autonomous Database.
 
@@ -118,7 +118,7 @@ The following table describes the available roles for Autonomous Databases [here
 	```
 	<copy> EXECUTE DS_TARGET_UTIL.GRANT_ROLE('role_name'); </copy>
 	```
-	**NOTE** SQL GRANT is a command used to provide access or privileges on the database objects to the users. We are granting access to 'role name' (Assess Data, Data Discovery and more) to allow user to perform necessary actions on Data Safe. 
+	**NOTE** SQL GRANT is a command used to provide access or privileges on the database objects to the users. We are granting access to 'role name' (Assess Data, Data Discovery and more) to allow user to perform necessary actions on Data Safe.
 	```
 	<copy> EXECUTE DS_TARGET_UTIL.REVOKE_ROLE('role_name'); </copy>
 	```

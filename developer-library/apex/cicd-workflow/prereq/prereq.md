@@ -1,37 +1,37 @@
-# Install pre-requisites
+# Install prerequisites
 
 ## Introduction
 
 In this lab we will get the workflow template and install SQLcl.
 
-SQLcl integrates a version of Liquibase, which is used extensively to track DB schema changes in this workshop.
+Oracle SQLcl integrates a version of Liquibase, which is used extensively to track database schema changes in this workshop.
 
-Estimated Lab Time: 5 minutes
+Estimated Lab Time: 5 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Get the repository template 
-- Install SQLcl
+- Get the repository template.
+- Install Oracle SQLcl.
 
-## **STEP 1:** Get the template
+## **STEP 1:** Get the Template
 
-1. Go to the github repository [https://github.com/oracle-quickstart/oci-apex-workflow-template](https://github.com/oracle-quickstart/oci-apex-workflow-template) and click **Use this Template**
+1. Go to the github repository [https://github.com/oracle-quickstart/oci-apex-workflow-template](https://github.com/oracle-quickstart/oci-apex-workflow-template) and click **Use this Template**.
 
   ![](./images/template.png)
 
-  Enter a repository name of your choice.
+2. Enter a repository name of your choice.
 
-2. Clone your new repository on your local computer.
+3. Clone your new repository on your local computer.
 
-## **STEP 2:** Download and install SQLcl
+## **STEP 2:** Download and Install Oracle SQLcl
 
-1. Download SQLcl from [https://www.oracle.com/tools/downloads/sqlcl-downloads.html](https://www.oracle.com/tools/downloads/sqlcl-downloads.html)
+1. Download Oracle SQLcl from [https://www.oracle.com/tools/downloads/sqlcl-downloads.html](https://www.oracle.com/tools/downloads/sqlcl-downloads.html)
 
-2. Place the SQLcl zip file download in the root folder of your cloned repository
+2. Place the Oracle SQLcl zip file download in the root folder of your cloned repository.
 
-3. To setup SQLcl, run:
+3. To setup Oracle SQLcl, run:
 
     ```bash
     <copy>

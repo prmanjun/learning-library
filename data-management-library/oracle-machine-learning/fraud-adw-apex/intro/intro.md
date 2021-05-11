@@ -22,6 +22,12 @@ This workshop highlights the use of two Oracle Machine Learning notebooks workin
 
 After their investigation of the most suspicious claims, we ask them to enter their decisions (Fraudfound?  Yes or No) creating "labeled" data for building supervised learning classification models on the target attribute (FraudFound) using Oracle Machine Learning.  Based on this two-step process of unsupervised learning and supervised learning combined with human expertise, we can build a data and ML-driven methodology to detect costly fraudulent auto claims.
 
+### Prerequisites
+
+- An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
+
 <if type="livelabs">
 
 ## **Step 1:** Launch the workshop
