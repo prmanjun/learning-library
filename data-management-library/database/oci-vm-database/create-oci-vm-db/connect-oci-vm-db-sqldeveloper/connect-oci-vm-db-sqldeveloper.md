@@ -17,7 +17,7 @@ Oracle Cloud Infrastructure provides a quick and easy to create an Oracle Databa
 
 1. From the menu, click on **Bare Metal, VM, and Exadata**.
 
-  ![](images/bare-metal-vm-exadata.png " ")
+  ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbcs.png " ")
 
 2. Use the Compartment drop down list to select the compartment that contains your database and click on the **Display name** for your database to open the details page..
 

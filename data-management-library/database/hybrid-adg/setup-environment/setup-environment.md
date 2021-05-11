@@ -23,14 +23,10 @@ Click on the link below to download the Resource Manager zip files you need to b
 
 ## **STEP 1:** Prepare the Primary Database
 
-1. Login to the Oracle Cloud Console, open the hamburger menu in the left hand corner. Choose **Resource Manager > Stacks**. Choose the **Compartment** that you want to use, click the  **Create Stack** button. *Note: If you are in a workshop, double check your region to ensure you are on the assigned region.*
+1. Login to the Oracle Cloud Console, click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**. *Note: If you are in a workshop, double check your region to ensure you are on the assigned region.*
 
-     ![](./images/cloud-homepage.png " ")
-      
-     ![](./images/resource.png " ")
-      
-          
-     
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
+   
      ![](./images/step1.3-createstackpage.png " ")
 
 2. Check the **.ZIP FILE**, Click the **Browse** link and select the primary database setup zip file (`db19c-primary-num.zip`) that you downloaded. Click **Select** to upload the zip file.

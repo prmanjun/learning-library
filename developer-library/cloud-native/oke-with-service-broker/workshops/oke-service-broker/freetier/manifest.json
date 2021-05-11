@@ -13,32 +13,32 @@
             "type": "oci"
         },
         {
-            "title": "Lab 1: Install Pre-requisites",
+            "title": "Lab 1: Install Prerequisites",
             "publisheddate": "01/07/2021",
             "filename": "../../../prereq/prereq.md"
         },
         {
-            "title": "Lab 2: Deploy an OKE cluster with OCI Service Broker",
+            "title": "Lab 2: Deploy an OKE Cluster with OCI Service Broker",
             "publisheddate": "01/07/2021",
             "filename": "../../../deploy/deploy.md"
         },
         {
-            "title": "Lab 3: Provision an ATP database with kubernetes",
+            "title": "Lab 3: Provision an ATP database with Kubernetes",
             "publisheddate": "01/07/2021",
             "filename": "../../../provision-atp/provision-atp.md"
         },
         {
-            "title": "Lab 4: Provision an Storage Bucket with kubernetes",
+            "title": "Lab 4: Provision an Storage Bucket with Kubernetes",
             "publisheddate": "01/07/2021",
             "filename": "../../../provision-bucket/provision-bucket.md"
         },
         {
-            "title": "Lab 5: Provision a Stream with kubernetes",
+            "title": "Lab 5: Provision a Stream with Kubernetes",
             "publisheddate": "01/07/2021",
             "filename": "../../../provision-stream/provision-stream.md"
         },
         {
-            "title": "Lab 6: Tear down the Environment",
+            "title": "Lab 6: Tear Down the Environment",
             "publisheddate": "01/07/2021",
             "filename": "../../../tear-down/tear-down.md",
             "type": "dbcs"
@@ -46,7 +46,7 @@
         {
             "title": "Need Help?",
             "publisheddate": "10/06/2020",
-            "filename": "../../../../weblogic-to-oci/need-help/need-help.md"
+            "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/developer-library/weblogic-to-oci/need-help/need-help.md"
         }
      ]
 }

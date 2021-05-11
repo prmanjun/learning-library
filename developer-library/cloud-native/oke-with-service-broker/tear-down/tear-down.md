@@ -1,20 +1,18 @@
-# Tearing down the infrastructure
+# Tear Down the Infrastructure
 
 ## Introduction
 
 In this lab we will be cleaning up our deployment and tearing down the infrastructure.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
-In this lab you will:
+In this lab you will tear down the infrastructure deployed.
 
-- Tear down the infrastructure deployed.
+## **STEP 1:** Tear Down the OKE Cluster
 
-## **STEP 1:** Tearing down the cluster
-
-1. Before tearing down infrastructure, it is recommended to undeploy the kubernetes objects. The terraform will attempt to destroy all kubernetes objects but some artifacts may be left behind if it is not able to deprovision some resources (like buckets that are not empty)
+1. Before tearing down infrastructure, it is recommended to undeploy the Kubernetes objects. The Terraform will attempt to destroy all Kubernetes objects but some artifacts may be left behind if it is not able to deprovision some resources (like buckets that are not empty).
 
 2. To tear down the Kubernetes cluster, use:
 
@@ -24,11 +22,11 @@ In this lab you will:
     </copy>
     ```
 
-    and type `yes` at the prompt.
+3. Type `yes` at the prompt.
 
-    This will take several minutes.
+    This command will take several minutes.
 
-3. Sometimes the destroy phase will fail because the nodes in the node pool are not completely cleaned up before the terraform attempts to destroy the VCN.
+4. Sometimes the destroy phase will fail because the nodes in the node pool are not completely cleaned up before the Terraform attempts to destroy the VCN.
 
     Run the destroy command again to finish clean up if it fails at first.
 

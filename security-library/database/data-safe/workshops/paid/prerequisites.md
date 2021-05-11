@@ -72,7 +72,7 @@ You can create a native or federated user account. Both are supported in Oracle 
 
 1. Sign in to the Oracle Cloud Infrastructure Console using your tenancy administrator credentials.
 
-2. From the navigation menu, select **Identity**, and then **Users**. The **Users** page in Oracle Cloud Infrastructure Identity and Access Management (IAM) is displayed.
+2. From the navigation menu, select **Identity and Security**, and then **Users**. The **Users** page in Oracle Cloud Infrastructure Identity and Access Management (IAM) is displayed.
 
 3. Click **Create User**.
 
@@ -97,7 +97,7 @@ You can create a native or federated user account. Both are supported in Oracle 
 
 ### **Create a user group and add the user account to the group**
 
-1. From the navigation menu, select **Identity**, and then **Groups**. The **Groups** page in IAM is displayed.
+1. From the navigation menu, select **Identity & Security**, and then **Groups**. The **Groups** page in IAM is displayed.
 
 2. Click **Create Group**. The **Create Group** dialog box is displayed.
 
@@ -117,7 +117,7 @@ You can create a native or federated user account. Both are supported in Oracle 
 
 ### **Create a compartment for the user**
 
-1. From the navigation menu, select **Identity**, and then **Compartments**. The **Compartments** page in IAM is displayed.
+1. From the navigation menu, select **Identity & Security**, and then **Compartments**. The **Compartments** page in IAM is displayed.
 
 2. Click **Create Compartment**. The **Create Compartment** dialog box is displayed.
 
@@ -132,7 +132,7 @@ You can create a native or federated user account. Both are supported in Oracle 
 
 Create a policy in IAM that grants permissions to the group to which the user belongs. The policy needs to allow the user to create an Autonomous Database in the compartment and use it with Oracle Data Safe.
 
-1. From the navigation menu, select **Identity**, and then **Policies**. The **Policies** page in IAM is displayed.
+1. From the navigation menu, select **Identity & Security**, and then **Policies**. The **Policies** page in IAM is displayed.
 
 2. Under **COMPARTMENT**, leave the **root** compartment selected.
 
@@ -165,7 +165,7 @@ Create a policy in IAM that grants permissions to the group to which the user be
 
 You can enable Oracle Data Safe in multiple regions of your tenancy, if needed. For the Oracle Data Safe Workshop, you need to enable Oracle Data Safe in at least one region of your tenancy. Be aware that you cannot disable Oracle Data Safe after it's enabled.
 
-1. From the navigation menu, select **Data Safe**. The **Overview** page is displayed.
+1. From the navigation menu, select **Oracle Database**, and then **Data Safe**. The **Overview** page is displayed.
 
 2. At the top of the page on the right, select the region in which you want to enable Oracle Data Safe, for example, **US East (Ashburn)**.
 
@@ -185,7 +185,6 @@ You can enable Oracle Data Safe in multiple regions of your tenancy, if needed. 
 4. For the user group that you created (for example, `dsg01`), select **Manage** from the **All Features** drop-down list.
 
 5. Click **Save**. The regular user can now access Oracle Data Safe.
-  here
 
 
 ### **Send information to the user**
@@ -208,4 +207,4 @@ You may [now proceed to the next lab](#next).
 ## Acknowledgements
 
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

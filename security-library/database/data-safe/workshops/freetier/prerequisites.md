@@ -124,9 +124,7 @@ Throughout the workshop, it is assumed that you are signed in to the Oracle Clou
 
    ![Select Home region](images/select-region.png)
 
-2. From the navigation menu, select **Data Safe** (under Database Related Services).
-
-   ![Select Data Safe from the Navigation menu](images/navigation-menu-select-data-safe.png)
+2. From the navigation menu, select **Oracle Database**, and then **Data Safe**.
 
   The **Overview** page is displayed.
 
@@ -144,7 +142,7 @@ Throughout the workshop, it is assumed that you are signed in to the Oracle Clou
 
 You need to create a compartment in your tenancy to store an Autonomous Database and Oracle Data Safe resources, both of which you create during the workshop. In the labs, this compartment is referred to as "your compartment."
 
-1. From the navigation menu, select **Identity**, and then **Compartments**. The **Compartments** page in Oracle Cloud Infrastructure Identity and Access Management (IAM) is displayed.
+1. From the navigation menu, select **Identity & Security**, and then **Compartments**. The **Compartments** page in Oracle Cloud Infrastructure Identity and Access Management (IAM) is displayed.
 
 2. Click **Create Compartment**. The **Create Compartment** dialog box is displayed.
 
@@ -173,4 +171,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

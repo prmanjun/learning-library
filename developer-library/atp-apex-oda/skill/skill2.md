@@ -17,7 +17,7 @@ Watch the video below for an overview of the Create Digital Assistant Skill lab
 
 We have to access to **Digital Assistant** section in the **Oracle Cloud Dashboard**.
 
-![ODA Menu](./images/oda_lab5_1.png)
+![ODA Menu](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-assist.png " ")
 
 Go to **Digital Assistant Dashboard** as we did on **Lab 3**. As a reminder check the following screenshot:
 

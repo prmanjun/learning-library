@@ -45,9 +45,9 @@ Oracle Cloud Infrastructure Registry is an Oracle-managed registry that enables 
 
      ![](./../container-registry/images/AUTHTOKEN.PNG " ")
 
-10. From OCI Services menu, Click **Container Registry** under **Developer Services**
+10. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Container Registry**.
 
-     ![](./../container-registry/images/OCIR_HOL0033.PNG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-container-registry.png " ")
 
 11. Click **Create Repository**. Provide Repository name (all Lowercase), Check **Public** for **Access**, Click **Create Repository**
 

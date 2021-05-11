@@ -52,7 +52,7 @@ To complete this lab, you need to have the following:
 
     a) Click the browser tab named **Oracle Cloud Infrastructure**, and sign in to the Console.
 
-    b) From the navigation menu, select **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
+    b) From the navigation menu, select **Oracle Database**, and then **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
 
     c) Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
 
@@ -154,7 +154,7 @@ You can access all of your Comprehensive Assessment reports by viewing the histo
 
 2. Under **Security Assessment**, click **Comprehensive Assessment**.
 
-3. In the **Differs from Baseline** column, click **View History**. The **Assessment History** dialog box is displayed.
+3. In the **Last Generated Report** column, click **View History**. The **Assessment History** dialog box is displayed.
 
 4. In the **Last Assessed On** column, view the list of dates on which you generated Comprehensive Assessment reports. The dates link to the reports so that you can view them again as needed.
 
@@ -318,4 +318,4 @@ You can use the User Assessment feature to identify user settings and user risks
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

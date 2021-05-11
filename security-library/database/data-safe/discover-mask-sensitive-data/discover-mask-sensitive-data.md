@@ -28,7 +28,7 @@ To complete this lab, you need to have the following:
 ### Assumptions
 
 - You are signed in to the Oracle Cloud Infrastructure Console. If not, please refer to the [Getting Started](?lab=getting-started) page.
-- You completed the [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous) lab in this workshop.
+- You completed the [Provision and Register an Autonomous Database](?lab=lab-1-provision-register-autonomous) lab in this workshop. In this lab, you run the `load-data-safe-sample-data_admin.sql` script on your Autonomous Database. The first part of the script enables the Data Masking permission on your database. Without that permission, you cannot run data masking jobs on that database in Oracle Data Safe. The second part of the script loads the sample data that you mask in this lab.
 - The target database name used in the example screenshots is ad01. Your data values will most likely be different.
 
 
@@ -41,45 +41,47 @@ In this step, you use Oracle Database Actions to query sensitive data in your da
 
 2. In the Oracle Cloud Infrastructure Console, make sure the correct region is selected in your tenancy.
 
-3. From the navigation menu, select **Autonomous Transaction Processing**.
+3. From the navigation menu, select **Oracle Database**, and then **Autonomous Transaction Processing**.
 
 4. Under **COMPARTMENT**, make sure that your compartment is selected.
 
+5. From the **Workload Type** drop-down list, select **All**.
+
 5. Click the name of your database.
 
-6. On the **Autonomous Database Details** page, click the **Tools** subtab.
+7. On the **Autonomous Database Details** page, click the **Tools** subtab.
 
-7. In the **Database Actions** section, click **Open Database Actions**. A new browser tab is opened displaying the **Oracle Database Actions | Sign in** page.
+8. In the **Database Actions** section, click **Open Database Actions**. A new browser tab is opened displaying the **Oracle Database Actions | Sign in** page.
 
-8. In the **Username** field, enter `ADMIN`, and then click **Next**.
+9. In the **Username** field, enter `ADMIN`, and then click **Next**.
 
-9. In the **Password** field, enter the password that you created for the `ADMIN` user when you provisioned the database, and then click **Sign In**.
+10. In the **Password** field, enter the password that you created for the `ADMIN` user when you provisioned the database, and then click **Sign In**.
 
-10. Under **Development**, click **SQL**.
+11. Under **Development**, click **SQL**.
 
-11. If a help note is displayed, click the **X** button to close it.
+12. If a help note is displayed, click the **X** button to close it.
 
-12. On the **Navigator** tab, select the `HCM1` schema from the first drop-down list. In the second drop-down list, leave **Tables** selected.
+13. On the **Navigator** tab, select the `HCM1` schema from the first drop-down list. In the second drop-down list, leave **Tables** selected.
 
   ![Navigator tab in Oracle Database Actions](images/select-hcm1.png)
 
-13. Drag the `EMPLOYEES` table to the worksheet.
+14. Drag the `EMPLOYEES` table to the worksheet.
 
   ![EMPLOYEES table](images/drag-employees-table-to-worksheet.png)
 
-14. When prompted to choose an insertion type, click **Select**, and then click **Apply**.
+15. When prompted to choose an insertion type, click **Select**, and then click **Apply**.
 
  ![Choose the type of insertion dialog box](images/insertion-type-select.png)
 
-15. View the SQL query on the worksheet.
+16. View the SQL query on the worksheet.
 
   ![Worksheet tab showing EMPLOYEES table](images/query-employees-table.png)
 
-16. On the toolbar, click the **Run Statement** button (green circle with a white arrow) to execute the query.
+17. On the toolbar, click the **Run Statement** button (green circle with a white arrow) to execute the query.
 
   ![Run Statement button on toolbar](images/run-statement-button.png)
 
-17. Review the query results. If needed, click the **Query Result** tab.
+18. Review the query results. If needed, click the **Query Result** tab.
 
     - Data such as `employee_id`, `first_name`, `last_name`, `email`, `phone_number`, and `hire_date`, are considered sensitive data and should be masked if shared for non-production use, such as development and analytics.
 
@@ -304,4 +306,4 @@ Congratulations! You have completed the Oracle Data Safe Fundamentals workshop.
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

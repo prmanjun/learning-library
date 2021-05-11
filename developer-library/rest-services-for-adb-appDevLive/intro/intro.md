@@ -1,4 +1,4 @@
-# Modern App Dev with Oracle REST Data Services
+# Modern Application Development with Oracle REST Data Services
 
 ## Introduction
 Oracle REST Data Services (ORDS) bridges HTTPS and your Oracle Database. A mid-tier Java application, ORDS provides a Database Management REST API, SQL Developer Web, a PL/SQL Gateway, SODA for REST, and the ability to publish RESTful Web Services for interacting with the data and stored procedures in your Oracle Database. 
@@ -30,7 +30,7 @@ This lab assumes you have completed the following labs:
 * Lab: [Login to Oracle Cloud](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md)
 * Lab: [Provision an Autonomous Database](https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md)
 
-# Developing RESTful Services in Autonomous Database
+## Developing RESTful Services in Autonomous Database
 
 In this lab you will use the browser-based SQL and REST workshop tools, connect to your Autonomous Database and REST enable a table. You will then secure that REST endpoint all within a single UI.
 
@@ -38,20 +38,15 @@ In this lab you will use the browser-based SQL and REST workshop tools, connect 
 
 ### **Lab 2:** Connect to your Autonomous Database using SQL Developer Web
 
-### **Lab 3:** User Setups
+### **Lab 3:** Create and Auto-REST enable a table
 
-### **Lab 4:** Create and Auto-REST enable a table
+### **Lab 4:** Load data and create business logic in the database
 
-### **Lab 5:** Load data and create business logic in the database
+### **Lab 5:** REST enable tables and business logic
 
-### **Lab 6:** REST enable tables and business logic
-
-### **Lab 7:** Securing the REST endpoints
-
-## Conclusion
- In this lab, you had an opportunity to get an introduction to REST services.
+### **Lab 6:** Securing the REST endpoints
 
 ## Acknowledgements
 
  - **Author** - Jeff Smith, Distinguished Product Manager and Brian Spendolini, Product Manager
- - **Last Updated By/Date** - April 2021
+ - **Last Updated By/Date** - Anoosha Pilli, Database Product Management, April 2021

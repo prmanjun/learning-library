@@ -6,47 +6,47 @@ Migrating a WebLogic domain is equivalent to re-deploying the applications and r
 
 We'll use WebLogic Scripting Tool to migrate the domain from on-premises and re-deploy it on OCI.
 
-Estimated Lab Time: 15 minutes
+Estimated Lab Time: 15 minutes.
 
 ### About Product/Technologies
 
-**WebLogic Scripting Tool** is part of the WebLogic Server package, and uses the Python language to create, edit, update or delete objects in a domain.
+**WebLogic Scripting Tool** (WLST) is part of the WebLogic Server package, and uses the Python language to create, edit, update or delete objects in a domain.
 
 Migration with WebLogic Scripting Tool consists of 3 steps:
 
 - Move the deployment scripts and application files from the on-premises environment to the WebLogic on OCI infrastructure.
-- Create an environment file to use as input to the scripts
-- Run the WLST script on the target environment to deploy the datasource and applications .
+- Create an environment file to use as input to the scripts.
+- Run the WLST script on the target environment to deploy the datasource and applications.
 
 ### Objectives
 
 In this lab, you will:
 
-- Move the application files and deployment WLST scripts to the target environment
-- Edit the environment file
-- Run the deployment scripts on the target
-- Check migration was successful
+- Move the application files and deployment WLST scripts to the target environment.
+- Edit the environment file.
+- Run the deployment scripts on the target.
+- Check migration was successful.
 
 ### Prerequisites
 
 To run this lab, you need to:
 
-- Have setup the demo 'on-premises' environment to use as the source domain to migrate
-- Have deployed a WebLogic on OCI domain using the marketplace
-- Have migrated the Application database from the source environment to OCI
+- Have set up the demo on-premises environment to use as the source domain to migrate.
+- Have deployed a WebLogic on OCI domain using the marketplace.
+- Have migrated the application database from the source environment to OCI.
 
-## **STEP 1:** Locate the scripts and application in the source environment
+## **STEP 1:** Locate the Scripts and Application in the Source Environment
 
-### Using the docker 'on-premises' environment:
+### Using the docker on-premises environment:
 
-1. If you were in the Database container to perform the previous steps of database migration, exit the database container with
+1. If you were in the database container to perform the previous steps of database migration, exit the database container with:
 
     ```bash
     <copy>
     exit
     </copy>
     ```
-    You should be back on your local computer shell prompt
+    You should be back on your local computer shell prompt.
 
 2. Get into the **WebLogic** docker container with the following command:
 
@@ -60,7 +60,7 @@ To run this lab, you need to:
 ### Using the demo workshop marketplace image
 
 
-You should already be in the 'on-premises' environment logged in as the `oracle` user.
+You should already be in the on-premises environment logged in as the `oracle` user.
 
 1. Get to the `/u01/app/oracle` folder
 
@@ -70,9 +70,9 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-## **STEP 2:** Copy the files over
+## **STEP 2:** Copy the Files Over
 
-1. Package the files into a ZIP archive
+1. Package the files into a ZIP archive:
 
     ```bash
     <copy>
@@ -80,7 +80,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-2. Copy the files to the target admin server
+2. Copy the files to the target admin server:
 
     If you provisioned in a *Public Subnet*, set the variable:
 
@@ -90,7 +90,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-    Then 
+    Then run:
     
     ```bash
     <copy>
@@ -98,14 +98,13 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-    Then get into the admin server with SSH
+    Get into the admin server with SSH:
 
     ```bash
     <copy>
     ssh opc@${TARGET_WLS_SERVER}
     </copy>
     ```
-
 
     If you provisioned in a *Private Subnet* set the variables:
 
@@ -116,7 +115,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-    Then 
+    Then run:
     
     ```bash
     <copy>
@@ -124,7 +123,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-    Then get into the admin server with SSH
+    Get into the admin server with SSH:
 
     ```bash
     <copy>
@@ -132,7 +131,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-3. Change file ownership and move to the oracle home
+3. Change file ownership and move to the oracle home:
 
     ```bash
     <copy>
@@ -142,7 +141,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-4. Unzip the files onto the `u01/app/oracle/` folder
+4. Unzip the files onto the `u01/app/oracle/` folder:
 
     ```bash
     <copy>
@@ -150,7 +149,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-5. Get into the `/u01/app/oracle` folder
+5. Get into the `/u01/app/oracle` folder:
 
     ```bash
     <copy>
@@ -158,7 +157,7 @@ You should already be in the 'on-premises' environment logged in as the `oracle`
     </copy>
     ```
 
-## **STEP 3:** Edit the `gen_env.sh` file
+## **STEP 3:** Edit the `gen_env.sh` File
 
 The `gen_env.sh` files calls the metadata endpoint to populate some of required field automatically, but it doesn't know about the database and data source, which we will need to populate manually.
 
@@ -199,9 +198,9 @@ export APP_PKG_LOCATION=$(pwd)
 cat oradatasource.tpl | sed 's/"/\\\"/g;s/.*/echo "&"/e' > oradatasource.properties
 ```
 
-It pulls the WebLogic information from the metadata endpoint v1 with calls to `curl http://169.254.169.254/opc/v1/instance/metadata/<keyword>`
+It pulls the WebLogic information from the metadata endpoint v1 with calls to `curl http://169.254.169.254/opc/v1/instance/metadata/<keyword>`.
 
-1. Edit the `gen_env.sh` script 
+1. Edit the `gen_env.sh` script:
 
     ```bash
     <copy>
@@ -209,17 +208,16 @@ It pulls the WebLogic information from the metadata endpoint v1 with calls to `c
     </copy>
     ```
 
-
-    We now need to populate the database variables:
+    We need to populate the database variables:
 
     ```
     DB_HOST=<Private IP of the DB node>
     DB_DOMAIN=nonjrfdbsubnet.nonjrfvcn.oraclevcn.com <This is the part of the connection string without the CDB name>
     ```
 
-2. Save the file by typing `CTRL+x` then `y`
+2. Save the file by typing `CTRL+x` then `y`.
 
-3. Generate the `oradatasource.properties` file with
+3. Generate the `oradatasource.properties` file with:
 
     ```bash
     <copy>
@@ -227,7 +225,7 @@ It pulls the WebLogic information from the metadata endpoint v1 with calls to `c
     </copy>
     ```
 
-## **STEP 4:** Run the deployment script
+## **STEP 4:** Run the Deployment Script
 
   ```bash
   <copy>
@@ -237,7 +235,7 @@ It pulls the WebLogic information from the metadata endpoint v1 with calls to `c
 
 ### You're done!
 
-## **STEP 5:** Check that the app deployed properly
+## **STEP 5:** Check the Application Deployed Properly
 
 1. Go to the WebLogic Admin console (at https://`ADMIN_SERVER_PUBLIC_IP`:7002/console if you deployed in a *Public Subnet*), or through the tunnel as you did earlier.
 
@@ -249,16 +247,16 @@ It pulls the WebLogic information from the metadata endpoint v1 with calls to `c
 
     Click **Advanced...** and then **Accept the Risk and Continue**
 
-3. Login with the Admin user `weblogic` and password: `welcome1`
+3. Log in with the Admin user `weblogic` and password: `welcome1`.
 
-4. Go to `deployments`: you should see the 2 applications deployed, and in the **active** state
+4. Go to `deployments`: you should see the 2 applications deployed, and in the **active** state.
 
   ![](./images/oci-deployments.png)
 
 5. Go to the SimpleDB application URL, which is the Load Balancer IP gathered previously in the **Outputs** of the WebLogic provisioning, with the route `/SimpleDB/` like:
-https://`LOAD_BALANCER_IP`/SimpleDB/
+https://*LOAD_BALANCER_IP*/SimpleDB/
 
-    Making sure you use `https` as scheme and the proper case for `/SimpleDB` 
+    Making sure you use `https` as scheme and the proper case for `/SimpleDB`.
 
   ![](./images/oci-simpledb-app.png)
 

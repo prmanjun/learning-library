@@ -29,12 +29,15 @@ In this lab, you:
 Configuring a tenancy using Oracle Resource Manager includes creating a solution stack, selecting the solution, providing identifying information for the new stack, and updating variables. For most tenancies, the default options are sufficient. These instructions outline the minimal requirements needed for configuring a tenancy to work with the Data Science service. If your tenancy has a more advanced configuration, then go to **Advanced Configuration of a Tenancy**. For most tenancies, the following instructions are sufficient but minor changes may be needed. It is possible to change the configuration later.
 
 1. [Login to the OCI Console](https://www.oracle.com/cloud/sign-in.html) with an account with administrator permissions.
-1. Open the navigation menu. 
-1. Under **Solutions and Platform**, select **Resource Manager** and click **Stacks**.
-    ![](./../speed-up-ds-with-the-ads-sdk/images/select-stacks.png)
+
+1. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 
 1. Choose a compartment you have permission to work in (on the left side of the page). The page updates to display only the resources in that compartment. If you are not sure which compartment to use, contact an administrator.
+
 1. Click **Create Stack**.
+
     ![](./../speed-up-ds-with-the-ads-sdk/images/create-stack.png)
 
 1. Click **Sample Solution**, and then click **Select Solution**.
@@ -66,9 +69,9 @@ Use these instructions if your tenancy has more than a basic configuration to cr
 Configuring a tenancy using the Oracle Resource Manager includes creating a solution stack, selecting the solution, providing identifying information for the new stack, and updating variables. For advanced configurations, it is likely that you need to make changes. You can change the configuration after it's created.
 
 1. [Login to the OCI Console](https://www.oracle.com/cloud/sign-in.html) with an account with administrator permissions.
-1. Open the navigation menu. 
-1. Under **Solutions and Platform**, select **Resource Manager**, and click **Stacks**.
-    ![](./../speed-up-ds-with-the-ads-sdk/images/select-stacks.png)
+1. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Stacks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-resmgr-stacks.png " ")
 
 1. Choose a compartment you have permission to work in (on the left side of the page). The page updates to display only the resources in that compartment. If you are not sure which compartment to use, contact an administrator.
 1. Click **Create Stack**.

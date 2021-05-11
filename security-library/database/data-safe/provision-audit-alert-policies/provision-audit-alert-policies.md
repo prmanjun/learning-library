@@ -37,7 +37,7 @@ To complete this lab, you need the following:
 
     a) Click the browser tab named **Oracle Cloud Infrastructure**, and sign in to the Console.
 
-    b) From the navigation menu, select **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
+    b) From the navigation menu, select **Oracle Database**, and then **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
 
     c) Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
 
@@ -106,7 +106,7 @@ To complete this lab, you need the following:
 
     ![Oracle Pre-defined policies](images/oracle-predefined-policies.png)
 
-10. Next to **Audit Compliance Standards**, notice that the **Center for Internet Security (CIS) Configuration** policy is created and enabled by default. The **Security Technical Implementation Guidelines (STIG)** policy is not provisioned by default.
+10. Next to **Audit Compliance Standards**, notice that the **Center for Internet Security (CIS) Configuration** policy is created and enabled by default.
 
   ![Audit compliance standards](images/audit-compliance-standards.png)
 
@@ -211,4 +211,4 @@ You may now [proceed to the next lab](#next).
 ## Acknowledgements
 
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

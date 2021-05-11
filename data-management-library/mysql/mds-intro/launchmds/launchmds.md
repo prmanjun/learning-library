@@ -32,9 +32,9 @@ In this lab, you will be guided through the following steps:
 
 You must have an OCI tenancy subscribed to your home region and enough limits configured for your tenancy to create a MySQL DB System. Make sure to log-in to the Console as an Administrator.
 
-1. On the Navigation Menu, under Governance and Administration, select Identity -> Compartments.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**.
 
-    ![Compartment1](./images/01compartment01.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")	
 
 2. On Compartments Page, click on Create Compartment. 
 
@@ -52,8 +52,9 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
     ![Compartment4](./images/01compartment04.png " ")
 
 ## **STEP 2**: Create Policy
-1.	On the Navigation Menu, under Governance and Administration, select Identity -> Policies. 
-    ![Policy1](./images/02policy01.png " ")
+1.	Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Policies**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-policies.png " ")	
 
 2.	On Policies Page, under List Scope, select the Compartment(root) and click on the Create Policy button.
     ![Policy2](./images/02policy02.png " ")
@@ -91,8 +92,9 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 
 ## **STEP 3:** Create Virtual Cloud Network
 
-1. On the Navigation Menu, under Core Infrastructure, select Networking -> Virtual Cloud Networks.
-    ![VCN](./images/03vcn01.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. Click on Start VCN Wizard.
     ![VCN](./images/03vcn02.png " ")
@@ -149,8 +151,9 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 
 ## **STEP 4:** Create a MySQL DB System.
 
-1. Open the navigation menu. Under MySQL, click DB Systems
-    ![MDS](./images/04mysql01.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Databases**, and select **DB Systems**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbsys.png " ")
 
 2. Click on Create MySQL DB System
     ![MDS](./images/04mysql02.png" ")
@@ -236,8 +239,9 @@ You must have an OCI tenancy subscribed to your home region and enough limits co
 
 When you are finished, return to this step.
 
-1. You will need a client machine to connect to your brand new MySQL database. To launch a Linux Compute instance, go to the Console, menu Compute, Instances
-    ![COMPUTE](./images/05compute01.png " ")
+1. You will need a client machine to connect to your brand new MySQL database. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 2. On Instances in **MDS_Sandbox** Compartment, click on Create Instance.
     ![COMPUTE](./images/05compute02.png " ")
@@ -365,8 +369,8 @@ When you are finished, return to this step.
 
 ## **STEP 7:** Start, stop, or reboot MySQL DB System
 
-Open the navigation menu. Under MySQL, click DB Systems.
-![MDS](./images/04mysql01.png " ")
+Click the **Navigation Menu** in the upper left, navigate to **Databases**, and select **DB Systems**.
+![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbsys.png " ")
 
 List DB Systems
 ![MDS](./images/04mysql02_06.png " ")
@@ -401,8 +405,8 @@ Select the required shutdown type and click the Stop or Restart button, dependin
 
 Deleting a DB System permanently deletes it. Any manual backups associated with the deleted DB System are retained for their retention periods. Automatic backups are deleted with the DB System.
 
-Open the navigation menu. Under MySQL, click DB Systems.
-![MDS](./images/04mysql01.png " ")
+Click the **Navigation Menu** in the upper left, navigate to **Databases**, and select **DB Systems**.
+![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbsys.png " ")
 
 List DB Systems
 ![MDS](./images/04mysql02_06.png " ")

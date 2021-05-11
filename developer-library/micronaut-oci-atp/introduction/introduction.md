@@ -26,11 +26,14 @@ and Oracle Cloud to connected to an Oracle Database.
 - Lab 6: Terminate and Destroy OCI Resources (Optional)
 
 ### Prerequisites
-- An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+- An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
 - Understanding of the Java programming language
 - [Micronaut 2.4](https://micronaut.io/download.html) 
 - [GraalVM 21.0.0 for JDK 11](https://www.graalvm.org/docs/getting-started-with-graalvm/) 
 - An IDE such as [VS Code](https://code.visualstudio.com/) or [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
+
 
 ## More Information
 - [Micronaut](https://micronaut.io/)

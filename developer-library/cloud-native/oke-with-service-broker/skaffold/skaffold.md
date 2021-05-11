@@ -1,4 +1,4 @@
-# Using Skaffold to deploy, develop and debug live containers
+# Using Skaffold to Deploy, Develop and Debug Live Containers
 
 ## Introduction
 
@@ -9,26 +9,26 @@ In the **Kustomize** lab, we saw how resource templates were combined and overla
 In this lab we'll look at the **Skaffold** configuration and usage to develop applications on a remote cluster.
 
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Understand the additional templating rules for **Skaffold**
-- Understand Docker multi-stage builds, to produce different image outputs with a single Dockerfile
-- Learn about the different deployment modes in **Skaffold**
+- Understand the additional templating rules for **Skaffold**.
+- Understand Docker multi-stage builds, to produce different image outputs with a single Dockerfile.
+- Learn about the different deployment modes in **Skaffold**.
 
 
-## **STEP 1:** The *`skaffold.yaml`* base config file
+## **STEP 1:** The *`skaffold.yaml`* Base Config File
 
 1. The *`skaffold.yaml`* file configures the different modes **Skaffold** can be used for:
 
-    - *`render`*: render the templates (using **Kustomize** in our config)
-    - *`build`*: builds, tags and publishes the docker images referenced in the config
-    - *`deploy`* for actual deployment 
-    - *`dev`* for development: deploy and run while synchronizing files on change with the live container
-    - *`debug`* for development: deploy and run attaching a remote debugger to the live container
+    - *`render`*: render the templates (using **Kustomize** in our config).
+    - *`build`*: builds, tags and publishes the docker images referenced in the config.
+    - *`deploy`* for actual deployment.
+    - *`dev`* for development: deploy and run while synchronizing files on change with the live container.
+    - *`debug`* for development: deploy and run attaching a remote debugger to the live container.
 
 2. The config file includes a base set of sections, and then *profiles*. Let's look at the default sections first:
 
@@ -83,7 +83,7 @@ In this lab you will:
 
 7. The *`deploy`* section defines how to deploy, with *`kustomize`* and what overlay to deploy.
 
-8. Running `skaffold build` (with some options) will build all the docker images tag them with git commit hashes and push them to our registry.
+8. Running `skaffold build` (with some options) will build all the docker images, tag them with git commit hashes and push them to our registry.
 
     The makefile abstracts the options so you can simply run:
 
@@ -102,7 +102,7 @@ In this lab you will:
     Which select the default environment (`development`) and default Image Registry defined in the `global.env` file to name the images in Pods.
 
 
-## **STEP 2:** Multi-stage Dockerfiles
+## **STEP 2:** Multi-Stage Dockerfiles
 
 1. In this step we will look at the Docker images, as it is relevant to the profile section we'll see next.
 
@@ -143,15 +143,15 @@ In this lab you will:
 
 4. The first stage is the builder stage
 
-    - The base image is the *`python:3.9-slim`* image defined as the *`builder`* stage
+    - The base image is the *`python:3.9-slim`* image defined as the *`builder`* stage.
 
-    - Set some ENV variable to avoid buffering logs
+    - Set some ENV variable to avoid buffering logs.
 
     - COPY the requirements.txt file and RUN pip install to install requirements.
 
     - then COPY the whole *`src`* folder over, mirroring the structure of the service folder.
 
-4. A second stage called *`autoreload`* starts from the *`builder`* stage, and adds some development dependencies to reload the process when files change, using *`entr`*
+4. A second stage called *`autoreload`* starts from the *`builder`* stage, and adds some development dependencies to reload the process when files change, using *`entr`*.
 
     The CMD command is set to *`find /src | entr -r python /src/producer.py`* to scan for file changes in the *`src`* folder and relaunch the python process on change.
 
@@ -159,7 +159,7 @@ In this lab you will:
 
 5. A 3rd stage is used for *`debug`*: the key part here is that the debugger functionality requires the language engine to be first (here `python` in order to inject the debugger properly). It works for Go, Java, Python and other languages too.
 
-6. A 4th stage starting from *`builder`* is labeled as *`prod`* (but is in fact the same as debug)
+6. A 4th stage starting from *`builder`* is labeled as *`prod`* (but is in fact the same as debug).
 
     For a Java, Go or other compiled application, we would extract the compiled code from the builder stage, and only ship that binary with the production image, using the `COPY FROM` docker construct.
 
@@ -169,7 +169,7 @@ In this lab you will:
     - The *`debug`* image will be used to attach the debugger.
     - The *`prod`* image is the final stage and is what will be built when no build stage is specified.
 
-## **STEP 3:** The Skaffold profiles
+## **STEP 3:** The Skaffold Profiles
 
 1. The next section of the *`skaffold.yaml`* includes profiles. Just like Kustomize templates, skaffold config uses patches to modify the base config.
 
@@ -205,9 +205,9 @@ In this lab you will:
 
 3. The *`dev`* profile also patches the artifacts (numbered 0,1,2 here) with a *`target`* of *`autoreload`* which indicates the Docker image build stage. It also patches the image *tag* with a prefix *`arl-`* so the image pushed to the registry is different from the `prod` image.
 
-4. The other profiles define profiles for *`debug`* which we will cover later, and regular *`development`* versions, *`staging`* and *`production`*, as well as similar profiles for the *`infra`* image
+4. The other profiles define profiles for *`debug`* which we will cover later, and regular *`development`* versions, *`staging`* and *`production`*, as well as similar profiles for the *`infra`* image.
 
-## **STEP 4:** Deploying the *`infra`* templates with Skaffold
+## **STEP 4:** Deploying the *`infra`* Templates with Skaffold
 
 *This steps shows the skaffold command we use. Don't run those directly: this step shows how skaffold is used, but the template makefile we'll describe next wraps these commands for you.*
 
@@ -225,7 +225,7 @@ In this lab you will:
 
 3. This is quite a bit to type and remember, so use the **makefile** to run these commands.
 
-## **STEP 5:** Using the makefile
+## **STEP 5:** Using the Makefile
 
 1. Check the makefile help by running:
 
@@ -266,7 +266,7 @@ In this lab you will:
     </copy>
     ```
 
-    This will build then deploy the infra templates into the *`dev-ns`* namespace for development
+    This will build then deploy the infra templates into the *`dev-ns`* namespace for development.
 
 6. To specify another environment, use:
 
@@ -276,11 +276,11 @@ In this lab you will:
     </copy>
     ```
 
-    this will deploy to the *`prod-ns`* namespace using the *`production`* overlays.
+    This will deploy to the *`prod-ns`* namespace using the *`production`* overlays.
 
 7. Note that the *`deploy-infra`* task actually calls *`clean-all-jobs`* before running, because **Skaffold** adds *`runIds`* to each resource labels, however **Jobs** are immutable and the call would fail unless the db-init Job is cleaned up before deploying.
 
-## **STEP 6:** Verify the infra deployment
+## **STEP 6:** Verify the Infra Deployment
 
 1. You can verify the deployment was successful by checking out the resources:
 
@@ -299,7 +299,7 @@ In this lab you will:
     ![](.image/stream.png)
 
 
-## **STEP 7:** Developing remote containers
+## **STEP 7:** Developing Remote Containers
 
 1. *`skaffold run`* builds and deploys the stack with image tagged with the git hash, and then stops.
 
@@ -339,7 +339,7 @@ In this lab you will:
     The demo application shows the data per producer, as each producer (if there are multiple) provide an id.
 
 
-5. Note when quitting **Skaffold** with *`CTRL+C`*, the deployment of the app is deleted, cleaning all pods, services, secrets etc... This is why we wanted to deploy the infrastructure separately, so it stays up between runs.
+5. Note when quitting **Skaffold** with *`CTRL+C`*, the deployment of the app is deleted, cleaning all pods, services, secrets and so on. This is why we wanted to deploy the infrastructure separately, so it stays up between runs.
 
 You may proceed to the next lab.
 

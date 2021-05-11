@@ -12,7 +12,8 @@ What do you do?
 
 JSON is a human-readable, self-describing format to represent data in a hierarchical format. This is best illustrated by an example:
 
-Example1:
+Example 1:
+```
 {
 	"id": 100,
 	"title": "Coming to America",
@@ -24,6 +25,7 @@ Example1:
 	"year": 1988,
 	"decade": "80s"
 }
+```
 
 Example 1 shows one JSON string (also called document) with information about a movie. The main building blocks are key-value pairs. The key is always a string - syntactically identified by being enclosed in double quotes. A key is on the left side of a colon. On the right side of the colon is the corresponding value. Key-Value pairs are encapsulating in a JSON Object - identified by the curly brackets {…}. The order or key-value pairs in an object is not significant. 
 A value (right side of colon) can also be a string ("DVD"), a number (5), a Boolean, null or an Object or Array. What is an array? Think of it as a list of values. In this example the key "starring" points to a JSON array of 4 string value. In a JSON array the order matters. 
@@ -50,26 +52,21 @@ This lab assumes you have completed the following labs:
 * Lab: [Login to Oracle Cloud](https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/pre-register-free-tier-account.md)
 * Lab: [Provision an Autonomous Database](https://raw.githubusercontent.com/oracle/learning-library/master/data-management-library/autonomous-database/shared/adb-provision/adb-provision.md)
 
-
-# Choose your Own JSON Adventure: Relational or Document Store
+## Choose your Own JSON Adventure: Relational or Document Store
 
 In this lab you will work with JSON in the Oracle Database with the intent of exposing the data for application development.
 
-### **Step 1:** Connect to your Database using SQL Developer Web
+### **STEP 1:** Connect to your Database using SQL Developer Web
 
-### **Step 2:** Create a user for working with JSON in the Oracle Database
+### **STEP 2:** Create a user for working with JSON in the Oracle Database
 
-### **Step 3:** Load JSON into the database and work with relational tables
+### **STEP 3:** Load JSON into the database and work with relational tables
 
-### **Step 4:** Load JSON into the database and work with JSON documents and collections
+### **STEP 4:** Load JSON into the database and work with JSON documents and collections
 
-### **Step 5:** Exposing the Data for Applications
-
-## Conclusion
- In this lab, you had an opportunity to work with JSON in the Oracle Database
+### **STEP 5:** Exposing the Data for Applications
 
 ## Acknowledgements
 
 - **Authors** - Jeff Smith, Beda Hammerschmidt and Brian Spendolini
-- **Last Updated By/Date** - April 2021
-- **Workshop Expiry Date** - April 2022
+- **Last Updated By/Date** - Anoosha Pilli, April 2021

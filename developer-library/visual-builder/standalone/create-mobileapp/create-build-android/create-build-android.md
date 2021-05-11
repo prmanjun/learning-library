@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This tutorial shows you how to define a build configuration to install a mobile application on Android devices. 
+This lab shows you how to define a build configuration to install a mobile application on Android devices. 
 
 ### Estimated Lab Time:  10 minutes
 
 ### Background
 
-Before you can stage or publish a mobile application, you'll need to create a build configuration that defines deployment information for the Android platform. In this tutorial, you'll define application settings and a build configuration, you'll then use these settings to build the mobile application for installation on Android devices in a later tutorial.
+Before you can stage or publish a mobile application, you'll need to create a build configuration that defines deployment information for the Android platform. In this lab, you'll define an Android build configuration, whose settings you'll use to build the mobile application for installation on Android devices in a later lab.
 
 ## **STEP 1**: Create a Keystore for Signing the App
 
-Your mobile application must be signed before it can be deployed to an Android device. Android does not require a certificate authority; an application can instead be self-signed.
+Before your mobile application can be deployed to an Android device, it must be signed. Android does not require a certificate authority; an application can instead be self-signed.
 
 To sign your mobile application, you must have a key. If you do not have a key, you can create one using the keytool utility.
 
@@ -20,37 +20,25 @@ The following example shows how to create a keystore with a single key that is v
 
 `keytool -genkeypair -v -keystore c:\mykeystore\releasesigning.keystore -alias releaseKeyAlias -keyalg RSA -keysize 2048 -validity 10000`
 
-If you do not want to create a key, right-click [this sample keystore file](./files/vbcsdoc.keystore "Sample Keystore file") and download it to your file system to use in this tutorial. Here are the credentials for the keystore file:
+If you do not want to create a key, right-click [this sample keystore file](https://objectstorage.us-ashburn-1.oraclecloud.com/p/_4YtX-KmFJ4sQoaGy3yW-iIZgqYs8-QH_uhNPhHZtDhp9FR4rgq1IQ--wH7X4Vuw/n/ociobenablement/b/hol-labs/o/vbcsdoc.keystore) and download it to your file system to use in this lab. Here are the credentials for the keystore file:
 
   -   **Keystore Password**: `vbcsdoc_ks_pass`
   -   **Key alias**: `vbcsdoc_ksalias`
   -   **Key password**: `vbcsdoc_ks_pass`
 
-## **STEP 2**: Configure Application Settings
+## **STEP 2**: Define a Build Configuration
+
+A build configuration includes deployment configuration and specifies if the build is to be deployed for development or production. Ideally, you'll want to create separate builds: one for development  and another for production with different information for the two environments. For the purposes of this lab, however, we'll only use one build configuration for both.
 
 These steps assume that you are already logged in to Oracle Visual Builder and are viewing the HR Application you created.
 
-1.  In the Navigator, click the **Mobile Applications ![](images/vbcsia_mob_mob_icon.png)**  tab.
-2.  Click the **hrmobileapp** node and click the **Settings** tab.
-3.  In the General tab, review the Application Settings. Revise values that are displayed to the users (as suggested in the following examples):
+1. If required, click the **Mobile Applications ![](images/vbcsia_mob_mob_icon.png)** tab in the Navigator. Click the **hrmobileapp** node, then the **Settings** tab.
 
-    -   **App Name**: Accept the default value or specify an alternative value for the app name. This value specifies the name that is displayed when the app is installed on a mobile device.
-    -   **URL Scheme:** Accept the default value. This value specifies the URL scheme for the app.
-    -   **Package name / Bundle ID Default:** Accept the default value. This value specifies the package name for the app. To avoid naming conflicts, Android uses reverse package names, such as `com.company.application`. For more information, refer to the Android Developers website.
-    -   **Lock Portrait Mode:** Accept the default value to render the application in Portrait mode on the mobile device. Deselecting the check box renders the mobile application in both Landscape and Portrait mode.
-
-    ![](images/vbcsia_mob_gen_s3.png)
-
-
-## **STEP 3**: Define a Build Configuration
-
-A build configuration includes deployment configuration and specifies if the build is to be deployed for development or production. Ideally, you'll want to create separate builds: one for development  and another for production with different information for the two environments. For the purposes of this tutorial, however, we'll only use one build configuration for both.
-
-1.  Click the **Build Configurations** tab and select **Android** in the + Configuration drop-down list.
+2.  Click the **Build Configurations** tab and select **Android** in the + Configuration drop-down list.
 
     ![](images/vbcsia_mob_bp_s1.png)
 
-2.  In the Android Build Configuration dialog box, enter:
+3.  In the Android Build Configuration dialog box, enter:
 
     -   **Configuration Name:** Enter the configuration name, for example, `MyAndroidBuildConfiguration`.  
 
@@ -68,11 +56,11 @@ A build configuration includes deployment configuration and specifies if the bui
 
     ![](images/vbcsia_mob_bp_s2.png)
 
-3.  Click **Save Configuration**. The new build configuration is displayed on the Build Configurations page.
+4.  Click **Save Configuration**. The new build configuration is displayed on the Build Configurations page.
 
     ![](images/vbcsia_mob_bp_result.png)
 
 ## Acknowledgements
 **Author** - Sheryl Manoharan
 
-**Last Updated** - February 2021
+**Last Updated** - March 2021

@@ -45,11 +45,9 @@ A Cloud Administrator can optionally create a compartment in your tenancy to hel
 
 _**Note:** In this LiveLabs version of the workshop, you don't have administrative privileges to create any OCI resources._
 
-1. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**.
 
-2. Under **Governance and Administration**, select **Identity > Compartments**.
-
-   ![](./images/create-compartment-menu.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")
 
    **Note:**
    You can alternatively select **Governance and Administration > Identity**. This displays the **Users** page with the **Identity** panel displayed on the left. This panel enables you to easily display the **Users**, **Groups**, **Policies**, and **Compartments** pages that you will need to create the resources required in this lab.
@@ -211,9 +209,9 @@ Create Oracle Cloud Infrastructure Identity and Access Management (IAM) policies
 ## **STEP 6:** Create a Virtual Cloud Network (VCN)
 In this step of the lab, you will create a new Virtual Cloud Network (VCN) that will be used by your Big Data Service cluster. In general, if you already have an existing VCN, you can use it instead of creating a new one; however, your existing VCN must be using a `Regional` subnet and the appropriate ports must be opened. In addition, if you want to make the cluster accessible from the public internet, the subnet must be public.      
 
-1. In the **Oracle Cloud Console** page, click the **Navigation** menu, and then navigate to **Networking > Virtual Cloud Networks**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-   ![](./images/navigate-to-vcn-page.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. On the **Virtual Cloud Networks** page, click **Start VCN Wizard**.  
 
@@ -300,11 +298,9 @@ See [Signing In to the Console](https://docs.cloud.oracle.com/en-us/iaas/Content
 ## **STEP 2:** Create a Compartment
 A Cloud Administrator can optionally create a compartment in your tenancy to help organize the Big Data Service resources. In this lab, as a Cloud Administrator, you will create a new compartment that will group all of your BDS resources that you will use in the lab.
 
-1. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**.
 
-2. Under **Governance and Administration**, select **Identity > Compartments**.
-
-   ![](./images/create-compartment-menu.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")
 
    **Note:**
    You can alternatively select **Governance and Administration > Identity**. This displays the **Users** page with the **Identity** panel displayed on the left. This panel enables you to easily display the **Users**, **Groups**, **Policies**, and **Compartments** pages that you will need to create the resources required in this lab.
@@ -467,9 +463,9 @@ Create Oracle Cloud Infrastructure Identity and Access Management (IAM) policies
 ## **STEP 6:** Create a Virtual Cloud Network (VCN)
 In this step of the lab, you will create a new Virtual Cloud Network (VCN) that will be used by your Big Data Service cluster. In general, if you already have an existing VCN, you can use it instead of creating a new one; however, your existing VCN must be using a `Regional` subnet and the appropriate ports must be opened. In addition, if you want to make the cluster accessible from the public internet, the subnet must be public.      
 
-1. In the **Oracle Cloud Console** page, click the **Navigation** menu, and then navigate to **Networking > Virtual Cloud Networks**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-   ![](./images/navigate-to-vcn-page.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. On the **Virtual Cloud Networks** page, click **Start VCN Wizard**.  
 

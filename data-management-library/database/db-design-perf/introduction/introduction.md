@@ -18,6 +18,8 @@ Estimated Workshop Time: 70 minutes
 ### Workshop Prerequisites
 This workshop requires an Oracle Cloud account. You may use your own cloud account, a cloud account that you obtained through a trial, a Free Tier account, a LiveLabs account or a training account whose details were given to you by an Oracle instructor.
 
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
+
 ### Workshop Objectives
 - Get comfortable with Oracle's public cloud services
 - Provision a new Autonomous Database instance on Shared Infrastructure

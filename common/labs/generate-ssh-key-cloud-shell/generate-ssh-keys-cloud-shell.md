@@ -12,7 +12,7 @@ Watch the video below for an overview of the lab.
 [](youtube:oq2Hk1Yy9Cg)
 
 
-## Oracle Cloud Shell
+## About Oracle Cloud Shell
 
 The Cloud Shell machine is a small virtual machine running a Bash shell which you access through the OCI Console (Homepage). Cloud Shell comes with a pre-authenticated OCI CLI (Command Line Interface), set to the Console tenancy home page region, as well as up-to-date tools and utilities. To use the Cloud Shell machine, your tenancy administrator must grant the required IAM (Identity and Access Management) policy.
 
@@ -33,13 +33,9 @@ The Cloud Shell machine is a small virtual machine running a Bash shell which yo
 
     ````
     <copy>cd .ssh</copy>
+    ssh-keygen -b 2048 -t rsa -f </copy> <<sshkeyname>>
     ````
-
-    ````
-    ssh-keygen -b 2048 -t rsa -f <<sshkeyname>>
-    ````
-
-    *Note: The angle brackets <<>> should not appear in your code.*
+    *Note: The angle brackets <<>> should not appear in your code.  We recommend using the name cloudshellkey for your keyname but feel free to use the name of choice.*
 
     ![](./images/cloudshell-ssh.png " ")
 
@@ -71,6 +67,7 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Dan Kingsley, Enablement Specialist, OSPA
-* **Last Updated By/Date** - Kamryn Vinson Database Product Management, January 2021
-* **Workshop (or Lab) Expiry Date** - March 27, 2021
+* **Contributors** - Jaden McElvey, Kamryn Vinson
+* **Last Updated By/Date** - Kay Malcolm, Database Product Management, January 2021
+* **Workshop (or Lab) Expiry Date** - May 2022
 

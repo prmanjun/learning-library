@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this lab, we'll look at scaling a WebLogic domain provisioned with the Marketplace.
+In this lab, we'll look at scaling a WebLogic domain provisioned with the marketplace.
 
 There are 2 ways to scale a domain:
 
@@ -38,17 +38,17 @@ For this lab you need:
 
 3. Scroll to the **Weblogic Server Node Count** input and adjust the number of nodes
 
-  ![](./images/scale-10-nodes.png =70%x*)
+  ![](./images/scale-10-nodes.png)
 
 4. Make sure the **Do not update domain configuration** is left **unchecked**. This option is to be used if you want to scale the number of nodes without scaling the cluster
 
-  ![](./images/scale-no-update.png =70%x*)
+  ![](./images/scale-no-update.png)
 
 5. Click **Next** and then **Save Changes**
 
 6. Then Click **Terraform Actions -> Apply** to make the changes
 
-  ![](./images/scale-tf-apply.png =70%x*)
+  ![](./images/scale-tf-apply.png)
 
   The new job will update the number of nodes, reverting any manual shape change to the originally provisioned shape. Servers will be restarted and new nodes will join the cluster if there was one defined, unless the **Do not update domain** was checked.
 
@@ -62,7 +62,7 @@ For this lab you need:
 
 1. To scale a node by changing its shape, go to **Compute -> Instances**
 
-  ![](./images/scale-compute.png =50%x*)
+  ![](./images/scale-compute.png)
 
 2. Click the WebLogic instance to modify
 
@@ -70,15 +70,15 @@ For this lab you need:
 
 3. In the instance details, click **Edit**
 
-  ![](./images/scale-compute-edit.png =70%x*)
+  ![](./images/scale-compute-edit.png)
 
 4. In the Edit pane, click **Edit Shape**
 
-  ![](./images/scale-compute-edit-shape.png =70%x*)
+  ![](./images/scale-compute-edit-shape.png)
 
 5. Select an new shape and click **Save Changes**
 
-  ![](./images/scale-compute-edit-shape2.png =70%x*)
+  ![](./images/scale-compute-edit-shape2.png)
 
   You will be prompted to reboot the instance. The WebLogic servers will be restarted on reboot.
 

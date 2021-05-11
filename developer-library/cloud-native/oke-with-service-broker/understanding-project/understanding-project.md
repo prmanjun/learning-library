@@ -4,7 +4,7 @@
 
 In this lab we will clone the demo repository code and look into the various components to understand its structure.
 
-The Demo project consists in a simple application based on micro-services and making use of **Oracle Streaming Service** and **Autonomous Database**, managed within kubernetes via the **OCI Service Broker**.
+The Demo project consists in a simple application based on micro-services and making use of **Oracle Streaming Service** and **Oracle Autonomous Database**, managed within Kubernetes via the **OCI Service Broker**.
 
 The application includes a *`producer`* service that generates numeric data for demo purposes. Think of it as an IoT device streaming measurements, or a monitoring service streaming metrics. 
 
@@ -15,25 +15,27 @@ A *`web`* application is used to display the data in real-time: the server gets 
 ![](./images/app.png)
 
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Copy the demo template to your own Github
-- Review the demo project structure
-- Provision the required users with *`terraform`*
+- Copy the demo template to your own GitHub.
+- Review the demo project structure.
+- Provision the required users with Terraform.
 
-## **STEP 1:** Use the template
+## **STEP 1:** Use the Template
 
-1. To use the template, click **Use this Template**
+The demo project repository is located at [https://github.com/oracle-quickstart/oke-k8s-atp-boilerplate](https://github.com/oracle-quickstart/oke-k8s-atp-boilerplate)
+
+1. To use the template, click **Use this Template**.
 
     ![](./images/template.png)
 
-2. Choose a name
+2. Choose a name.
 
-3. **For security reasons, we recommend always making your repo PRIVATE**
+3. **For security reasons, we recommend always making your repo PRIVATE**.
 
 4. Click **Create repository from template**.
 
@@ -53,7 +55,7 @@ In this lab you will:
     </copy>
     ```
 
-## **STEP 2:** Review the project structure
+## **STEP 2:** Review the Project Structure
 
 1. The project has the following folder structure:
 
@@ -93,25 +95,25 @@ In this lab you will:
     └── terraform/
     ```
 
-2. The *`images`* folder contains the project applications/services, with their respective code and Dockerfile
+2. The *`images`* folder contains the project applications/services, with their respective code and Dockerfile.
 
-3. The *`k8s`* folder contains the kubernetes resource templates
+3. The *`k8s`* folder contains the Kubernetes resource templates:
 
     - The *`k8s/base`* folder contains base templates used for the whole deployment, and includes:
-        - an *`app`* folder describing the application resources, 
-        - an *`infra`* folder describing the PaaS services, 
-        - and a *`components`* folder that contains resources used in both *`infra`* and *`app`*.
+        - An *`app`* folder describing the application resources.
+        - An *`infra`* folder describing the PaaS services.
+        - A *`components`* folder that contains resources used in both *`infra`* and *`app`*.
 
     - The *`k8s/overlays`* folder contains the changes to apply to the base templates to configure different environments:
-        - a *`development`* environment
-        - a *`staging`* environment
-        - a *`production`* environment
-        - and *`branch`* overlay which uses the *`development`* overlay to produce a branch-suffixed environment within the *`development`* namespace.
+        - A *`development`* environment.
+        - A *`staging`* environment.
+        - A *`production`* environment.
+        - A *`branch`* overlay which uses the *`development`* overlay to produce a branch-suffixed environment within the *`development`* namespace.
 
 
-4. The *`terraform`* folder contains templates to create the *`users`* and *`credentials`* needed to publish Docker images to the Oracle Container Image Registry (OCIR) and to access the Oracle Streaming Service, as well as a user that can interact with the kubernetes cluster to use for Continuous Integration / Continuous Deployment (CI/CD) pipelines.
+4. The *`terraform`* folder contains templates to create the *`users`* and *`credentials`* needed to publish Docker images to the Oracle Container Image Registry (OCIR) and to access the Oracle Streaming Service, as well as a user that can interact with the Kubernetes cluster to use for Continuous Integration / Continuous Deployment (CI/CD) pipelines.
 
-## **STEP 3:** Setup the variables required to run the terraform deployment
+## **STEP 3:** Set Up the Variables Required to Run Terraform
 
 1. Get into the terraform folder:
 
@@ -124,7 +126,7 @@ In this lab you will:
 
 2. Create a *`TF_VARS.sh`* file from this template:
 
-    You have created a similar file for the OKE cluster with OCI Service Broker deployment, and if the variables are already exported you can skip to the next step
+    You have created a similar file for the OKE cluster with OCI Service Broker deployment, and if the variables are already exported you can skip to the next step.
 
     ```bash
     <copy>
@@ -135,7 +137,7 @@ In this lab you will:
     export TF_VAR_region=us-ashburn-1    
     </copy>
     ```
-3. Populate the variables with your tenancy information, gathered from the installation of the OCI CLI
+3. Populate the variables with your tenancy information, gathered from the installation of the OCI CLI.
 
 4. Source the *`TF_VARS.sh`* file
 
@@ -145,9 +147,9 @@ In this lab you will:
     </copy>
     ```
 
-## **STEP 4:** Populate the *`terraform.tfvars`* file
+## **STEP 4:** Populate the *`terraform.tfvars`* File
 
-1. Generate a *`terraform.tfvars`* from the *`terraform.tfvars.template`*
+1. Generate a *`terraform.tfvars`* from the *`terraform.tfvars.template`*:
 
     ```bash
     <copy>
@@ -156,10 +158,10 @@ In this lab you will:
     ```
 2. Populate the required variables:
 
-    If you are not able to create users, you will need to provide the *`user_ocid`* of users that are part of groups with the proper policies (see below)
+    If you are not able to create users, you will need to provide the *`user_ocid`* of users that are part of groups with the proper policies (see below).
     If you are able to create users but not groups or policies, provide the group_ocid for each user.
 
-    Provide the *`cluster_id`* of the cluster created in lab 2, which was output in the terraform output
+    Provide the *`cluster_id`* of the cluster created in lab 2, which was output in the Terraform output.
 
     ```yaml
     tenancy_ocid = "ocid1.tenancy.oc1.."
@@ -186,7 +188,7 @@ In this lab you will:
     streaming_group_ocid = null
     ```
 
-    The terraform will provision a user in a OCIR pusher group with the following policies (provided here for reference for your tenancy administrator if they need to create them for you)
+    The Terraform will provision a user in a OCIR pusher group with the following policies (provided here for reference for your tenancy administrator if they need to create them for you).
 
     ```
     <copy>
@@ -195,7 +197,7 @@ In this lab you will:
     </copy>
     ```
 
-    The terraform will provision a user in a Streaming Service group with the following policies:
+    The Terraform will provision a user in a Streaming Service group with the following policies:
 
     ```
     <copy>
@@ -204,7 +206,7 @@ In this lab you will:
     </copy>
     ```
 
-    The terraform will provision a user in a Cluster user group with the following policies:
+    The Terraform will provision a user in a Cluster user group with the following policies:
 
     ```
     <copy>
@@ -212,9 +214,9 @@ In this lab you will:
     </copy>
     ```
 
-## **STEP 5:** Run the terraform script
+## **STEP 5:** Run the Terraform Script
 
-1. Init the terraform project:
+1. Init the Terraform project:
 
     ```bash
     <copy>
@@ -222,7 +224,7 @@ In this lab you will:
     </copy>
     ```
 
-2. Apply the terraform
+2. Apply the terraform:
 
     ```bash
     <copy>
@@ -230,21 +232,21 @@ In this lab you will:
     </copy>
     ```
 
-    And answer *`yes`* at the prompt
+3. Type *`yes`* at the prompt
 
-3. The terraform outputs the following useful info:
+3. The Terraform outputs the following useful info:
 
-    - The *`OCIR_pusher_username`* and *`token`* required to login to the OCIR image registry
+    - The *`OCIR_pusher_username`* and *`token`* required to login to the OCIR image registry.
 
 4. You should also find the following artifacts in the folder for the CI user:
 
-    - A *`cluster_admin_user_xxxx_rsa_private_key.pem`* file for a CI user to access the cluster via the OCI CLI
-    - A corresponding *`cluster_admin_user_xxxx_oci_config.txt`* file
-    - A *`kubeconfig`* file
+    - A *`cluster_admin_user_xxxx_rsa_private_key.pem`* file for a CI user to access the cluster via the OCI CLI.
+    - A corresponding *`cluster_admin_user_xxxx_oci_config.txt`* file.
+    - A *`kubeconfig`* file.
 
-## **STEP 6:** Docker login 
+## **STEP 6:** Docker Login 
 
-1. The terraform creates a `creds.env` file on the root of the project.
+1. The Terraform creates a `creds.env` file on the root of the project.
 
 2. Go back to the root folder:
 
@@ -254,9 +256,9 @@ In this lab you will:
     </copy>
     ```
 
-4. Login to the Docker OCIR repository
+4. Log in to the Docker OCIR repository.
 
-    You can do so with the helper function 
+    You can do so with the helper function:
 
     ```bash
     <copy>
@@ -264,7 +266,7 @@ In this lab you will:
     </copy>
     ```
 
-    which uses the `creds.env` and `gobal.env` files and runs the `docker login <region>.ocir.io/<tenancy_namespace>` command with the credentials saved in `creds.env`
+    This uses the `creds.env` and `gobal.env` files and runs the `docker login <region>.ocir.io/<tenancy_namespace>` command with the credentials saved in `creds.env`.
 
 
 You may proceed to the next lab.

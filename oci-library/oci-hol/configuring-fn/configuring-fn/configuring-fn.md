@@ -18,10 +18,12 @@ Estimated Time: 75 minutes
 
 ## **Step 1**: Create a Virtual Cloud Network
 
-1. From the OCI Services menu, click **Virtual Cloud Networks** under **Networking**. Select the compartment assigned to you from the drop down menu on the left side of the screen(you may need to scroll down to see the dropdown) and Click **Start VCN Wizard**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**. 
 
-    ![](images/HAApplication_001.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
+    Click on the **Create VNC** button
+    
     *NOTE: Ensure the correct Compartment is selected under COMPARTMENT list*
 
 2. Choose **VCN with Internet Connectivity** and click **Start VCN Wizard**.
@@ -61,9 +63,9 @@ Estimated Time: 75 minutes
     ![](images/Function_003.png)
 
 ## **Step 2**: Create and Connect to a Compute Instances
-1. Switch to the OCI console. From OCI services menu, Click **Instances** under **Compute**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
 
-    ![](images/HAApplication_008.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 2. Click **Create Instance**. Enter a name for your instance and select the compartment you used earlier to create your VCN. Select **Show Shape, Network and Storage Options**.
 
@@ -335,9 +337,9 @@ Estimated Time: 75 minutes
 
 ## **Step 5**: Create a Function Application
 
-1. From the OCI services menu click **Policies** under **Identity**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Policies**.
 
-    ![](images/Function_040.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-audit.png " ")
 
 2. Make sure that the compartment you created your VCN in is selected and then click **Create Policy**.
 
@@ -373,8 +375,9 @@ Estimated Time: 75 minutes
 
 4. Next we will create our first application.
 
-5. From the OCI services menu click **Functions** under **Developer Services**.
-    ![](images/Function_039.png)
+5. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Applications**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-functions-applications.png " ")
 
 6. Click **Create Application** and fill out the dialog box.
 
@@ -553,9 +556,9 @@ Estimated Time: 75 minutes
 Congratulations! You've just created, deployed, and invoked your first function using Oracle Functions!
 
 ## **Step 7**: Delete the Resources
-1. From the OCI services menu click **Instances** under **Compute**.
+1. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
 
-    ![](images/HAApplication_008.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 2. Locate the compute instance you created, click the action icon and then click **Terminate**.
 
@@ -565,9 +568,9 @@ Congratulations! You've just created, deployed, and invoked your first function 
 
     ![](images/Function_034.png)
 
-4. From the OCI services menu click **Functions** under **Developer Services**.
+4. Click the **Navigation Menu** in the upper left, navigate to **Developer Services**, and select **Applications**.
 
-    ![](images/Function_039.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/developer-functions-applications.png " ")
 
 5. Locate your function application and then click **Delete**.
 
@@ -577,9 +580,9 @@ Congratulations! You've just created, deployed, and invoked your first function 
 
     ![](images/Function_038.png)
 
-7. From the OCI services menu click **Virtual Cloud Networks** under **Networking**, the list of all VCNs will appear.
+7. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-    ![](images/HAApplication_001.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 8. Locate your VCN, click action icon and then click **Terminate**. Click **Terminate All** in the confirmation window. Click **Close** once the VCN is deleted.
 

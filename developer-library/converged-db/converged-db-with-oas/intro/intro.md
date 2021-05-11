@@ -29,7 +29,9 @@ Mainly two components are explored in this workshop along with few features of t
     - Predictive Analytics
 
 ### Prerequisites  
-- An Oracle Cloud account, Free Trial, LiveLabs or a Paid account
+- An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 
 To complete this workshop, you will use a preconfigured OAS images available in Oracle's Cloud Marketplace to build your compute instance.  This image comes pre-installed with all the information you need to create your environment.
 

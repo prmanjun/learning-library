@@ -1,21 +1,21 @@
-# Setup an 'on-premises' environment using the workshop image.
+# Set up an 'on-premises' environment using the workshop image
 
-## Introduction: 
+## Introduction
 
-This lab walks you through setting up an environment to simulate an established SOA 12.2.1.3 on-premises environment, using a Compute instance on OCI deployed through the marketplace. 
+This lab walks you through setting up an environment to simulate an established SOA 12.2.1.3 on-premises environment, using a Compute instance on Oracle Cloud Infrastructure OCI deployed through the marketplace.
 
-At the end of this lab, you will have a simulated 'on-premises' environment running with an Oracle SOA Suite 12.2.1.3 VM , containing an Oracle Database 12c , WebLogic Server 12c and Jdeveloper 12.2.1.4, along with a demo application to be migrated.
+At the end of this lab, you will have a simulated 'on-premises' environment running with an Oracle SOA Suite 12.2.1.3 VM containing an Oracle Database 12c, WebLogic Server 12c, and Jdeveloper 12.2.1.4, along with a demo application to be migrated.
 
-Note: Jdeveloper 12.2.1.4 is required to upgrade the application code from 12.2.1.3 to 12.2.1.4 in order to migrate to the SOAMP 12.2.1.4 on OCI.
+>Note: Jdeveloper 12.2.1.4 is required to upgrade the application code from 12.2.1.3 to 12.2.1.4 to migrate to the SOAMP 12.2.1.4 on OCI.
 
-Estimated Lab Time: 15 min
+Estimated Lab Time: 15 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Launch the demo environment Marketplace image
-- Check that the services are up and running
+- Launch the demo environment image from Marketplace.
+- Check that the services are up and running.
 
 ### Prerequisites
 
@@ -24,108 +24,107 @@ For this lab you need:
 - A bare metal compute instance with at least 4 OCPUs (8 preferred) available to run the image.
 - Microsoft Remote Desktop Client (or similar RDP client) installed to connect to the demo environment.
 
-## **STEP 1:** Launch the Workshop Marketplace stack
+## **STEP 1:** Launch the Workshop Marketplace Stack
 
-- Navigate to [Workshop Environment Marketplace Stack](https://cloudmarketplace.oracle.com/marketplace/listing/84694612)
+1. Navigate to [Workshop Environment Marketplace Stack](https://cloudmarketplace.oracle.com/marketplace/listing/84694612)
 
-1. Click **Get App**
+2. Click **Get App**.
 
-  <img src="../../on-prems-env-mp/images/1-get-app.png"  width="100%">
+    ![](./images/1-get-app.png)
 
-2. Select OCI Region and Sign in to your Oracle Cloud Infrastructure Account
+3. Select OCI Region and sign in to your Oracle Cloud Infrastructure (OCI) account.
 
-  <img src="../../on-prems-env-mp/images/2-sign-in.png"  width="50%">
+    ![](./images/2-sign-in.png)
 
-3. Select the compartment you prepared to run this workshop
+4. Select the compartment you prepared to run this workshop.
 
-  <img src="../../on-prems-env-mp/images/3-soa-workshop-mp1.png"  width="100%">
+    ![](./images/3-soa-workshop-mp1.png)
 
-4. Accept the Terms and Conditions and click **Launch**
+5. Accept the Terms and Conditions and click **Launch**.
 
-  <img src="../../on-prems-env-mp/images/4-soa-workshop-mp1.png"  width="100%">
+    ![](./images/4-soa-workshop-mp1.png)
 
-5. Provide an optional name and description, and click **Next**
+6. Provide an optional name and description, and click **Next**.
 
-  <img src="../../on-prems-env-mp/images/5-next.png"  width="100%">
+    ![](./images/5-next.png)
 
-6. Choose a shape
+7. Choose a shape.
 
-  The image will work on a VM shape but will be very slow. It is highly recommended to use a Bare Metal shape such as BM.Standard.E3.128 or BM.Standard.E2.x
+  The image will work on a VM shape but will be very slow. It is highly recommended to use a Bare Metal shape such as BM.Standard.E3.128 or BM.Standard.E2.x.
 
   Make sure the shape you chose is available in your tenancy.
 
-  <img src="../../on-prems-env-mp/images/5-instance-shape.png"  width="70%">
+    ![](./images/5-instance-shape.png)
 
-7. Browse to your **SSH Public Key**
+7. Browse to your **SSH Public Key**.
 
    To connect to the SOA servers via SSH, you need to provide a public key the server will use to identify your computer.
 
-  <img src="../../on-prems-env-mp/images/6-ssh-key.png"  width="70%">
+    ![](./images/6-ssh-key.png)
 
-8. Click **Next** and then **Create**
+8. Click **Next** and then **Create**.
 
-  <img src="../../on-prems-env-mp/images/7-next.png"  width="100%">
+    ![](./images/7-next.png)
 
-  <img src="../../on-prems-env-mp/images/8-job-running.png"  width="100%">
+    ![](./images/8-job-running.png)
 
   It will take about 1 to 2 minutes to create the stack. 
 
-8. When the job finishes, you can find the Public IP address of the instance at the bottom of the logs, or in the **Output** area. Make a note of this information.
+8. When the job finishes, you can find the public IP address of the instance at the bottom of the logs, or in the **Output** area. Make a note of this information.
 
-  <img src="../../on-prems-env-mp/images/outputs-mp-demo.png"  width="100%">
+  ![](./images/outputs-mp-demo.png)
 
-## **STEP 2:** Connect to the demo environment
+## **STEP 2:** Connect to the Demo Environment
 
-*It will take another 4 to 5 minutes for all the services to come online.*
+*It will take another 4 to 5 minutes for all the services to come online.*.
 
-Connect to the instance using your RDP Client (examples are using Microsoft Remote Desktop Client)
+Connect to the instance using your RDP Client (the follwoing steps show the process using Microsoft Remote Desktop Client).
 
 1. Add a new host, providing the public IP gathered from the stack output.
 
-    <img src="../../on-prems-env-mp/images/rdp-add-host.png"  width="50%">
+    ![](./images/rdp-add-host.png)
 
-2. Connect, using username `oracle` and password `oracle`
+2. Connect using username `oracle` and password `oracle`.
 
 3. If you have issues with display sizing, edit the connection and go to `Display` settings to adjust screen size.
 
-## **STEP 3:** Launch the SOA domain
+## **STEP 3:** Launch the SOA Domain
 
-1. Click on `SOA and Compact Domain` on the VM desktop
+1. Click `SOA and Compact Domain` on the VM desktop.
 
-    <img src="../../on-prems-env-mp/images/soa-desktop.png"  width="100%">
+    ![](./images/soa-desktop.png)
 
-2. Double click on the `Start soa_domain Admin Server` script to start the domain Admin Server
+2. Double-click on the `Start soa_domain Admin Server` script to start the domain Admin Server.
 
-    <img src="../../on-prems-env-mp/images/soa-admin.png"  width="100%">
+    ![](./images/soa-admin.png)
 
-3. Wait for the admin server to be running. This will take 2-3 minutes.
+3. Wait for the admin server to be running. This will take 2 to 3 minutes.
 
-    You will see state changed to `RUNNING` in the logs 
+    You will see state changed to `RUNNING` in the logs.
 
-    <img src="../../on-prems-env-mp/images/soa-admin-running.png"  width="100%">
+    ![](./images/soa-admin-running.png)
 
-4. Double click on the `Start soa_domain SOA Server` script to start the SOA server
+4. Double click on the `Start soa_domain SOA Server` script to start the SOA server.
 
-    <img src="../../on-prems-env-mp/images/soa-soa.png"  width="100%">
+    ![](./images/soa-soa.png)
 
-    <img src="../../on-prems-env-mp/images/soa-soa-console.png"  width="100%">
-
-
-## **STEP 4:** Check the local environment is up and running
-
-1. Once the domains are started open the firefox web browser and select the bookmark for EM, which points to `http://localhost:7001/em'
-to open the EM console
+    ![](./images/soa-soa-console.png)
 
 
-2. Login using usename `weblogic`, and password `welcome1`
+## **STEP 4:** Check the Local Environment
 
-  ![](./images/em-login.png)
+1. Once the domains are started, open the Firefox web browser and select the bookmark for EM (Enterprise Manager), which points to `http://localhost:7001/em` to open the EM console.
 
-3. Check that the admin server and SOA domain are running (other domains will not be running and that is normal)
 
-  ![](./images/soa-desktop-em-status.png)
+2. Log in using usename `weblogic`, and password `welcome1`.
 
-You may proceed to the next lab
+    ![](./images/em-login.png)
+
+3. Check that the admin server and SOA domain are running (other domains will not be running and that is normal).
+
+    ![](./images/soa-desktop-em-status.png)
+
+You may proceed to the next lab.
 
 ## Acknowledgements
 

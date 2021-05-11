@@ -26,8 +26,9 @@ As an application developer,
 
 ## STEP 1: Instance Setup
 
-- Login to your Oracle Cloud Infrastructure account select *Compute* —>  *Instances* from top left menu.
-    ![](./images/Compute1.png " ")
+- Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 - Select the right Oracle Developer Cloud image you created in earlier labs. 
 
@@ -73,8 +74,8 @@ Now that you have a sample application setup, lets get your database's secure wa
 
 ## STEP 3: Transfer database wallet to developer client
 
-- Login to Oracle Cloud Infrastructure account and select *Autonomous Transaction Processing* from the menu.
-    ![](./images/atpd1.png " ")
+- Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 - Click on Autonomous Database and select your previously created database.
     ![](./images/atpd2.png " ")

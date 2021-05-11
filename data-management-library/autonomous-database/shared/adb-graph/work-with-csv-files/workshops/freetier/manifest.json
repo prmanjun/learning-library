@@ -1,5 +1,5 @@
 {
-    "workshoptitle": "Autonomous Graph Database: Load CSV files, create a graph, and query and visualize it",
+    "workshoptitle": "Graph Studio: Finding Circular Payment Chains using Graph Queries",
       "help": "livelabs-help-db_us@oracle.com",
 	"tutorials": [
         {

@@ -269,6 +269,7 @@ The Oracle environment is already set up so sqlplus can be invoked directly from
 
 ## Step 3: Partial In-Memory Data.
 
+### Partition In-Memory
 13. In order to conserve the In-Memory pool in SGA, we need not load all the data. In case of a Big partitioned table, we can load only the partition that is relevant.
 Also, each partition can be compressed to a different level and have different priority for loading. Below is a example.
 
@@ -294,6 +295,7 @@ CREATE TABLE list_customers
 </copy>
 ````
 
+### Partital Columns In-Memory.
 By default, all of the columns in an object with the INMEMORY attribute will be populated into the IM column store.
 However, it is possible to populate only a subset of columns. If a table has many columns, but the query only accesses a few columns, then it is possible to load only those columns into InMemory pool. These columns can additionally be loaded with MEMCOMPRESS levels to further conserve memory.
 For example, to enable an existing table for the IM column store, you would use the ALTER table DDL statement with the INMEMORY clause, along with the in-memory column clause as shown below.
@@ -436,10 +438,13 @@ SSB        EXT_EMP              COMPLETED              3
 
 21. Query In-Memory external table.
 
+Sessions that query In-Memory external tables must have the initialization parameter QUERY\_REWRITE\_INTEGRITY set to stale_tolerated. It is important to keep in mind that if an external table is modified, then the results from the IM column store are undefined. Results are also undefined if a partition is altered (by dropping or adding values). This may lead to differences in results between IM and non-IM based scans. You can run DBMS_INMEMORY.REPOPULATE to refresh the IM store so that it is resynchronized with the table data.
 
 ````
 <copy>
 col plan_table_output format a140
+ALTER SESSION SET QUERY_REWRITE_INTEGRITY=stale_tolerated;
+
 SELECT count(*) FROM ext_emp ;
 SELECT * FROM table(dbms_xplan.display_cursor());
 </copy>

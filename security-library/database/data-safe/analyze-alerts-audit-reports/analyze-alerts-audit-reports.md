@@ -54,7 +54,7 @@ This lab assumes the following:
 
     a) Click the browser tab named **Oracle Cloud Infrastructure**, and sign in to the Console if needed.
 
-    b) From the navigation menu, select **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
+    b) From the navigation menu, select **Oracle Database**, and then **Data Safe**. The **Overview** page for the Oracle Data Safe service is displayed.
 
     c) Click **Service Console**. The **Home** tab in the Oracle Data Safe Console is displayed.
 
@@ -271,4 +271,4 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

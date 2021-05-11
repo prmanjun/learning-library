@@ -2,22 +2,22 @@
 
 ## Introduction
 
-In this lab we will provision the infrastructure and setup various environments.
+In this lab we will provision the infrastructure and set up various environments.
 
-We'll use the terraform template from the repositiory to deploy 2 Autonomous Databases, create credential files for 4 environments (dev, tst, stg and prd) and configure these 4 environments for APEX development
+We'll use the terraform template from the repositiory to deploy 2 Oracle Autonomous Databases, create credential files for 4 environments (dev, tst, stg and prd) and configure these 4 environments for APEX development
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Provision the databases
-- Configure the environments
+- Provision the databases.
+- Configure the environments.
 
-## **STEP 1:** Terraform setup
+## **STEP 1:** Terraform Setup
 
-1. Get in the `terraform` folder
+1. Get in the `terraform` folder:
 
     ```bash
     <copy>
@@ -25,7 +25,7 @@ In this lab you will:
     </copy>
     ```
 
-2. Create a `TF_VARS.sh` file
+2. Create a `TF_VARS.sh` file:
 
     ```bash
     <copy>
@@ -43,9 +43,9 @@ In this lab you will:
     export TF_VAR_region=us-ashburn-1
     ```
 
-    These values come from your OCI CLI installation
+    These values come from your Oracle OCI CLI installation.
 
-4. Create a `terraform.tfvars` file from template
+4. Create a `terraform.tfvars` file from template:
 
     ```bash
     <copy>
@@ -53,7 +53,7 @@ In this lab you will:
     </copy>
     ```
 
-5. Populate the required variables
+5. Populate the required variables:
 
     ```
     region="us-ashburn-1"
@@ -123,13 +123,13 @@ In this lab you will:
     }
     ```
 
-    This creates 2 databases, and 4 environments: dev, tst, and stg are on the APEX\_DEV database and prd is on the APEX\_PRD database
+    This creates 2 databases, and 4 environments: dev, tst, and stg are on the APEX\_DEV database and prd is on the APEX\_PRD database.
 
-    Feel free to configure these are you need for your own environment. In this workshop we will use these defaults.
+    Feel free to configure these as you need for your own environment. In this workshop we will use these defaults.
     
-    If you make changes, make sure that SCHEMA, WORKSPACE and WS_ADMIN names are different if setting up multiple environment in the same database as these need to be unique per database.
+    If you make changes, make sure that SCHEMA, WORKSPACE and WS_ADMIN names are different if setting up multiple environments in the same database as these need to be unique per database.
 
-## **STEP 2:** Provision the database and setup the environments.
+## **STEP 2:** Provision the Database and Setup the Environments
 
 1. The whole stack and environments can be deployed and configured in one command:
 
@@ -150,15 +150,13 @@ In this lab you will:
 
 ## **STEP 3:** Using the makefile
 
-1. The makefile in this repository simplifies a lot of the tasks to be performed. Try 
+1. The makefile in this repository simplifies a lot of the tasks to be performed. Get the full list of commands with: 
 
     ```bash
     <copy>
     make help
     </copy>
     ```
-
-    For the full list of functions:
 
     ```bash
     help                           This help.
@@ -194,11 +192,11 @@ In this lab you will:
     - `snapshot ID=\<app_id\>`: to take a snapshot of the state of the application (`changelog` + `export-app`)
     - `update ID=\<app_id\>`: to update the app (`update-schema` + `import-app`)
 
-    The other commands can be used to create additional environments (`create-schema`, `create-ws`) and manually perform specific task (`wallet`,`clean-wallets` to get and clean an environment DB wallet) 
+    The other commands can be used to create additional environments (`create-schema`, `create-ws`) and manually perform specific tasks (`wallet`,`clean-wallets` to get and clean an environment database wallet) 
 
 2. With this tool, you can create additional environments, by creating new workspaces and/or schemas.
 
-  *Remember that DB change tracking is per SCHEMA, and application change tracking is per application, so if you decide to create multiple applications in the same schema, make sure the applications are always deployed together otherwise one app schema changes may cause issues in the other app.*
+  *Remember that DB change tracking is per SCHEMA, and application change tracking is per application, so if you decide to create multiple applications in the same schema, make sure the applications are always deployed together otherwise one app schema change may cause issues in the other app.*
 
   The preferred way to use multiple applications is to create a schema per application, and then grouping those schemas into a workspace.
 

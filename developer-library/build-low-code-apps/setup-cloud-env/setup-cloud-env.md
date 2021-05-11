@@ -19,8 +19,9 @@ Estimated time: 20 minutes
 ***We recommend that you create a notes page to write down all of the credentials you will need.***
 
 ### Prerequisites
-- Your Oracle Cloud Trial Account
-- You have already applied for and received your Oracle Cloud Free Tier Account.
+- An Oracle Cloud Account - Please view this workshop's LiveLabs landing page to see which environments are supported
+
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 
 *In addition to the workshop*, feel free to watch the walkthrough companion video by clicking on the following image:
 [](youtube:wIoLDX7iWXo)
@@ -55,9 +56,9 @@ Estimated time: 20 minutes
 
 ## **STEP 2:** Basic OCI Infrastructure Setup
 
-   1. Open the navigation menu. Under Governance and Administration, go to **Identity** and click **Compartments**. From this screen, you will see a list of compartments, click **Create Compartment**.
+   1. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**. From this screen, you will see a list of compartments, click **Create Compartment**.
 
-   ![](images/OCI-1.png " ")
+   ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")
 
    ![](images/compartmentScreen.png " ")
 
@@ -126,9 +127,9 @@ To access Cloud Shell:
 
 ## **STEP 3:** Lets Create ATP
 
-  1. To create ATP, Click on the hamburger menu icon on the top left of the screen and select **Autonomous Transaction Processing**.
+  1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
-    ![](images/1.JPG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
   2. Make sure you are in the **AppDev** Compartment and click **Create Autonomous Database**.
 
@@ -157,9 +158,9 @@ To access Cloud Shell:
   ![](images/productCatalogATP.png " ")
 
 
-5. Now we are going to create another ATP. Click the hamburger menu and Navigate back to the Autonomous Transaction Processing Page and click **Create Autonomous Database**.
+5. Now we are going to create another ATP. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
-  ![](images/ATP2.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
   ![](images/2.jpg " ")
 
@@ -302,10 +303,9 @@ Now you are ready to move on to Step 4.
    ![](images/44-5.PNG " ")
 
 
-15. We will get the **Compartment OCID**. Click the hamburger menu, under Identity, select **Compartments**.
+15. We will get the **Compartment OCID**. Click the **Navigation Menu** in the upper left, navigate to **Identity & Security** and select **Compartments**.
 
-
-  ![](images/compartmentOCID.PNG " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/id-compartment.png " ")
 
 16. Copy the OCID and paste into your notepad.
 

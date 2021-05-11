@@ -19,7 +19,7 @@ Estimated Lab Time: 10 minutes
 
 ## **STEP 1**: Create a user
 
-1. First, we want to create a database schema for our tables. JSON and data. We do this by creating a database user. To create a database user, we start by clicking the Database Actions Menu in the upper left of the page, then clicking Database Users in the Administration List. It is not good practice to use a SYS or SYSTEM user to create an application's tables, and neither is it good practice to use the ADMIN account to create applications.
+1. First, we want to create a database schema for our tables. business logic and data. We do this by creating a database user. To create a database user, we start by clicking the Database Actions Menu in the upper left of the page, then clicking Database Users in the Administration List. It is not good practice to use a SYS or SYSTEM user to create an application's tables, and neither is it good practice to use the ADMIN account to create applications.
 
     ![Database Actions Menu, Administration then Users](./images/setups-1.png)
 
@@ -31,15 +31,15 @@ Estimated Lab Time: 10 minutes
 
     Password must be 12 to 30 characters and contain at least one uppercase letter, one lowercase letter, and one number. The password cannot contain the double quote (") character or the username "admin".
 
-    Once we enter the password twice, ensure the REST Enable button is on. This will allow us to use REST services with this database schema from the start. 
+    Once we enter the password twice, ensure the **Web Access** button is on. This will allow us to use REST services with this database schema from the start as well as use the Database Actions tools. 
     
-    In the right column of options, find the **Quota on tablespace DATA** dropdown select list. Choose *Unlimited** for this lab.
+    In the right column of options, find the **Quota on tablespace DATA** dropdown select list. Choose **Unlimited** for this lab.
     
     Your panel should look similar to the following image:
 
     ![Create User Slide Out Panel](./images/setups-3.png)
 
-4. Next, click the **Granted Roles** tab. Use the **Granted** column and select the following checkboxes; PDB_DBA and SODA_APP.
+4. Next, click the **Granted Roles** tab. Use the **Granted** column and select the following checkboxes; PDB\_DBA and SODA\_APP.
 
     ![Granted Roles Slide Out Panel](./images/setups-4.png)
 
@@ -62,5 +62,4 @@ In this section, we created a new database user and granted them the needed role
 ## Acknowledgements
 
 - **Author** - Jeff Smith, Distinguished Product Manager and Brian Spendolini, Trainee Product Manager
-- **Last Updated By/Date** - April 2021
-- **Workshop Expiry Date** - April 2022
+- **Last Updated By/Date** - Anoosha Pilli, April 2021

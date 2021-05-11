@@ -23,11 +23,9 @@ In this section you will be provisioning a dedicated autonomous database using t
 
 *Login to your OCI account as a database user*
 
--  Click on the hamburger menu icon on the top left of the screen.
-    ![](./images/Picture100-20.jpeg " ")
+-  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
--  Click on *Autonomous Transaction Processing* from the menu.
-    ![](./images/Picture100-21.jpeg " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
 - Select *userXX-Compartment under the Workshop Compartment*. 
     ![](./images/provisionATP-Dname1.png " ")

@@ -30,8 +30,9 @@ As a database user, DBA or application developer,
 We start with deploying a pre-configured client machine instance from the OCI marketplace.
 
 1. Log into your cloud account using your tenant name, username and password.
-2. Click on Hamburger Menu, Select Marketplace and Click on All Applications
-      ![](./images/cloud_marketplace.png " ")
+2. Click the **Navigation Menu** in the upper left and select **Marketplace**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/marketplace.png " ")	
 
 3. Search for Oracle Forms Service.
       ![](./images/oracle_forms.png " ")

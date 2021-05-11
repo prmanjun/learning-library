@@ -46,9 +46,9 @@ In this lab, you will:
 
 ## **STEP 1**: Create a new Autonomous Transaction Processing
 
-1. Go to the **Autonomous Transaction Processing (ATP)** menu:
+1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Transaction Processing**.
 
-    ![Menu ATP](./images/menu_atp.png)
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     Check if you are in the **root compartment** that is fine for testing.
 

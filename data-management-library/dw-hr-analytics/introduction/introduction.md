@@ -20,6 +20,8 @@ Estimated workshop time: 75 minutes
 - Access to a paid or a Livelabs Oracle Cloud account.
 - Necessary permissions to be able to provision the stack in a compartment.
 
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
+
 ## Labs
 Lab 1 - Provision Resources (30 minutes)
 

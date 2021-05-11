@@ -28,6 +28,7 @@ Each of the labs is 5 -10 minutes in length, so you will be up and running in no
 ### Prerequisites
 Free Trial or an existing Oracle Cloud account (Not all services in this workshop are Always Free services)
 
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
 
 ### **Let's Get Started!**
 

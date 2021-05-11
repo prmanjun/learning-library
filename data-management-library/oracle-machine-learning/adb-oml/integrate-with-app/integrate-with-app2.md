@@ -40,9 +40,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 1:** Prepare data for the lab in ATP
 
-1.  From the hamburger menu, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
 
-    ![](./images/choose-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     ![](./images/atp-instance.png " ")
 
@@ -149,9 +149,9 @@ This lab assumes you have completed the following labs:
 
 ## **STEP 2:** Import the APEX Application
 
-1.  From the hamburger menu of Oracle cloud console, select **Autonomous Transaction Processing** and navigate to your ATP instance.
+1.  Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, select **Autonomous Transaction Processing**, choose your compartment and navigate to your ATP instance.
 
-    ![](./images/choose-atp.png " ")
+    ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-atp.png " ")
 
     ![](./images/atp-instance.png " ")
 

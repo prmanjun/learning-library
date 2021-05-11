@@ -21,9 +21,9 @@ Estimated Lab Time: 20 minutes.
 
 ## **STEP 1**: Create the necessary networking components
 
-1. Inside of the OCI Console, click on the top left menu **hamburger icon**. Then, in the side menu, navigate to **Networking**, then select **Virtual Cloud Networks**.  
+1. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
 
-    ![](./images/1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 2. Make sure you are in the desired compartment of choice to create resources (such as **CloudDataWorkshop**) and proceed by selecting the **Start VCN Wizard** option.
 

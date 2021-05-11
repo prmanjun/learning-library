@@ -38,9 +38,9 @@
       "filename": "./../../5-labs-add-git-hub-hosted-tutorials-to-ohc/5-labs-add-git-hub-hosted-tutorials-to-ohc.md"
     },
     {
-      "title": "Optional Lab 6: Setup Guacamole Remote Desktop on Compute Instance",
-      "description": "This lab will show you how to deploy and Configure a self-contained Guacamole Instance with VNC on the same host for remote desktop access.",
-      "filename": "./../../6-labs-setup-guacamole-remote-desktop/6-labs-setup-guacamole-remote-desktop.md"
+      "title": "Optional Lab 6: Setup Graphical Remote Desktop on Compute Instance",
+      "description": "This lab will show you how to deploy and configure noVNC Graphical Remote Desktop on an Oracle Enterprise Linux (OEL) instance.",
+      "filename": "./../../6-labs-setup-graphical-remote-desktop/6-labs-setup-graphical-remote-desktop.md"
     },
     {
       "title": "Optional Lab 7: Create Custom Compute Image for OCI Marketplace",

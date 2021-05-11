@@ -46,6 +46,8 @@ All of the above resources are going to be deployed in Oracle Cloud Infrastructu
 * A Cloud tenancy where you have the available quotas to provision what mentioned in Architecture Overview.
 * Oracle Cloud Infrastructure supports the following browsers and versions: Google Chrome 69 or later, Safari 12.1 or later, Firefox 62 or later.
 
+*Note: If you have a **Free Trial** account, when your Free Trial expires your account will be converted to an **Always Free** account. You will not be able to conduct Free Tier workshops unless the Always Free environment is available. **[Click here for the Free Tier FAQ page.](https://www.oracle.com/cloud/free/faq.html)***
+
 **This concludes the introduction. You may now [proceed to next step](#next).**
 
 ## Learn More

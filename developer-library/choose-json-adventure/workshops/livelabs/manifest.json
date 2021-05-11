@@ -1,10 +1,10 @@
 {
-  "workshoptitle": "RESTful Services for your Autonomous Database",
+  "workshoptitle": "Choose your Own JSON Adventure: Relational or Document Store",
     "help": "LIVELABS-HELP-DB_US@ORACLE.COM",
 	"tutorials": [
         {
             "title": "Introduction",
-            "description": "About the Introduction to REST Services Workshop",
+            "description": "Choose your Own JSON Adventure: Relational or Document Store Introduction",
             "filename": "../../intro/intro.md"
         },
         {

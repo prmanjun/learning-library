@@ -99,9 +99,9 @@ Now that you’ve gotten familiar with the IM column store let’s look at the b
     <copy>
     connect ssb/Ora_DB4U@localhost:1521/orclpdb
     set timing on
-    select /*+ NOINMEMORY */ max(loordtotalprice) mostexpensiveorder, sum(loquantity) totalitems from LINEORDER;
+    select /*+ NOINMEMORY */ max(lo_ordtotalprice) mostexpensiveorder, sum(lo_quantity) totalitems from LINEORDER;
     set timing off
-    select * from table(dbmsxplan.displaycursor());
+    select * from table(dbms_xplan.display_cursor());
     @../imstats.sql
     </copy>
     ````
@@ -183,14 +183,92 @@ Now that you’ve gotten familiar with the IM column store let’s look at the b
     You can see that the *TABLE ACCESS INMEMORY FULL*  is used even through there is an INDEX on lo_orderkey. In fact, INMEMORY may reduce the need to have multiple indexes on the Database.
     *This not only speeds up analytic query with fewer indexes, but also improve DML and load performance due to fewer indexes.*
 
-    ![](images/num6.png)   
+## Step 3: In-Memory Hybrid Scans
+An In-Memory hybrid scan accesses a table in the IM column store when not all columns are populated.
+
+![](images/IMHybridscan.png)  
+Before Oracle Database 21c, if a query referenced any column with the NO INMEMORY setting, then the query accessed all data from the row store. Therefore, the table scan could not take advantage of columnar formats, predicate pushdown, and other In-Memory features. Starting in Oracle Database 21c, queries that reference both INMEMORY and NO INMEMORY columns can access columnar data.
+
+In Lab 1, we saw that we can load only required columns of a table to conserver In-Memory pool.
+With Hybrid Scans, we increase the probability of a query running In-Memory even if some of the columns are not In-Memory. This feature enables optimal use of memory resources to boost performance of queries.
+
+7. Alter table to remove a column from In-Memory.
+````
+<copy>
+ ALTER TABLE lineorder  INMEMORY NO INMEMORY (lo_revenue);
+</copy>
+````
+8. verify the In-Memory parameters at column level.
+````
+<copy>
+set pages 11408506880
+col table_name format a10
+col column_name format a20
+col inmemory_compression format a20
+SELECT TABLE_NAME, COLUMN_NAME, INMEMORY_COMPRESSION
+FROM V$IM_COLUMN_LEVEL
+WHERE TABLE_NAME = 'LINEORDER'; </copy>
+
+TABLE_NAME COLUMN_NAME          INMEMORY_COMPRESSION
+---------- -------------------- --------------------
+LINEORDER  LO_ORDERKEY          DEFAULT
+LINEORDER  LO_LINENUMBER        DEFAULT
+LINEORDER  LO_CUSTKEY           DEFAULT
+LINEORDER  LO_PARTKEY           DEFAULT
+LINEORDER  LO_SUPPKEY           DEFAULT
+LINEORDER  LO_ORDERDATE         DEFAULT
+LINEORDER  LO_ORDERPRIORITY     DEFAULT
+LINEORDER  LO_SHIPPRIORITY      DEFAULT
+LINEORDER  LO_QUANTITY          DEFAULT
+LINEORDER  LO_EXTENDEDPRICE     DEFAULT
+LINEORDER  LO_ORDTOTALPRICE     DEFAULT
+LINEORDER  LO_DISCOUNT          DEFAULT
+LINEORDER  LO_REVENUE           NO INMEMORY
+LINEORDER  LO_SUPPLYCOST        DEFAULT
+LINEORDER  LO_TAX               DEFAULT
+LINEORDER  LO_COMMITDATE        DEFAULT
+LINEORDER  LO_SHIPMODE          DEFAULT
+
+````
+9. Rerun the previous query and observe the plan. execution plan shows that the optimizer chose an In-Memory hybrid scan.
+````
+<copy>
+set linesize 200
+set timing on
+
+select
+lo_orderkey, lo_custkey, lo_revenue
+from LINEORDER where
+lo_custkey = 5641
+and lo_shipmode = 'XXX AIR'
+and lo_orderpriority = '5-LOW';
+
+set timing off
+
+select * from table(dbms_xplan.display_cursor());
+</copy>
+
+Plan hash value: 4017770458
+-------------------------------------------------------------------------------------------------
+| Id  | Operation                           | Name      | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                    |           |       |       | 48992 (100)|          |
+|*  1 |  TABLE ACCESS INMEMORYFULL (HYBRID)| LINEORDER |     1 |    44 | 48992   (1)| 00:00:02 |
+-------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+   1 - filter(("LO_CUSTKEY"=5641 AND "LO_SHIPMODE"='XXX AIR' AND
+              "LO_ORDERPRIORITY"='5-LOW'))
+
+````
 
 
-## Step 3: In-Memory Joins and In-Memory Aggregation
+## Step 4: In-Memory Joins and In-Memory Aggregation
 
 Up until now we have been focused on queries that scan only one table, the LINEORDER table. Let’s broaden the scope of our investigation to include joins and parallel execution. This section executes a series of queries that begin with a single join between the  fact table, LINEORDER, and a dimension table and works up to a 5 table join. The queries will be executed in both the buffer cache and the column store, to demonstrate the different ways the column store can improve query performance above and beyond the basic performance benefits of scanning data in a columnar format.
 
-7. Reconnect to SSB user to clear out session level stats
+10. Reconnect to SSB user to clear out session level stats
 
    ````
    <copy>
@@ -201,7 +279,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
 
    ![](images/num1.png)
 
-8. Join the LINEORDER and DATE_DIM tables in a "What If" style query that calculates the amount of revenue increase that would have resulted from eliminating certain company-wide discounts in a given percentage range for products shipped on a given day (Christmas eve 1996).  In the first one, execute it against the IM column store.  
+11. Join the LINEORDER and DATE_DIM tables in a "What If" style query that calculates the amount of revenue increase that would have resulted from eliminating certain company-wide discounts in a given percentage range for products shipped on a given day (Christmas eve 1996).  In the first one, execute it against the IM column store.  
 
 ````
   <copy>
@@ -229,7 +307,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
 
    The IM column store has no problem executing a query with a join because it is able to take advantage of Bloom Filters.  It’s easy to identify Bloom filters in the execution plan. They will appear in two places, at creation time and again when it is applied. The Bloon filter plans start with <b> :BF00X </b> plan above. You can also see what join condition was used to build the Bloom filter by looking at the predicate information under the plan.
 
-9. Let's run against the buffer cache now and observer that it is a lot slower.  
+12. Let's run against the buffer cache now and observer that it is a lot slower.  
 
    ````
    <copy>
@@ -257,7 +335,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
 
    ![](images/num3.png)
 
-10. Let’s try a more complex query that encompasses three joins and an aggregation to our query. This time our query will compare the revenue for different product classes, from suppliers in a certain region for the year 1997. This query returns more data than the others we have looked at so far so we will use parallel execution to speed up the elapsed times so we don’t need to wait too long for the results.  
+13. Let’s try a more complex query that encompasses three joins and an aggregation to our query. This time our query will compare the revenue for different product classes, from suppliers in a certain region for the year 1997. This query returns more data than the others we have looked at so far so we will use parallel execution to speed up the elapsed times so we don’t need to wait too long for the results.  
 
    ````
    <copy>
@@ -290,21 +368,22 @@ Up until now we have been focused on queries that scan only one table, the LINEO
 
    This is where Oracle’s 30 plus years of database innovation kicks in. By embedding the column store into Oracle Database we can take advantage of all of the optimizations that have been added to the database. In this case, the Optimizer has switched from its typically left deep tree to create a right deep tree using an optimization called ‘swap\_join\_inputs’.
 
-## Step 4: In-Memory Join Group
+## Step 5: In-Memory Join Group
 
    A new In-Memory feature called Join Groups was introduced with the Database In-Memory Option in Oracle Database 12.2.  Join Groups can be created to significantly speed up hash join performance in an In-Memory execution plan.  Creating a Join Group involves identifying up-front the set of join key columns (across any number of tables) likely to be joined with by subsequent queries.  
     For the above example, we can create a In-Memory Join Group on the join column l.lo\_orderdate = d.d\_datekey.
     If you observe a HASH JOIN plan for inmemory, there are 2 operations. One is *JOIN FILTER CREATE* for  Bloom filter. The other is *JOIN FILTER USE* to consume it. Pre-creating the *Join Group* increases the performance of queries by using the prebuilt Join groups.
 
-11.  Create a Join Group
+14.  Create a Join Group
    ````
-     <copy>
-     CREATE INMEMORY JOIN GROUP  JoinGroup (lineorder(lo_orderdate),date_dim (d_datekey)) ;
-     </copy>
+   <copy>
+    CREATE INMEMORY JOIN GROUP  JoinGroup (lineorder(lo_orderdate),date_dim (d_datekey));
+   </copy>
    ````
-    This will improve query performance further and reduce CPU cycles to create JOIN FILTERS.
 
-## Step 5: In-Memory Expressions
+  This will improve query performance further and reduce CPU cycles to to join tables.
+
+## Step 6: In-Memory Expressions
 
 ![](images/IMExpression.png)
 
@@ -316,7 +395,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
     The detected IM expressions are captured in the new Expression Statistics Store (ESS). IM expressions are fully documented in the In-Memory Guide.
 
 
- 12. Run a select statement with an expression without enabling expression optimization.
+ 15. Run a select statement with an expression without enabling expression optimization.
    ````
    <copy>
    set timing on
@@ -342,7 +421,7 @@ Up until now we have been focused on queries that scan only one table, the LINEO
 
 This expression is simply an arithmetic expression to find the total price charged with discount and tax included, and is deterministic. We will create a virtual column and re-populate the LINEORDER table to see what difference it makes.
 
- 13. To populate virtual columns in the IM column store we need to ensure that the initialization parameter INMEMORY\_VIRTUAL\_COLUMNS is set to ENABLE.
+ 16. To populate virtual columns in the IM column store we need to ensure that the initialization parameter INMEMORY\_VIRTUAL\_COLUMNS is set to ENABLE.
 
   The default is MANUAL which means that you must explicitly set the virtual columns as INMEMORY enabled. Set it to enable at table level.
 ````
@@ -357,7 +436,7 @@ inmemory_virtual_columns             string      MANUAL
 SQL> alter system set inmemory_virtual_columns=enable;
 System altered.
 ````
-14. Next, we will add a virtual column to the LINEORDER table for the expression we identified above and re-populate the table:
+17. Next, we will add a virtual column to the LINEORDER table for the expression we identified above and re-populate the table:
 
 ````
 <copy>
@@ -368,7 +447,7 @@ select /*+ noparallel */ count(*) from lineorder ;
 </copy>
 ````
 
-15. Now let's re-run our query and see if there is any difference:
+18. Now let's re-run our query and see if there is any difference:
  ````
  <copy>
  set timing on
@@ -386,7 +465,7 @@ select * from table(dbms_xplan.display_cursor());
 ````
 Notice the statistics that start with "IM scan EU ...". IM expressions are stored in the IM column store in In-Memory Expression Units (IMEUs) rather than IMCUs, and the statistics for accessing IM expressions all show "EU" for "Expression Unit".
 
-16. You can also confirm that the virtual column is loaded looking up V$IM\_IMECOL\_CU view.
+19. You can also confirm that the virtual column is loaded looking up V$IM\_IMECOL\_CU view.
 
 ````
 <copy>
@@ -402,7 +481,7 @@ This simple example shows that even relatively simple expressions can be computa
    <b>Automatic IM expressions :</b>
   Optimizer tracks expressions and stores them in a repository called the Expression Statistics Store (ESS). Along with the expression and other information, the number of times the expression was evaluated and the cost of evaluating the expression are tracked. This is exposed in the ALL|DBA|USER\_EXPRESSION\_STATISTICS view and Database In-Memory uses this information to determine the 20 most frequently accessed expressions in either the past 24 hours (i.e. LATEST snapshot) or since database creation (i.e. CUMULATIVE snapshot). The following is an example for the LINEORDER table in my test system for the LATEST snapshot.
 
-  17. In order to populate automatically detected IM expressions the INMEMORY_EXPRESSIONS_USAGE parameter must be set to either ENABLE (the default) or DYNAMIC_ONLY.
+  20. In order to populate automatically detected IM expressions the INMEMORY_EXPRESSIONS_USAGE parameter must be set to either ENABLE (the default) or DYNAMIC_ONLY.
   ````
   <copy> show parameter INMEMORY_EXPRESSIONS_USAGE </copy>
 
@@ -411,7 +490,7 @@ This simple example shows that even relatively simple expressions can be computa
   inmemory_expressions_usage           string      ENABLE
   ````
 
-18.   Let us restore the lineorder table and drop the virtual column.
+21.   Let us restore the lineorder table and drop the virtual column.
  ````
  <copy>
  alter table lineorder no inmemory;
@@ -422,11 +501,12 @@ This simple example shows that even relatively simple expressions can be computa
  ````
 
 Since 18c, there are 2 ways to capture the expressions automatically. They are either during a window or current.
-For the window function, we use dbms_inmemory_admin.ime_open_capture_window() to start.
-dbms_inmemory_admin.ime_close_capture_window() to stop capturing the inmemory expression and run
-dbms_inmemory_admin.ime_capture_expressions('WINDOW') to automatically generate automatic In-Memory expressions.
-The other alternative is to run dbms_inmemory_admin.ime_capture_expressions('CURRENT') which will capture the expressions from the shared pool.
-19. In our example, we will capture the sqls from shared pool using the "CURRENT" expression.
+For the window function, we use dbms\_inmemory\_admin.ime\_open\_capture_window() to start.
+dbms\_inmemory\_admin.ime\_close\_capture\_window() to stop capturing the inmemory expression and run
+dbms\_inmemory\_admin.ime\_capture\_expressions('WINDOW') to automatically generate automatic In-Memory expressions.
+The other alternative is to run dbms\_inmemory\_admin.ime\_capture\_expressions('CURRENT') which will capture the expressions from the shared pool.
+
+22. In our example, we will capture the sqls from shared pool using the "CURRENT" expression.
 
   ````
   <copy>
@@ -443,13 +523,13 @@ The other alternative is to run dbms_inmemory_admin.ime_capture_expressions('CUR
   @../imstats.sql
   </copy>
   ````
-20.  Now capture the sql expressions from shared pool.
+23.  Now capture the sql expressions from shared pool.
   ````
   <copy>
   exec dbms_inmemory_admin.ime_capture_expressions('CURRENT');
   </copy>
   ````
-21. Now check if the expression is captured.
+24. Now check if the expression is captured.
 ````
 COL OWNER FORMAT a6
 COL TABLE_NAME FORMAT a9
@@ -461,7 +541,7 @@ SELECT OWNER, TABLE_NAME, COLUMN_NAME, SQL_EXPRESSION
 FROM DBA_IM_EXPRESSIONS;
 ````
 
-22. Now rerun the query and verify you see "IM scan EU ..." instead on only "IM scan CU ..." statistics.
+25. Now rerun the query and verify you see "IM scan EU ..." instead on only "IM scan CU ..." statistics.
 ````
 <copy>
 set timing on
@@ -478,10 +558,10 @@ set autotrace off
 </copy>
 ````
 
-   How to tell if the IM expression has actually been populated? There is another view, V$IM_IMECOL_CU that shows the columns populated and number of IMEUs they occupy.
-   To drop expressions, DBMS_INMEMORY_ADMIN.IME_DROP_ALL_EXPRESSIONS procedure drops all SYS_IME expression virtual columns in the database. The DBMS_INMEMORY.IME_DROP_EXPRESSIONS procedure drops a specified set of SYS_IME virtual columns from a table.
+   How to tell if the IM expression has actually been populated? There is another view, V$IM\_IMECOL\_CU that shows the columns populated and number of IMEUs they occupy.
+   To drop expressions, DBMS\_INMEMORY\_ADMIN.IME\_DROP\_ALL\_EXPRESSIONS procedure drops all SYS\_IME expression virtual columns in the database. The DBMS\_INMEMORY.IME\_DROP\_EXPRESSIONS procedure drops a specified set of SYS\_IME virtual columns from a table.
 
-## Step 6: In-Memory Optimized Arithmetic
+## Step 7: In-Memory Optimized Arithmetic
 
 Using the native binary representation of numbers rather than the full precision Number format means that certain aggregation and arithmetic operations are tens of times faster than in previous version of In-Memory as we are
 able to take advantage of the SIMD Vector processing units on CPUs
@@ -496,7 +576,7 @@ Not all row sources in the query processing engine have support for the In-Memor
 In-Memory Optimized Arithmetic is controlled by the initialization parameter INMEMORY\_OPTIMIZED\_ARITHMETIC. The parameter values are DISABLE (the default) or ENABLE. When set to ENABLE, all NUMBER columns for tables that use FOR QUERY LOW compression are encoded with the In-Memory optimized format when populated (in addition to the traditional Oracle Database NUMBER data type). Switching from ENABLE to DISABLE does not immediately drop the optimized number encoding for existing IMCUs. Instead, that happens when the IM column store repopulates affected IMCUs.
 
 
-23. Verify that the parameter INMEMORY\_OPTIMIZED\_ARITHMETIC is disabled and run the query below.
+26. Verify that the parameter INMEMORY\_OPTIMIZED\_ARITHMETIC is disabled and run the query below.
 
 ````
 <copy>
@@ -521,7 +601,7 @@ Elapsed: 00:00:00.92
 
 Note the time time the query took with INMEMORY\_OPTIMIZED\_ARITHMETIC disable. Now let us enable and rerun the query.
 
-24.
+27.
 ````
 SQL> <copy> show parameter INMEMORY_OPTIMIZED_ARITHMETIC
       alter system set INMEMORY_OPTIMIZED_ARITHMETIC=enable;
@@ -534,7 +614,7 @@ SQL> <copy> show parameter INMEMORY_OPTIMIZED_ARITHMETIC
       SQL> alter system set INMEMORY_OPTIMIZED_ARITHMETIC=enable;
       System altered.
  ````
-25. Now repopulate Lineorder table.
+28. Now repopulate Lineorder table.
 ````
 <copy>
 alter table lineorder no inmemory;
@@ -543,7 +623,7 @@ select /*+ noparallel */ count(*) from lineorder ;
 
 </copy>
 ````
-26. Verify that the table is completely loaded into memory before running the the query.
+29. Verify that the table is completely loaded into memory before running the the query.
 
 ````
 <copy>
@@ -563,7 +643,7 @@ ORDER BY FINISH_POP;
 /
 </copy>
 ````
-27.  At this point, we have set INMEMORY\_OPTIMIZED\_ARITHMETIC=enable, and triggered the repopulation of Lineorder table and verified that the loading is complete. Once you see that LINEORDER table status is complete run the query below.
+30.  At this point, we have set INMEMORY\_OPTIMIZED\_ARITHMETIC=enable, and triggered the repopulation of Lineorder table and verified that the loading is complete. Once you see that LINEORDER table status is complete run the query below.
 ````
  <copy>
  set timing on

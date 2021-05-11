@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This lab walks you through the steps to migrate the 'on-premises' application database to the database provisioned on OCI using Datapump.
+This lab walks you through the steps to migrate the on-premises application database to the database provisioned on OCI using DataPump.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### About Product/Technology
 
-- DataPump is a tool that is part of the oracle Database set of utilities.
+- DataPump is a tool that is part of the Oracle database set of utilities.
 - DataPump export function creates a DDL + data dump of the user schema.
 - DataPump import function imports the data into the database.
 
@@ -18,24 +18,24 @@ In this workshop we will be using wrapper scripts to export, move the data to th
 
 In this lab you will:
 
-- Get shell access to the 'on-premises' database
-- Use a datapump script to export the database schema to migrate
-- Edit the datapump import script with the information collected in the DB provisioning lab
-- Run a datapump import script to migrate the database schema to OCI
+- Get shell access to the on-premises database.
+- Use a DataPump script to export the database schema to migrate.
+- Edit the DataPump import script with the information collected in the database provisioning lab.
+- Run a DataPump import script to migrate the database schema to OCI.
 
 ### Prerequisites
 
 To run this lab you need:
 
-- To have provisioned the on-premises demo environment that includes the source database to migrate
-- To have provisioned the target database on OCI
-- To have gathered information about the passthrough-server to the DB, and the DB node IP and domain name which is part of the connection string.
+- To have provisioned the on-premises demo environment that includes the source database to migrate.
+- To have provisioned the target database on OCI.
+- To have gathered information about the passthrough-server to the database, and the database node IP and domain name which is part of the connection string.
 
-## **STEP 1:** Get a shell inside the 'on-premises' database instance
+## **STEP 1:** Get a Shell Inside the On-Premises Database Instance
 
 ### If you used the Docker environment:
 
-1. You should already be inside the DB container from the SSH key creation step. If not, use: 
+1. You should already be inside the database container from the SSH key creation step. If not, use:
 
       ```
       <copy>
@@ -52,7 +52,7 @@ To run this lab you need:
       ```
 
 
-### If you used the Workshop image:
+### If you used the workshop image:
 
 1. You should already be logged into the instance and switched to the `oracle` user. If not use:
 
@@ -78,7 +78,7 @@ To run this lab you need:
 
       The script itself is commented to explain what it does.
 
-      It sets up the directory to backup to, and uses datapump `expdp` export command to dump the `RIDERS` schema, which is the schema the application depends on.
+      It sets up the directory to backup to, and uses DataPump `expdp` export command to dump the `RIDERS` schema, which is the schema the application depends on.
 
 <details><summary>View the <code>datapump_export.sh</code> script</summary>
 
@@ -93,10 +93,10 @@ rm -rf ~/datapump/export && mkdir -p ~/datapump/export
 # drop directory if it exists
 echo "DROP DIRECTORY ${EXPORT_DB_DIRNAME};" | sqlplus system/${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_PDB}.${DB_DOMAIN}
 
-# create a directory object in the DB for export with datapump, pointing to the folder created above
+# create a directory object in the DB for export with DataPump, pointing to the folder created above
 echo "CREATE DIRECTORY ${EXPORT_DB_DIRNAME} AS '/home/oracle/datapump/export/';" | sqlplus system/${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_PDB}.${DB_DOMAIN}
 
-# export the schema 'RIDERS' with datapump, which is our user schema with the Tour de France Riders data
+# export the schema 'RIDERS' with DataPump, which is our user schema with the Tour de France Riders data
 expdp system/${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_PDB}.${DB_DOMAIN} schemas=RIDERS DIRECTORY=${EXPORT_DB_DIRNAME}
 ```
 </details>
@@ -111,17 +111,18 @@ expdp system/${DB_PWD}@${DB_HOST}:${DB_PORT}/${DB_PDB}.${DB_DOMAIN} schemas=RIDE
       </copy>
       ```
 
-      The output will look like
+      The output will look like:
+
         ![](./images/migrate-db-1.png)
 
 
-## **STEP 3:** Install the OCI CLI on the source database
+## **STEP 3:** Install the OCI CLI on the Source Database
 
-This will be needed to get the wallet from the ATP database and put the DB dump file into object storage from the source DB.
+This will be needed to get the wallet from the ATP database and put the database dump file into object storage from the source database.
 
 *Note:* You could also do without the CLI by getting the wallet through the console and uploading the dump file through the console. This requires more manual steps.
 
-1. Install the OCI CLI on the source Database
+1. Install the OCI CLI on the source database:
 
     ```bash
     <copy>
@@ -131,14 +132,14 @@ This will be needed to get the wallet from the ATP database and put the DB dump 
 
     Hit **enter** to use the defaults for all options.
 
-2. Restart your shell
+2. Restart your shell:
     ```
     <copy>
     exec -l $SHELL
     </copy>
     ```
 
-3. Configure the OCI CLI
+3. Configure the OCI CLI:
 
     ```
     <copy>
@@ -147,30 +148,30 @@ This will be needed to get the wallet from the ATP database and put the DB dump 
     ```
 
     You will be prompted for:
-    - Location of the config. Hit **Enter**
-    - `user_ocid`: enter your user OCID (found under **User -> User Settings**)
-    - `tenancy_ocid`: enter your tenancy OCID (found under **User -> Tenancy**)
+    - Location of the config. Press **Enter**.
+    - `user_ocid`: enter your user OCID (found under **User -> User Settings**).
+    - `tenancy_ocid`: enter your tenancy OCID (found under **User -> Tenancy**).
     - `region`: enter your region from the list provided.
-    - Generate a RSA key pair: hit **Enter** for Yes (default)
-    - Directory for keys: hit **Enter** for the default
-    - name for the key: hit **Enter** for the default
-    - Passphrase: hit **Enter** for no passphrase
+    - Generate a RSA key pair: press **Enter** for Yes (default).
+    - Directory for keys: press **Enter** for the default.
+    - Name for the key: press **Enter** for the default.
+    - Passphrase: press **Enter** for no passphrase.
 
 
     You should see an output like:
 
     ```bash
     Private key written to: /home/oracle/.oci/oci_api_key.pem
-    Fingerprint: 21:d4:f1:a0:55:a5:c2:ce:e2:c6:88:4f:bf:2f:f3:af
+    Fingerprint: 21:d4:f1:a0:55:a5:c2:ce:...
     Config written to /home/oracle/.oci/config
     ```
 
 
-4. Upload the public key to your OCI account
+4. Upload the public key to your OCI account.
 
-    In order to use the CLI, you need to upload the public key generated to your user account
+    In order to use the CLI, you need to upload the public key generated to your user account.
 
-    Get the key content with 
+    Get the key content with:
 
     ```
     <copy>
@@ -178,16 +179,16 @@ This will be needed to get the wallet from the ATP database and put the DB dump 
     </copy>
     ```
 
-    and copy the full printed output to clipboard
+    Copy the full printed output to clipboard.
 
     In the OCI web console:
 
-    - Under **User -> User Settings**
-    - Click **API Keys**
-    - Click **Add Public Key**
-    - Click **Paste Public Key**
+    - Under **User -> User Settings**.
+    - Click **API Keys**.
+    - Click **Add Public Key**.
+    - Click **Paste Public Key**.
     - Paste the key copied above.
-    - Click **Add**
+    - Click **Add**.
 
     You can verify that the Fingerprint generated matches the fingerprint output of the config.
 
@@ -199,7 +200,7 @@ This will be needed to get the wallet from the ATP database and put the DB dump 
     </copy>
     ```
 
-    This command should output the namespace of your tenancy (usually the name of the tenancy)
+    This command should output the namespace of your tenancy (usually the name of the tenancy):
 
     ```
     {
@@ -211,19 +212,19 @@ This will be needed to get the wallet from the ATP database and put the DB dump 
 
 ## **STEP 4:** Create an Object Storage Bucket
 
-1. Go to **Core Infrastructure -> Object Storage**
+1. Go to **Core Infrastructure -> Object Storage**.
 
     ![](./images/migrate-db-oss-1.png)
 
-2. Make sure you are in the compartment where you deployed the resources
+2. Make sure you are in the compartment where you deployed the resources.
 
-3. Click **Create Bucket**
+3. Click **Create Bucket**.
 
-4. Give the bucket the name **atp-upload**
+4. Give the bucket the name **atp-upload**.
 
-5. Click **Create Bucket**
+5. Click **Create Bucket**.
 
-## **STEP 5:** Edit the `datapump_import_atp.sh` script
+## **STEP 5:** Edit the `datapump_import_atp.sh` Script
 
 
 First, we'll need to edit the `datapump_import_atp.sh` script to target the OCI database found in the datapump folder.
@@ -256,49 +257,49 @@ First, we'll need to edit the `datapump_import_atp.sh` script to target the OCI 
     TARGET_DB_PWD=YpdCNR6nua4nahj8__
     ```
 
-2. Enter the `BASTION_IP`
+2. Enter the `BASTION_IP`.
 
      The `BASTION_IP` is the **public IP** through which to reach the database subnet (either the WLS Admin server Public IP if you provisioned in a public subnet, or the Bastion Instance Public IP if you provisioned in a private subnet). Either are found in the **Output** of the WebLogic deployment stack.
 
-3. Go to **Oracle Database -> Autonomous Transaction Processing**
+3. Go to **Oracle Database -> Autonomous Transaction Processing**.
 
 4. Make sure you are in the right compartment and **click** the database you provisioned earlier to get to the details.
 
 5. **Enter** the name of the Autonomous Database as the `TARGET_DB_NAME` in the script, making sure it is in *lowercase*. If you followed the naming conventions in this workshop, it should be `wlsatpdb`.
 
-6. **Copy** the **OCID**, and enter it as the `TARGET_DB_OCID` in the script
+6. **Copy** the **OCID**, and enter it as the `TARGET_DB_OCID` in the script.
 
-7. **Copy** the **Private Endpoint IP address** and enter as the `TARGET_DB_HOST` in the script
+7. **Copy** the **Private Endpoint IP address** and enter as the `TARGET_DB_HOST` in the script.
 
     ![](./images/db-info.png)
 
-8. **Enter** the name of the Object Storage bucket created earlier as `BUCKET` (`atp-upload`)
+8. **Enter** the name of the Object Storage bucket created earlier as `BUCKET` (`atp-upload`).
 
-9. **Enter** the name of your region as `REGION` (for example `us-ashburn-1`)
+9. **Enter** the name of your region as `REGION` (for example `us-ashburn-1`).
 
 10. **Enter** the name of your namespace as `NAMESPACE`. This was output when you tested the OCI CLI.
 
-11. Go to **User -> Settings** and copy your *full username* (it usually consists of your email, sometimes prefixed with the ID service if your login is through Single Sign On). Enter it as the `OCI_USER` variable
+11. Go to **User -> Settings** and copy your *full username* (it usually consists of your email, sometimes prefixed with the ID service if your login is through Single Sign On). Enter it as the `OCI_USER` variable.
 
-12. In **User -> Settings** click **Auth Tokens**
+12. In **User -> Settings** click **Auth Tokens**.
 
     ![](./images/auth-token.png)
 
-13. Click **Generate Token**
+13. Click **Generate Token**.
 
-14. Give it a name
+14. Give it a name.
 
-15. Click **Generate Token**
+15. Click **Generate Token**.
 
-16. Copy the output of the token to the variable `OCI_TOKEN`. 
+16. Copy the output of the token to the variable `OCI_TOKEN`.
 
     *Make sure to use single quotes to delimitate the OCI_TOKEN as it may contain characters that would cause script errors.*
 
-17. Save the file (with `CTRL+x` then `y`)
+17. Save the file (with `CTRL+x` then `y`).
 
-## **STEP 6:** Import the data into the target database on OCI
+## **STEP 6:** Import the Data into the Target Database
 
-1. Run the `datapump_import_atp.sh` script you edited at the previous step
+1. Run the `datapump_import_atp.sh` script you edited at the previous step:
 
       ```bash
       <copy>
@@ -310,21 +311,21 @@ First, we'll need to edit the `datapump_import_atp.sh` script to target the OCI 
 
 The import script runs in 8 phases:
 
-- It copies the dump file over to Object Storage
+- It copies the dump file over to Object Storage.
 - It downloads the wallet for the ATP database locally, and unzips it.
-- It creates a SSH tunnel to access the ATP database locally
-- It sets up the `sqlnet.ora` file to point to the wallet
-- It adds the hostname of the ATP DB into the `/etc/hosts` file to point to `localhost` so that connection attempts go through the tunnel we created.
-- then it runs the `impdp` import command once.
+- It creates a SSH tunnel to access the ATP database locally.
+- It sets up the `sqlnet.ora` file to point to the wallet.
+- It adds the hostname of the ATP database into the `/etc/hosts` file to point to `localhost` so that connection attempts go through the tunnel we created.
+- It runs the `impdp` import command once.
 You may notice this 1st try imports the schema but fails at importing the data, because the user `RIDERS` does not have a quota on the local `USERS` tablespace.
-- the script then edits the `RIDERS` user tablespace quota
-- and re-runs the `impdb` command that now succeeds at importing the data, but will show an error related to the user `RIDERS` already existing. This is normal.
+- The script edits the `RIDERS` user tablespace quota.
+- It re-runs the `impdb` command that now succeeds at importing the data, but will show an error related to the user `RIDERS` already existing. This is normal.
 
-The database is now migrated to OCI, but we also need to setup the wallet on the WLS servers
+The database is now migrated to OCI, but we also need to set up the wallet on the WLS servers.
 
 If the tunnel closing step reports failure, it is safe to ignore.
 
-## **STEP 7:** Download the wallet on each WebLogic server
+## **STEP 7:** Download the Wallet on Each WebLogic Server
 
 There are 2 ways to download the wallet on to the target WebLogic servers:
 
@@ -332,11 +333,11 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
 
 1. Gather the IP adresses of the WebLogic server:
 
-    Go to **Core Infrastructure -> Compute -> Instances**
+    Go to **Core Infrastructure -> Compute -> Instances**.
 
-    View the list of WebLogic servers and gather the IP addresses
+    View the list of WebLogic servers and gather the IP addresses.
 
-2. Run the following command, to copy the wallet on each server
+2. Run the following command, to copy the wallet on each server.
 
     If you provisioned in a *Public Subnet*, set the variable:
 
@@ -346,7 +347,7 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
     </copy>
     ```
 
-    Then 
+    Then:
     
     ```bash
     <copy>
@@ -364,7 +365,7 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
     </copy>
     ```
 
-    *make sure to specify the proper domain name (here `nonjrf_domain`)* if you didn't follow the naming convention of this workshop
+    *Make sure to specify the proper domain name (here `nonjrf_domain`)* if you didn't follow the naming convention of this workshop.
 
     If you provisioned in a *Private Subnet* set the variables:
     ```bash
@@ -378,7 +379,7 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
     </copy>
     ```
 
-    Then 
+    Then:
     
     ```bash
     <copy>
@@ -397,7 +398,7 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
     </copy>
     ```
 
-    *make sure to specify the proper domain name (here `nonjrf_domain`)*
+    *Make sure to specify the proper domain name (here `nonjrf_domain`)*.
 
 
 3. Repeat for each WLS target server.
@@ -407,9 +408,9 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
 
 - An alternative method (for info only, no need to apply these commands):
 
-    There is also a helper script on each WebLogic server node to download the wallet. 
+    There is also a helper script on each WebLogic server node to download the wallet.
 
-    For this script to work, you will need to add an extra policy on the **dynamic group** created by the WLS on OCI stack. 
+    For this script to work, you will need to add an extra policy on the **dynamic group** created by the WLS on OCI stack.
 
     The policy is called `<PREFIX>-wlsc-principal-group`, which you can find under **Identity -> Dynamic Groups**. The Policy to edit will be on the *root* of the tenancy, so you need to be an administrator to edit it. It is called `<PREFIX>-service-policy`. It should contain an extra policy rule as follow:
 
@@ -434,7 +435,7 @@ There are 2 ways to download the wallet on to the target WebLogic servers:
     </copy>
     ```
 
-    *make sure to specify the proper domain name in the path (here `nonjrf_domain`)*
+    *Make sure to specify the proper domain name in the path (here `nonjrf_domain`)*.
 
 You may proceed to the next lab.
 

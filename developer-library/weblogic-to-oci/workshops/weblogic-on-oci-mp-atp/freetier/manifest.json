@@ -9,21 +9,20 @@
         },{
             "title": "Introduction",
             "publisheddate": "07/30/2020",
-            "filename": "../../../intro/intro.md",
-            "type": "oci"
+            "filename": "../../../intro-oci/intro-oci.md"
         },
         {
-            "title": "Lab 1: Setup the Demo On-Premises Environment",
+            "title": "Lab 1: Set up the Demo On-Premises Environment",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env/on-prems-env.md"
         },
         {
-            "title": "Lab 1 Option A: Setup an On-Premises Environment with the Workshop Marketplace Stack",
+            "title": "Lab 1 Option A: Set up an On-Premises Environment with the Workshop Marketplace Stack",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env-mp/on-prems-env-mp.md"
         },
         {
-            "title": "Lab 1 Option B: Setup a Local (On-Premises) Environment with Docker",
+            "title": "Lab 1 Option B: Set up a Local (On-Premises) Environment with Docker",
             "publisheddate": "07/30/2020",
             "filename": "../../../on-prems-env-docker/on-prems-env-docker.md"
         },
@@ -45,8 +44,7 @@
         {
             "title": "Lab 5: Migrate the Application Database",
             "publisheddate": "07/30/2020",
-            "filename": "../../../migrate-app-db-atp-datapump/migrate-app-db-atp-datapump.md",
-            "type": "oci"
+            "filename": "../../../migrate-app-db-atp-datapump/migrate-app-db-atp-datapump.md"
         },
         {
             "title": "Lab 6: Migrate the WebLogic Domain",
@@ -61,8 +59,7 @@
         {
             "title": "Lab 8: Tear down the Environment",
             "publisheddate": "07/30/2020",
-            "filename": "../../../tear-down/tear-down.md",
-            "type": "atp"
+            "filename": "../../../tear-down-atp/tear-down-atp.md"
         },
         {
             "title": "Need Help?",

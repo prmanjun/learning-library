@@ -1,4 +1,4 @@
-# Debugging remote containers
+# Debug Remote Containers
 
 ## Introduction
 
@@ -6,17 +6,15 @@
 
 In this lab we'll look at how to use this feature.
 
-Estimated Lab Time: 10 minutes
+Estimated Lab Time: 10 minutes.
 
 ### Objectives
 
-In this lab you will:
+In this lab you will configure VSCode to use the debugger run by **Skaffold**.
 
-- Configure VSCode to use the debugger run by **Skaffold**
+## **STEP 1:** Skaffold Debug Config
 
-## **STEP 1:** Skaffold debug config
-
-1. The *`debug`* profile in the `skaffold.yaml` config patches the artifacts like for `dev`. It uses the *`debug`* build stage of the Docker image, and prefixes the image *tag* with *`dbg-`*
+1. The *`debug`* profile in the `skaffold.yaml` config patches the artifacts like for `dev`. It uses the *`debug`* build stage of the Docker image, and prefixes the image *tag* with *`dbg-`*.
 
     ```yaml
     - name: debug
@@ -63,7 +61,7 @@ In this lab you will:
             localPort: 5680
     ```
 
-## **STEP 2:** VSCode config
+## **STEP 2:** VSCode Config
 
 1. The `.vscode` folder include the `launch.json` file needed to debug each of the containers in this repo. Ports mapped in the skaffold config are mapped to each service, and the source files of each service are mapped from local to remote location to allow the debugger to display line breakpoints.
 
@@ -125,7 +123,7 @@ In this lab you will:
 
 2. If you open the repository folder in VSCode, these debugger profiles should automatically be loaded for you in your launch configurations.
 
-## **STEP 3:** Run Skaffold debug
+## **STEP 3:** Run Skaffold Debug
 
 1. To launch a debugging session, run the command:
 
@@ -139,9 +137,9 @@ In this lab you will:
 
 3. In VSCode, choose the container service to debug, and click the run icon to debug.
 
-    ![](./images/vscode-debug.png =50%x*)
+    ![](./images/vscode-debug.png)
 
-    ![](./images/vscode-debug2.png =50%x*)
+    ![](./images/vscode-debug2.png)
 
 4. One caveat is that the code starts running before the debugger is attached, which may make it difficult to debug startup code, unless a delay is voluntarily inserted. Debugging effectively starts when the local VSCode is connected to the remote debugger.
 

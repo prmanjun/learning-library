@@ -48,13 +48,11 @@ To complete this lab, you need to have the following:
 <if type="paid">
 ## **STEP 1**: Provision an Autonomous Transaction Processing database
 
-1. From the navigation menu in the Oracle Cloud Infrastructure Console, select **Autonomous Transaction Processing**.
+1. From the navigation menu in the Oracle Cloud Infrastructure Console, select **Oracle Database**, and then **Autonomous Transaction Processing**.
 
 2. In the **Filters** section on the left, make sure your workload type is **Transaction Processing** or **All** so that you can see your database listed after you create it.
 
 3. From the **Compartment** drop-down list, select your compartment.
-
-![Compartment dropdown list](images/create-ad.png)
 
 4. Click **Create Autonomous Database**.
 
@@ -82,11 +80,9 @@ To complete this lab, you need to have the following:
 
       - **Password** and **Confirm Password** - Specify a password for the `ADMIN` database user and make note of it. The password must be between 12 and 30 characters long and must include at least one uppercase letter, one lowercase letter, and one numeric character. It cannot contain your username or the double quote (") character.
 
-      - **Network Access** - Leave **Allow secure access from everywhere** selected.
+      - **Network Access** - Leave **Secure access from everywhere** selected.
 
       - **License Type** - Select **License Included**.
-
-    ![Create Autonomous Database dialog box](images/create-ad.png)
 
 6. Click **Create Autonomous Database**. The **Autonomous Database Details** page is displayed.
 
@@ -100,7 +96,7 @@ To complete this lab, you need to have the following:
 ## **STEP 1**: Provision an Autonomous Transaction Processing database
 
 
-1. From the navigation menu in the Oracle Cloud Infrastructure Console, select **Autonomous Transaction Processing**.
+1. From the navigation menu in the Oracle Cloud Infrastructure Console, select **Oracle Database**, and then **Autonomous Transaction Processing**.
 
 2. In the **Filters** section on the left, make sure your workload type is **Transaction Processing** or **All** so that you can see your database listed after you create it.
 
@@ -132,11 +128,10 @@ To complete this lab, you need to have the following:
 
       - **Password** and **Confirm Password** - Specify a password for the `ADMIN` database user and make note of it. The password must be between 12 and 30 characters long and must include at least one uppercase letter, one lowercase letter, and one numeric character. It cannot contain your username or the double quote (") character.
 
-      - **Network Access** - Leave **Allow secure access from everywhere** selected.
+      - **Network Access** - Leave **Secure access from everywhere** selected.
 
       - **License Type** - Select **License Included**.
 
-    ![Create Autonomous Database dialog box](images/create-ad.png)
 
 6. Click **Create Autonomous Database**. The **Autonomous Database Details** page is displayed.
 
@@ -152,18 +147,18 @@ The LiveLabs tenancy provides you with an Autonomous Transaction Processing data
 
 1. Make sure that you have the correct region in Oracle Cloud Infrastructure selected.
 
-2. From the navigation menu, select **Autonomous Transaction Processing**.
+2. From the navigation menu, select **Oracle Database**, and then **Autonomous Transaction Processing**.
 
 3. From the **Compartment** drop-down list, expand **c4u03 (root)**, expand **Livelabs**, and then select your compartment.
 
-3. On the right, select your database. The **Autonomous Database Information** tab is displayed.
+3. On the right, click your database. The **Autonomous Database Information** tab is displayed.
 </if>
 
 
 
 ## **STEP 2**: Register your Autonomous Database with Oracle Data Safe
 
-By default, when you register an Autonomous Database, you are automatically granted privileges in Oracle Data Safe to use the User Assessment, Security Assessment, and Activity Auditing features with your database. On your actual database, all Oracle Data Safe features are enabled by default, except Data Masking.
+By default, when you register an Autonomous Database, you are automatically granted privileges in Oracle Data Safe to use the User Assessment, Security Assessment, and Activity Auditing features with your database. On your database, all Oracle Data Safe features are enabled by default, except Data Masking.
 
 1. On the **Autonomous Database Information** tab, under **Data Safe**, click **Register**.  <if type="paid">If there is no **Register** option, it is because you are working in a region that does not have the Oracle Data Safe service enabled in it. If you are the tenancy administrator, please enable Oracle Data Safe in your tenancy and region. Otherwise, please contact your tenancy administrator to gain access to an appropriate region.</if> <if type="freetier">If there is no **Register** option, it is because you are working in a region that does not have the Oracle Data Safe service enabled in it. As the tenancy administrator, please refer to the prerequisites to enable Oracle Data Safe in a region of your tenancy.</if><if type="livelabs">If there is no **Register** option, it is because Oracle Data Safe is not yet enabled in the region you have selected. For help, please click the **Need Help** button on the toolbar.</if>
 
@@ -253,7 +248,7 @@ The `load-data-safe-sample-data_admin.sql` script creates several tables with sa
 
 ## **STEP 4**: Sign in to the Oracle Data Safe Console and view the list of registered target databases
 
-1. Return to the browser tab where you are signed in to **Oracle Cloud Infrastructure**. You last left off on the **Tools** tab for your database. If you navigated away from the **Tools** tab, select **Autonomous Transaction Processing** from the navigation menu, and then select your database.
+1. Return to the browser tab where you are signed in to **Oracle Cloud Infrastructure**. You last left off on the **Tools** tab for your database. If you navigated away from the **Tools** tab, select **Oracle Database** and then **Autonomous Transaction Processing** from the navigation menu, and then click your database.
 
 2. Click the **Autonomous Database Information** tab.
 
@@ -297,7 +292,7 @@ The `load-data-safe-sample-data_admin.sql` script creates several tables with sa
 8. Click the name of your target database to view its details.
 
 
-9. In the **Target Details** dialog box, review the read-only connection information for your database.
+9. In the **Target Details** dialog box, review the connection information for your database. The information is read only.
       - You cannot edit the registration details for an Autonomous Database.
       - You can view the compartment to which the database belongs. The compartment for an Autonomous Database is the same compartment in Oracle Cloud Infrastructure in which the database resides.
       - Oracle Data Safe connects to the database via a TLS connection.
@@ -315,7 +310,7 @@ The **Registered Databases** page for the Oracle Data Safe service in the Oracle
 
 2. If you are signed out, sign in again using your Oracle Cloud account credentials. You should be in the Oracle Cloud Infrastructure Console.
 
-3. From the navigation menu, select **Data Safe**.
+3. From the navigation menu, select **Oracle Database**, and then **Data Safe**.
 
       - The **Overview** page for the Oracle Data Safe service is displayed. From here you can access the Oracle Data Safe Console and find links to useful information.
       - There is a message in the upper-right corner stating that **Data Safe is enabled**.
@@ -340,4 +335,4 @@ You may now [proceed to the next lab](#next).
 
 ## Acknowledgements
   * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-  * **Last Updated By/Date** - Jody Glover, March 29, 2021
+  * **Last Updated By/Date** - Jody Glover, May 4 2021

@@ -2,12 +2,16 @@
 
 ## About this Workshop
 
-This workshop shows you how to develop a web application in Visual Builder that displays a user interface in which your users can view, edit, and create data.
+This workshop shows you how to develop a mobile application in Visual Builder for users to view, edit, and create data. You'll also learn how to run the mobile application, either as a native mobile app on Android and iOS devices or as a Progressive Web Application.
 
-Estimated Lab Time: 115 minutes
+Estimated Lab Time: 80 minutes
 
 ### What Is Oracle Visual Builder?
-Oracle Visual Builder provides easy access to data from any REST-based service, and enables the creation of reusable business objects for storing and managing data. Using the cloud-based visual development tools, you can create and test responsive web applications and native mobile apps without the need to install any additional software. The visual designer enables you to quickly layout pages in your applications by dragging and dropping UI components, customizing their attributes and defining their behavior.  
+Oracle Visual Builder provides easy access to data from any REST-based service, and enables the creation of reusable business objects for storing and managing data. Using the cloud-based visual development tools, you can create and test responsive web applications and native mobile apps without the need to install any additional software.
+
+You can also run your mobile app as a Progressive Web App (PWA) to combine the advantages of native mobile apps and web apps. PWAs allow your users to leverage device-specific features such as camera access and location information and offer a user experience akin to native mobile apps. They can be distributed fairly easily like web apps, so users won't need to go to the app store to install them. Also, because PWAs can be installed on laptops, users can run them on Windows, Mac, and other operating systems, not just Android and iOS.
+
+Whatever app you're building, visual designer capabilities enable you to quickly design pages by dragging and dropping UI components, customizing their attributes, and defining their behavior.
 
 Take a look at this video to learn more, or just dive right into the labs.
 
@@ -15,15 +19,13 @@ Take a look at this video to learn more, or just dive right into the labs.
 
 ### What Will You Learn?
 
-In this workshop, you'll learn how to create a new application, add some pages, and link them to each other. You'll also create some business objects and learn how to import data and build pages for editing the data, as well as how to create common business rules for your web app.
+In this workshop, you'll learn how to create a simple mobile application that displays data for HR departments. You'll learn how to configure Visual Builder to build the mobile application, then install it on a device to test its functionality. You'll also explore the PWA option, which lets you run the application as a web app, rather than a native mobile app.
 
 ### What Do You Need?
-
-
 
 * An Oracle Free Tier, Always Free, Paid or LiveLabs Cloud Account
 * A Chrome browser
 
 ## Acknowledgements
 * **Author** Sheryl Manoharan
-* **Last Updated By/Date** - Sheryl Manoharan, October 2020
+* **Last Updated By/Date** - Sheryl Manoharan, April 2021

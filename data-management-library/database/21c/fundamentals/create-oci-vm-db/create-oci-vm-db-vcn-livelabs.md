@@ -19,8 +19,9 @@ Estimated Lab Time: 10 minutes
 
 ## **STEP**: Gather system details and connect to the Database using SSH
 
-1. Go to the Oracle Cloud Console and click on the hamburger menu. Select **Bare Metal, VM, and Exadata**
-  ![](images/select-bm-vm-ex.png " ")
+1. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Bare Metal, VM, and Exadata**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-dbcs.png " ")
 
 2. Select the compartment you were assigned. Note that you have a fully provisioned Database. Select it. 
   ![](images/select-db.png " ")

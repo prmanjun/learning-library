@@ -1,4 +1,4 @@
-# CI/CD with GitHub actions
+# Continuous Integration/Continuous Deployment (CI/CD) with GitHub Actions
 
 ## Introduction
 
@@ -8,24 +8,24 @@ Continuous Integration / Continuous Deployment (CI/CD) principles take advantage
 
 We'll look at configuring GitHub actions to test our code and optionally deploy it to staging or production.
 
-Estimated Lab Time: 20 minutes
+Estimated Lab Time: 20 minutes.
 
 ### Objectives
 
 In this lab you will:
 
-- Configure GitHub actions to perform tests upon committing to the development or master branch
+- Configure GitHub actions to perform tests upon committing to the development or master branch.
 - Optionally we'll configure GitHub actions to deploy to production upon creating a new release.
 
-## **STEP 1:** GitHub Actions overview
+## **STEP 1:** GitHub Actions Overview
 
-1. GitHub Actions are available to run tasks, using a yaml configuration file under `.github/workflow`
+1. GitHub Actions are available to run tasks, using a yaml configuration file under `.github/workflow`.
 
-2. GitHub Actions use Secrets to provide the task with credentials. This is a potential security risk if you do ot trust GitHub to hold credentials to your Docker Image registry or Kubernetes Cluster.
+2. GitHub Actions use Secrets to provide the task with credentials. This is a potential security risk if you do not trust GitHub to hold credentials to your Docker Image registry or Kubernetes Cluster.
 
     Note that you can use other preferred methods to do CI/CD, like other CI services or your own Jenkins instance.
 
-    Check out the quickstart guide to deploy a Jenkins server here: [https://github.com/oracle-quickstart/oci-arch-jenkins](https://github.com/oracle-quickstart/oci-arch-jenkins)
+    Check out the quickstart guide to deploy a Jenkins server here: [https://github.com/oracle-quickstart/oci-arch-jenkins](https://github.com/oracle-quickstart/oci-arch-jenkins).
 
 3. In this lab we will use GitHub Actions directly.
 
@@ -164,19 +164,19 @@ In this lab you will:
 
 ## **STEP 2:** GitHub Secrets
 
-1. The github actions is already present in the `.github/workflow/ci.yaml`. 
+1. The GitHub actions is already present in the `.github/workflow/ci.yaml`. 
 
-2. You need to provide the secrets to your GitHub repo fort this action script to work properly. (you may already have received a failure notification when you created the repository from the template)
+2. You need to provide the secrets to your GitHub repo fort this action script to work properly. (you may already have received a failure notification when you created the repository from the template).
 
-3. Go to the **Settings -> Secrets**
+3. Go to the **Settings -> Secrets**.
 
     ![](./images/settings.png)
 
     ![](./images/secrets.png)
 
-    and click **New Repository Secret**
+4. Click **New Repository Secret**.
 
-4. Create 3 secrets for your OCIR Docker Image Registry on OCI:
+5. Create 3 secrets for your OCIR Docker Image Registry on OCI:
 
     - DOCKER_USERNAME
     - DOCKER_PASSWORD
@@ -195,17 +195,17 @@ In this lab you will:
     ![](./images/secrets2.png)
 
 
-5. If you want to make use of the commented out actions that deploy to your Kubernetes cluster, you will also need to provide the following:
+6. If you want to make use of the commented out actions that deploy to your Kubernetes cluster, you will also need to provide the following:
 
-    - KUBE_CONFIG: the `kubeconfig` file for the kubernetes cluster
-    - OCI_CONFIG: the OCI config file (`cluster_admin_user_xxxx_oci_config.txt`)
-    - CI_USER_KEY: the OCI user private key (`cluster_admin_user_xxx_rsa_private_key.pem`)
+    - KUBE_CONFIG: the `kubeconfig` file for the Kubernetes cluster.
+    - OCI_CONFIG: the OCI config file (`cluster_admin_user_xxxx_oci_config.txt`).
+    - CI_USER_KEY: the OCI user private key (`cluster_admin_user_xxx_rsa_private_key.pem`).
 
     These files can be found in the `terraform` folder.
 
-## **STEP 3:** Test the action
+## **STEP 3:** Test the Action
 
-1. Click the **Actions** menu
+1. Click the **Actions** menu.
 
     ![](./images/actions.png)
 
@@ -213,7 +213,7 @@ In this lab you will:
 
     ![](./images/failed.png)
 
-3. Click the failed action, then click **Re-run Jobs**
+3. Click the failed action, then click **Re-run Jobs**.
 
     ![](./images/rerun.png)
 
@@ -221,10 +221,12 @@ In this lab you will:
 
 4. To test the deployment actions, you'll need to:
 
-    - Uncomment the commented yaml in the `ci.yaml` file
-    - Create a development branch in git, and push some changes
-    - create a PR from development to master, which should trigger a deployment to the `stage-ns` namespace in the cluster
-    - Merge the PR, and create a release based on master, which should trigger a deployment to the `prod-ns` namespace.
+    - Uncomment the commented yaml in the `ci.yaml` file.
+    - Create a development branch in git, and push some changes.
+    - Create a Pull Request (PR) from development to master, which should trigger a deployment to the `stage-ns` namespace in the cluster.
+    - Merge the Pull Request, and create a release based on master, which should trigger a deployment to the `prod-ns` namespace.
+
+    This is left as an exercise to the user.
 
 You may proceed to the next lab.
 

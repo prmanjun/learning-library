@@ -38,7 +38,9 @@ In this step, you will add ingress security rules to the default security list i
 
 1. Log in to the **Oracle Cloud Console** as the Cloud Administrator, if you are not already logged in. On the **Sign In** page, select your `tenancy`, enter your `username` and `password`, and then click **Sign In**. The **Oracle Cloud Console** Home page is displayed.
 
-2. Click the **Navigation** menu in the upper left-hand corner of the **Oracle Cloud Console** Home page. Under **Networking**, select **Virtual Cloud Networks**.
+2. Click the **Navigation Menu** in the upper left, navigate to **Networking**, and select **Virtual Cloud Networks**.
+
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/networking-vcn.png " ")
 
 3. On the **Virtual Cloud Networks** page, click your cluster's Virtual Cloud Network, **`training-vcn`** to display the **Virtual Cloud Network Details** page.
 

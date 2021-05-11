@@ -6,19 +6,6 @@ In this lab, you will deploy the pre-built Helidon Java backend Docker image to 
 
 Estimated time: ~25-minutes.
 
-### Objectives
-
-* Set values for environment variables
-* Build and deploy the Docker image of the application
-* Deploy the image on the Oracle Kubernetes Engine (OKE)
-* Describe the steps for Undeploying
-* Configure the API Gateway
-* Test the backend application
-
-### Prerequisites
-
-This lab requires the completion of lab 1 and the provision of the OCI components.
-
 ### Understanding the Java/backend application
 
 As with most React applications (https://reactjs.org/), this application uses remote APIs to handle data persistence. The backend implements 5 REST APIs including:
@@ -39,20 +26,33 @@ The backend is implemented using the following Java classes (under ./backend/src
   ![](images/Backend-APIs.png " ")
 
 
+### Objectives
+
+* Set values for environment variables
+* Build and deploy the Docker image of the application
+* Deploy the image on the Oracle Kubernetes Engine (OKE)
+* Describe the steps for Undeploying
+* Configure the API Gateway
+* Test the backend application
+
+### Prerequisites
+
+- This lab requires the completion of lab 1 and the provision of the OCI components.
+
+
 ## **STEP 1**: Set values for workshop environment variables
 
 1. Set the root directory of the workshop
-  ```
-  <copy>export MTDRWORKSHOP_LOCATION=~/mtdrworkshop</copy>
-  ```
+	```
+	<copy>export MTDRWORKSHOP_LOCATION=~/mtdrworkshop</copy>
+	```
 2. Run source addAndSourcePropertiesInBashrc.sh
 
-The following command will set the values of environment variables in mtdrworkshop.properties and source ~/.bashrc
+	The following command will set the values of environment variables in mtdrworkshop.properties and source ~/.bashrc
 
-  ```
-  <copy>cd $MTDRWORKSHOP_LOCATION; source addAndSourcePropertiesInBashrc.sh
- </copy>
- ```
+	```
+	<copy>cd $MTDRWORKSHOP_LOCATION; source addAndSourcePropertiesInBashrc.sh</copy>
+	```
 
 ## **STEP 2**: Build and push the Docker images to the OCI Registry
 
@@ -62,9 +62,9 @@ The following command will set the values of environment variables in mtdrworksh
  If the variable is not set or is an empty string, the push will fail (but the docker image will be built).
 
 2. Make sure to be in backend/target/classes/wallet directory then execute
-   ```
-   <copy>unzip ~/mtdrworkshop/setup-dev-environment/wallet.zip</copy>
-   ```
+	```
+	<copy>unzip ~/mtdrworkshop/setup-dev-environment/wallet.zip</copy>
+	```
 
 3. Pick mtdrb_tp service alias (see the list of aliases in
    ./backend/target/classes/wallet/tnsnames.ora)
@@ -106,31 +106,32 @@ The following command will set the values of environment variables in mtdrworksh
 
 1. Run the `deploy.sh` script
 
-  ```
-  <copy>cd $MTDRWORKSHOP_LOCATION/backend; ./deploy.sh</copy>
-  ```
+	```
+	<copy>cd $MTDRWORKSHOP_LOCATION/backend; ./deploy.sh</copy>
+	```
 
---> service/todolistapp-helidon-se-service created
---> deployment.apps/todolistapp-helidon-se-deployment created
+	--> service/todolistapp-helidon-se-service created
+	
+	--> deployment.apps/todolistapp-helidon-se-deployment created
 
 2. Check the status using the following commands
 $ kubectl get services
 
-The following command returns the Kubernetes service of MyToDo application with a load balancer exposed through an external API
-  ```
-  <copy>kubectl get services</copy>
-  ```
+	The following command returns the Kubernetes service of MyToDo application with a load balancer exposed through an external API
+	```
+	<copy>kubectl get services</copy>
+	```
 
-![](images/K8-service-Ext-IP.png " ")
+	![](images/K8-service-Ext-IP.png " ")
 
 3. $ kubectl get pods
-  ```
-  <copy>kubectl get pods</copy>
-  ```
+	```
+	<copy>kubectl get pods</copy>
+	```
 
-![](images/k8-pods.png " ")
+	![](images/k8-pods.png " ")
 
-5. Continuously tailing the log of one of the pods
+4. Continuously tailing the log of one of the pods
 
   $ kubectl logs -f <pod name>
   Example kubectl lgs -f todolistapp-helidon-se-deployment-7fd6dcb778-c9dbv
@@ -142,11 +143,11 @@ The following command returns the Kubernetes service of MyToDo application with 
 
   If you make changes to the image, you need to delete the service and the pods by running undeploy.sh then redo Steps 2 & 3.
 
-  1. Run the `undeploy.sh` script
-  ```
-    <copy>cd $MTDRWORKSHOP_LOCATION/backend; ./undeploy.sh</copy>
-  ```
-  2. Rebuild the image + Deploy + (Re)Configure the API Gateway
+1. Run the `undeploy.sh` script
+	```
+		<copy>cd $MTDRWORKSHOP_LOCATION/backend; ./undeploy.sh</copy>
+	```
+2. Rebuild the image + Deploy + (Re)Configure the API Gateway
 
 
 ## **STEP 5**: Configure the API Gateway
@@ -160,11 +161,12 @@ Rather than exposing the Helidon service directly, we will use the API Gateway t
 2. Configure the basic info: name, compartment, VCN and Subnet
     - VCN: pick on of the vitual circuit network
     - Subnet pick the public subnet   
-    The click "Create"
-  ![](images/Basic-gateway.png " ")
+	
+	The click "Create".
+  	![](images/Basic-gateway.png " ")
 
 3. Click on Todolist gateway
-       ![](images/Gateway.png " ")
+    ![](images/Gateway.png " ")
 
 4. Click on Deployments
    ![](images/Deployment-menu.png " ")
@@ -172,12 +174,12 @@ Rather than exposing the Helidon service directly, we will use the API Gateway t
 5. Create a todolist deployment
    ![](images/Deployment.png " ")
 
-
 6. Configure Cross-origin resource sharing (CORS) policies.
-  - CORS is a security mechanism that will prevent running application loaded from origin A  from using resources from another origin B.
-  - Allowed Origins: is the list of all servers (origins) that are allowed to access the API deployment typically your Kubernetes cluster IP.
-  - Allowed methods: GET, PUT, DELETE, POST, OPTIONS are all needed.
-    ![](images/Origins-Methods.png " ")
+	- CORS is a security mechanism that will prevent running application loaded from origin A  from using resources from another origin B.
+	- Allowed Origins: is the list of all servers (origins) that are allowed to access the API deployment typically your Kubernetes cluster IP.
+	- Allowed methods: GET, PUT, DELETE, POST, OPTIONS are all needed.
+		
+	![](images/Origins-Methods.png " ")
 
 7. Configure the Headers
     ![](images/Headers.png " ")
@@ -187,7 +189,7 @@ Rather than exposing the Helidon service directly, we will use the API Gateway t
     ![](images/Route-1.png " ")
 
     - /todolist/{id} for the remaining three APIs: (GET, PUT and DELETE)
-    ![](images/Route-2.png " ")
+	![](images/Route-2.png " ")
 
 
 ## **STEP 6**: Testing the backend application through the API Gateway
@@ -199,7 +201,7 @@ Rather than exposing the Helidon service directly, we will use the API Gateway t
   postfix the gateway endpoint with "/todolist" as shown in the image below
    ![](images/Backend-Testing.png " ")
 
-  It should display the Todo Item(s) in the TodoItem table. At least the row you have created in Part I.
+  It should display the Todo Item(s) in the TodoItem table. At least the row you have created in Lab 1.
 
 Congratulations, you have completed lab 2; you may now [proceed to the next lab](#next).
 
@@ -207,4 +209,4 @@ Congratulations, you have completed lab 2; you may now [proceed to the next lab]
 
 * **Author** -  - Kuassi Mensah, Dir. Product Management, Java Database Access
 * **Contributors** - Jean de Lavarene, Sr. Director of Development, JDBC/UCP
-* **Last Updated By/Date** - Kuassi Mensah, Database Product Management,  April 2021
+* **Last Updated By/Date** - Anoosha Pilli, Database Product Management,  April 2021

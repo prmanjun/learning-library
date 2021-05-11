@@ -1,10 +1,10 @@
 {
-    "workshoptitle": "RESTful Services for your Autonomous Database",
+    "workshoptitle": "Choose your Own JSON Adventure: Relational or Document Store",
     "help": "LIVELABS-HELP-DB_US@ORACLE.COM",
 	"tutorials": [
         {
             "title": "Prerequisites",
-            "description": "Login to Oracle Cloud",
+            "description": "Choose your Own JSON Adventure: Relational or Document Store Introduction",
             "filename": "https://raw.githubusercontent.com/oracle/learning-library/master/common/labs/cloud-login/cloud-login-livelabs2.md"
         },
         {

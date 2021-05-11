@@ -19,7 +19,7 @@ Estimated Lab Time: 10 minutes
 - You have completed the JSON Collections Lab
 
 
-### **STEP 1: RESTful Services on Relational Tables**
+## **STEP 1:** RESTful Services on Relational Tables
 
 1. REST enabling a relational table couldn't be easier. To do this, find the table we created named **AIRPORTDELAYS** in the navigator on the left of the SQL Worksheet.
 
@@ -72,7 +72,7 @@ Estimated Lab Time: 10 minutes
     ```
     These REST APIs can now be secured and exposed to applications to query, insert, update or delete data.
 
-### **STEP 2: REST for SODA on Collections**
+## **STEP 2:** REST for SODA on Collections
 
 We actually worked with the SODA APIs in our previous lab. The SODA APIs take on the format:
 
@@ -93,5 +93,4 @@ In this lab you learned how to expose data to applications via RESTful APIs.
 ## Acknowledgements
 
 - **Authors** - Jeff Smith, Beda Hammerschmidt and Brian Spendolini
-- **Last Updated By/Date** - April 2021
-- **Workshop Expiry Date** - April 2022
+- **Last Updated By/Date** - Anoosha Pilli, April 2021

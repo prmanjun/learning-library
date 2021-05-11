@@ -9,9 +9,9 @@ This lab will show you how to create an ODI instance from a Marketplace image an
 
 ## **Step 1:** Create an ODI instance from OCI Marketplace
 
-1. Login to the OCI Console and choose **Marketplace -> Applications**
+1. Click the **Navigation Menu** in the upper left and select **Marketplace**.
 
-    ![](./images/marketplace.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/marketplace.png " ")
 2. OCI Marketplace hosts many applications ready to be deployed.
    Search for “Oracle Data Integrator”.
 
@@ -58,9 +58,9 @@ Make sure you have chosen the correct **COMPARTMENT**
 
 ## **Step 2:** Configure ODI Studio and import training repository
 
-1. From the hamburger menu, open **Compute** -> **Instances**
+1. Click the **Navigation Menu** in the upper left, navigate to **Compute**, and select **Instances**.
 
-    ![](./images/odi_studio_1.png " ")
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/compute-instances.png " ")
 
 2. Search for your instance by *Display Name*. Ensure you have chosen the correct *Region* and *Compartment*
 

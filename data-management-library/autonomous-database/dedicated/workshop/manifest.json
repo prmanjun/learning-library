@@ -20,7 +20,7 @@
         {
             "title": "Lab 4: Provisioning Exadata Infrastructure for ADB on Exadata Cloud@Customer",
             "description": "Provisioning Exadata Infrastructure for Autonomous DB on ExaC@C",
-            "filename": "./../adb-provisioning-exaC@C/adb-provisioning-exaC@C.md"
+            "filename": "./../adb-provisioning-exaCatC/adb-provisioning-exaCatC.md"
         },
         {
             "title": "Lab 5: Provisioning a VM Cluster for ADB on Exadata Cloud@Customer",

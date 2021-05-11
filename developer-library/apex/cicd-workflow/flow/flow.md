@@ -6,16 +6,16 @@ In this lab we will create a snapshot of the app state in *`dev`* and deploy it 
 
 We'll then make some changes, create a new snapshot and re-deploy the application to the production environment.
 
-Estimated Lab Time: 15 minutes
+Estimated Lab Time: 15 minutes.
 
 ### Objectives
 
 In this lab you will:
 
 - Take a snapshot of the app state on *`dev`*, and deploy it to the *`prd`* environment.
-- Make changes on *`dev`*, take a new snapshot and redeploy to *`prd`*
+- Make changes on *`dev`*, take a new snapshot and redeploy to *`prd`*.
 
-## **STEP 1:** Taking a snapshot of the application state
+## **STEP 1:** Taking a Snapshot of the Application State
 
 1. To take a snapshot of the application state in the *`dev`* environment, simply run:
 
@@ -29,7 +29,7 @@ In this lab you will:
 
     This will create a changelog of the schema and export the app.
 
-    You could run the 2 operations separately with:
+    You could run the two operations separately with:
 
     ```bash
     make changelog
@@ -65,7 +65,7 @@ In this lab you will:
     </copy>
     ```
 
-## **STEP 2:** Deploy the app to the production environment
+## **STEP 2:** Deploy the App to the Production Environment
 
 1. With the app export and the schema changelog, we can reproduce the full application to another environment with:
 
@@ -75,7 +75,7 @@ In this lab you will:
 
     Note that APEX APP IDs must be *unique* within a single database (regardless of SCHEMA or WORKSPACE), so if you created the `prd` environment in the same database as the `dev` environment, the *`new_app_id`* MUST be different from the *`original_app_id`*. We recommend using a fixed offset (like 1000)
 
-    If you are deploying on a separate database, the *`new_app_id`* can be ommitted and it will default to the current APP ID, so if you used the default setup in terraform, you can do:
+    If you are deploying on a separate database, the *`new_app_id`* can be ommitted and it will default to the current APP ID, so if you used the default setup in terraform, you can more simply use:
 
     ```bash
     <copy>
@@ -83,9 +83,9 @@ In this lab you will:
     </copy>
     ```
 
-## **STEP 3:** Checking the deployment
+## **STEP 3:** Check the Deployment
 
-1. Login to the ATP database for *`prd`*: 
+1. Log in to the Oracle Autonomous Database for *`prd`*: 
 
   - Go to **Oracle Databases -> Autonomous Transaction Processing** in your compartment
   - Click the database for dev (*APEX_PRD* if you used the default names)
@@ -94,28 +94,28 @@ In this lab you will:
 
   - Click **Tools** tab 
 
-    ![](./images/atp-tools.png =50%x*)
+    ![](./images/atp-tools.png)
 
-  - Under **Oracle Application Express**, click then **Open APEX**
+  - Under **Oracle Application Express**, click **Open APEX**
 
     ![](./images/open-apex.png)
 
   - Click **Workspace Sign-in**
 
-    ![](./images/ws_signin.png =50%x*)
+    ![](./images/ws_signin.png)
 
-  - Enter the credentials for the Workspace Admin user (*WS\_ADMIN* if you used the default names) found in the *`prd.env`* file (WORKSPACE\_ADMIN and WORKSPACE\_ADMIN_PWD)
+  - Enter the credentials for the Workspace Admin user (`WS_ADMIN` if you used the default names) found in the *`prd.env`* file (`WORKSPACE_ADMIN` and `WORKSPACE_ADMIN_PWD`)
 
     If you used the defaults, the values are as follow:
     - Worspace: `WS`
     - User: `WS_ADMIN`
     - Password: check in the `prd.env` file
 
-    ![](./images/signin.png =50%x*)
+    ![](./images/signin.png)
 
 2. You should find your application and be able to run it.
 
-## **STEP 4:** Make some changes
+## **STEP 4:** Make Some Changes
 
 1. Back on the *`APEX_DEV`* database, we'll make some changes:
 
@@ -123,81 +123,83 @@ In this lab you will:
 
 2. Add a column in a table:
 
-    - Go to the SQL Workshop
+    - Go to **SQL Workshop**.
 
     ![](./images/sql-workshop.png)
 
-    - Click **Object Browser**
+    - Click **Object Browser**.
 
-    - In the list of tables, select **EBA\_SALES\_ACCESS\_LEVELS**
+    - In the list of tables, select **EBA\_SALES\_ACCESS\_LEVELS**.
 
-    - Click **ADD COLUMN**
+    - Click **ADD COLUMN**.
 
-    - and enter a new column named **BOGUS** for example
+    - Enter a new column named **BOGUS** for example.
 
-    - then click **NEXT** and on the next page click **FINISH**
+    - Click **NEXT**.
+    
+    - On the next page click **FINISH**
 
     We've now added a column to a table.
 
 3. Modify the application:
 
-    - Go to **App Builder**
+    - Go to **App Builder**.
 
-    - Click the **Opportunity Tracker** application: it opens the dev tools
+    - Click the **Opportunity Tracker** application, it opens the dev tools.
 
-    - Click the **Opportunities** page
+    - Click the **Opportunities** page.
 
         ![](./images/opp-tracker-pages.png)
 
-    - Click the **Opportunties** region
+    - Click the **Opportunties** region.
 
         ![](./images/opp-region.png)
 
-    - Change the name of the header in the **Opportunities** region
+    - Change the name of the header in the **Opportunities** region.
 
         ![](./images/opp-change.png)
 
-    - Click **Save**
+    - Click **Save**.
 
-## **STEP 5:** Create a new snapshot
+## **STEP 5:** Create a New Snapshot
 
 1. Create a new snapshot:
 
-  ```bash
-  <copy>
-  make snapshot ID=100
-  </copy>
-  ```
+    ```bash
+    <copy>
+    make snapshot ID=100
+    </copy>
+    ```
 
 2. Check your changes into git
 
-  ```bash
-  <copy>
-  git add apps/
-  git add changelogs/
-  git commit -m"First state change"
-  git push origin master
-  </copy>
-  ```
+    ```bash
+    <copy>
+    git add apps/
+    git add changelogs/
+    git commit -m"First state change"
+    git push origin master
+    </copy>
+    ```
 
 3. Create a new release branch
 
-  ```bash
-  <copy>
-  git branch release/v1.0.1
-  git push origin release/v1.0.1
-  </copy>
-  ```
+    ```bash
+    <copy>
+    git branch release/v1.0.1
+    git push origin release/v1.0.1
+    </copy>
+    ```
 
-## **STEP 6:** Deploy the changes to production
+## **STEP 6:** Deploy the Changes to Production
 
 1. Redeploy to prod
 
-  ```bash
-  <copy>
-  make update ENV=prd ID=100
-  </copy>
-  ```
+    ```bash
+    <copy>
+    make update ENV=prd ID=100
+    </copy>
+    ```
 
 2. On the **APEX_PRD** Database, check that the changes have propagated.
 

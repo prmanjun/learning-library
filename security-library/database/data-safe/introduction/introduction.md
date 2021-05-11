@@ -28,7 +28,7 @@ The objectives of this workshop are as follows:
 - Get comfortable with Oracle's public cloud services
 <if type="paid">- Provision an Autonomous Database and register it with Oracle Data Safe</if>
 <if type="freetier">- Provision an Autonomous Database and register it with Oracle Data Safe</if>
-<if type="livelabs">- Register an Autonomous Database with Oracle Data Safe</if> 
+<if type="livelabs">- Register an Autonomous Database with Oracle Data Safe</if>
 - Provision audit and alert policies on your database with Oracle Data Safe
 - Analyze alerts and audit reports in Oracle Data Safe
 - Assess the security of your database configurations and users in Oracle Data Safe
@@ -55,4 +55,4 @@ The following links provide more information about Oracle Data Safe:
 ## Acknowledgements
 
 * **Author** - Jody Glover, Principal User Assistance Developer, Database Development
-* **Last Updated By/Date** - Jody Glover, March 29, 2021
+* **Last Updated By/Date** - Jody Glover, May 4 2021

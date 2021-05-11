@@ -36,9 +36,9 @@ Watch this video to learn more about Autonomous Database.
 
     ![](./images/infrastructuredash.png " ")
 
-2. Once you are logged in, you are taken to the OCI Console. Click **Create an ADW Database**
-
-    ![](./images/Part_1_Step_2_1.png " ")
+2. Click the **Navigation Menu** in the upper left, navigate to **Oracle Database**, and select **Autonomous Data Warehouse**.
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/database-adw.png " ")
 
 3. This will bring up the Create Autonomous Data Warehouse screen where you will specify the configurations of the instance. Compartments are used to organize resources in the Cloud. Using the drop down, select the compartment of your choice.  Here, we are selecting **CloudDataWorkshop** from the compartment list.
 

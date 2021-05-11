@@ -3,8 +3,7 @@
         <div class="card">
             <div class="card-header">
                 Markdown
-                <button type="button" id="download_md" class="btn btn-primary float-right">Download MD
-                    File</button>
+                <button type="button" id="download_md" class="btn btn-primary float-right">Download MD</button>
                 <!-- <button type="button" id="view_md_template" class="btn btn-primary float-right">View MD
                     Template</button>                 -->
                 <input type="file" id="upload_md" accept=".md" hidden />
@@ -13,6 +12,7 @@
                 <button type="button" id="import_html" class="btn btn-primary float-right">Convert HTML to MD</button>
             </div>
             <div class="card-body">
+                <em><strong>Note:</strong> This tool does not support include and if tags.</em>
                 <div id="shortcuts">
                     <button type="button" class="btn btn-primary" id="btn_h1" accesskey="1"
                         title="Select the text in the textbox and click this button to make it a h1 element. Shortcut: Alt + 1">h1</button>
@@ -20,8 +20,8 @@
                         title="Select the text in the textbox and click this button to make it a h2 element. Shortcut: Alt + 2">h2</button>
                     <button type="button" class="btn btn-primary" id="btn_h3" accesskey="3"
                         title="Select the text in the textbox and click this button to make it a h3 element. Shortcut: Alt + 3">h3</button>
-                    <button type="button" class="btn btn-primary" id="btn_icon" accesskey="4"
-                        title="Click this button to add an inline image or icon. Shortcut: Alt + 4">icon</button>
+                    <!-- <button type="button" class="btn btn-primary" id="btn_icon" accesskey="4"
+                        title="Click this button to add an inline image or icon. Shortcut: Alt + 4">icon</button> -->
                     <button type="button" class="btn btn-primary" id="btn_image" accesskey="5"
                         title="Click this button to add an image with image description link. If you don't want image description, replace the text within quotes with space. Shortcut: Alt + 5">image</button>
                     <button type="button" class="btn btn-primary" id="btn_link" accesskey="6"
@@ -51,13 +51,12 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div id="rightBox" class="card">
             <div class="card-header">
-                HTML Preview
-                <button type="button" id="preview_from_home" class="btn btn-primary float-right">Preview in
-                    HTML</button>
+                Live Preview
+                <button type="button" id="preview_from_home" class="btn btn-primary float-right">Open in new tab</button>
                 <form class="float-right">
-                    <input type="checkbox" id="show_images">
-                    <label class="checkbox-inline" id="show_images_label">Show Images</label>
-                    <input type="checkbox" id="simple_view" checked>
+                    <!-- <input type="checkbox" id="show_images">
+                    <label class="checkbox-inline" id="show_images_label">Show Images</label> -->
+                    <input type="checkbox" id="simple_view">
                     <label class="checkbox-inline" id="simple_view_label">Simple View</label>
                 </form>
             </div>

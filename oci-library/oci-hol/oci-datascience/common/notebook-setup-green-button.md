@@ -25,8 +25,9 @@ In this lab, you:
 
 1. [Login to the OCI Console](https://www.oracle.com/cloud/sign-in.html).
 1. Open the navigation menu.
-1. Under **Data and AI**, select **Data Science**, and then click **Projects**.
-    ![](./../speed-up-ds-with-the-ads-sdk/images/select-projects.png)
+1. Click the **Navigation Menu** in the upper left, navigate to **Analytics & AI**, and select **Data Science**. 
+	
+	![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/analytics-ml-datascience.png " ")
 
 1. Select the compartment for the project.
 1. Click the name of the project to contain the notebook session.

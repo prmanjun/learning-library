@@ -105,7 +105,7 @@ Refer [Register Your ATP-D](https://github.com/labmaterial/adbguides-dev/blob/ma
    ![](./images/Img12.png " ")
 - Scroll through the report to review the findings. For example, the following findings have a **Pass status**.
 
-   ![](./images/Img13.png " ")
+   ![](https://raw.githubusercontent.com/oracle/learning-library/master/common/images/console/storage-buckets.png " ")
 
 ## Step 6: Rerun Security Assessment and compare the results to the first assessment
 
