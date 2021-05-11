@@ -1,21 +1,36 @@
 
 # Your HelloWorld Pipeline in 10 minutes!
 
-This lab helps you create a basic pipeline, add a query stage and a filter to it, and publish the pipeline; all this in less than 10 minutes!
+## About this Lab
 
-### **What is a Pipeline?**
+This lab helps you to create a basic pipeline, add a query stage and a filter to it, and publish the pipeline; all this in less than 10 minutes!
+
+*Estimated Lab Time*: 15 minutes
+
+## What is a Pipeline?
 
 A pipeline includes a sequence of data processing stages such as, Query, Pattern, Rule, Query Group, Custom, and Scoring. You can apply business logic to an input data stream, within a pipeline.
 
-## **Lab Prerequisites**
+## Objectives
+In this Lab you will:
+- Create a CSV file which contains sample data to be processed
+- Create a File stream
+- Create a Pipeline
+- Add a Query Stage to the source stream
+- Add a Filter to the Query stage
+- Publish the Pipeline
 
-1. An On-prem or a Marketplace instance of GoldenGate Stream Analytics (GGSA) version 19.1:
+## **Prerequisites**
+This Lab assumes you have:
+- A Free Tier, Paid, or LiveLabs Oracle Cloud account
+- SSH Private Key to access the host via SSH
+- An On-prem or a Marketplace instance of GoldenGate Stream Analytics (GGSA) version 19.1:
 
     * For more information on installing GGSA on-prem, see [Installing GoldenGate Stream Analytics](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/install/how-install-goldengate-stream-analytics.html#GUID-13BC895D-6AD1-4398-98E2-B5BE5B14D26B).
 
     * For more information on using GGSA on Marketplace, see [GoldenGate Stream Analytics on Oracle Cloud Marketplace](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/osamp/getting-started-goldengate-stream-analytics-oci.html#GUID-B488861E-1C43-4177-A1F8-40F8E44754AD).
 
-2. Mandatory System Settings configured, if you are using an on-prem instance:
+- Mandatory System Settings configured, if you are using an on-prem instance:
 
     * For configuration instructions, see [Mandatory RTE Configurations](https://docs.oracle.com/en/middleware/fusion-middleware/osa/19.1/using/configuring-runtime-environment.html#GUID-EB33DDFD-7444-434D-8944-059564A453FD).
 
@@ -153,15 +168,6 @@ To publish the pipeline:
 ## Acknowledgements
 * **Author** - Pratibha Manjunath, Senior User Assistance Developer, GoldenGate Stream Analytics
 * **Contributors** - Prabhu Thukaram, Senior Director, Software Development
-* **Reviewers:**
-    * Anuradha Chepuri, Principal User Assistance Developer, Oracle GoldenGate
-    * Prabhu Thukaram, Senior Director, Software Development, Golden Gate Development
-    * Yathish Gatty, Senior Software Development Manager, Golden Gate Development
-    * Aslam Khan, Senior User Assistance Manager, ODI, OGG, EDQ
 
-* **Last Updated By/Date** - Pratibha Manjunath, November 2020
 
-## Need Help?
-Please submit feedback or ask for help using our [LiveLabs Support Forum](https://community.oracle.com/tech/developers/categories/livelabsdiscussions). Please click the **Log In** button and login using your Oracle Account. Click the **Ask A Question** button to the left to start a *New Discussion* or *Ask a Question*.  Please include your workshop name and lab name.  You can also include screenshots and attach files.  Engage directly with the author of the workshop.
-
-If you do not have an Oracle Account, click [here](https://profile.oracle.com/myprofile/account/create-account.jspx) to create one.
+* **Last Updated By/Date** - Pratibha Manjunath, GoldenGate Stream Analytics, April 2021
