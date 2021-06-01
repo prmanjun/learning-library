@@ -69,11 +69,9 @@ To create a File stream:
 
    ![](./images/CreateStream.png "")
 
-2. Select **File** in the **Stream Type** drop-down list.
+3. Select **Create Pipeline with this source (Launch Pipeline Editor)**.
 
    ![](./images/CreateStream2.png "")
-
-3. Select **Create Pipeline with this source (Launch Pipeline Editor)**.
 
 4. Click **Next**, to update the source details.
 
@@ -170,4 +168,4 @@ To publish the pipeline:
 * **Contributors** - Prabhu Thukaram, Senior Director, Software Development
 
 
-* **Last Updated By/Date** - Pratibha Manjunath, GoldenGate Stream Analytics, April 2021
+* **Last Updated By/Date** - Pratibha Manjunath, GoldenGate Stream Analytics, June 2021
